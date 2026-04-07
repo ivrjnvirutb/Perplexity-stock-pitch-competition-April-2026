@@ -9,15 +9,15 @@
 
 A structured stress test of the investment thesis using Perplexity Computer's Model Council feature — three frontier AI models running in parallel, each independently evaluating five adversarial questions designed to break the thesis. This is the intellectual honesty chapter: we tried to destroy our own argument before the judges could.
 
-### The Five Adversarial Questions
+### The Five Adversarial Questions (actual questions from council_data.json)
 
 | # | Question | Why It Matters |
 |---|---|---|
-| 1 | Is CRDO's moat durable or will merchant silicon commoditize it within 3 years? | The core moat risk |
-| 2 | Is customer concentration in 1–2 hyperscalers a feature or an existential risk? | The biggest bear argument |
-| 3 | What happens to the thesis if hyperscaler AI capex growth decelerates in 2025–2026? | Macro sensitivity |
-| 4 | Could NVIDIA or Broadcom enter this market segment and displace CRDO? | Competitive disruption risk |
-| 5 | Is the current valuation already pricing in the bull case? | Valuation sanity check |
+| 1 | What are the three weakest assumptions in this thesis? | Surfaces hidden structural vulnerabilities |
+| 2 | What is the single most likely path to losing money on this investment over a 24-month horizon? | Forces the bear case to be specific and operational |
+| 3 | What one piece of evidence or data point, if confirmed, would most strengthen conviction in this thesis? | Identifies the single most important proof point to track |
+| 4 | Does Credo Technology have a durable competitive moat in 5 years — yes or no, and state exactly why? (Consider: 448G transition, hyperscaler internal silicon programs, ITC patent position.) | The durability question — models disagreed |
+| 5 | If you were Dan Loeb sitting across from Credo's CEO on an earnings call, what is the single question you would ask to expose the thesis's most critical vulnerability? | Forces the sharpest possible adversarial framing |
 
 ---
 
@@ -33,9 +33,9 @@ A structured stress test of the investment thesis using Perplexity Computer's Mo
 ## Perplexity Capabilities Used
 
 - **Model Council:** Three frontier models running in parallel:
-  - **GPT-5.4** — stress-tested the financial assumptions and valuation
-  - **Claude Opus 4.6** — stress-tested the moat and competitive dynamics
-  - **Gemini 3.1 Pro** — stress-tested the macro and market timing arguments
+  - **GPT-5.4** — most granular swim-lane analysis; uniquely retrieved CRDO's S-1 showing 2–3yr design cycle (not 3–4yr as originally stated in thesis)
+  - **Claude Opus 4.6** — most precise financial scenario modeling; quantified bear case as $55–70 stock price even with continued revenue growth via multiple compression from ~10x to 5–6x
+  - **Gemini 3.1 Pro** — only model to raise optical technology substitution (LPO/CPO) as a category-obsolescence risk; distinct from Marvell competition
 - Each model answered all five questions independently before synthesis
 - Convergences strengthen the thesis; divergences highlight genuine risk
 

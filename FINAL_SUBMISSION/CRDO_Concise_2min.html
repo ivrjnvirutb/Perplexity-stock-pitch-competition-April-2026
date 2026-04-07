@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CRDO — Concise Investment Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ==============================
+   DESIGN TOKENS
+============================== */
+:root {
+  --bg: #0A0E1A;
+  --gold: #C9A84C;
+  --blue: #2D6FFF;
+  --green: #22C55E;
+  --red: #EF4444;
+  --yellow: #EAB308;
+  --orange: #F97316;
+  --card-bg: #111827;
+  --card-border: #1E2A3A;
+  --text: #F0F4FF;
+  --text-muted: #8892A4;
+}
+
+/* ==============================
+   RESET & BASE
+============================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  margin: 0;
+}
+h1, h2, h3, h4, .num { font-family: 'Space Grotesk', sans-serif; }
+a { color: var(--gold); text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+canvas { display: block; }
+
+/* ==============================
+   PROGRESS BAR
+============================== */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--gold);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ==============================
+   PDF EXPORT BUTTON
+============================== */
+#pdf-btn {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  background: var(--gold);
+  color: #0A0E1A;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Space Grotesk', sans-serif;
+  z-index: 1000;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+}
+#pdf-btn:hover { opacity: 0.85; }
+
+/* ==============================
+   PANELS CONTAINER
+============================== */
+.panels-container {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: fixed;
+  top: 0; left: 0;
+}
+
+/* ==============================
+   PANEL BASE
+============================== */
+.panel {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.panel-inner {
+  width: 100%;
+  max-width: 1120px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.panel.visible .panel-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   PANEL INDICATOR
+============================== */
+.panel-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.12em;
+}
+
+/* ==============================
+   SOURCE CHIPS
+============================== */
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  align-items: center;
+}
+.source-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  align-self: center;
+  margin-right: 4px;
+}
+.chip {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.chip.revealed { opacity: 1; }
+
+/* ==============================
+   CARD BASE
+============================== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ==============================
+   TWO COLUMN LAYOUT
+============================== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  width: 100%;
+}
+
+/* ==============================
+   PULSE ANIMATION
+============================== */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(201,168,76,0.4); }
+  50% { box-shadow: 0 0 22px rgba(201,168,76,0.9); }
+}
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(201,168,76,0.3), 0 0 12px rgba(201,168,76,0.2); }
+  50% { box-shadow: 0 0 0 1px rgba(201,168,76,0.8), 0 0 28px rgba(201,168,76,0.5); }
+}
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ==============================
+   PANEL 1 — THE CALL
+============================== */
+#panel-1 { text-align: center; }
+#panel-1 .panel-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.badge-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.long-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.long-pill .dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+.company-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+}
+.ticker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  color: var(--blue);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.thesis-text {
+  max-width: 680px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  text-align: center;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 600px;
+}
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* ==============================
+   PANEL 2 — WHY NOW
+============================== */
+.era-chart { display: flex; flex-direction: column; gap: 14px; }
+.era-row { display: flex; flex-direction: column; gap: 4px; }
+.era-header { display: flex; justify-content: space-between; align-items: baseline; }
+.era-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.era-return { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.era-bar-track {
+  height: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.era-bar {
+  height: 100%;
+  border-radius: 5px;
+  width: 0%;
+  transition: width 1.2s ease;
+}
+.era-solver { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+.counter-boxes { display: flex; flex-direction: column; gap: 16px; }
+.counter-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.counter-box-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.counter-box-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+}
+.ratio-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 8px;
+}
+.quote-block {
+  border-left: 3px solid var(--gold);
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==============================
+   PANEL 3 — WHY CREDO
+============================== */
+.metric-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.metric-pill {
+  background: rgba(45,111,255,0.12);
+  border: 1px solid rgba(45,111,255,0.35);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.metric-pill:hover, .metric-pill.active {
+  background: rgba(45,111,255,0.22);
+  border-color: var(--blue);
+}
+.pill-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  padding-left: 4px;
+}
+.pill-detail.open { max-height: 60px; opacity: 1; }
+
+.val-gap-nums { display: flex; gap: 32px; align-items: baseline; margin: 12px 0; }
+.val-peer { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--text); }
+.val-crdo { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--gold); }
+.val-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.expand-link {
+  color: var(--gold);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 10px;
+}
+.comp-table-wrap {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.comp-table-wrap.open { max-height: 320px; }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.comp-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--card-border);
+}
+.comp-table td {
+  padding: 5px 8px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+}
+.comp-table tr.gold-row td { color: var(--gold); font-weight: 700; background: rgba(201,168,76,0.08); }
+
+.typewriter-box {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 12.5px;
+  color: var(--gold);
+  line-height: 1.6;
+  min-height: 80px;
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--gold);
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  animation: blink-cursor 0.8s step-end infinite;
+}
+
+/* ==============================
+   PANEL 4 — THE NUMBERS
+============================== */
+.scenario-cards { display: flex; flex-direction: column; gap: 12px; }
+.scenario-card {
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid transparent;
+}
+.scenario-card.bear { border-color: var(--red); background: rgba(239,68,68,0.06); }
+.scenario-card.base { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.scenario-card.bull { border-color: var(--green); background: rgba(34,197,94,0.06); }
+.scenario-header { display: flex; align-items: center; justify-content: space-between; }
+.scenario-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
+.scenario-card.bear .scenario-title { color: var(--red); }
+.scenario-card.base .scenario-title { color: var(--gold); }
+.scenario-card.bull .scenario-title { color: var(--green); }
+.scenario-price { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; }
+.scenario-card.bear .scenario-price { color: var(--red); }
+.scenario-card.base .scenario-price { color: var(--gold); }
+.scenario-card.bull .scenario-price { color: var(--green); }
+.scenario-chg { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-left: 8px; }
+.scenario-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0;
+}
+.scenario-detail.open { max-height: 100px; opacity: 1; margin-top: 10px; }
+
+.dcf-slider-wrap {
+  margin-top: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.dcf-slider-label { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+#dcf-slider {
+  width: 100%;
+  accent-color: var(--gold);
+  margin-bottom: 10px;
+}
+.dcf-result {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.catalyst-box {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 24px;
+  animation: pulse-border 2.4s ease-in-out infinite;
+}
+.catalyst-date { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.catalyst-subtitle { font-size: 15px; color: var(--text); font-weight: 600; margin-bottom: 16px; }
+.catalyst-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.catalyst-row { font-size: 14px; color: var(--text-muted); }
+.catalyst-row span { color: var(--text); font-weight: 600; }
+.divider { height: 1px; background: var(--card-border); margin: 12px 0; }
+.beat-badge {
+  display: inline-block;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.iv-row { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.reveal-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.reveal-btn:hover { background: rgba(201,168,76,0.12); }
+.opportunity-reveal {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+  opacity: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0;
+}
+.opportunity-reveal.open { max-height: 80px; opacity: 1; margin-top: 12px; }
+
+/* ==============================
+   PANEL 5 — STRESS TEST
+============================== */
+.model-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.model-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.model-card.gpt { border: 1px solid var(--green); }
+.model-card.claude { border: 1px solid var(--orange); }
+.model-card.gemini { border: 1px solid var(--blue); }
+.model-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.model-card.gpt .model-name { color: var(--green); }
+.model-card.claude .model-name { color: var(--orange); }
+.model-card.gemini .model-name { color: var(--blue); }
+.model-task { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.model-hover {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  padding: 14px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.model-card:hover .model-hover { transform: translateY(0); }
+
+.dan-loeb-box {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.dan-loeb-label {
+  font-size: 11px;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.dan-loeb-text {
+  font-family: 'Courier New', monospace;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  min-height: 60px;
+}
+.our-answer-btn {
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+  transition: background 0.2s;
+}
+.our-answer-btn:hover { background: rgba(201,168,76,0.1); }
+.answer-reveal {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+  opacity: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0;
+}
+.answer-reveal.open { max-height: 120px; opacity: 1; margin-top: 10px; }
+
+.consensus-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.consensus-chip {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.consensus-chip.green-chip {
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.4);
+  color: var(--green);
+}
+.consensus-chip.yellow-chip {
+  background: rgba(234,179,8,0.12);
+  border: 1px solid rgba(234,179,8,0.4);
+  color: var(--yellow);
+}
+.consensus-chip.revealed { opacity: 1; }
+
+/* ==============================
+   PANEL 6 — HOW BUILT
+============================== */
+.stat-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-pill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-pill-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-pill-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.discovery-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.discovery-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 12px 14px 12px 18px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.discovery-card.revealed { opacity: 1; }
+.discovery-card.gold-border { border-left: 3px solid var(--gold); }
+.discovery-card.blue-border { border-left: 3px solid var(--blue); }
+.discovery-card.orange-border { border-left: 3px solid var(--orange); }
+.discovery-title {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.compare-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--card-border);
+}
+.compare-table td {
+  padding: 6px 10px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+}
+.compare-table td:first-child { color: var(--text-muted); }
+.closing-line {
+  font-size: 15px;
+  color: var(--gold);
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+  line-height: 1.6;
+}
+
+/* ==============================
+   PANEL 2 TYPOGRAPHY
+============================== */
+.panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.panel-subtitle {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.chart-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ==============================
+   PRINT STYLES
+============================== */
+@media print {
+  #progress-bar, #pdf-btn { display: none !important; }
+  .panels-container {
+    scroll-snap-type: none;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .panel {
+    height: auto !important;
+    min-height: 100vh;
+    page-break-after: always;
+    scroll-snap-align: none;
+    opacity: 1 !important;
+  }
+  .panel-inner {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body { background: #0A0E1A !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .chip { opacity: 1 !important; }
+  .era-bar { width: var(--target-w) !important; transition: none !important; }
+  .scenario-detail { max-height: 100px !important; opacity: 1 !important; }
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 768px) {
+  .panel { padding: 32px 20px; }
+  .two-col { grid-template-columns: 1fr; gap: 24px; }
+  .model-cards-row { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .val-gap-nums { gap: 16px; }
+  .stat-pills-grid { grid-template-columns: repeat(2, 1fr); }
+  .panel-title { font-size: 22px; }
+  .panel-subtitle { font-size: 16px; }
+  .thesis-text { font-size: 15px; }
+  .scenario-price { font-size: 22px; }
+  .counter-box-value { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- PDF Export Button -->
+<button id="pdf-btn" onclick="window.print()">⬇ Export PDF</button>
+
+<!-- Panels Container -->
+<div class="panels-container" id="panels-container">
+
+<!-- ==============================
+     PANEL 1 — THE CALL
+============================== -->
+<section class="panel" id="panel-1">
+  <div class="panel-inner">
+    <div class="badge-row">
+      <div class="long-pill">
+        <span class="dot"></span>
+        LONG
+      </div>
+      <div class="company-name">Credo Technology Group</div>
+      <div class="ticker">NASDAQ: CRDO</div>
+    </div>
+
+    <p class="thesis-text">
+      The dominant qualified incumbent at 224G SerDes — every NVL72-class AI factory rack must use Credo's technology — trading at a 41.5% discount to peers with a binary catalyst on June 2, 2026.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Current Price</div>
+        <div class="stat-value" id="p1-price">$0.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Base Case Target</div>
+        <div class="stat-value" id="p1-target">$0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Upside</div>
+        <div class="stat-value" id="p1-upside">+0%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Net Cash</div>
+        <div class="stat-value" id="p1-cash">$0.00B</div>
+      </div>
+    </div>
+
+    <div class="source-chips" id="p1-chips">
+      <span class="source-label">Sources:</span>
+      <span class="chip">PitchBook</span>
+      <span class="chip">FactSet</span>
+      <span class="chip">SEC EDGAR</span>
+      <span class="chip">CB Insights</span>
+    </div>
+  </div>
+  <div class="panel-indicator">01 / 06</div>
+</section>
+
+<!-- ==============================
+     PANEL 2 — WHY NOW
+============================== -->
+<section class="panel" id="panel-2">
+  <div class="panel-inner">
+    <div class="panel-title" style="color: var(--gold);">The infrastructure phase is the entry point.</div>
+    <div class="panel-subtitle">"We are in 1996."</div>
+
+    <div class="two-col">
+      <!-- LEFT: Bar chart -->
+      <div>
+        <div class="chart-label">Six Infrastructure Eras — Peak 10-Year Returns</div>
+        <div class="era-chart" id="era-chart">
+          <!-- rows injected by JS -->
+        </div>
+      </div>
+
+      <!-- RIGHT: Counter boxes + quote -->
+      <div>
+        <div class="counter-boxes">
+          <div class="counter-box">
+            <div class="counter-box-label">AI CAPEX 2025</div>
+            <div class="counter-box-value" id="p2-capex" style="color: var(--gold);">$0B</div>
+          </div>
+          <div class="counter-box">
+            <div class="counter-box-label">AI APP REVENUE 2025</div>
+            <div class="counter-box-value" id="p2-apprev" style="color: var(--text);">$0B</div>
+          </div>
+        </div>
+        <div class="ratio-text">9:1 ratio — identical to 1997 internet</div>
+        <div class="quote-block">
+          "The market is pricing AI infrastructure like it priced the internet in 1996. That window closes."
+        </div>
+        <div class="source-chips" id="p2-chips">
+          <span class="source-label">Sources:</span>
+          <span class="chip">Goldman Sachs</span>
+          <span class="chip">Statista</span>
+          <span class="chip">NBER</span>
+          <span class="chip">Epoch AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-indicator">02 / 06</div>
+</section>
+
+<!-- ==============================
+     PANEL 3 — WHY CREDO
+============================== -->
+<section class="panel" id="panel-3">
+  <div class="panel-inner">
+    <div class="panel-title" style="color: var(--text);">1,169% revenue growth. 41.5% discount to peers. One reason.</div>
+
+    <div class="two-col">
+      <!-- LEFT: Canvas revenue chart + pills -->
+      <div>
+        <div class="chart-label">Quarterly Revenue ($M)</div>
+        <canvas id="rev-canvas" height="220"></canvas>
+        <div class="metric-pills">
+          <button class="metric-pill" id="pill-gm">Gross Margin 68.5%</button>
+          <button class="metric-pill" id="pill-cash">Net Cash $1.29B</button>
+          <button class="metric-pill" id="pill-beats">Guidance Beats 10/11</button>
+        </div>
+        <div class="pill-detail" id="detail-gm">Record high. Hardware with software-level economics.</div>
+        <div class="pill-detail" id="detail-cash">Zero debt. No dilution risk in any DCF scenario.</div>
+        <div class="pill-detail" id="detail-beats">83% beat rate since IPO. One miss (Q1 FY25, −6.7%).</div>
+      </div>
+
+      <!-- RIGHT: Valuation disconnect -->
+      <div>
+        <div style="font-size:14px; color: var(--gold); font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.06em;">Valuation Gap</div>
+        <div class="val-gap-nums">
+          <div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">Peers</div>
+            <div class="val-peer">14.7x</div>
+          </div>
+          <div>
+            <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">CRDO ★</div>
+            <div class="val-crdo">8.6x</div>
+          </div>
+        </div>
+        <div class="val-desc">
+          −41.5% discount despite +57pp NTM growth advantage<br/>
+          <span style="font-size:12px;">Implied price at peer median: ~$168 (+65.6%)</span>
+        </div>
+        <span class="expand-link" id="expand-comp-link">[Expand comp table]</span>
+        <div class="comp-table-wrap" id="comp-table-wrap">
+          <table class="comp-table">
+            <thead>
+              <tr><th>Ticker</th><th>EV/NTM Rev</th><th>NTM Growth</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ALAB</td><td>13.9x</td><td>+58%</td></tr>
+              <tr><td>MRVL</td><td>8.8x</td><td>+32%</td></tr>
+              <tr><td>MPWR</td><td>15.9x</td><td>+21%</td></tr>
+              <tr><td>AVGO</td><td>14.7x</td><td>+53%</td></tr>
+              <tr><td>MTSI</td><td>15.4x</td><td>+15%</td></tr>
+              <tr><td>Peer median</td><td>14.7x</td><td>+32%</td></tr>
+              <tr class="gold-row"><td>CRDO ★</td><td>8.6x</td><td>+90%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="typewriter-box" id="tw-panel3"><span class="cursor"></span></div>
+        <div class="source-chips" id="p3-chips">
+          <span class="source-label">Sources:</span>
+          <span class="chip">FactSet</span>
+          <span class="chip">PitchBook</span>
+          <span class="chip">S&amp;P Global</span>
+          <span class="chip">SEC EDGAR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-indicator">03 / 06</div>
+</section>
+
+<!-- ==============================
+     PANEL 4 — THE NUMBERS
+============================== -->
+<section class="panel" id="panel-4">
+  <div class="panel-inner">
+    <div class="panel-title" style="color: var(--text); font-size: clamp(20px,2.5vw,32px);">Bear / Base / Bull — and a catalyst the options market hasn't priced.</div>
+
+    <div class="two-col" style="margin-top:20px;">
+      <!-- LEFT: DCF Scenarios -->
+      <div>
+        <div class="scenario-cards">
+
+          <div class="scenario-card bear" id="sc-bear">
+            <div class="scenario-header">
+              <div>
+                <div class="scenario-title">Bear</div>
+                <div style="display:flex;align-items:baseline;gap:6px;">
+                  <div class="scenario-price">$71</div>
+                  <div class="scenario-chg">−30%</div>
+                </div>
+              </div>
+              <div style="font-size:18px; color:var(--text-muted);">▾</div>
+            </div>
+            <div class="scenario-detail" id="sd-bear">
+              Marvell qualifies at 2nd hyperscaler · Margins compress to 60% · 6x exit multiple · WACC 14% · FY27 rev $1.95B
+            </div>
+          </div>
+
+          <div class="scenario-card base" id="sc-base">
+            <div class="scenario-header">
+              <div>
+                <div class="scenario-title">Base ★</div>
+                <div style="display:flex;align-items:baseline;gap:6px;">
+                  <div class="scenario-price">$181</div>
+                  <div class="scenario-chg">+78%</div>
+                </div>
+              </div>
+              <div style="font-size:18px; color:var(--text-muted);">▾</div>
+            </div>
+            <div class="scenario-detail open" id="sd-base">
+              Management executes roadmap · Market share stable · 10x exit on $2.025B FY27 revenue · WACC 12%
+            </div>
+          </div>
+
+          <div class="scenario-card bull" id="sc-bull">
+            <div class="scenario-header">
+              <div>
+                <div class="scenario-title">Bull</div>
+                <div style="display:flex;align-items:baseline;gap:6px;">
+                  <div class="scenario-price">$358</div>
+                  <div class="scenario-chg">+253%</div>
+                </div>
+              </div>
+              <div style="font-size:18px; color:var(--text-muted);">▾</div>
+            </div>
+            <div class="scenario-detail" id="sd-bull">
+              5th hyperscaler ramps to full deployment · Margin re-rates toward software · 14x exit multiple · WACC 11% · FY27 rev $2.1B
+            </div>
+          </div>
+
+        </div>
+
+        <div class="dcf-slider-wrap">
+          <div class="dcf-slider-label">Adjust exit multiple:</div>
+          <input type="range" id="dcf-slider" min="6" max="16" step="0.5" value="10" />
+          <div class="dcf-result" id="dcf-result">At 10x multiple → $181 (+78%)</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Catalyst box -->
+      <div>
+        <div class="catalyst-box">
+          <div class="catalyst-date">📅 June 2, 2026</div>
+          <div class="catalyst-subtitle">Q4 FY2026 Earnings — The Binary Event</div>
+          <div class="catalyst-rows">
+            <div class="catalyst-row">Consensus: <span>$428M</span></div>
+            <div class="catalyst-row">Mgmt Implied: <span>$430–440M</span></div>
+            <div class="catalyst-row">Bull case: <span>$455M</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="beat-badge">10/12 QUARTERS BEAT</div>
+          <div class="iv-row">IV: 9.9% implied vs 11.8% realized → 33rd percentile</div>
+          <button class="reveal-btn" id="reveal-opp-btn">Reveal Opportunity</button>
+          <div class="opportunity-reveal" id="opp-reveal">
+            Options are historically cheap. The binary event is underpriced.<br/>
+            Breakeven long call: $111.50 (+9.9% from current)
+          </div>
+        </div>
+        <div class="source-chips" id="p4-chips" style="margin-top:16px;">
+          <span class="source-label">Sources:</span>
+          <span class="chip">FactSet</span>
+          <span class="chip">SEC EDGAR</span>
+          <span class="chip">S&amp;P Global</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-indicator">04 / 06</div>
+</section>
+
+<!-- ==============================
+     PANEL 5 — THE STRESS TEST
+============================== -->
+<section class="panel" id="panel-5">
+  <div class="panel-inner">
+    <div class="panel-title" style="color: var(--gold);">We asked the hardest questions before you could.</div>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:20px; line-height:1.5;">
+      Perplexity Model Council — GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro — ran in parallel. Zero coordination between models.
+    </p>
+
+    <div class="model-cards-row">
+      <div class="model-card gpt">
+        <div class="model-name">GPT-5.4</div>
+        <div class="model-task">Primary Source Analysis</div>
+        <div class="model-task">Swim-Lane Breakdown</div>
+        <div class="model-hover">
+          S-1 discloses 2–3yr design cycle, shorter than thesis framing. Qualification head start is real but narrower than claimed.
+        </div>
+      </div>
+      <div class="model-card claude">
+        <div class="model-name">Claude Opus 4.6</div>
+        <div class="model-task">Competitive Re-rating</div>
+        <div class="model-task">Quantified Bear Scenarios</div>
+        <div class="model-hover">
+          Re-rates to $55–70 if Marvell qualifies at a second hyperscaler at scale. Multiple compression from ~10x to 5–6x. Down 30–45% despite revenue growth.
+        </div>
+      </div>
+      <div class="model-card gemini">
+        <div class="model-name">Gemini 3.1 Pro</div>
+        <div class="model-task">Category-Level Risk</div>
+        <div class="model-task">Optical Substitution Threat</div>
+        <div class="model-hover">
+          LPO/CPO optical solutions could bypass AECs entirely — not competition within AECs but AEC category obsolescence. Only model to raise this.
+        </div>
+      </div>
+    </div>
+
+    <div class="dan-loeb-box">
+      <div class="dan-loeb-label">Dan Loeb Question — Stress Test</div>
+      <div class="dan-loeb-text" id="tw-panel5"></div>
+      <button class="our-answer-btn" id="answer-btn">[ Our Answer ]</button>
+      <div class="answer-reveal" id="answer-reveal">
+        Hyperscalers dual-source every critical component — we've never claimed otherwise. The premium reflects a 24–30 month revenue visibility advantage, not a monopoly. Marvell's demo requires 2–3 years of swim-lane qualification Credo already completed. The fifth hyperscaler win and Microsoft design win extension are evidence of deepening alignment, not displacement.
+      </div>
+    </div>
+
+    <div class="consensus-chips" id="consensus-chips">
+      <span class="consensus-chip green-chip">✓ All 3 models: Customer concentration is the #1 risk</span>
+      <span class="consensus-chip green-chip">✓ All 3 models: Second hyperscaler win = strongest conviction signal</span>
+      <span class="consensus-chip green-chip">✓ All 3 models: Qualification lead-time is real but not insurmountable for incumbents like Marvell</span>
+      <span class="consensus-chip yellow-chip">△ Divergence: Optical risk (LPO/CPO) — Gemini only — category obsolescence, not AEC competition</span>
+      <span class="consensus-chip yellow-chip">△ Divergence: 5-yr moat — GPT-5.4: YES · Opus 4.6: NO · Gemini: NO</span>
+      <span class="consensus-chip yellow-chip">△ Divergence: What changed the thesis — GPT-5.4 corrected timeline · Opus quantified bear $55–70 · Gemini introduced optical risk</span>
+    </div>
+
+    <div class="source-chips" id="p5-chips" style="margin-top:12px;">
+      <span class="source-label">Sources:</span>
+      <span class="chip">Perplexity Model Council</span>
+      <span class="chip">GPT-5.4</span>
+      <span class="chip">Claude Opus 4.6</span>
+      <span class="chip">Gemini 3.1 Pro</span>
+    </div>
+  </div>
+  <div class="panel-indicator">05 / 06</div>
+</section>
+
+<!-- ==============================
+     PANEL 6 — HOW BUILT
+============================== -->
+<section class="panel" id="panel-6">
+  <div class="panel-inner">
+    <div class="panel-title" style="color: var(--gold); text-align:center;">The methodology is the edge.</div>
+    <p style="text-align:center; color:var(--text-muted); font-size:17px; margin-bottom:24px; line-height:1.5;">
+      Every number in this pitch was surfaced by Perplexity Computer's parallel multi-agent research.
+    </p>
+
+    <div class="two-col">
+      <!-- LEFT: SVG DAG diagram -->
+      <div>
+        <svg id="dag-svg" viewBox="0 0 360 340" width="100%" height="300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#C9A84C" opacity="0.6" />
+            </marker>
+          </defs>
+          <!-- Arrows (drawn first so nodes appear on top) -->
+          <!-- T1 → T3 -->
+          <line x1="80" y1="58" x2="162" y2="122" stroke="#C9A84C" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T2 → T3 -->
+          <line x1="280" y1="58" x2="198" y2="122" stroke="#C9A84C" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T3 → T4 -->
+          <line x1="150" y1="148" x2="100" y2="192" stroke="#2D6FFF" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T3 → T5 -->
+          <line x1="210" y1="148" x2="260" y2="192" stroke="#2D6FFF" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T4 → T6 -->
+          <line x1="100" y1="218" x2="162" y2="256" stroke="#F97316" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T5 → T6 -->
+          <line x1="260" y1="218" x2="198" y2="256" stroke="#F97316" stroke-width="1.2" opacity="0.4" marker-end="url(#arrow)" />
+          <!-- T6 → Pitch -->
+          <line x1="180" y1="282" x2="180" y2="306" stroke="#C9A84C" stroke-width="1.5" opacity="0.6" marker-end="url(#arrow)" />
+
+          <!-- Row 1: T1, T2 -->
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="20" y="20" width="120" height="38" rx="8" fill="#111827" stroke="#C9A84C" stroke-width="1.2"/>
+            <text x="80" y="36" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">History</text>
+            <text x="80" y="50" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">4 sub-agents</text>
+          </g>
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="220" y="20" width="120" height="38" rx="8" fill="#111827" stroke="#C9A84C" stroke-width="1.2"/>
+            <text x="280" y="36" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">Universe</text>
+            <text x="280" y="50" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">7 sub-agents</text>
+          </g>
+
+          <!-- Row 2: T3 -->
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="110" y="122" width="140" height="38" rx="8" fill="#111827" stroke="#2D6FFF" stroke-width="1.2"/>
+            <text x="180" y="138" text-anchor="middle" fill="#2D6FFF" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">Comparison</text>
+            <text x="180" y="152" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">5 parallel</text>
+          </g>
+
+          <!-- Row 3: T4, T5 -->
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="30" y="192" width="130" height="38" rx="8" fill="#111827" stroke="#2D6FFF" stroke-width="1.2"/>
+            <text x="95" y="208" text-anchor="middle" fill="#2D6FFF" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">Deep Dive</text>
+            <text x="95" y="222" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">4 sub-agents</text>
+          </g>
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="200" y="192" width="130" height="38" rx="8" fill="#111827" stroke="#2D6FFF" stroke-width="1.2"/>
+            <text x="265" y="208" text-anchor="middle" fill="#2D6FFF" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">Financials</text>
+            <text x="265" y="222" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">1 specialist</text>
+          </g>
+
+          <!-- Row 4: T6 -->
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="90" y="256" width="180" height="38" rx="8" fill="#111827" stroke="#F97316" stroke-width="1.2"/>
+            <text x="180" y="272" text-anchor="middle" fill="#F97316" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="600">Model Council</text>
+            <text x="180" y="286" text-anchor="middle" fill="#8892A4" font-family="Inter,sans-serif" font-size="9.5">3 models × 5 Qs</text>
+          </g>
+
+          <!-- Row 5: This Pitch -->
+          <g class="dag-node" style="opacity:0;transition:opacity 0.4s ease;">
+            <rect x="110" y="308" width="140" height="28" rx="8" fill="#111827" stroke="#C9A84C" stroke-width="2"/>
+            <rect x="110" y="308" width="140" height="28" rx="8" fill="none" stroke="#C9A84C" stroke-width="2" filter="url(#glow)"/>
+            <text x="180" y="322" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700">This Pitch · All outputs</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- RIGHT: Stats + discoveries -->
+      <div>
+        <div class="stat-pills-grid">
+          <div class="stat-pill-card">
+            <div class="stat-pill-num" id="p6-agents">0</div>
+            <div class="stat-pill-label">parallel sub-agents</div>
+          </div>
+          <div class="stat-pill-card">
+            <div class="stat-pill-num" id="p6-models">0</div>
+            <div class="stat-pill-label">frontier models</div>
+          </div>
+          <div class="stat-pill-card">
+            <div class="stat-pill-num" id="p6-sources">0</div>
+            <div class="stat-pill-label">primary sources (Task 1)</div>
+          </div>
+          <div class="stat-pill-card">
+            <div class="stat-pill-num" id="p6-cos">0</div>
+            <div class="stat-pill-label">companies evaluated</div>
+          </div>
+          <div class="stat-pill-card" style="grid-column: span 2;">
+            <div class="stat-pill-num" style="font-size:28px;" id="p6-hrs">~20hrs</div>
+            <div class="stat-pill-label">async compute</div>
+          </div>
+        </div>
+
+        <div class="discovery-cards" id="discovery-cards">
+          <div class="discovery-card gold-border">
+            <div class="discovery-title">41.5% Discount Discovered</div>
+            Surfaced by simultaneously cross-referencing FactSet, PitchBook, and CB Insights. No single source contained all inputs.
+          </div>
+          <div class="discovery-card blue-border">
+            <div class="discovery-title">Qualification Timeline Corrected</div>
+            GPT-5.4 retrieved Credo's S-1 directly: 2–3yr design cycle, not 3–4yr as thesis assumed.
+          </div>
+          <div class="discovery-card orange-border">
+            <div class="discovery-title">Optical Risk Introduced</div>
+            Gemini 3.1 Pro alone raised LPO/CPO as category-obsolescence threat. Now reflected in risk section.
+          </div>
+        </div>
+
+        <table class="compare-table">
+          <thead>
+            <tr><th>Metric</th><th>Manual Research</th><th>Perplexity Computer</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Companies evaluated</td><td>~15</td><td style="color:var(--gold);font-weight:600;">59 (7 parallel)</td></tr>
+            <tr><td>Bear cases</td><td>1 analyst</td><td style="color:var(--gold);font-weight:600;">15 (3 models × 5 Qs)</td></tr>
+            <tr><td>Unique insight</td><td>Consensus view</td><td style="color:var(--gold);font-weight:600;">Mispricing · S-1 fix · Optical risk</td></tr>
+          </tbody>
+        </table>
+
+        <div class="source-chips" id="p6-chips">
+          <span class="source-label">Sources:</span>
+          <span class="chip">Perplexity Computer</span>
+          <span class="chip">GPT-5.4</span>
+          <span class="chip">Claude Opus 4.6</span>
+          <span class="chip">Gemini 3.1 Pro</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-line">
+      Built with Perplexity Computer · 19 sub-agents · 3 frontier models · 6 premium data sources · 59 companies · ~20 hours of async compute
+    </div>
+  </div>
+  <div class="panel-indicator">06 / 06</div>
+</section>
+
+</div><!-- end panels-container -->
+
+<script>
+/* ==============================
+   UTILITY: COUNT-UP
+============================== */
+function countUp(el, target, duration, prefix, suffix, decimals) {
+  const start = performance.now();
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = eased * target;
+    el.textContent = prefix + (decimals !== undefined ? val.toFixed(decimals) : Math.round(val)) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+/* ==============================
+   UTILITY: TYPEWRITER
+============================== */
+function typewriter(el, text, delay) {
+  delay = delay || 30;
+  el.textContent = '';
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  const interval = setInterval(() => {
+    i++;
+    el.textContent = text.slice(0, i);
+    el.appendChild(cursor);
+    if (i >= text.length) {
+      clearInterval(interval);
+    }
+  }, delay);
+}
+
+/* ==============================
+   PROGRESS BAR
+============================== */
+const progressBar = document.getElementById('progress-bar');
+const container = document.getElementById('panels-container');
+container.addEventListener('scroll', () => {
+  const maxScroll = container.scrollHeight - container.clientHeight;
+  const pct = maxScroll > 0 ? container.scrollTop / maxScroll : 0;
+  progressBar.style.width = (pct * 100) + '%';
+});
+
+/* ==============================
+   KEYBOARD NAVIGATION
+============================== */
+const panels = Array.from(document.querySelectorAll('.panel'));
+let currentPanelIdx = 0;
+
+function scrollToPanel(idx) {
+  idx = Math.max(0, Math.min(panels.length - 1, idx));
+  panels[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); scrollToPanel(currentPanelIdx + 1); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); scrollToPanel(currentPanelIdx - 1); }
+});
+
+/* ==============================
+   INTERSECTION OBSERVER
+============================== */
+const triggered = new Set();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      const idx = panels.indexOf(entry.target);
+      if (idx !== -1) currentPanelIdx = idx;
+      if (!triggered.has(entry.target.id)) {
+        triggered.add(entry.target.id);
+        triggerPanelAnimations(entry.target.id);
+      }
+    }
+  });
+}, { root: container, threshold: 0.4 });
+
+panels.forEach(p => observer.observe(p));
+
+/* ==============================
+   PANEL 1 ANIMATIONS
+============================== */
+function triggerPanel1() {
+  countUp(document.getElementById('p1-price'), 101.45, 1800, '$', '', 2);
+  countUp(document.getElementById('p1-target'), 181, 1800, '$', '', 0);
+  countUp(document.getElementById('p1-upside'), 78, 1800, '+', '%', 0);
+  countUp(document.getElementById('p1-cash'), 1.29, 1800, '$', 'B', 2);
+  revealChips('p1-chips');
+}
+
+/* ==============================
+   PANEL 2 SETUP & ANIMATIONS
+============================== */
+const eraData = [
+  { name: 'Industrial Revolution (1760–1850)', ret: 'Foundational (~15% IRR)', targetW: 15, color: '#6366F1', solver: 'Boulton & Watt' },
+  { name: 'Electrification (1880–1930)', ret: 'Foundational', targetW: 18, color: '#8B5CF6', solver: 'GE' },
+  { name: 'Computing (1950–1990)', ret: 'Foundational', targetW: 22, color: '#3B82F6', solver: 'IBM' },
+  { name: 'Internet (1993–2003)', ret: '+118,741%', targetW: 85, color: '#22C55E', solver: 'Cisco' },
+  { name: 'Mobile (2003–2013)', ret: '+3,000%', targetW: 55, color: '#F97316', solver: 'Qualcomm' },
+  { name: 'AI (Now)', ret: 'We are here ●', targetW: 10, color: '#C9A84C', solver: '?', pulsing: true },
+];
+
+(function buildEraChart() {
+  const chart = document.getElementById('era-chart');
+  eraData.forEach((era, i) => {
+    const row = document.createElement('div');
+    row.className = 'era-row';
+    row.innerHTML = `
+      <div class="era-header">
+        <span class="era-name">${era.name}</span>
+        <span class="era-return" style="color:${era.color}">${era.ret}</span>
+      </div>
+      <div class="era-bar-track">
+        <div class="era-bar" id="era-bar-${i}" style="--target-w:${era.targetW}%; background:${era.color};${era.pulsing ? 'animation: pulse-glow 1.6s ease-in-out infinite;' : ''}"></div>
+      </div>
+      <div class="era-solver">${era.solver}</div>
+    `;
+    chart.appendChild(row);
+  });
+})();
+
+function triggerPanel2() {
+  eraData.forEach((era, i) => {
+    const bar = document.getElementById(`era-bar-${i}`);
+    if (bar) {
+      bar.style.transitionDelay = (i * 0.1) + 's';
+      bar.style.width = era.targetW + '%';
+    }
+  });
+  countUp(document.getElementById('p2-capex'), 443, 1800, '$', 'B', 0);
+  countUp(document.getElementById('p2-apprev'), 49, 1800, '$', 'B', 0);
+  revealChips('p2-chips');
+}
+
+/* ==============================
+   PANEL 3: CANVAS REVENUE CHART
+============================== */
+const revData = [
+  { q: 'Q3 FY24', v: 53 },
+  { q: 'Q4 FY24', v: 61 },
+  { q: 'Q1 FY25', v: 60 },
+  { q: 'Q2 FY25', v: 72 },
+  { q: 'Q3 FY25', v: 135 },
+  { q: 'Q4 FY25', v: 170 },
+  { q: 'Q1 FY26', v: 223 },
+  { q: 'Q2 FY26', v: 268 },
+  { q: 'Q3 FY26', v: 407 },
+];
+const gmData = [61, 62.5, 63, 64, 65.5, 66.5, 67, 68, 68.5];
+
+let revCanvasAnimated = false;
+
+function drawRevCanvas(progress) {
+  const canvas = document.getElementById('rev-canvas');
+  if (!canvas) return;
+  const parent = canvas.parentElement;
+  canvas.width = parent.clientWidth;
+  const W = canvas.width;
+  const H = 220;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+
+  const padL = 10, padR = 10, padT = 30, padB = 40;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const maxVal = 420;
+  const n = revData.length;
+  const barW = chartW / n * 0.62;
+  const barGap = chartW / n;
+
+  // Draw bars
+  revData.forEach((d, i) => {
+    const x = padL + i * barGap + (barGap - barW) / 2;
+    const barH = (d.v / maxVal) * chartH * progress;
+    const y = padT + chartH - barH;
+    ctx.fillStyle = (i === n - 1) ? '#C9A84C' : '#2D6FFF';
+    ctx.beginPath();
+    if (ctx.roundRect) {
+      ctx.roundRect(x, y, barW, barH, [3, 3, 0, 0]);
+    } else {
+      ctx.rect(x, y, barW, barH);
+    }
+    ctx.fill();
+
+    // X label
+    ctx.fillStyle = '#8892A4';
+    ctx.font = '9px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(d.q.replace(' ', '\n'), padL + i * barGap + barGap / 2, H - 8);
+
+    // Last bar annotation
+    if (i === n - 1 && progress > 0.7) {
+      ctx.fillStyle = '#C9A84C';
+      ctx.font = 'bold 11px Space Grotesk, sans-serif';
+      ctx.fillText('↑ $407M/qtr', padL + i * barGap + barGap / 2, y - 6);
+    }
+  });
+
+  // GM% dashed line
+  if (progress > 0.3) {
+    ctx.strokeStyle = 'rgba(201,168,76,0.8)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    gmData.forEach((gm, i) => {
+      const x = padL + i * barGap + barGap / 2;
+      const gmScale = 0.85;
+      const y = padT + chartH - ((gm / 100) * chartH * gmScale);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Dots on GM line
+    gmData.forEach((gm, i) => {
+      const x = padL + i * barGap + barGap / 2;
+      const gmScale = 0.85;
+      const y = padT + chartH - ((gm / 100) * chartH * gmScale);
+      ctx.beginPath();
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#C9A84C';
+      ctx.fill();
+    });
+
+    // GM% legend
+    ctx.fillStyle = '#C9A84C';
+    ctx.font = '10px Inter, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = 'rgba(201,168,76,0.8)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(padL, padT - 14);
+    ctx.lineTo(padL + 22, padT - 14);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillText('— GM%', padL + 26, padT - 10);
+  }
+}
+
+function animateRevCanvas() {
+  if (revCanvasAnimated) return;
+  revCanvasAnimated = true;
+  const duration = 1200;
+  const start = performance.now();
+  function frame(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    drawRevCanvas(eased);
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* Pill interactions */
+['gm', 'cash', 'beats'].forEach(id => {
+  const btn = document.getElementById('pill-' + id);
+  const detail = document.getElementById('detail-' + id);
+  if (btn && detail) {
+    btn.addEventListener('click', () => {
+      const isOpen = detail.classList.contains('open');
+      document.querySelectorAll('.pill-detail').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.metric-pill').forEach(p => p.classList.remove('active'));
+      if (!isOpen) {
+        detail.classList.add('open');
+        btn.classList.add('active');
+      }
+    });
+  }
+});
+
+/* Comp table */
+document.getElementById('expand-comp-link').addEventListener('click', () => {
+  const wrap = document.getElementById('comp-table-wrap');
+  const link = document.getElementById('expand-comp-link');
+  if (wrap.classList.contains('open')) {
+    wrap.classList.remove('open');
+    link.textContent = '[Expand comp table]';
+  } else {
+    wrap.classList.add('open');
+    link.textContent = '[Collapse comp table]';
+  }
+});
+
+let tw3Done = false;
+function triggerPanel3() {
+  animateRevCanvas();
+  revealChips('p3-chips');
+  if (!tw3Done) {
+    tw3Done = true;
+    setTimeout(() => {
+      const el = document.getElementById('tw-panel3');
+      if (el) typewriter(el, "Credo owns the only commercially validated Active Electrical Cable IP at 224G SerDes. Every NVL72 rack, every TPU pod, every Trainium cluster at 800G+. 100+ patents. ITC enforced. 4-year qualification head start. No competitor is in production.", 28);
+    }, 800);
+  }
+}
+
+/* ==============================
+   PANEL 4 INTERACTIONS
+============================== */
+['bear', 'base', 'bull'].forEach(type => {
+  const card = document.getElementById('sc-' + type);
+  const detail = document.getElementById('sd-' + type);
+  if (card && detail) {
+    card.addEventListener('click', () => {
+      detail.classList.toggle('open');
+    });
+  }
+});
+
+// DCF Slider
+const slider = document.getElementById('dcf-slider');
+const dcfResult = document.getElementById('dcf-result');
+
+function updateDCF() {
+  const mult = parseFloat(slider.value);
+  const price = Math.round(181 * mult / 10);
+  const upside = Math.round((price / 101.45 - 1) * 100);
+  const sign = upside >= 0 ? '+' : '';
+  dcfResult.textContent = `At ${mult}x multiple → $${price} (${sign}${upside}%)`;
+}
+slider.addEventListener('input', updateDCF);
+
+// Reveal opportunity
+document.getElementById('reveal-opp-btn').addEventListener('click', () => {
+  const reveal = document.getElementById('opp-reveal');
+  if (reveal.classList.contains('open')) {
+    reveal.classList.remove('open');
+    document.getElementById('reveal-opp-btn').textContent = 'Reveal Opportunity';
+  } else {
+    reveal.classList.add('open');
+    document.getElementById('reveal-opp-btn').textContent = 'Hide Opportunity';
+  }
+});
+
+function triggerPanel4() {
+  revealChips('p4-chips');
+}
+
+/* ==============================
+   PANEL 5 ANIMATIONS
+============================== */
+let tw5Done = false;
+function triggerPanel5() {
+  if (!tw5Done) {
+    tw5Done = true;
+    setTimeout(() => {
+      const el = document.getElementById('tw-panel5');
+      if (el) typewriter(el, "Bill, of your top three hyperscaler customers, how many have formally indicated they will NOT qualify a second AEC source for their next-generation 1.6T rack architecture — and for those evaluating alternatives, at what stage of qualification is the competing solution today?", 28);
+    }, 500);
+  }
+
+  // Staggered consensus chips
+  const chips = document.querySelectorAll('#consensus-chips .consensus-chip');
+  chips.forEach((chip, i) => {
+    setTimeout(() => chip.classList.add('revealed'), i * 120);
+  });
+
+  revealChips('p5-chips');
+}
+
+document.getElementById('answer-btn').addEventListener('click', () => {
+  const reveal = document.getElementById('answer-reveal');
+  if (reveal.classList.contains('open')) {
+    reveal.classList.remove('open');
+    document.getElementById('answer-btn').textContent = '[ Our Answer ]';
+  } else {
+    reveal.classList.add('open');
+    document.getElementById('answer-btn').textContent = '[ Hide Answer ]';
+  }
+});
+
+/* ==============================
+   PANEL 6 ANIMATIONS
+============================== */
+function triggerPanel6() {
+  countUp(document.getElementById('p6-agents'), 19, 1800, '', '', 0);
+  countUp(document.getElementById('p6-models'), 3, 1200, '', '', 0);
+  countUp(document.getElementById('p6-sources'), 118, 1800, '', '', 0);
+  countUp(document.getElementById('p6-cos'), 59, 1800, '', '', 0);
+
+  // DAG nodes staggered
+  const nodes = document.querySelectorAll('#dag-svg .dag-node');
+  nodes.forEach((node, i) => {
+    setTimeout(() => { node.style.opacity = '1'; }, i * 150);
+  });
+
+  // Discovery cards staggered
+  const cards = document.querySelectorAll('#discovery-cards .discovery-card');
+  cards.forEach((card, i) => {
+    setTimeout(() => card.classList.add('revealed'), i * 200);
+  });
+
+  revealChips('p6-chips');
+}
+
+/* ==============================
+   CHIP REVEAL HELPER
+============================== */
+function revealChips(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const chips = container.querySelectorAll('.chip');
+  chips.forEach((chip, i) => {
+    setTimeout(() => chip.classList.add('revealed'), i * 120);
+  });
+}
+
+/* ==============================
+   TRIGGER DISPATCH
+============================== */
+function triggerPanelAnimations(panelId) {
+  if (panelId === 'panel-1') triggerPanel1();
+  if (panelId === 'panel-2') triggerPanel2();
+  if (panelId === 'panel-3') triggerPanel3();
+  if (panelId === 'panel-4') triggerPanel4();
+  if (panelId === 'panel-5') triggerPanel5();
+  if (panelId === 'panel-6') triggerPanel6();
+}
+
+/* ==============================
+   RESIZE: REDRAW CANVAS
+============================== */
+window.addEventListener('resize', () => {
+  if (triggered.has('panel-3')) drawRevCanvas(1);
+});
+
+/* ==============================
+   INITIAL: trigger panel 1 if already visible
+============================== */
+setTimeout(() => {
+  if (panels[0] && !triggered.has('panel-1')) {
+    panels[0].classList.add('visible');
+    triggered.add('panel-1');
+    triggerPanel1();
+  }
+}, 300);
+</script>
+</body>
+</html>

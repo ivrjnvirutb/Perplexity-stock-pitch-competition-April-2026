@@ -42,15 +42,15 @@ A comprehensive, structured universe of publicly listed companies (NYSE/NASDAQ, 
 
 ## The Five Risk/Reward Tiers
 
-| Tier | Profile | Typical Market Cap Range |
-|---|---|---|
-| 1 — Core Infrastructure | Proven revenue, essential bottleneck, low volatility | $10B+ |
-| 2 — Scaling Leaders | Strong growth, defensible moat, some execution risk | $3B–$10B |
-| 3 — Emerging Specialists | Early adoption curve, high upside, higher binary risk | $1B–$3B |
-| 4 — Optionality Plays | Indirect AI exposure, transforming into AI infrastructure | $1B+ |
-| 5 — Speculative | Pre-revenue or early revenue, moonshot characteristics | $1B+ |
+| Tier | Label | Profile | Stage 3 Winner | Composite Score |
+|---|---|---|---|---|
+| 1 | Conservative Anchor | Proven platform, premium multiple, low volatility | NVDA | 8.80 |
+| 2 | Established Grower | High growth, defensible moat, execution premium | PLTR | 7.75 |
+| 3 | High Conviction Growth | Mispriced, moat-gated, non-consensus | **CRDO** | **8.55** |
+| 4 | Speculative Asymmetric | Catalyst-dependent, binary re-rating potential | ZETA | 7.50 |
+| 5 | Deep Value / Turnaround | FCF machine, compliance moat, activist-ripe | BOX | 6.00 |
 
-CRDO was selected from Tier 2 — Scaling Leaders.
+CRDO was selected from Tier 3 — High Conviction Growth, with a composite score of 8.55/10. It scored highest of any finalist on non-consensus advantage (9/10) and data advantage (9/10) — the dimensions most relevant to the competition's 30pt Perplexity criterion. NVDA had the highest overall score (8.80) but was rejected: every judge already owns it and knows the thesis, making it the wrong pitch for this audience.
 
 ---
 

@@ -33,11 +33,18 @@ A rigorous financial model covering three DCF scenarios, a trading comparable an
 
 ## Key Outputs
 
-**Bull/Base/Bear scenario discipline:** Each scenario has genuinely different underlying assumptions — not just ±20% on the same base. The bull case assumes a specific new hyperscaler win; the bear case assumes a specific program delay. The scenarios are operationally grounded.
+**Bull/Base/Bear scenario discipline:** Each scenario has genuinely different underlying assumptions — not just ±20% on the same base. The bull case assumes 5th hyperscaler full deployment and margin re-rate; the bear case assumes Marvell qualifies at a second hyperscaler and margins compress to 60%.
 
 **The non-consensus argument:** Consensus models treat CRDO as a single-customer concentration risk. Our analysis shows that customer concentration at this stage of a design-win cycle is a *leading indicator of future revenue diversification*, not a terminal risk — and prices the stock as if the concentration never resolves.
 
-**Upside/downside:** [Populated from Task 5 output — specific price targets per scenario]
+**Price targets (from model_data.json):**
+- Bear: $71 (−30%) — WACC 14%, 6x exit multiple, FY27 revenue $1.95B
+- Base: $181 (+78%) — WACC 12%, 10x exit multiple, FY27 revenue $2.025B
+- Bull: $358 (+253%) — WACC 11%, 14x exit multiple, FY27 revenue $2.1B
+
+**Comp set (peer median EV/NTM Revenue: 14.7x vs. CRDO 8.6x):** ALAB 13.9x · MRVL 8.8x · MPWR 15.9x · AVGO 14.7x · MTSI 15.4x
+
+**Key catalyst:** June 2, 2026 — Q4 FY2026 earnings. Options IV at 9.9% implied vs. 11.8% historical (33rd percentile). Options are historically cheap for the magnitude of the binary event.
 
 ---
 
