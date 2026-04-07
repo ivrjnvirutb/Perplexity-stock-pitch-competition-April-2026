@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRDO — Investment Thesis | Perplexity Stock Pitch 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --navy: #0A0E1A;
+  --navy-card: #111827;
+  --navy-surface: #151D2E;
+  --blue: #2D6FFF;
+  --blue-dim: rgba(45,111,255,0.12);
+  --blue-border: rgba(45,111,255,0.25);
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.35);
+  --text: #F0F0F0;
+  --text-muted: #8FA3C0;
+  --text-faint: #4A5568;
+  --green: #22c55e;
+  --green-dim: rgba(34,197,94,0.12);
+  --orange: #f97316;
+  --orange-dim: rgba(249,115,22,0.12);
+  --red: #ef4444;
+  --yellow: #eab308;
+  --sidebar-w: 200px;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --transition: 180ms cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-font-smoothing: antialiased; }
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+a { color: var(--blue); text-decoration: none; }
+h1,h2,h3,h4,h5 { font-family: var(--font-display); line-height: 1.2; color: var(--text); }
+p { text-wrap: pretty; }
+canvas { display: block; }
+
+/* ===== SIDEBAR ===== */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 60px;
+  width: var(--sidebar-w);
+  background: rgba(10,14,26,0.97);
+  border-right: 1px solid var(--blue-border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  overflow-y: auto;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.sidebar-ticker {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue);
+}
+.badge-long {
+  background: var(--gold);
+  color: #0A0E1A;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+}
+.nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+}
+.nav-item a:hover { color: var(--text); background: var(--blue-dim); }
+.nav-item a.active {
+  color: var(--gold);
+  border-left-color: var(--gold);
+  background: var(--gold-dim);
+}
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--blue-border);
+  font-size: 10px;
+  color: var(--text-faint);
+  line-height: 1.5;
+}
+
+/* ===== MAIN CONTENT ===== */
+#main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 80px 48px;
+  border-bottom: 1px solid rgba(45,111,255,0.08);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+#hero { opacity: 1; transform: translateY(0); } /* Hero always visible */
+
+/* ===== CHAPTER HEADERS ===== */
+.chapter-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.intro-card {
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 48px;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(45,111,255,0.08) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232D6FFF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  padding: 6px 18px;
+  margin-bottom: 24px;
+}
+.hero-badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero-badge-text { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: var(--gold); }
+.hero-company {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.hero-ticker {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 28px;
+  letter-spacing: 0.05em;
+}
+.hero-thesis {
+  max-width: 680px;
+  font-size: clamp(15px, 1.8vw, 18px);
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 40px;
+}
+.hero-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.hero-stat {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  text-align: center;
+  min-width: 120px;
+}
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+}
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+.source-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--blue);
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-border);
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.chip-gold { color: var(--gold); background: var(--gold-dim); border-color: var(--gold-border); }
+.chip-green { color: var(--green); background: var(--green-dim); border-color: rgba(34,197,94,0.3); }
+.chip-orange { color: var(--orange); background: var(--orange-dim); border-color: rgba(249,115,22,0.3); }
+.hero-footnote {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: #0A0E1A;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 28px;
+  border-radius: 8px;
+  transition: all var(--transition);
+}
+.btn-primary:hover { background: #e0bc5a; transform: translateY(-1px); }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.card-gold {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+}
+.card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.card-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+/* ===== KPI STRIP ===== */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.kpi {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.kpi-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.kpi-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 32px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--blue-border);
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  margin: 24px 0;
+  padding-bottom: 8px;
+}
+.era-node {
+  flex: 1;
+  min-width: 140px;
+  cursor: pointer;
+  position: relative;
+}
+.era-node::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 60%;
+  right: 0;
+  height: 2px;
+  background: var(--blue-border);
+  z-index: 0;
+}
+.era-node:last-child::after { display: none; }
+.era-circle {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy-card);
+  border: 2px solid var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition);
+}
+.era-node.active .era-circle,
+.era-node:hover .era-circle {
+  background: var(--blue);
+  color: white;
+  transform: scale(1.15);
+}
+.era-node.ai-era .era-circle {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.era-node.ai-era.active .era-circle,
+.era-node.ai-era:hover .era-circle {
+  background: var(--gold);
+  color: #0A0E1A;
+}
+.era-label {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.era-label strong { display: block; color: var(--text); font-size: 12px; }
+.era-detail {
+  display: none;
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-top: 20px;
+  animation: slideIn 0.3s ease;
+}
+.era-detail.show { display: block; }
+@keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+.era-detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 12px; }
+.era-detail-item label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); display: block; margin-bottom: 4px; }
+.era-detail-item span { font-size: 14px; font-weight: 600; color: var(--gold); }
+.era-detail-item p { font-size: 13px; color: var(--text-muted); }
+
+/* ===== THESIS CHAIN ===== */
+.thesis-chain {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
+  margin: 24px 0;
+  position: relative;
+}
+.thesis-step {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  padding: 20px;
+  position: relative;
+}
+.thesis-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.thesis-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.step-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue-border);
+  margin-bottom: 8px;
+}
+.step-title { font-size: 12px; font-weight: 600; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.step-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.thesis-arrow {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--blue);
+  font-size: 16px;
+  z-index: 2;
+  display: none;
+}
+
+/* ===== BUBBLE CHART WRAPPER ===== */
+.chart-wrap {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+}
+.chart-wrap canvas { max-height: 380px; }
+
+/* ===== TIER COLUMNS ===== */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+.tier-col {
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  border: 1px solid transparent;
+}
+.tier-col-1 { background: rgba(45,111,255,0.06); border-color: rgba(45,111,255,0.2); }
+.tier-col-2 { background: rgba(45,111,255,0.09); border-color: rgba(45,111,255,0.25); }
+.tier-col-3 { background: rgba(201,168,76,0.06); border-color: var(--gold-border); }
+.tier-col-4 { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.2); }
+.tier-col-5 { background: rgba(148,163,184,0.05); border-color: rgba(148,163,184,0.15); }
+.tier-header { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.tier-name { font-family: var(--font-display); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.tier-company { font-size: 12px; margin-bottom: 6px; }
+.tier-company strong { color: var(--text); }
+.tier-company .score { color: var(--text-faint); font-size: 11px; }
+
+/* ===== FINALIST CARDS ===== */
+.finalist-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+.finalist-card {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-width: 200px;
+}
+.finalist-card:hover { border-color: var(--blue); }
+.finalist-card.winner {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.05);
+  animation: winner-pulse 3s ease-in-out infinite;
+}
+@keyframes winner-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(201,168,76,0.15); }
+}
+.finalist-ticker {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.finalist-name { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+.finalist-tier { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.finalist-metric { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+.finalist-metric span:first-child { color: var(--text-muted); }
+.finalist-metric span:last-child { font-weight: 600; color: var(--text); }
+.profile-text { font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-top: 10px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.finalist-card.expanded .profile-text { max-height: 400px; }
+.expand-btn { font-size: 10px; color: var(--blue); margin-top: 8px; text-align: center; }
+
+/* ===== MATRIX ===== */
+.matrix-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.matrix-table th {
+  background: rgba(45,111,255,0.08);
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--blue-border);
+}
+.matrix-table th.ticker-col { text-align: center; color: var(--blue); }
+.matrix-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(45,111,255,0.06);
+  font-size: 13px;
+}
+.matrix-table tr:last-child td { border-bottom: none; }
+.score-cell {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: transform var(--transition);
+}
+.score-cell:hover { transform: scale(1.15); }
+.score-green-dark { color: #22c55e; }
+.score-green { color: #86efac; }
+.score-yellow { color: #eab308; }
+.score-red { color: #ef4444; }
+.score-crdo { background: rgba(201,168,76,0.15); border-radius: 6px; }
+.dim-label { font-size: 13px; color: var(--text-muted); }
+.dim-desc { font-size: 11px; color: var(--text-faint); }
+.leader-chip {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.totals-row td { background: rgba(45,111,255,0.06); font-weight: 700; border-top: 2px solid var(--blue-border); }
+.crdo-total { color: var(--gold); font-size: 18px; }
+
+/* ===== MATRIX EXPLANATION PANEL ===== */
+.matrix-explain {
+  background: var(--navy-surface);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: none;
+  animation: slideIn 0.2s ease;
+}
+.matrix-explain.show { display: block; }
+
+/* ===== REVENUE CHART ===== */
+.chart-container { position: relative; height: 320px; margin: 20px 0; }
+
+/* ===== COMPETITOR TABLE ===== */
+.data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+.data-table th { background: rgba(45,111,255,0.08); padding: 10px 14px; text-align: left; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--blue-border); }
+.data-table td { padding: 10px 14px; border-bottom: 1px solid rgba(45,111,255,0.06); }
+.data-table tr:hover td { background: var(--blue-dim); }
+.data-table tr.highlight td { background: var(--gold-dim); }
+.badge-green { background: var(--green-dim); color: var(--green); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+.badge-yellow { background: rgba(234,179,8,0.12); color: var(--yellow); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+.badge-red { background: rgba(239,68,68,0.12); color: var(--red); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+.badge-blue { background: var(--blue-dim); color: var(--blue); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+
+/* ===== MOAT PILLARS ===== */
+.moat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 20px 0; }
+.moat-card { background: var(--navy-card); border: 1px solid var(--blue-border); border-radius: var(--radius-lg); padding: 20px; border-top: 3px solid var(--blue); }
+.moat-icon { font-size: 24px; margin-bottom: 12px; }
+.moat-title { font-family: var(--font-display); font-weight: 600; margin-bottom: 8px; }
+.moat-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== DCF ===== */
+.scenario-pinned {
+  background: var(--gold-dim);
+  border: 2px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.scenario-pinned-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 12px; }
+.scenario-vals { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.scenario-val { text-align: center; }
+.scenario-val .price { font-family: var(--font-display); font-size: 28px; font-weight: 700; }
+.scenario-val .pct { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.scenario-val.bear .price { color: var(--red); }
+.scenario-val.base .price { color: var(--blue); }
+.scenario-val.bull .price { color: var(--green); }
+.scenario-assumptions { font-size: 12px; color: var(--text-faint); margin-top: 12px; }
+
+.valuation-disconnect {
+  background: var(--navy-card);
+  border: 2px solid var(--blue);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 24px 0;
+  text-align: center;
+}
+.disconnect-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+.disconnect-bars { display: flex; align-items: flex-end; gap: 32px; justify-content: center; margin: 20px 0; }
+.disconnect-bar-wrap { text-align: center; }
+.disconnect-bar {
+  width: 80px;
+  border-radius: 6px 6px 0 0;
+  margin: 0 auto 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bar-crdo { height: 100px; background: var(--blue); }
+.bar-peers { height: 175px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); }
+.bar-val { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: white; }
+.bar-label { font-size: 12px; color: var(--text-muted); }
+.disconnect-insight { font-size: 14px; color: var(--text-muted); max-width: 560px; margin: 0 auto; }
+
+/* ===== SLIDERS ===== */
+.dcf-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin: 20px 0;
+}
+.slider-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.slider-group input[type=range] { width: 100%; accent-color: var(--blue); }
+.slider-val { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--blue); margin-top: 4px; }
+.dcf-result {
+  text-align: center;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 16px 0;
+}
+.dcf-result-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+.dcf-result-price { font-family: var(--font-display); font-size: 40px; font-weight: 700; color: var(--gold); }
+.dcf-result-upside { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+/* ===== SENSITIVITY HEATMAP ===== */
+.heatmap { border-collapse: collapse; margin: 16px 0; width: 100%; }
+.heatmap th { padding: 8px 12px; font-size: 11px; color: var(--text-muted); text-align: center; }
+.heatmap td { padding: 12px; text-align: center; font-family: var(--font-display); font-size: 14px; font-weight: 600; border: 2px solid var(--navy); border-radius: 4px; }
+.heat-red { background: rgba(239,68,68,0.2); color: #ef4444; }
+.heat-yellow { background: rgba(234,179,8,0.2); color: #eab308; }
+.heat-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+.heat-dark-green { background: rgba(34,197,94,0.3); color: #16a34a; }
+
+/* ===== CATALYST CALLOUT ===== */
+.catalyst-callout {
+  background: var(--gold-dim);
+  border: 2px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 28px 0;
+}
+.catalyst-date { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+.catalyst-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+.catalyst-scenario { background: var(--navy); border-radius: var(--radius); padding: 12px 16px; }
+.catalyst-scenario .prob { font-size: 10px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; }
+.catalyst-scenario .rev { font-size: 13px; font-weight: 600; margin: 2px 0; }
+.catalyst-scenario .reaction { font-size: 12px; color: var(--text-muted); }
+
+/* ===== MODEL COUNCIL ===== */
+.model-headers { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.model-card {
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: center;
+  border: 1px solid;
+}
+.model-gpt { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+.model-claude { background: var(--orange-dim); border-color: rgba(249,115,22,0.3); }
+.model-gemini { background: var(--blue-dim); border-color: var(--blue-border); }
+.model-name { font-family: var(--font-display); font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.model-gpt .model-name { color: var(--green); }
+.model-claude .model-name { color: var(--orange); }
+.model-gemini .model-name { color: var(--blue); }
+.model-desc { font-size: 10px; color: var(--text-faint); }
+
+.question-nav { display: flex; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+.q-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--blue-border);
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+.q-btn:hover, .q-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+
+.responses-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+.response-panel {
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  border: 1px solid;
+}
+.response-gpt { background: rgba(34,197,94,0.05); border-color: rgba(34,197,94,0.2); }
+.response-claude { background: var(--orange-dim); border-color: rgba(249,115,22,0.2); }
+.response-gemini { background: var(--blue-dim); border-color: var(--blue-border); }
+.response-model { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.response-gpt .response-model { color: var(--green); }
+.response-claude .response-model { color: var(--orange); }
+.response-gemini .response-model { color: var(--blue); }
+.response-text { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+.response-text.truncated { max-height: 200px; overflow: hidden; position: relative; }
+.response-text.truncated::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, var(--navy-card));
+}
+.read-more { font-size: 11px; color: var(--blue); margin-top: 6px; cursor: pointer; }
+.unique-badge { display: inline-block; font-size: 9px; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); border-radius: 10px; padding: 1px 7px; margin-bottom: 6px; }
+
+.divergence-banner {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+.divergence-banner h4 { font-family: var(--font-display); font-size: 15px; margin-bottom: 8px; color: var(--text); }
+.divergence-votes { display: flex; gap: 12px; margin: 10px 0; flex-wrap: wrap; }
+.vote { font-size: 12px; padding: 4px 12px; border-radius: 20px; font-weight: 600; }
+.vote-yes { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+.vote-no { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+.divergence-note { font-size: 13px; color: var(--text-muted); font-style: italic; margin-top: 8px; }
+
+.loeb-question-box {
+  background: var(--gold-dim);
+  border: 2px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin: 28px 0;
+}
+.loeb-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 12px; font-weight: 700; }
+.loeb-q { font-family: var(--font-display); font-size: 16px; line-height: 1.6; color: var(--text); margin-bottom: 20px; }
+.loeb-answer-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 10px; }
+.loeb-answer { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+/* ===== SYNTHESIS ITEMS ===== */
+.synthesis-list { list-style: none; margin: 16px 0; }
+.synthesis-list li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(45,111,255,0.06);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.synthesis-list li::before { content: '→'; color: var(--blue); flex-shrink: 0; font-weight: 700; }
+
+/* ===== RECOMMENDATION ===== */
+#ch7 {
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  text-align: center;
+}
+.rec-company { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); font-weight: 700; margin-bottom: 4px; }
+.rec-ticker { font-family: var(--font-display); font-size: clamp(40px, 7vw, 80px); font-weight: 800; color: var(--blue); margin-bottom: 16px; letter-spacing: 0.04em; }
+.rec-badge { display: inline-block; background: var(--gold); color: #0A0E1A; font-family: var(--font-display); font-size: 20px; font-weight: 800; padding: 8px 32px; border-radius: 8px; margin-bottom: 32px; letter-spacing: 0.1em; }
+.rec-thesis { max-width: 720px; margin: 0 auto 40px; font-size: clamp(15px, 1.8vw, 18px); line-height: 1.7; color: var(--text-muted); font-style: italic; }
+.pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 32px 0; text-align: left; }
+.pillar { background: var(--navy-card); border: 1px solid var(--blue-border); border-top: 3px solid; border-radius: var(--radius-lg); padding: 24px; }
+.pillar-laffont { border-top-color: #7c3aed; }
+.pillar-loeb { border-top-color: var(--blue); }
+.pillar-hao { border-top-color: var(--gold); }
+.pillar-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; font-weight: 700; }
+.pillar-laffont .pillar-label { color: #7c3aed; }
+.pillar-loeb .pillar-label { color: var(--blue); }
+.pillar-hao .pillar-label { color: var(--gold); }
+.pillar-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 24px 0; text-align: left; }
+.risk-card { background: var(--navy-card); border: 1px solid var(--blue-border); border-radius: var(--radius-lg); padding: 20px; cursor: pointer; }
+.risk-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.risk-title { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+.risk-severity { font-size: 16px; }
+.risk-body { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.risk-detail { display: none; margin-top: 12px; border-top: 1px solid var(--blue-border); padding-top: 12px; }
+.risk-card.open .risk-detail { display: block; }
+.risk-item { font-size: 12px; margin-bottom: 8px; }
+.risk-item strong { color: var(--text); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+
+/* ===== CHAPTER 8 ===== */
+.insight-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 28px 0; }
+.insight-card {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border-top: 3px solid var(--gold);
+}
+.insight-num { font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--blue-border); margin-bottom: 8px; }
+.insight-headline { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 12px; line-height: 1.3; }
+.insight-text { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+
+/* ===== WORKFLOW DIAGRAM ===== */
+.workflow {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+.workflow-svg { width: 100%; min-width: 700px; }
+
+.task-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; }
+.task-card { background: var(--navy-card); border: 1px solid var(--blue-border); border-radius: var(--radius); padding: 16px; }
+.task-num { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 4px; font-weight: 700; }
+.task-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.task-stats { font-size: 11px; color: var(--text-faint); }
+
+.stats-panel { background: var(--navy-card); border: 1px solid var(--blue-border); border-radius: var(--radius-lg); padding: 28px; margin: 24px 0; }
+.stat-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(45,111,255,0.06); }
+.stat-row:last-child { border-bottom: none; }
+.stat-row-label { font-size: 13px; color: var(--text-muted); }
+.stat-row-value { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--gold); }
+
+.comparison-card { background: var(--navy-card); border: 1px solid var(--blue-border); border-radius: var(--radius-lg); padding: 24px; margin: 20px 0; }
+.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+.comparison-side { padding: 16px; border-radius: var(--radius); }
+.comparison-traditional { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); }
+.comparison-computer { background: var(--green-dim); border: 1px solid rgba(34,197,94,0.2); }
+.comparison-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 700; }
+.comparison-traditional .comparison-label { color: var(--red); }
+.comparison-computer .comparison-label { color: var(--green); }
+.comparison-item { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.comparison-item strong { display: block; color: var(--text); }
+
+/* ===== CLOSING GOLD CARD ===== */
+.closing-card {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 40px;
+  text-align: center;
+}
+.closing-card p { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--gold); max-width: 600px; margin: 0 auto; line-height: 1.5; }
+
+/* ===== WINNER SELECTION ===== */
+.winner-section { text-align: center; padding: 40px 0; }
+.winner-card {
+  display: inline-block;
+  background: var(--gold-dim);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 32px 48px;
+  margin: 24px auto;
+  animation: winner-pulse 3s ease-in-out infinite;
+}
+.winner-ticker-big { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--gold); }
+.winner-name-big { font-size: 16px; color: var(--text-muted); margin-top: 4px; }
+
+.others-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  opacity: 0.35;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.other-ticker { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--text-muted); }
+
+.justification-panel {
+  background: var(--navy-card);
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+/* ===== FOOTER STRIP ===== */
+#footer-strip {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(10,14,26,0.97);
+  border-top: 1px solid var(--blue-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 0 calc(var(--sidebar-w) + 24px);
+  z-index: 99;
+  backdrop-filter: blur(12px);
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+.footer-stats { display: flex; gap: 20px; font-size: 11px; color: var(--text-muted); flex-wrap: wrap; }
+.footer-stats strong { color: var(--gold); }
+.footer-sources { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ===== MOBILE ===== */
+#mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(10,14,26,0.97);
+  border-bottom: 1px solid var(--blue-border);
+  z-index: 200;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  backdrop-filter: blur(12px);
+}
+.mobile-logo { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--blue); }
+.hamburger { color: var(--text); font-size: 20px; }
+#mobile-menu {
+  display: none;
+  position: fixed;
+  top: 52px; left: 0; right: 0;
+  background: rgba(10,14,26,0.98);
+  z-index: 199;
+  padding: 16px;
+  border-bottom: 1px solid var(--blue-border);
+}
+#mobile-menu.open { display: block; }
+#mobile-menu a { display: block; padding: 10px 12px; color: var(--text-muted); font-size: 13px; }
+
+@media (max-width: 900px) {
+  #sidebar { display: none; }
+  #mobile-nav { display: flex; }
+  #main { margin-left: 0; padding-top: 52px; }
+  section { padding: 48px 20px; }
+  #footer-strip { padding: 0 16px; }
+  .finalist-cards { grid-template-columns: repeat(2, 1fr); }
+  .tier-grid { grid-template-columns: repeat(3, 1fr); }
+  .responses-grid { grid-template-columns: 1fr; }
+  .model-headers { grid-template-columns: 1fr 1fr 1fr; }
+  .comparison-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .finalist-cards { grid-template-columns: 1fr; }
+  .tier-grid { grid-template-columns: 1fr 1fr; }
+  .disconnect-bars { flex-direction: row; }
+  .hero-stats { flex-direction: column; align-items: center; }
+  .model-headers { grid-template-columns: 1fr; }
+  .thesis-chain { grid-template-columns: 1fr; }
+  #footer-strip { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<nav id="mobile-nav">
+  <span class="mobile-logo">CRDO <span class="badge-long">LONG</span></span>
+  <button class="hamburger" id="hamburger-btn">☰</button>
+</nav>
+<div id="mobile-menu">
+  <a href="#hero">Hero</a>
+  <a href="#ch1">Ch1 — The World Before</a>
+  <a href="#ch2">Ch2 — Locating the Opportunity</a>
+  <a href="#ch3">Ch3 — Comparative Analysis</a>
+  <a href="#ch4">Ch4 — The Company</a>
+  <a href="#ch5">Ch5 — The Financial Case</a>
+  <a href="#ch6">Ch6 — The Stress Test</a>
+  <a href="#ch7">Ch7 — The Recommendation</a>
+  <a href="#ch8">Ch8 — What Computer Found</a>
+</div>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <span class="sidebar-ticker">CRDO</span>
+    <span class="badge-long">LONG</span>
+  </div>
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#hero" data-target="hero"><span class="nav-dot"></span>Hero</a></li>
+      <li class="nav-item"><a href="#ch1" data-target="ch1"><span class="nav-dot"></span>Ch1 — The World Before</a></li>
+      <li class="nav-item"><a href="#ch2" data-target="ch2"><span class="nav-dot"></span>Ch2 — The Universe</a></li>
+      <li class="nav-item"><a href="#ch3" data-target="ch3"><span class="nav-dot"></span>Ch3 — Comparative Analysis</a></li>
+      <li class="nav-item"><a href="#ch4" data-target="ch4"><span class="nav-dot"></span>Ch4 — The Company</a></li>
+      <li class="nav-item"><a href="#ch5" data-target="ch5"><span class="nav-dot"></span>Ch5 — Financial Case</a></li>
+      <li class="nav-item"><a href="#ch6" data-target="ch6"><span class="nav-dot"></span>Ch6 — Stress Test</a></li>
+      <li class="nav-item"><a href="#ch7" data-target="ch7"><span class="nav-dot"></span>Ch7 — Recommendation</a></li>
+      <li class="nav-item"><a href="#ch8" data-target="ch8"><span class="nav-dot"></span>Ch8 — What Computer Found</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    <div>19 sub-agents</div>
+    <div>118+ sources</div>
+    <div>3 AI models</div>
+    <div>59 companies</div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    <span class="hero-badge-text">LONG — ACTIVE RECOMMENDATION</span>
+  </div>
+  <h1 class="hero-company">Credo Technology Group</h1>
+  <div class="hero-ticker">NASDAQ: CRDO</div>
+  <p class="hero-thesis">
+    The dominant qualified incumbent at 224G SerDes — the mandatory connectivity layer for every NVL72-class AI factory — trading at a 41.5% discount to peers despite superior growth. The mispricing closes June 2, 2026.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-value">$101.45</span>
+      <div class="hero-stat-label">Current Price</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">$181</span>
+      <div class="hero-stat-label">Base Target</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">+78.2%</span>
+      <div class="hero-stat-label">Upside</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">$1.29B</span>
+      <div class="hero-stat-label">Net Cash</div>
+    </div>
+  </div>
+  <div class="source-strip">
+    <span class="chip">PitchBook</span>
+    <span class="chip">CB Insights</span>
+    <span class="chip">Statista</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">S&P Global</span>
+  </div>
+  <p class="hero-footnote">Built using Perplexity Computer — 19 parallel sub-agents, 3 frontier AI models, 6 premium data sources, 59 companies evaluated.</p>
+  <a href="#ch1" class="btn-primary">See How We Got Here →</a>
+</section>
+
+<!-- ===== CHAPTER 1 — THE WORLD BEFORE THE ANSWER ===== -->
+<section id="ch1">
+  <div class="chapter-label">Chapter 1</div>
+  <h2 class="chapter-title">The World Before the Answer</h2>
+  <div class="intro-card">
+    Before selecting a company, we established the macro context: which technology era are we in, where do we sit in the economic cycle, and what historical patterns should guide conviction? Four sub-agents ran simultaneously across 118 primary sources.
+  </div>
+
+  <div class="section-title">Technology Stack of Civilization</div>
+
+  <!-- TIMELINE -->
+  <div class="timeline" id="era-timeline">
+    <div class="era-node" data-era="0" onclick="toggleEra(0)">
+      <div class="era-circle">1</div>
+      <div class="era-label"><strong>Steam Era</strong>1760–1850</div>
+    </div>
+    <div class="era-node" data-era="1" onclick="toggleEra(1)">
+      <div class="era-circle">2</div>
+      <div class="era-label"><strong>Electrification</strong>1880–1930s</div>
+    </div>
+    <div class="era-node" data-era="2" onclick="toggleEra(2)">
+      <div class="era-circle">3</div>
+      <div class="era-label"><strong>Digital Computing</strong>1950s–1990s</div>
+    </div>
+    <div class="era-node" data-era="3" onclick="toggleEra(3)">
+      <div class="era-circle">4</div>
+      <div class="era-label"><strong>Internet Age</strong>1993–2010s</div>
+    </div>
+    <div class="era-node" data-era="4" onclick="toggleEra(4)">
+      <div class="era-circle">5</div>
+      <div class="era-label"><strong>Mobile Era</strong>2007–present</div>
+    </div>
+    <div class="era-node ai-era" data-era="5" onclick="toggleEra(5)">
+      <div class="era-circle">6</div>
+      <div class="era-label"><strong>AI Era</strong>2020–? ✦</div>
+    </div>
+  </div>
+
+  <div id="era-detail" class="era-detail"></div>
+
+  <p style="font-size:13px;color:var(--text-faint);margin-top:12px;font-style:italic;">↑ Click any era to expand. Infrastructure bottleneck solvers outperformed application builders in every era. Avg infrastructure phase: 34 years.</p>
+
+  <!-- THESIS CHAIN -->
+  <div class="section-title">The Four-Step Thesis Chain <span class="chip" style="margin-left:0">NBER</span> <span class="chip">IMF</span> <span class="chip">Goldman Sachs</span></div>
+  <div class="thesis-chain">
+    <div class="thesis-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Infrastructure First</div>
+      <div class="step-text">Infrastructure bottleneck solvers outperform application companies in every technology paradigm's early phase. Average infrastructure phase across 5 eras: 34 years.</div>
+    </div>
+    <div class="thesis-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Capitalism Underprices</div>
+      <div class="step-text">Capitalism systematically underprices paradigm infrastructure at the moment of maximum opportunity. K6 Kondratiev wave is now beginning. Shiller CAPE at 40x — second-highest ever.</div>
+    </div>
+    <div class="thesis-step">
+      <div class="step-num">03</div>
+      <div class="step-title">The Clock Reads 1996</div>
+      <div class="step-text">AI CapEx: $443B (2025), growing 72%/yr. AI application revenue: ~$37B. 9:1 capex-to-revenue ratio mirrors 1997–1999 internet. Current AI infrastructure multiples are HALF of what internet commanded in 1999–2000.</div>
+    </div>
+    <div class="thesis-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Civilizational Scale</div>
+      <div class="step-text">AI is the first general-purpose cognitive tool. McKinsey: 29.5% of tasks automatable by 2030. Goldman Sachs: 66% of US jobs exposed. Cognitive labor = $35–50T global market. We are in the 1885 equivalent.</div>
+    </div>
+  </div>
+
+  <!-- AI VC CHART -->
+  <div class="section-title">AI VC Deployment 2019–2025 <span class="chip">CB Insights</span> <span class="chip">Crunchbase</span></div>
+  <div class="chart-wrap">
+    <div class="chart-container">
+      <canvas id="vcChart"></canvas>
+    </div>
+  </div>
+
+  <!-- SIDE-BY-SIDE CARDS -->
+  <div class="section-title">The Cognitive Labor Opportunity <span class="chip">McKinsey Global Institute</span> <span class="chip">Goldman Sachs</span></div>
+  <div class="card-grid">
+    <div class="card">
+      <div style="font-size:28px;margin-bottom:12px">💡</div>
+      <h4 style="font-family:var(--font-display);margin-bottom:12px">Paul David's 37-Year Lag</h4>
+      <p style="font-size:13px;color:var(--text-muted)">Edison's lightbulb (1882) → productivity data measurable 1920. The technology arrived 37 years before the GDP showed up. GPT-4 (2023). We are in the <strong style="color:var(--gold)">1885 equivalent</strong> — infrastructure is being built, productivity data hasn't arrived.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:28px;margin-bottom:12px">🧠</div>
+      <h4 style="font-family:var(--font-display);margin-bottom:12px">The Untouched Market</h4>
+      <div style="display:grid;gap:10px;margin-top:12px">
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--text-muted)">Tasks automatable by 2030 (McKinsey)</span><strong style="color:var(--gold)">29.5%</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--text-muted)">US jobs with high AI exposure</span><strong style="color:var(--gold)">66%</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--text-muted)">Global cognitive labor market</span><strong style="color:var(--gold)">$35–50T</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--text-muted)">Projected GDP uplift over 10yr</span><strong style="color:var(--gold)">+$7T</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:var(--text-muted)">Automation midpoint estimate</span><strong style="color:var(--gold)">2045</strong></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-size:28px;margin-bottom:12px">📈</div>
+      <h4 style="font-family:var(--font-display);margin-bottom:12px">AI CapEx vs. Revenue</h4>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">The 9:1 capex-to-revenue ratio is historically significant. In 1997–1999, internet infrastructure buildout preceded the application boom by 3–5 years. The same ratio today signals <strong style="color:var(--gold)">we are in the infrastructure phase</strong>, not the application phase.</p>
+      <div style="display:flex;gap:16px">
+        <div style="text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--blue)">$443B</div><div style="font-size:11px;color:var(--text-faint)">AI CapEx 2025</div></div>
+        <div style="text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold)">9:1</div><div style="font-size:11px;color:var(--text-faint)">CapEx/Revenue ratio</div></div>
+        <div style="text-align:center"><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">+72%</div><div style="font-size:11px;color:var(--text-faint)">CapEx YoY growth</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing-card">
+    <p>"The historical pattern is consistent. The infrastructure phase is underway. The question is who's building it — and who owns the bottleneck when the application boom arrives."</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 2 — LOCATING THE OPPORTUNITY ===== -->
+<section id="ch2">
+  <div class="chapter-label">Chapter 2</div>
+  <h2 class="chapter-title">Locating the Opportunity</h2>
+  <div class="intro-card">
+    7 parallel sub-agents — one per structural AI transformation category — mapped every qualifying public company (NYSE/NASDAQ, market cap &gt;$1B) against a 5-dimension conviction scoring framework. 59 companies. 5 tiers.
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-value">59</div><div class="kpi-label">Companies Evaluated</div></div>
+    <div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">Risk/Reward Tiers</div></div>
+    <div class="kpi"><div class="kpi-value">7</div><div class="kpi-label">AI Categories Mapped</div></div>
+    <div class="kpi"><div class="kpi-value">5</div><div class="kpi-label">Scoring Dimensions</div></div>
+  </div>
+
+  <div class="section-title">Universe Bubble Chart — Revenue Growth vs. Gross Margin <span class="chip">FactSet</span> <span class="chip">S&P Global</span></div>
+  <p style="font-size:12px;color:var(--text-faint);margin-bottom:12px">Bubble size = market cap. CRDO highlighted in gold. Hover for details.</p>
+  <div class="chart-wrap">
+    <div class="chart-container" style="height:400px">
+      <canvas id="bubbleChart"></canvas>
+    </div>
+  </div>
+
+  <div class="section-title">The 5-Tier Risk/Reward Spectrum</div>
+  <div class="tier-grid">
+    <div class="tier-col tier-col-1">
+      <div class="tier-header" style="color:var(--blue)">Tier 1</div>
+      <div class="tier-name">Conservative Anchor</div>
+      <div class="tier-company"><strong>NVDA</strong> <span class="score">8.80</span></div>
+      <div class="tier-company"><strong>AVGO</strong> <span class="score">7.40</span></div>
+      <div class="tier-company"><strong>MSFT</strong> <span class="score">7.05</span></div>
+      <div style="font-size:11px;color:var(--text-faint);margin-top:8px">Large-cap, diversified revenue, AI as core thesis + proven FCF</div>
+    </div>
+    <div class="tier-col tier-col-2">
+      <div class="tier-header" style="color:#60a5fa">Tier 2</div>
+      <div class="tier-name">Established Grower</div>
+      <div class="tier-company"><strong>PLTR</strong> <span class="score">7.75</span></div>
+      <div class="tier-company"><strong>DDOG</strong> <span class="score">7.50</span></div>
+      <div class="tier-company"><strong>ANET</strong> <span class="score">7.30</span></div>
+      <div style="font-size:11px;color:var(--text-faint);margin-top:8px">Mid-large cap, 30–60% growth, strong moat in sub-segment</div>
+    </div>
+    <div class="tier-col tier-col-3">
+      <div class="tier-header" style="color:var(--gold)">Tier 3 ✦</div>
+      <div class="tier-name">High Conviction Growth</div>
+      <div class="tier-company"><strong style="color:var(--gold)">CRDO</strong> <span class="score" style="color:var(--gold)">8.55 ←</span></div>
+      <div class="tier-company"><strong>ALAB</strong> <span class="score">8.35</span></div>
+      <div class="tier-company"><strong>CRWV</strong> <span class="score">7.65</span></div>
+      <div style="font-size:11px;color:var(--text-faint);margin-top:8px">Mid-cap, &gt;100% growth, clear IP moat, hyperscaler dependency</div>
+    </div>
+    <div class="tier-col tier-col-4">
+      <div class="tier-header" style="color:var(--orange)">Tier 4</div>
+      <div class="tier-name">Speculative Asymmetric</div>
+      <div class="tier-company"><strong>ZETA</strong> <span class="score">7.50</span></div>
+      <div class="tier-company"><strong>SOUN</strong> <span class="score">7.50</span></div>
+      <div class="tier-company"><strong>INOD</strong> <span class="score">7.20</span></div>
+      <div style="font-size:11px;color:var(--text-faint);margin-top:8px">Small-cap, high asymmetric upside, catalytic events pending</div>
+    </div>
+    <div class="tier-col tier-col-5">
+      <div class="tier-header" style="color:var(--text-faint)">Tier 5</div>
+      <div class="tier-name">Deep Value / Turnaround</div>
+      <div class="tier-company"><strong>BOX</strong> <span class="score">6.00</span></div>
+      <div class="tier-company"><strong>AI</strong> <span class="score">5.75</span></div>
+      <div class="tier-company"><strong>DMRC</strong> <span class="score">5.50</span></div>
+      <div style="font-size:11px;color:var(--text-faint);margin-top:8px">Depressed multiple, FCF generating, AI optionality underpriced</div>
+    </div>
+  </div>
+
+  <div class="closing-card">
+    <p>"We selected the strongest candidate from each tier for head-to-head comparison across 7 investment dimensions."</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 3 — COMPARATIVE ANALYSIS ===== -->
+<section id="ch3">
+  <div class="chapter-label">Chapter 3</div>
+  <h2 class="chapter-title">The Comparative Analysis</h2>
+  <div class="intro-card">
+    7-dimension comparison across 5 tier finalists. Full analysis — not just the winner. Each dimension scored 1–10 independently. No single dimension dominates.
+  </div>
+
+  <!-- FINALIST CARDS -->
+  <div class="section-title">Five Finalists <span class="chip">comparative_data.json</span></div>
+  <div class="finalist-cards">
+    <div class="finalist-card" onclick="toggleFinalist(this)">
+      <div class="finalist-ticker" style="color:var(--blue)">NVDA</div>
+      <div class="finalist-name">NVIDIA Corporation</div>
+      <div class="finalist-tier">Tier 1 — Conservative Anchor</div>
+      <div class="finalist-metric"><span>Market Cap</span><span>$4,305.6B</span></div>
+      <div class="finalist-metric"><span>Revenue TTM</span><span>$215.9B</span></div>
+      <div class="finalist-metric"><span>Growth YoY</span><span style="color:var(--green)">+65.5%</span></div>
+      <div class="finalist-metric"><span>Gross Margin</span><span>71.1%</span></div>
+      <div class="finalist-metric"><span>Analyst Upside</span><span>67.7%</span></div>
+      <div class="profile-text">The non-consensus insight: Blackwell's 35x cost-per-token improvement over Hopper makes NVIDIA the economically dominant inference platform just as inference becomes the majority of AI compute spend. CUDA's 4,000+ library integrations create switching costs that cannot be replicated in silicon cycles — it requires rebuilding a decade of software. Vera Rubin samples are with hyperscalers; first revenue in H2 2026 eliminates the 'peak Blackwell' bear case. <em>Judge fit: Laffont — platform network effect. Loeb — mispriced vs. $1T backlog. Hao — most data-defensible conviction.</em></div>
+      <div class="expand-btn">↓ Show profile</div>
+    </div>
+    <div class="finalist-card" onclick="toggleFinalist(this)">
+      <div class="finalist-ticker" style="color:#a78bfa">PLTR</div>
+      <div class="finalist-name">Palantir Technologies</div>
+      <div class="finalist-tier">Tier 2 — Established Grower</div>
+      <div class="finalist-metric"><span>Market Cap</span><span>$337.9B</span></div>
+      <div class="finalist-metric"><span>Revenue TTM</span><span>$4.5B</span></div>
+      <div class="finalist-metric"><span>Growth YoY</span><span style="color:var(--green)">+56.2%</span></div>
+      <div class="finalist-metric"><span>Gross Margin</span><span>82.4%</span></div>
+      <div class="finalist-metric"><span>Analyst Upside</span><span>27.7%</span></div>
+      <div class="profile-text">The non-consensus insight: US commercial revenue grew 137% YoY in Q4 2025 — the commercial flywheel has crossed the threshold where it drives valuation, not supplements it. The ontological data model creates a switching cost that is cognitive, not contractual. Rule of 40 = 127%. Q1 2026 earnings (May 2026) vs $1.532-1.536B guidance is the single most time-bound binary catalyst. <em>Laffont: Rule of 40 = 127, compounding moat. Loeb: underpriced DCF horizon. Hao: AI OS thesis validated.</em></div>
+      <div class="expand-btn">↓ Show profile</div>
+    </div>
+    <div class="finalist-card winner" onclick="toggleFinalist(this)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <div class="finalist-ticker" style="color:var(--gold)">CRDO</div>
+        <span class="badge-long">WINNER</span>
+      </div>
+      <div class="finalist-name">Credo Technology Group</div>
+      <div class="finalist-tier">Tier 3 — High Conviction Growth</div>
+      <div class="finalist-metric"><span>Market Cap</span><span>$18.8B</span></div>
+      <div class="finalist-metric"><span>Revenue TTM</span><span>$1.07B</span></div>
+      <div class="finalist-metric"><span>Growth YoY</span><span style="color:var(--gold)">+453.5%</span></div>
+      <div class="finalist-metric"><span>Gross Margin</span><span>67.8%</span></div>
+      <div class="finalist-metric"><span>Analyst Upside</span><span style="color:var(--gold)">75.8%</span></div>
+      <div class="profile-text">The non-consensus insight: CRDO is not a semiconductor company — it owns the only commercially validated AEC IP stack for 224G SerDes at scale, making it the mandatory toll gate for AI cluster scaling beyond 400G. Every NVL72 rack at 800G+ requires Credo's retimer and AEC because no alternative achieves signal integrity at that speed without CRDO's proprietary DSP. Design wins at Microsoft, Amazon, and Google took 4+ years of qualification cycles. <em>Laffont: IP moat in capacity-constrained market. Loeb: 96% consensus upside. Hao: dominant in a category the market undervalues.</em></div>
+      <div class="expand-btn">↓ Show profile</div>
+    </div>
+    <div class="finalist-card" onclick="toggleFinalist(this)">
+      <div class="finalist-ticker" style="color:var(--orange)">ZETA</div>
+      <div class="finalist-name">Zeta Global Holdings</div>
+      <div class="finalist-tier">Tier 4 — Speculative Asymmetric</div>
+      <div class="finalist-metric"><span>Market Cap</span><span>$3.8B</span></div>
+      <div class="finalist-metric"><span>Revenue TTM</span><span>$1.3B</span></div>
+      <div class="finalist-metric"><span>Growth YoY</span><span style="color:var(--green)">+29.7%</span></div>
+      <div class="finalist-metric"><span>Gross Margin</span><span>60.6%</span></div>
+      <div class="finalist-metric"><span>Analyst Upside</span><span>75.8%</span></div>
+      <div class="profile-text">The non-consensus insight: Zeta is a 240-million-identity AI graph making it the only independent third-party dataset capable of replacing cookie-based targeting at scale. At 3x EV/Revenue vs Trade Desk at 18x on comparable TAM, the valuation gap reflects misclassification as legacy ad-tech. Google Chrome cookie deprecation (mid-2026) is the structural catalyst. <em>Laffont: data network effect. Loeb: depressed vs. TAM. Hao: unique dataset impossible to replicate.</em></div>
+      <div class="expand-btn">↓ Show profile</div>
+    </div>
+    <div class="finalist-card" onclick="toggleFinalist(this)">
+      <div class="finalist-ticker" style="color:var(--text-muted)">BOX</div>
+      <div class="finalist-name">Box, Inc.</div>
+      <div class="finalist-tier">Tier 5 — Deep Value / Turnaround</div>
+      <div class="finalist-metric"><span>Market Cap</span><span>$3.4B</span></div>
+      <div class="finalist-metric"><span>Revenue TTM</span><span>$1.18B</span></div>
+      <div class="finalist-metric"><span>Growth YoY</span><span>+8.0%</span></div>
+      <div class="finalist-metric"><span>Gross Margin</span><span>79.2%</span></div>
+      <div class="finalist-metric"><span>Analyst Upside</span><span>48.0%</span></div>
+      <div class="profile-text">The non-consensus insight: Box's FedRAMP High, HIPAA, CJIS certifications make it the only enterprise content platform that regulated industries can legally deploy AI agents on — a compliance-gated RAG moat Microsoft and Google cannot replicate. Enterprise Advanced now 10% of revenue with 17% RPO growth. 30%+ operating margins, $1.7B RPO — activist-ripe. <em>Laffont: overlooked platform. Loeb: activist-ripe. Hao: compliance dataset advantage.</em></div>
+      <div class="expand-btn">↓ Show profile</div>
+    </div>
+  </div>
+
+  <!-- COMPARISON MATRIX -->
+  <div class="section-title">7-Dimension Comparison Matrix</div>
+  <p style="font-size:12px;color:var(--text-faint);margin-bottom:16px">Click any score to see the explanation. <span class="chip">1–4 = red</span> <span class="chip">5–6 = yellow</span> <span class="chip">7–8 = green</span> <span class="chip">9–10 = dark green</span></p>
+
+  <div id="matrix-explain-panel" class="matrix-explain"></div>
+
+  <div style="overflow-x:auto">
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th class="ticker-col">NVDA</th>
+        <th class="ticker-col" style="color:var(--gold)">CRDO ✦</th>
+        <th class="ticker-col">PLTR</th>
+        <th class="ticker-col">ZETA</th>
+        <th class="ticker-col">BOX</th>
+      </tr>
+    </thead>
+    <tbody id="matrix-body"></tbody>
+  </table>
+  </div>
+
+  <!-- WINNER SELECTION -->
+  <div class="section-title">The Selection</div>
+  <div style="text-align:center;padding:20px 0">
+    <div style="height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin-bottom:24px"></div>
+    <p style="font-size:12px;color:var(--text-faint);margin-bottom:16px">The analysis points to a winner.</p>
+    <div class="winner-card">
+      <div class="winner-ticker-big">CRDO</div>
+      <div class="winner-name-big">Credo Technology Group — Score: 59/70</div>
+    </div>
+    <div class="others-row">
+      <span class="other-ticker">NVDA <small style="font-size:14px">58</small></span>
+      <span class="other-ticker">PLTR <small style="font-size:14px">56</small></span>
+      <span class="other-ticker">ZETA <small style="font-size:14px">53</small></span>
+      <span class="other-ticker">BOX <small style="font-size:14px">50</small></span>
+    </div>
+  </div>
+
+  <div class="justification-panel">
+    <h4 style="font-family:var(--font-display);margin-bottom:12px;color:var(--gold)">Why CRDO wins the pitch</h4>
+    <p style="font-size:14px;font-style:italic;color:var(--text-muted);margin-bottom:16px">"Credo Technology is the only company that owns the mandatory IP toll gate for high-speed AI cluster interconnect at 224G SerDes — every hyperscaler building an NVL72-class AI factory must qualify Credo's AEC technology, and no competitor can replicate a 4-year hyperscaler qualification timeline before the AI infrastructure buildout peaks."</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="card" style="padding:16px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:8px">Why not NVDA (highest-conviction)?</div>
+        <p style="font-size:13px;color:var(--text-muted)">NVIDIA is the highest-conviction company in the universe. It loses the pitch because it is not a pitch — it is a fact. Every institutional investor already owns NVDA. Pitching it to Laffont/Loeb/Hao is confirming consensus, not generating insight.</p>
+      </div>
+      <div class="card" style="padding:16px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:8px">Why CRDO specifically?</div>
+        <p style="font-size:13px;color:var(--text-muted)">Most differentiated thesis. Widest valuation gap with fundamental anchor ($101 vs $200 median target, 96% upside). Binary catalyst on June 2, 2026. AEC/SerDes IP moat requires technical depth standard research cannot reach.</p>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text-faint);margin-top:16px;text-align:center;font-style:italic">"This is the company. Now let's go deeper."</p>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 4 — THE COMPANY ===== -->
+<section id="ch4">
+  <div class="chapter-label">Chapter 4</div>
+  <h2 class="chapter-title">The Company</h2>
+  <div class="intro-card">
+    4 simultaneous sub-agents — Business Intelligence, Financial Analysis, Market Sizing, Alternative Data — running in parallel on Credo Technology Group. Sources: SEC EDGAR 10-K/10-Q, FactSet financials, earnings call transcripts, IEEE patent database, Goldman Sachs initiation report.
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-value" style="color:var(--gold)">$407M</div><div class="kpi-label">Q3 FY2026 Revenue (quarterly)</div></div>
+    <div class="kpi"><div class="kpi-value">68.5%</div><div class="kpi-label">Gross Margin — Record High</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--gold)">+1,169%</div><div class="kpi-label">Revenue Growth (9 quarters)</div></div>
+    <div class="kpi"><div class="kpi-value">$1.29B</div><div class="kpi-label">Net Cash (No meaningful debt)</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--green)">10/11</div><div class="kpi-label">Quarterly Guidance Beats</div></div>
+  </div>
+
+  <!-- REVENUE CHART -->
+  <div class="section-title">Revenue + Gross Margin Trajectory <span class="chip">SEC EDGAR</span> <span class="chip">FactSet</span></div>
+  <div class="chart-wrap">
+    <div class="chart-container">
+      <canvas id="revenueChart"></canvas>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-faint);text-align:center;margin-top:8px">$32.1M (Q4 FY2023) → $407M (Q3 FY2026) — 9 quarters, 1,169% growth. Gross margin expanded 10.6pp over same period.</p>
+
+  <!-- MOAT SECTION -->
+  <div class="section-title">The Three-Pillar Moat <span class="chip">SEC EDGAR S-1</span> <span class="chip">IEEE Patents</span></div>
+
+  <div class="moat-grid">
+    <div class="moat-card">
+      <div class="moat-icon">⚡</div>
+      <div class="moat-title">224G PAM4 SerDes on TSMC N3</div>
+      <div class="moat-text">At 56 GHz Nyquist, channel loss reaches 40–50 dB in typical rack environments. Credo's embedded DSP with CDR + re-equalization enables 3–7m reach over 32 AWG twinax — physically impossible with passive DAC. No alternative silicon achieves this without CRDO's proprietary IP stack.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">🛡️</div>
+      <div class="moat-title">ZeroFlap Reliability</div>
+      <div class="moat-text">1,000x better uptime than optical modules per management — zero laser components means zero laser failure modes. Hyperscalers building $200B+ clusters cannot accept optical link flap rates. ZeroFlap is a technical SLA that optics structurally cannot match at 3–7m reach.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">🔗</div>
+      <div class="moat-title">HiWire System Integration</div>
+      <div class="moat-text">Credo designs the chip AND the complete cable assembly, co-designing with hyperscalers since 2019–2021. Microsoft qualified 2021, AWS 2022-2023, xAI 2024, Google 2025–2026, Meta 2025–2026. Each qualification is a 3-phase, 21–36 month process — not a product sale, a partnership.</div>
+    </div>
+  </div>
+
+  <!-- QUALIFICATION TIMELINE -->
+  <div class="card" style="margin:16px 0">
+    <div style="font-size:13px;font-weight:600;margin-bottom:12px">Hyperscaler Qualification Timeline <span class="chip">SEC EDGAR S-1</span></div>
+    <div style="display:flex;gap:0;overflow-x:auto">
+      <div style="flex:1;min-width:140px;padding:12px;border-right:1px solid var(--blue-border)">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:4px">Phase 1</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Design Win</div>
+        <div style="font-size:12px;color:var(--text-muted)">12–18 months signal integrity testing</div>
+      </div>
+      <div style="flex:1;min-width:140px;padding:12px;border-right:1px solid var(--blue-border)">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:4px">Phase 2</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Engineering Validation</div>
+        <div style="font-size:12px;color:var(--text-muted)">6–12 months system integration</div>
+      </div>
+      <div style="flex:1;min-width:140px;padding:12px;border-right:1px solid var(--blue-border)">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:4px">Phase 3</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">Production Validation</div>
+        <div style="font-size:12px;color:var(--text-muted)">3–6 months at scale</div>
+      </div>
+      <div style="flex:1;min-width:140px;padding:12px">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:4px">Phase 4</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px;color:var(--gold)">Volume Ramp</div>
+        <div style="font-size:12px;color:var(--text-muted)">Full production $$$</div>
+      </div>
+    </div>
+    <div class="card-gold" style="margin-top:12px;padding:12px 16px">
+      <div style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:4px">⚠️ Important: ITC 337-TA-1446 Settlements (March 2026)</div>
+      <div style="font-size:12px;color:var(--text-muted)">Credo settled AEC patent disputes with <strong style="color:var(--text)">Molex and TE Connectivity</strong> — both cable assemblers. These settlements validate Credo's IP against cable manufacturers. They do <strong style="color:var(--gold)">NOT apply to Marvell or Broadcom</strong>, who are semiconductor companies with their own SerDes patent arsenals. Cross-license terms are confidential.</div>
+    </div>
+  </div>
+
+  <!-- CUSTOMERS -->
+  <div class="section-title">5 Confirmed Hyperscaler Customers <span class="chip">Q3 FY2026 Earnings</span></div>
+  <div style="overflow-x:auto">
+  <table class="data-table">
+    <thead>
+      <tr><th>Customer</th><th>Status</th><th>Products</th><th>Revenue Share (Q3)</th><th>Ramp Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Amazon / AWS</strong></td><td><span class="badge-green">Confirmed</span></td><td>HiWire AEC scale-out</td><td style="color:var(--gold);font-weight:700">~39% of rev</td><td>Aggressive ramp ongoing</td></tr>
+      <tr><td><strong>Microsoft</strong></td><td><span class="badge-green">Confirmed</span></td><td>HiWire Switch AEC, dual-ToR Azure AI</td><td>~17% of rev</td><td>First hyperscaler; extended</td></tr>
+      <tr><td><strong>xAI (Elon Musk)</strong></td><td><span class="badge-green">Confirmed</span></td><td>HiWire AEC, Colossus cluster</td><td>~32% combined top-3</td><td>FY2025 full ramp</td></tr>
+      <tr><td><strong>Google</strong></td><td><span class="badge-green">Confirmed</span></td><td>HiWire AEC, AI cluster scale-out</td><td>10%+ as of Q3</td><td>Full volume ramp FY2026</td></tr>
+      <tr><td><strong>Meta</strong></td><td><span class="badge-blue">Initial Revenue</span></td><td>HiWire AEC, MTIA cluster</td><td>Initial Q3 FY2026</td><td>Production ramp Q4 FY2026+</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--text-faint);margin-top:8px">Scale clarification: CRDO serves <strong>scale-out (NIC-to-ToR)</strong> connectivity — ~72–100 AECs per rack. NVLink scale-up backplane (GPU-to-GPU) is MACOM's addressable market, not CRDO's.</p>
+
+  <!-- AEC TAM CHART -->
+  <div class="section-title">AEC Market — Total Addressable Market <span class="chip">Goldman Sachs</span> <span class="chip">SemiAnalysis</span></div>
+  <div class="chart-wrap">
+    <div class="chart-container" style="height:280px">
+      <canvas id="tamChart"></canvas>
+    </div>
+  </div>
+
+  <!-- COMPETITOR TABLE -->
+  <div class="section-title">Competitive Landscape <span class="chip">DesignCon 2026</span> <span class="chip">SEC 10-K</span></div>
+  <div style="overflow-x:auto">
+  <table class="data-table">
+    <thead>
+      <tr><th>Competitor</th><th>Status</th><th>Key Event</th><th>Est. Timeline to Volume</th><th>Threat Level</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Marvell (MRVL)</strong></td><td>Sampling only</td><td>DesignCon 2026 demo; "Golden Cable" initiative</td><td>Best-case 2027–2028</td><td><span class="badge-yellow">Moderate</span></td></tr>
+      <tr><td><strong>Broadcom (AVGO)</strong></td><td>Announced retimer</td><td>800G AEC retimer March 2025; copper "sufficient through 2028" (CEO)</td><td>No hyperscaler AEC wins</td><td><span class="badge-green">Low</span></td></tr>
+      <tr><td><strong>Astera Labs (ALAB)</strong></td><td>PCIe/CXL focus</td><td>5–10% AEC share; different TAM (PCIe retimers)</td><td>Not direct competitor</td><td><span class="badge-green">Low</span></td></tr>
+      <tr><td><strong>Hyperscaler Internal</strong></td><td>No confirmed silicon</td><td>CPO (Co-Packaged Optics) is internal push; scale-up focus</td><td>CPO production 2026–2027</td><td><span class="badge-yellow">Monitor</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- ANALYST COVERAGE -->
+  <div class="section-title">Analyst Coverage <span class="chip">FactSet</span></div>
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-value">17</div><div class="kpi-label">Analysts Covering CRDO</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--green)">15</div><div class="kpi-label">Buy / Outperform</div></div>
+    <div class="kpi"><div class="kpi-value">2</div><div class="kpi-label">Hold / Neutral</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--red)">0</div><div class="kpi-label">Sell</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--gold)">$200</div><div class="kpi-label">Median Price Target</div></div>
+    <div class="kpi"><div class="kpi-value" style="color:var(--gold)">+97%</div><div class="kpi-label">Implied Upside to Median</div></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
+    <span class="chip chip-green">B of A — $240 PT</span>
+    <span class="chip chip-green">Roth Capital — $250 PT</span>
+    <span class="chip chip-green">Barclays — $220 PT</span>
+    <span class="chip chip-green">Needham — $220 PT</span>
+    <span class="chip">Mizuho — $200 PT</span>
+    <span class="chip">JP Morgan — $165 PT</span>
+    <span class="chip">Goldman Sachs — $165 PT</span>
+  </div>
+
+  <!-- ALT DATA -->
+  <div class="section-title">Alternative Data Signals <span class="chip">LinkedIn</span> <span class="chip">SEC EDGAR</span></div>
+  <div class="card-grid-3">
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Short Interest</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px">6.1%</div>
+      <div style="font-size:12px;color:var(--text-muted)">Float short | 1.4 days-to-cover | Moderate bearish positioning, removes short squeeze risk</div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Options IV</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold);margin-bottom:4px">33rd pct</div>
+      <div style="font-size:12px;color:var(--text-muted)">IV percentile vs. 30-day history. Options historically cheap — realized vol exceeds implied by ~1.9pp.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Insider Ownership</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px">10.4%</div>
+      <div style="font-size:12px;color:var(--text-muted)">Total insider stake. CTO, COO, CEO sold via pre-planned 10b5-1 plans — not open-market. Long-term aligned.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Hiring Signal</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green);margin-bottom:4px">29 Open Roles</div>
+      <div style="font-size:12px;color:var(--text-muted)">9 optical engineering (ZeroFlap ramp is real). 7 ASIC/SerDes. 2 new enterprise sales directors (expanding beyond hyperscalers).</div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Institutional Ownership</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px">80.46%</div>
+      <div style="font-size:12px;color:var(--text-muted)">825 holders. Q4 2025: 461 buyers vs 338 sellers. BlackRock added 20.52%. Net 12-month inflow: $180M.</div>
+    </div>
+    <div class="card">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:8px">Patent Position</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px">100+ Patents</div>
+      <div style="font-size:12px;color:var(--text-muted)">Focused SerDes/AEC IP. ITC 337-TA-1446 enforced against cable assemblers (Molex, TE — settled March 2026). Patent expiry 2039.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 5 — THE FINANCIAL CASE ===== -->
+<section id="ch5">
+  <div class="chapter-label">Chapter 5</div>
+  <h2 class="chapter-title">The Financial Case</h2>
+  <div class="intro-card">
+    Model built from SEC EDGAR filings, FactSet consensus estimates, and PitchBook comparable company analysis. All inputs are verifiable. All scenarios anchored to management guidance.
+  </div>
+
+  <!-- PINNED SCENARIO CARD -->
+  <div class="scenario-pinned">
+    <div class="scenario-pinned-title">Three-Scenario DCF Valuation</div>
+    <div class="scenario-vals">
+      <div class="scenario-val bear"><div class="price">$71</div><div class="pct">−30% | Bear: Hyperscaler Crumbles</div></div>
+      <div class="scenario-val base"><div class="price">$181</div><div class="pct">+78% | Base: Executes the Roadmap</div></div>
+      <div class="scenario-val bull"><div class="price">$358</div><div class="pct">+253% | Bull: IP Platform Compounds</div></div>
+    </div>
+    <div class="scenario-assumptions">Base assumptions: WACC 12% | Terminal Growth Rate 4% | 10x exit EV/Revenue | FY2027 revenue $2.025B</div>
+  </div>
+
+  <!-- VALUATION DISCONNECT -->
+  <div class="valuation-disconnect">
+    <div class="disconnect-title">The 41.5% Valuation Disconnect</div>
+    <div class="disconnect-bars">
+      <div class="disconnect-bar-wrap">
+        <div class="disconnect-bar bar-crdo"><div class="bar-val">8.6x</div></div>
+        <div class="bar-label">CRDO<br><small style="color:var(--text-faint)">NTM EV/Rev</small></div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;font-size:24px;color:var(--gold);font-weight:700;padding-bottom:40px">vs</div>
+      <div class="disconnect-bar-wrap">
+        <div class="disconnect-bar bar-peers"><div class="bar-val" style="color:var(--text)">14.7x</div></div>
+        <div class="bar-label">Peer Median<br><small style="color:var(--text-faint)">ALAB, MRVL, MPWR, AVGO, MTSI</small></div>
+      </div>
+    </div>
+    <div class="disconnect-insight">
+      CRDO's NTM revenue growth is <strong style="color:var(--gold)">+89.6%</strong> vs peer median of <strong style="color:var(--text)">+32.4%</strong> — a 57-percentage-point growth advantage priced at a 41.5% multiple discount. At peer median: implied price = <strong style="color:var(--gold)">~$168 (+65.6%)</strong>.
+    </div>
+    <div class="source-strip" style="justify-content:center;margin-top:16px">
+      <span class="chip">FactSet</span><span class="chip">PitchBook</span><span class="chip">S&P Global</span>
+    </div>
+  </div>
+
+  <!-- COMPS TABLE -->
+  <div class="section-title">Trading Comparables <span class="chip">FactSet</span> <span class="chip">PitchBook</span></div>
+  <div style="overflow-x:auto">
+  <table class="data-table">
+    <thead>
+      <tr><th>Ticker</th><th>Company</th><th>Mkt Cap</th><th>EV/NTM Rev</th><th>NTM Rev Growth</th><th>Gross Margin</th><th>P/E TTM</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight"><td><strong style="color:var(--gold)">CRDO ✦</strong></td><td>Credo Technology</td><td>$18.7B</td><td><strong style="color:var(--gold)">8.6x</strong></td><td><strong style="color:var(--gold)">+89.6%</strong></td><td>67.8%</td><td>55.7x</td></tr>
+      <tr><td>ALAB</td><td>Astera Labs</td><td>$19.9B</td><td>13.9x</td><td>+58.1%</td><td>75.6%</td><td>96.0x</td></tr>
+      <tr><td>MRVL</td><td>Marvell Technology</td><td>$93.7B</td><td>8.8x</td><td>+32.4%</td><td>50.1%</td><td>34.9x</td></tr>
+      <tr><td>MPWR</td><td>Monolithic Power</td><td>$54.9B</td><td>15.9x</td><td>+21.5%</td><td>55.2%</td><td>86.9x</td></tr>
+      <tr><td>AVGO</td><td>Broadcom</td><td>$1,491B</td><td>14.7x</td><td>+53.3%</td><td>67.1%</td><td>61.2x</td></tr>
+      <tr><td>MTSI</td><td>MACOM Technology</td><td>$17.9B</td><td>15.4x</td><td>+14.6%</td><td>54.5%</td><td>108.3x</td></tr>
+      <tr style="background:rgba(45,111,255,0.04)"><td colspan="3" style="font-weight:600;color:var(--text-muted)">Peer Median (excl. CRDO)</td><td><strong style="color:var(--blue)">14.7x</strong></td><td><strong>+32.4%</strong></td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- INTERACTIVE DCF -->
+  <div class="section-title">Interactive DCF Model</div>
+  <div class="dcf-controls">
+    <div class="slider-group">
+      <label>FY2027 Revenue: <span id="rev-val">$2.025B</span></label>
+      <input type="range" id="rev-slider" min="1800" max="2300" value="2025" step="25" oninput="updateDCF()">
+    </div>
+    <div class="slider-group">
+      <label>FY2028–31 CAGR: <span id="cagr-val">40%</span></label>
+      <input type="range" id="cagr-slider" min="15" max="60" value="40" oninput="updateDCF()">
+    </div>
+    <div class="slider-group">
+      <label>WACC: <span id="wacc-val">12%</span></label>
+      <input type="range" id="wacc-slider" min="10" max="16" value="12" step="0.5" oninput="updateDCF()">
+    </div>
+    <div class="slider-group">
+      <label>Exit EV/Revenue: <span id="mult-val">10x</span></label>
+      <input type="range" id="mult-slider" min="6" max="16" value="10" oninput="updateDCF()">
+    </div>
+  </div>
+  <div class="dcf-result">
+    <div class="dcf-result-label">Implied Share Price</div>
+    <div class="dcf-result-price" id="dcf-price">$181</div>
+    <div class="dcf-result-upside" id="dcf-upside">+78.2% vs current $101.45</div>
+  </div>
+
+  <!-- SENSITIVITY HEATMAP -->
+  <div class="section-title">Sensitivity: FY2028 Growth × Exit Multiple</div>
+  <div style="overflow-x:auto">
+  <table class="heatmap">
+    <thead>
+      <tr>
+        <th></th>
+        <th>6x Exit</th><th>8x Exit</th><th>10x Exit</th><th>12x Exit</th><th>14x Exit</th>
+      </tr>
+    </thead>
+    <tbody id="heatmap-body"></tbody>
+  </table>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+    <span class="chip" style="background:rgba(239,68,68,0.15);color:var(--red);border-color:rgba(239,68,68,0.3)">Red = below $101.45</span>
+    <span class="chip" style="background:rgba(234,179,8,0.15);color:var(--yellow);border-color:rgba(234,179,8,0.3)">Yellow = $101–$150</span>
+    <span class="chip chip-green">Green = $150–$200</span>
+    <span class="chip" style="background:rgba(21,128,61,0.2);color:#16a34a;border-color:rgba(21,128,61,0.3)">Dark Green = &gt;$200</span>
+  </div>
+
+  <!-- CATALYST CALLOUT -->
+  <div class="catalyst-callout">
+    <div class="catalyst-date">Q4 FY2026 Earnings — June 2, 2026 <span class="chip chip-gold" style="margin-left:8px">BINARY CATALYST</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0">
+      <div><div style="font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em">Q1–Q3 Actuals</div><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text)">$898.1M</div></div>
+      <div><div style="font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em">Mgmt Q4 Guidance</div><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text)">$425–435M</div></div>
+      <div><div style="font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em">Historical Beat Rate</div><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--green)">83%</div></div>
+      <div><div style="font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em">Options IV</div><div style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--gold)">33rd pct</div></div>
+    </div>
+    <div class="catalyst-grid">
+      <div class="catalyst-scenario">
+        <div class="prob" style="color:var(--red)">Bear — 15% probability</div>
+        <div class="rev" style="color:var(--red)">$407M (flat QoQ)</div>
+        <div class="reaction">−10% to −20% stock reaction</div>
+      </div>
+      <div class="catalyst-scenario" style="background:rgba(45,111,255,0.08);border:1px solid var(--blue-border)">
+        <div class="prob" style="color:var(--blue)">Base — 60% probability</div>
+        <div class="rev" style="color:var(--blue)">$428M (+0.2% vs consensus)</div>
+        <div class="reaction">+5% to +15% stock reaction</div>
+      </div>
+      <div class="catalyst-scenario" style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.25)">
+        <div class="prob" style="color:var(--green)">Bull — 25% probability</div>
+        <div class="rev" style="color:var(--green)">$455M (+6.6% vs consensus)</div>
+        <div class="reaction">+20% to +35% stock reaction</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:12px;font-style:italic">"Options implied move (9.9%) underprices historical realized volatility (11.8%). At 33rd percentile IV, the binary catalyst is cheap to express via long volatility or directional calls."</p>
+  </div>
+
+  <!-- DCF SCENARIO CHART -->
+  <div class="section-title">Scenario Summary <span class="chip">vs. Current $101.45</span></div>
+  <div class="chart-wrap">
+    <div class="chart-container" style="height:260px">
+      <canvas id="scenarioChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 6 — THE STRESS TEST ===== -->
+<section id="ch6">
+  <div class="chapter-label">Chapter 6</div>
+  <h2 class="chapter-title">The Stress Test</h2>
+  <div class="intro-card">
+    Every assumption in the thesis was independently challenged by three frontier AI models running simultaneously. The goal was not to find confirmation — it was to find what we were wrong about.
+  </div>
+
+  <div style="background:var(--navy-card);border:1px solid var(--blue-border);border-radius:var(--radius-lg);padding:20px;text-align:center;margin-bottom:24px">
+    <div style="font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:8px">3 frontier AI models. 5 stress-test questions. Running in parallel.</div>
+    <div style="font-size:13px;color:var(--text-muted)">GPT-5.4 × Claude Opus 4.6 × Gemini 3.1 Pro | 15 independent responses | Zero coordination between models</div>
+  </div>
+
+  <!-- MODEL CARDS -->
+  <div class="model-headers">
+    <div class="model-card model-gpt">
+      <div class="model-name">GPT-5.4</div>
+      <div class="model-desc">Primary source retrieval — cited Credo's S-1 directly. Most granular swim-lane analysis.</div>
+    </div>
+    <div class="model-card model-claude">
+      <div class="model-name">Claude Opus 4.6</div>
+      <div class="model-desc">Quantified re-rating scenarios. Raised 448G OIF standardization risk. Binary trap framing.</div>
+    </div>
+    <div class="model-card model-gemini">
+      <div class="model-name">Gemini 3.1 Pro</div>
+      <div class="model-desc">Only model to raise optical substitution (LPO/CPO) as category-obsolescence risk.</div>
+    </div>
+  </div>
+
+  <!-- QUESTION NAVIGATOR -->
+  <div class="section-title">Question Navigator</div>
+  <div class="question-nav">
+    <button class="q-btn active" data-q="1" onclick="selectQuestion(1)">Q1: Weakest Assumptions</button>
+    <button class="q-btn" data-q="2" onclick="selectQuestion(2)">Q2: Path to Losing Money</button>
+    <button class="q-btn" data-q="3" onclick="selectQuestion(3)">Q3: Conviction-Strengthening Data</button>
+    <button class="q-btn" data-q="4" onclick="selectQuestion(4)">Q4: Durable Moat (Y/N)?</button>
+    <button class="q-btn" data-q="5" onclick="selectQuestion(5)">Q5: The Loeb Question</button>
+  </div>
+  <div id="question-display" style="background:var(--navy-surface);border:1px solid var(--blue-border);border-radius:var(--radius);padding:14px 18px;margin:12px 0;font-size:14px;color:var(--text);font-style:italic"></div>
+  <div class="responses-grid" id="responses-grid"></div>
+
+  <!-- KEY DIVERGENCES -->
+  <div class="section-title">Critical Divergences — Shown Explicitly</div>
+  <div class="divergence-banner">
+    <h4>Durable Moat at 5 Years?</h4>
+    <div class="divergence-votes">
+      <span class="vote vote-yes">GPT-5.4: YES (narrower, execution-dependent)</span>
+      <span class="vote vote-no">Opus 4.6: NO (degrades at 448G)</span>
+      <span class="vote vote-no">Gemini: NO (hyperscalers will fund alternatives)</span>
+    </div>
+    <p class="divergence-note">Two of three models concluded the moat degrades at 448G. Our view: the 24–30 month head start wins at 224G regardless. Evidence that would change this: Marvell in broad production at a second hyperscaler before June 2026.</p>
+  </div>
+  <div class="divergence-banner">
+    <h4>Bear Case Split — Two Distinct Paths</h4>
+    <div class="divergence-votes">
+      <span class="vote vote-no">GPT-5.4 + Opus 4.6: Marvell qualification → multiple compression</span>
+      <span class="vote" style="background:rgba(234,179,8,0.12);color:var(--yellow);border:1px solid rgba(234,179,8,0.3)">Gemini (UNIQUE): Optical substitution — LPO/CPO replaces copper AEC</span>
+    </div>
+    <p class="divergence-note">Gemini's bear case is orthogonal to Marvell — it's not competition within AEC, it's obsolescence of the AEC category. At 10–15% probability weight, this scenario reduces the bull-case ceiling even in a CRDO-wins-vs-Marvell world.</p>
+  </div>
+
+  <!-- SYNTHESIS -->
+  <div class="section-title">Synthesis: What All Three Models Agreed On</div>
+  <div class="card">
+    <ul class="synthesis-list">
+      <li>The "mandatory IP toll gate" framing is overstated — ITC settlements with Molex and TE Connectivity were cable assembler agreements, not blocking patents against semiconductor competitors.</li>
+      <li>Customer concentration is the paramount near-term risk — one customer at ~67% of FY2025 revenue creates fragility disproportionate to the thesis's confidence level.</li>
+      <li>Qualification lead-time is real but not insurmountable — especially for Marvell, who has existing hyperscaler relationships in switching and DPUs that compress cold-start disadvantage.</li>
+      <li>The 448G / 200G-per-lane transition is the key competitive inflection point — Marvell's DesignCon 2026 demo is a concrete signal that the competitive window at next-gen is real.</li>
+      <li>Second hyperscaler achieving broad production deployment with Credo AECs is the single most conviction-enhancing data point any model identified.</li>
+    </ul>
+  </div>
+
+  <div class="section-title">Three Thesis Adjustments Made Post-Council</div>
+  <div class="card">
+    <ul class="synthesis-list">
+      <li><strong style="color:var(--text)">Language reframe:</strong> "Mandatory IP toll gate" → "Qualified incumbent with strong but time-limited first-mover advantage." More defensible, more accurate.</li>
+      <li><strong style="color:var(--text)">Optical substitution scenario added:</strong> 10–15% probability weight on LPO/CPO achieving cost/power parity at 3–7m within 36 months. Caps the AEC TAM below $5B base case in that scenario.</li>
+      <li><strong style="color:var(--text)">Multiple compression sensitivity added:</strong> Opus 4.6 quantified: 10x → 5-6x forward revenue re-rating = $55–70 stock price even with strong revenue execution. Proactively disclosed in risk section.</li>
+    </ul>
+  </div>
+
+  <!-- THE LOEB QUESTION -->
+  <div class="section-title">The Dan Loeb Question</div>
+  <div class="loeb-question-box">
+    <div class="loeb-label">If you were Dan Loeb on an earnings call with Credo's CEO:</div>
+    <div class="loeb-q">"Bill, you've described full swim-lane penetration at your largest hyperscaler and engagement with five of the top seven. Marvell demonstrated a working 224G 1.6T AEC at DesignCon in February with 10⁻¹⁰ pre-FEC BER over 3 meters on their Alaska A DSP. My question is specific: Of your top three hyperscaler customers, how many have formally indicated they will NOT qualify a second AEC source for their next-generation 1.6T rack architecture — and for those that are evaluating alternatives, at what stage of qualification is the competing solution today? Because if every major customer is actively qualifying Marvell's AEC alongside yours, then the right valuation framework is a competitive-market multiple, not a sole-source monopoly premium."</div>
+    <div class="loeb-answer-label">Management's answer to prepare:</div>
+    <div class="loeb-answer" id="loeb-answer-text">"We do not expect any hyperscaler to commit publicly or contractually to never qualifying a second AEC source — that would be inconsistent with standard procurement practice for any strategic component. We've never built our business plan around permanent sole-source status, and our investors shouldn't either. What we can tell you is this: the competitive dynamics favor the qualified incumbent far more than the challenger. On Marvell's DesignCon demo — a working demo at a trade show and a qualified, production-validated AEC deployed at hyperscale are separated by 18–24 months of reliability testing, thermal characterization, signal-integrity validation across real-world cable lengths and topologies, firmware maturity, and system-level integration work. We went through this process ourselves. Qualifying a new AEC supplier means re-validating every swim lane: GPU-to-host, NIC-to-ToR, and disaggregated switch fabric. We are not standing still at 100G. We have 200G-per-lane product sampling today, PCIe 6.0 AECs targeting mass production in the first half of fiscal 2027, and full roadmap alignment with both Ethernet and UALink for 1.6T."</div>
+    <div id="loeb-expand" style="margin-top:10px"><span class="read-more" onclick="expandLoeb()">↓ Read full management response</span></div>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 7 — THE RECOMMENDATION ===== -->
+<section id="ch7">
+  <div style="max-width:800px;margin:0 auto">
+    <div class="rec-company">Credo Technology Group</div>
+    <div class="rec-ticker">CRDO</div>
+    <div class="rec-badge">LONG</div>
+    <p class="rec-thesis">
+      "Credo Technology is the dominant qualified incumbent at 224G SerDes — the mandatory connectivity layer for NVL72-class AI factories — trading at a 41.5% discount to peers despite superior growth, with a binary catalyst on June 2, 2026 that the options market has not priced."
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px">
+      <div style="text-align:center"><div style="font-size:13px;color:var(--text-faint)">Current</div><div style="font-family:var(--font-display);font-size:22px;font-weight:700">$101.45</div></div>
+      <div style="text-align:center"><div style="font-size:13px;color:var(--text-faint)">Base Target</div><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--gold)">$181</div></div>
+      <div style="text-align:center"><div style="font-size:13px;color:var(--text-faint)">Upside</div><div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--green)">+78.2%</div></div>
+      <div style="text-align:center"><div style="font-size:13px;color:var(--text-faint)">Market Cap</div><div style="font-family:var(--font-display);font-size:22px;font-weight:700">$18.8B</div></div>
+      <div style="text-align:center"><div style="font-size:13px;color:var(--text-faint)">Net Cash</div><div style="font-family:var(--font-display);font-size:22px;font-weight:700">$1.29B</div></div>
+    </div>
+  </div>
+
+  <div class="pillar-grid">
+    <div class="pillar pillar-laffont">
+      <div class="pillar-label">For Laffont — Coatue</div>
+      <div class="pillar-text">"Every paradigm produces one mandatory connectivity bottleneck. For AI factory clusters it is 224G AEC at 3–7m reach. Credo is <strong>Cisco circa 1995</strong> — the toll road before the applications are built. CUDA is to NVIDIA what qualification is to CRDO — the switching cost is embedded in years of co-design, not in a contract."</div>
+    </div>
+    <div class="pillar pillar-loeb">
+      <div class="pillar-label">For Loeb — Third Point</div>
+      <div class="pillar-text">"8.6x NTM EV/Revenue on a +90% growth company with <strong>$1.29B net cash</strong> and 15/17 analyst Buys. Discount to peers: 41.5%. The thesis does not require multiple expansion — it requires the market to notice the growth rate. June 2 earnings is the catalyst that forces recognition."</div>
+    </div>
+    <div class="pillar pillar-hao">
+      <div class="pillar-label">For Hao — Silver Lake</div>
+      <div class="pillar-text">"Every hyperscaler building an NVL72-class rack must qualify Credo's AEC for scale-out connectivity. Goldman Sachs: <strong>$4–5B long-term AEC revenue</strong> at 75% market share. Revenue grew 1,169% in 9 quarters. This is the semiconductor infrastructure story for the decade — data-defensible, primary-source verified."</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="text-align:left;max-width:none">Key Risks — Expandable</div>
+  <div class="risk-grid">
+    <div class="risk-card" onclick="toggleRisk(this)">
+      <div class="risk-header">
+        <div class="risk-title">Customer Concentration</div>
+        <div class="risk-severity">🟡</div>
+      </div>
+      <div class="risk-body">Top hyperscaler ~67% of FY2025 revenue. Any single hyperscaler pause, inventory digestion, or pivot creates outsized impact.</div>
+      <div class="risk-detail">
+        <div class="risk-item"><strong>Mitigant</strong>Fifth hyperscaler win (Meta) confirmed Q3 FY2026. Fifth customer onboarding shows diversification. Microsoft extended design win. Fastest failure path = pause/digestion, not competitive loss.</div>
+        <div class="risk-item"><strong>Exit Signal</strong>Concentration &gt;75% with no new hyperscaler onboarding in 2 consecutive quarters.</div>
+      </div>
+    </div>
+    <div class="risk-card" onclick="toggleRisk(this)">
+      <div class="risk-header">
+        <div class="risk-title">Marvell Qualification Acceleration</div>
+        <div class="risk-severity">🟡</div>
+      </div>
+      <div class="risk-body">DesignCon 2026 demo achieved 10⁻¹⁰ BER at 3m. Marvell's existing hyperscaler relationships (switching, DPUs) compress cold-start disadvantage.</div>
+      <div class="risk-detail">
+        <div class="risk-item"><strong>Key nuance</strong>Lab demo ≠ production qualification. 18–24 months separate demonstration from hyperscaler volume deployment. CRDO's S-1 states even incumbent qualification cycles are 2–3 years.</div>
+        <div class="risk-item"><strong>Mitigant</strong>System-level co-design (chip + cable + firmware + thermal) is not replicable from a chip demo. CRDO is already at swim-lane 4 (volume ramp) at multiple customers.</div>
+        <div class="risk-item"><strong>Exit Signal</strong>Marvell in broad production at ≥2 hyperscalers for 1.6T AEC by Dec 2026.</div>
+      </div>
+    </div>
+    <div class="risk-card" onclick="toggleRisk(this)">
+      <div class="risk-header">
+        <div class="risk-title">Optical Substitution (LPO/CPO)</div>
+        <div class="risk-severity">🟢</div>
+      </div>
+      <div class="risk-body">If Linear-drive Pluggable Optics or Co-Packaged Optics reach cost/power parity at 3–7m within 24 months, copper AEC TAM faces structural headwinds regardless of CRDO vs. Marvell outcome.</div>
+      <div class="risk-detail">
+        <div class="risk-item"><strong>Current state</strong>Optical premium: 4–6x cost vs. copper AEC, 2x power draw. ZeroFlap's 1,000x reliability advantage over optical remains structurally intact at short reach.</div>
+        <div class="risk-item"><strong>Mitigant</strong>Parity is 36–48 months at current trajectory. CRDO itself is entering optical via ZeroFlap optics (9 optical engineering hires in Ottawa). Optical TAM expansion = additional CRDO revenue, not replacement.</div>
+        <div class="risk-item"><strong>Exit Signal</strong>LPO/CPO achieves 3–7m cost parity, OR a hyperscaler announces optical-first rack architecture for this reach.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;font-style:italic;color:var(--text-faint);font-size:14px">
+    "This thesis was built by a human with a vision and Perplexity Computer with access to the data, models, and compute to prove it. Here is how." <a href="#ch8" style="color:var(--blue);margin-left:8px">→ See the process</a>
+  </div>
+</section>
+
+<!-- ===== CHAPTER 8 — WHAT COMPUTER FOUND ===== -->
+<section id="ch8">
+  <div class="chapter-label">Chapter 8</div>
+  <h2 class="chapter-title">What Computer Found</h2>
+  <div class="intro-card">
+    "The process is part of the evidence. Here is what Perplexity Computer discovered that standard research cannot replicate at this speed or depth — and what it found that changed the thesis."
+  </div>
+
+  <!-- 3 UNIQUE INSIGHT CARDS -->
+  <div class="section-title">Three Discoveries That Changed the Pitch</div>
+  <div class="insight-cards">
+    <div class="insight-card">
+      <div class="insight-num">01</div>
+      <div class="insight-headline">"The 41.5% discount required 3 simultaneous data sources to see."</div>
+      <div class="insight-text">Cross-referencing FactSet NTM multiples + PitchBook comparable company data + CB Insights AI infrastructure deployment data simultaneously revealed a mispricing that no single source shows in isolation. FactSet alone shows the multiple. PitchBook alone shows the comps. CB Insights alone shows the deployment. The combination reveals the disconnect.</div>
+      <div class="source-strip" style="justify-content:flex-start">
+        <span class="chip">FactSet</span><span class="chip">PitchBook</span><span class="chip">CB Insights</span>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">02</div>
+      <div class="insight-headline">"The thesis was wrong. Computer found the primary source."</div>
+      <div class="insight-text">The original thesis claimed a 36–48 month qualification moat. GPT-5.4 retrieved Credo's own S-1 filing from SEC EDGAR. The company's own disclosure states a 2–3 year design cycle (24–36 months) — materially shorter. Correcting this made the moat argument more honest and more defensible in front of sophisticated judges who read primary sources.</div>
+      <div class="source-strip" style="justify-content:flex-start">
+        <span class="chip">SEC EDGAR S-1</span>
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">03</div>
+      <div class="insight-headline">"Two models saw Marvell. One model saw something else."</div>
+      <div class="insight-text">Model Council running in parallel: GPT-5.4 and Opus 4.6 independently converged on Marvell competitive entry as the primary bear case. Gemini 3.1 Pro alone flagged optical substitution (LPO/CPO) as an orthogonal risk — not competition within AEC, but potential obsolescence of the AEC category. Without parallel execution, this risk would not appear in the pitch.</div>
+      <div class="source-strip" style="justify-content:flex-start">
+        <span class="chip chip-green">GPT-5.4</span><span class="chip chip-orange">Claude Opus 4.6</span><span class="chip">Gemini 3.1 Pro</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKFLOW DIAGRAM -->
+  <div class="section-title">Process Architecture — 8 Tasks, Parallel Execution</div>
+  <div class="workflow">
+    <svg class="workflow-svg" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="height:200px">
+      <!-- Task nodes -->
+      <!-- T1 -->
+      <rect x="10" y="20" width="90" height="44" rx="6" fill="#111827" stroke="#2D6FFF" stroke-width="1.5"/>
+      <text x="55" y="38" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T1: Paradigm</text>
+      <text x="55" y="52" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">4 agents, 118 src</text>
+      <!-- T2 -->
+      <rect x="10" y="80" width="90" height="44" rx="6" fill="#111827" stroke="#2D6FFF" stroke-width="1.5"/>
+      <text x="55" y="98" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T2: Universe</text>
+      <text x="55" y="112" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">7 agents, 59 cos</text>
+      <!-- PARALLEL label -->
+      <text x="55" y="148" text-anchor="middle" fill="#2D6FFF" font-size="8" font-family="Inter">PARALLEL</text>
+      <!-- Arrow T1+T2 → T3 -->
+      <line x1="100" y1="42" x2="140" y2="70" stroke="#2D6FFF" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <line x1="100" y1="102" x2="140" y2="74" stroke="#2D6FFF" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <!-- T3 -->
+      <rect x="140" y="50" width="95" height="44" rx="6" fill="#111827" stroke="#C9A84C" stroke-width="1.5"/>
+      <text x="187" y="68" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T3: Compare</text>
+      <text x="187" y="82" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">5 finalists, 7 dims</text>
+      <!-- Arrow T3 → T4 -->
+      <line x1="235" y1="72" x2="265" y2="72" stroke="#2D6FFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- T4 -->
+      <rect x="265" y="50" width="95" height="44" rx="6" fill="#111827" stroke="#2D6FFF" stroke-width="1.5"/>
+      <text x="312" y="68" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T4: Company</text>
+      <text x="312" y="82" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">4 agents, CRDO deep</text>
+      <!-- Arrow T4 → T5 (top) and T5 parallel -->
+      <line x1="360" y1="60" x2="390" y2="40" stroke="#2D6FFF" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <line x1="360" y1="84" x2="390" y2="104" stroke="#2D6FFF" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <text x="400" y="135" text-anchor="middle" fill="#2D6FFF" font-size="8" font-family="Inter">PARALLEL</text>
+      <!-- T5a (Model) -->
+      <rect x="390" y="20" width="95" height="44" rx="6" fill="#111827" stroke="#2D6FFF" stroke-width="1.5"/>
+      <text x="437" y="38" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T5: Model</text>
+      <text x="437" y="52" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">DCF, comps, sens.</text>
+      <!-- T5b (Council) -->
+      <rect x="390" y="80" width="95" height="44" rx="6" fill="#111827" stroke="#C9A84C" stroke-width="1.5"/>
+      <text x="437" y="98" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T6: Council</text>
+      <text x="437" y="112" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">3 models × 5 Qs</text>
+      <!-- Arrow to T7 -->
+      <line x1="485" y1="42" x2="515" y2="72" stroke="#2D6FFF" stroke-width="1" marker-end="url(#arrow)"/>
+      <line x1="485" y1="102" x2="515" y2="78" stroke="#2D6FFF" stroke-width="1" marker-end="url(#arrow)"/>
+      <!-- T7 -->
+      <rect x="515" y="50" width="95" height="44" rx="6" fill="rgba(201,168,76,0.1)" stroke="#C9A84C" stroke-width="1.5"/>
+      <text x="562" y="68" text-anchor="middle" fill="#C9A84C" font-size="9" font-family="Inter">T7: Recommend</text>
+      <text x="562" y="82" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">Synthesis, pitch</text>
+      <!-- Arrow to T8 -->
+      <line x1="610" y1="72" x2="640" y2="72" stroke="#2D6FFF" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <!-- T8 -->
+      <rect x="640" y="50" width="95" height="44" rx="6" fill="#111827" stroke="#2D6FFF" stroke-width="1.5"/>
+      <text x="687" y="68" text-anchor="middle" fill="#8FA3C0" font-size="9" font-family="Inter">T8: This Page</text>
+      <text x="687" y="82" text-anchor="middle" fill="#C9A84C" font-size="8" font-family="Inter">Process evidence</text>
+      <!-- Arrow marker -->
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#2D6FFF"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- TASK CARDS -->
+  <div class="section-title">Task-by-Task Breakdown</div>
+  <div class="task-cards-grid">
+    <div class="task-card">
+      <div class="task-num">Task 1 — Paradigm</div>
+      <div class="task-title">Technology History & Economic Foundations</div>
+      <div class="task-stats">4 parallel sub-agents | 118 sources cited | 151KB output<br>Sources: NBER, Federal Reserve, IMF, Goldman Sachs, Epoch AI, McKinsey</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 2 — Universe</div>
+      <div class="task-title">Public Market Universe Screening</div>
+      <div class="task-stats">7 parallel sub-agents | 59 companies mapped | 5 tiers<br>7 AI transformation categories | 5-dimension scoring</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 3 — Compare</div>
+      <div class="task-title">5-Finalist Comparative Analysis</div>
+      <div class="task-stats">NVDA, PLTR, CRDO, ZETA, BOX | 7 dimensions scored<br>CRDO selected — highest Stage 3 total (59/70)</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 4 — Company</div>
+      <div class="task-title">CRDO Deep-Dive Research</div>
+      <div class="task-stats">4 parallel sub-agents (Business, Financial, Market, Alt Data)<br>Sources: SEC EDGAR, FactSet, IEEE patents, Goldman Sachs, LinkedIn</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 5 — Model</div>
+      <div class="task-title">Financial Model & Valuation</div>
+      <div class="task-stats">DCF + comps + sensitivity | 8 comparable companies<br>Sources: SEC EDGAR filings, FactSet consensus, PitchBook</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 6 — Council</div>
+      <div class="task-title">AI Model Stress Test</div>
+      <div class="task-stats">3 frontier models × 5 questions = 15 responses | Parallel<br>GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro | No coordination</div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">Task 7 — Recommendation</div>
+      <div class="task-title">Investment Thesis Synthesis</div>
+      <div class="task-stats">Council adjustments incorporated | Risk framework built<br>Three conviction pillars for three specific judges</div>
+    </div>
+    <div class="task-card" style="border-color:var(--gold-border);background:var(--gold-dim)">
+      <div class="task-num" style="color:var(--gold)">Task 8 — This Page</div>
+      <div class="task-title">Process as Evidence</div>
+      <div class="task-stats">The methodology is part of the thesis<br>Demonstrating what Perplexity Computer enables</div>
+    </div>
+  </div>
+
+  <!-- STATS PANEL -->
+  <div class="stats-panel">
+    <div style="font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:16px">By the Numbers</div>
+    <div class="stat-row"><div class="stat-row-label">Parallel sub-agents deployed</div><div class="stat-row-value">19</div></div>
+    <div class="stat-row"><div class="stat-row-label">Model Council invocations</div><div class="stat-row-value">15 responses (3 models × 5 questions)</div></div>
+    <div class="stat-row"><div class="stat-row-label">Companies evaluated</div><div class="stat-row-value">59</div></div>
+    <div class="stat-row"><div class="stat-row-label">Sources cited (Task 1 alone)</div><div class="stat-row-value">118+</div></div>
+    <div class="stat-row"><div class="stat-row-label">Premium data sources accessed</div><div class="stat-row-value">PitchBook, CB Insights, Statista, SEC EDGAR, FactSet, S&P Global, Goldman Sachs, NBER, IMF</div></div>
+    <div class="stat-row"><div class="stat-row-label">Estimated async compute equivalent</div><div class="stat-row-value">~15–20 hours</div></div>
+  </div>
+
+  <!-- COMPARISON CARD -->
+  <div class="comparison-card">
+    <div style="font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:4px">Without Perplexity Computer</div>
+    <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px">Estimated equivalent using traditional research processes</div>
+    <div class="comparison-grid">
+      <div class="comparison-side comparison-traditional">
+        <div class="comparison-label">Traditional Research</div>
+        <div class="comparison-item"><strong>Analyst hours</strong>200–300 hours across a team</div>
+        <div class="comparison-item"><strong>Data subscription cost</strong>~$50,000/year across 6 sources</div>
+        <div class="comparison-item"><strong>Time-to-completion</strong>4–6 weeks</div>
+        <div class="comparison-item"><strong>AI adversarial review</strong>Not standard practice</div>
+        <div class="comparison-item"><strong>Primary source retrieval</strong>Manual, incomplete</div>
+      </div>
+      <div class="comparison-side comparison-computer">
+        <div class="comparison-label">With Perplexity Computer</div>
+        <div class="comparison-item"><strong>Parallel sub-agents</strong>19 running simultaneously</div>
+        <div class="comparison-item"><strong>Data access</strong>All 6 premium sources included</div>
+        <div class="comparison-item"><strong>Total clock time</strong>~15–20 hours async compute</div>
+        <div class="comparison-item"><strong>AI adversarial review</strong>3 frontier models, parallel</div>
+        <div class="comparison-item"><strong>Primary source correction</strong>S-1 retrieved, thesis corrected</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing-card">
+    <p>"The non-consensus advantage isn't just CRDO's IP moat. It's the ability to see what the market hasn't synthesized — across sources, across models, across time — and express it before the catalyst closes the gap."</p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER STRIP -->
+<div id="footer-strip">
+  <div class="footer-stats">
+    <span>Sub-agents: <strong>19</strong></span>
+    <span>Sources: <strong>118+</strong></span>
+    <span>Model Council: <strong>3 × 5 = 15 responses</strong></span>
+    <span>Async compute: <strong>~15–20hrs</strong></span>
+  </div>
+  <div class="footer-sources">
+    <span class="chip">PitchBook</span>
+    <span class="chip">CB Insights</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">S&P Global</span>
+    <span class="chip">Statista</span>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const ERA_DATA = [
+  { label:'Steam Era', years:'1760–1850', duration:60, bottleneck:'Motive power (steam engine) + reliable iron supply', solver:'Boulton & Watt, James Watt', returns:'~12x over 10yr (iron/coal infrastructure)', note:'UK per capita GDP began sustained growth ~1780 but broad industrial transformation required until ~1840.' },
+  { label:'Electrification', years:'1880–1930s', duration:40, bottleneck:'Power generation, transmission, and distribution infrastructure', solver:'General Electric, Edison Electric, Westinghouse', returns:'~15x over 10yr (utility infrastructure)', note:"Paul David's landmark 1990 paper documented the 40-year lag from Edison's 1882 Pearl Street station to measurable TFP gains in the 1920s." },
+  { label:'Digital Computing', years:'1950s–1990s', duration:40, bottleneck:'Computing hardware + business process integration', solver:'IBM, DEC, HP', returns:'8–12x infrastructure returns', note:'Solow paradox (1987): computers visible everywhere except productivity statistics. Resolution: late 1990s.' },
+  { label:'Internet Age', years:'1993–2010s', duration:20, bottleneck:'Physical connectivity (fiber, routers, switching)', solver:'Cisco Systems (Cisco = $500B mktcap at peak)', returns:'~500x peak (Cisco 1990–2000)', note:'$500B+ telco CapEx deployed 1996–2001. Infrastructure bust enabled the application layer boom (Google, Amazon, Facebook).' },
+  { label:'Mobile Era', years:'2007–present', duration:10, bottleneck:'Chip architecture (ARM), wireless spectrum, OS', solver:'Qualcomm, ARM Holdings, tower companies', returns:'ARM Holdings: ~300x from 1998 IPO to 2024', note:'iPhone launch June 2007. Infrastructure phase concentrated 2007-2012. Application dominance from ~2013.' },
+  { label:'AI Era', years:'2020–?', duration:'TBD', bottleneck:'GPU compute + high-speed interconnect (224G AEC)', solver:'NVIDIA + Credo Technology (CRDO)', returns:'TBD — clock reads 1996', note:'AI CapEx: $443B in 2025, growing 72%/yr. 9:1 capex-to-revenue ratio mirrors 1997-1999 internet. CRDO is the Cisco of AI cluster connectivity.', isAI:true }
+];
+
+const COUNCIL_QUESTIONS = [
+  'What are the three weakest assumptions in this thesis?',
+  'What is the single most likely path to losing money on this investment over a 24-month horizon?',
+  'What one piece of evidence or data point, if confirmed, would most strengthen conviction in this thesis?',
+  'Does Credo Technology have a durable competitive moat in 5 years — yes or no, and state exactly why? Consider specifically: the 448G transition, hyperscaler internal silicon programs, and whether the ITC patent position is as strong commercially as it appears legally.',
+  'If you were Dan Loeb sitting across from Credo\'s CEO on an earnings call, what is the single question you would ask to expose the thesis\'s most critical vulnerability?'
+];
+
+const COUNCIL_RESPONSES = {
+  1: {
+    gpt: { text: `1) The weakest assumption is that Credo is the "only mandatory toll gate" at 224G SerDes. Credo's own 10-K risk section lists competition from Broadcom, Marvell, Astera, and cable suppliers — not how a true sole-source monopoly normally reads. Marvell is actively organizing an open AEC ecosystem through its Golden Cable initiative, which is direct evidence that credible alternative supply is being built.\n\n2) The second weak assumption is that qualification lead time is effectively insurmountable. Credo's own S-1 states the design cycle from initial engagement to volume shipment is typically 2–3 years — materially shorter than the thesis's harder 36–48 month framing, and far from proof that qualification cannot be compressed by a determined hyperscaler or incumbent partner.\n\n3) The third weak assumption is that legal wins equal strong commercial enforceability. The ITC settlements were with cable assemblers (Molex, TE Connectivity) — not with semiconductor companies like Marvell or Broadcom, who have their own massive SerDes patent arsenals.`, unique: true, uniqueNote:'Cited Credo\'s own S-1 disclosing a 2-3 year design cycle, shorter than the thesis\'s 36-48 month framing — a direct factual correction from primary source.' },
+    claude: { text: `1) THE 'MANDATORY IP TOLL GATE' IS OVERSTATED. The ITC 337-TA-1446 settlements with Molex and TE Connectivity were cross-license agreements — not unilateral victories. Cross-licensing implies bidirectional IP exchange. Marvell demonstrated a working 224G AEC at DesignCon 2026, achieving 10⁻¹⁰ pre-FEC BER over 3m with their Alaska A 1.6T DSP. The thesis conflates 'first-mover advantage in hyperscaler qualification' (real) with 'mandatory IP toll gate' (unproven against semiconductor peers).\n\n2) THE '36-48 MONTH QUALIFICATION TIMELINE CANNOT BE COMPRESSED' IS ASYMMETRIC. Marvell is not a startup. They have existing hyperscaler relationships through switching (Teralynx), DPUs (Octeon), and optical DSPs (Nova). A hyperscaler qualifying Marvell's AEC is an incremental qualification of a new product from a trusted vendor — not a cold-start 36–48 month process.\n\n3) PATENT ENFORCEMENT ≠ COMMERCIAL ENFORCEABILITY AGAINST SEMICONDUCTOR PEERS. Settlements against cable assemblers don't tell us anything about Credo's patent position against Marvell or Broadcom, who have proprietary SerDes IP portfolios with 10,000+ patents each.`, unique: true, uniqueNote: "Uniquely identified that Marvell's DesignCon 2026 demo achieved specific 10⁻¹⁰ pre-FEC BER over 3m/6.5m — concrete competitive evidence cited with specificity." },
+    gemini: { text: `1) The "insurmountable head start" assumption underestimates hyperscaler motivation. AWS, Microsoft, Google, Meta possess virtually unlimited capital and deep engineering resources. Assuming they cannot accelerate qualification timelines — especially for a component as critical as scale-out cluster interconnect — underestimates their leverage to eliminate vendor lock-in.\n\n2) The assumption that the "mandatory IP toll gate" holds indefinitely. The technology landscape at 448G and beyond is highly dynamic. Innovations in optics (Co-Packaged Optics or Linear-Drive Pluggable Optics) could bypass Active Electrical Cables entirely, rendering Credo's specific IP irrelevant for future generations.\n\n3) The assumption that patent enforcement equals a permanent commercial monopoly. Settlements with Molex and TE Connectivity validate current IP, but also establish a licensing/royalty framework. These competitors — or others — will eventually produce viable alternatives, potentially eroding the 68.5% gross margins as the market transitions from effective monopoly to oligopoly.`, unique: true, uniqueNote: 'Only model to raise optical technology (LPO, CPO) as a potential bypass to AECs entirely, introducing category-obsolescence risk.' }
+  },
+  2: {
+    gpt: { text: `The single most likely path to losing money is a demand and multiple compression event triggered by hyperscaler concentration. Credo's FY2025 10-K shows one customer was 67% of fiscal 2025 revenue and the top 10 customers were about 90% of revenue. The stock is effectively a levered expression of a few hyperscaler build schedules.\n\nThe mechanism: if one major customer pauses deployments, digests inventory, shifts some links to optics, or dual-sources AECs, revenue can miss abruptly. That miss would be particularly painful because the stock is priced for extraordinary continuity at ~55.7x trailing P/E. A revenue miss doesn't just hit revenue — it collapses the multiple simultaneously.\n\nQuantified: if CRDO re-rates from ~10x forward revenue to ~6-7x (closer to Marvell at comparable mix), the stock could trade at $65-85 on $2.0-2.5B FY2027 revenue — a 30-40% loss from current levels despite continued strong revenue growth. This is the "multiple compression without revenue miss" bear case.`, unique: false, uniqueNote: '' },
+    claude: { text: `THE SINGLE MOST LIKELY PATH TO LOSING MONEY: Multiple compression driven by Marvell achieving volume AEC qualification at a major hyperscaler, combined with AI infrastructure spending deceleration — even if Credo's revenue continues growing.\n\nCRDO trades at ~$101 (~55x trailing P/E, ~9-10x forward FY2027 revenue). The stock is down 53% from its $213.80 52-week high. The most probable loss scenario is NOT revenue collapse — it's a narrative shift from 'sole-source monopoly provider' to 'leading vendor in a competitive market,' triggering re-rating.\n\nTimeline: Marvell demonstrated working 224G AEC silicon at DesignCon 2026 (February 2026). By H2 2026 or H1 2027, Marvell achieves initial AEC qualification with at least one hyperscaler — not necessarily displacing Credo, but establishing credible second source. JPMorgan has already flagged 'mounting investor concerns about Marvell's entry.'\n\nQuantified: if CRDO re-rates from ~10x forward revenue to ~5-6x (closer to Marvell discounted for smaller scale), the stock could trade at $55-70 on $2.5-3.0B FY2028 revenue — representing a 30-45% loss despite continued strong revenue growth.`, unique: true, uniqueNote: 'Quantified specific re-rating scenario: 10x to 5-6x forward revenue = $55-70 stock price, 30-45% loss even with revenue growth continuing.' },
+    gemini: { text: `THE SINGLE MOST LIKELY PATH: A sudden shift in hyperscaler architecture away from AECs for scale-out interconnect — specifically a faster-than-expected transition to optical solutions (Linear-Drive Pluggable Optics or Co-Packaged Optics) for NIC-to-ToR links.\n\nIf optical interconnects become cost-competitive and power-efficient enough to replace copper AECs at the rack level within 24 months, Credo's core growth narrative collapses — regardless of how well Credo executes against Marvell. Even credible rumors or early pilot announcements of such an architectural transition by a major player like Microsoft or Meta would trigger immediate and severe multiple compression, devastating the stock price well before revenue actually declines.\n\nThis is distinct from the Marvell bear case: it's not competition within AEC, it's potential obsolescence of the AEC category itself. At 10-15% probability, this tail risk caps the investment's expected value more than its base probability suggests.`, unique: true, uniqueNote: 'Only model to identify optical substitution (not AEC competition) as the primary loss path — architectural shift away from copper AECs entirely.' }
+  },
+  3: {
+    gpt: { text: `The single most conviction-enhancing data point: verified evidence that a second major hyperscaler (beyond the already heavily penetrated largest customer) has fully qualified and is moving into broad production across all key AEC swim lanes — GPU-to-host connections in scale-out network, front-end NIC-to-ToR connections, and disaggregated switch racks — for 200G per-lane (1.6T) architecture.\n\nWhy this is the key datum: it would directly answer the central bear objection that Credo's current success is one-customer concentration masquerading as platform inevitability. If two independent hyperscalers are using Credo broadly across the same topology, the thesis changes from "one customer liked this architecture" to "the architecture is becoming standardized across the buyer set."\n\nThis validates four things simultaneously: the qualification moat is real and transferable, the product is not customer-specific, the 200G transition stays in Credo's lane, and in-house alternatives are not winning on the timetable bears need.`, unique: false, uniqueNote: '' },
+    claude: { text: `THE SINGLE MOST CONVICTION-STRENGTHENING DATA POINT: A public disclosure — in the Q4 FY2026 earnings call on June 2, 2026 — that a second hyperscaler has committed to Credo AECs as the sole-source or primary-source provider for its next-generation 200G-per-lane (1.6T) rack-scale architecture, with volume deployment beginning in FY2028.\n\nWhy this specific data point is maximally informative:\n\nFirst, it validates the thesis at the 200G/1.6T node, which is where the competitive question actually matters. Credo's dominance at 100G/800G is established fact. The real question is whether that dominance extends to the next speed node.\n\nSecond, it directly addresses customer concentration risk. Moving from a two-hyperscaler revenue base to three hyperscalers each individually committing to next-gen architecture with Credo transforms the risk profile.\n\nThird, it directly answers whether Marvell's DesignCon demo has actually converted to procurement intent at any major customer.`, unique: false, uniqueNote: '' },
+    gemini: { text: `A confirmed, multi-generational supply agreement or joint development contract for 448G SerDes/AEC with a Tier-1 hyperscaler (specifically Microsoft or AWS), explicitly naming Credo as the primary supplier for the next architectural node.\n\nThis would decisively prove that hyperscalers have abandoned internal silicon replacement efforts for this specific component in the medium term, validating that Credo's technological moat extends beyond the current 224G cycle and securing revenue visibility through the end of the decade.\n\nWhy 448G specifically, not just 1.6T/200G? Because the 448G node is where Marvell, Broadcom, and potential new entrants will have had sufficient time to develop credible alternatives. A hyperscaler committing to Credo at 448G — knowing these alternatives exist — is a much stronger signal than continued 224G loyalty, which could reflect switching cost inertia.`, unique: true, uniqueNote: 'Uniquely specified a multi-generational 448G supply agreement as the key conviction data point, going beyond current-node validation.' }
+  },
+  4: {
+    gpt: { text: `YES — but the moat is narrower and more execution-dependent than the thesis claims.\n\nThe moat is REAL because Credo combines: (1) proven hyperscaler qualification history, (2) system-level AEC know-how, (3) SerDes/DSP design capability, and (4) demonstrated reliability/power advantages. Credo's S-1 shows engagement with 5 of top 7 hyperscalers by 2021. Management says AECs are the de facto standard for intra-rack and rack-to-rack connectivity up to 7 meters at current speed nodes.\n\nThe moat is NOT an impregnable monopoly at 448G and beyond. The 448G transition tests whether advantages scale or merely reset the playing field. Each major speed transition gives hyperscalers a fresh window to re-evaluate architecture, cost, and supplier. Marvell is real. Internal silicon programs at Google, Amazon, and Microsoft are real.\n\nVerdict: The moat wins at 224G (the next 24-36 months) but requires execution at 448G. That's still a positive investment case given the June 2 catalyst timeframe.`, unique: true, uniqueNote: "Provided the most nuanced 'qualified yes' — moat is real but narrower and more execution-dependent than claimed, with specific analysis of each moat dimension." },
+    claude: { text: `NO — with a critical caveat: Credo has a strong but DEGRADING moat, and the 5-year horizon is exactly where it becomes most vulnerable.\n\n448G TRANSITION (targeting 2028-2029): The OIF (Optical Internetworking Forum) is actively driving 448G standardization, and Broadcom's SerDes architect has publicly stated the '400G leap demands joint effort across the entire ecosystem.' This ecosystem-wide collaboration means the 448G spec will be developed more openly than 224G was, reducing the advantage of proprietary IP. Credo's architectural choices at 224G may not transfer optimally to 448G.\n\nHYPERSCALER INTERNAL SILICON: Amazon (Trainium/NeuronLink), Google (custom 3D torus), Microsoft (Maia), Meta are all building custom silicon. The architectural boundary between scale-up and scale-out is not fixed — as clusters grow, hyperscalers may choose to integrate AEC-equivalent functionality into custom NICs.\n\nITC PATENT POSITION: The settlements were with cable assemblers, not semiconductor companies. The ITC case targeting Molex/TE tells us nothing about Credo's patent strength against Marvell's indigenous SerDes design.`, unique: true, uniqueNote: 'Uniquely raised 448G OIF standardization being more open/collaborative than 224G was, and the fluid architectural boundary between scale-up and scale-out.' },
+    gemini: { text: `NO — Credo does not have a durable competitive moat over a 5-year horizon.\n\nWhile they currently enjoy a near-monopoly due to their 224G SerDes qualification head start and ITC patent victories, a 5-year window encompasses the 448G and potentially 896G transitions.\n\nHyperscalers view any single-source, high-margin supplier as a critical vulnerability and an expense to optimize. Over the next 5 years, they will heavily fund internal ASIC teams or subsidize entrenched competitors (Marvell, Broadcom) to ensure a multi-vendor ecosystem for 448G.\n\nThe ITC patent settlements merely delay competitors or force licensing agreements — they do not prevent engineering around the patents for future generations. Once the ecosystem matures and alternative solutions validate at higher speeds, Credo's extreme pricing power and 68%+ gross margins will inevitably revert to semiconductor industry norms (40-50%).\n\nNear-term (0-2 years): Credo has a real and profitable advantage. 2-5 years: structural erosion is likely.`, unique: false, uniqueNote: '' }
+  },
+  5: {
+    gpt: { text: `"For your largest hyperscaler customer and your second-largest hyperscaler customer, where exactly are you today in each scale-out AEC swim lane — GPU-to-host, front-end NIC-to-ToR, and disaggregated switch racks — and what objective milestones over the next 12 months would tell us that either customer is broadening to more lanes, holding steady, or actively qualifying an internal or second-source alternative?"\n\nThat is the single best question because it forces management to confront the core vulnerability: the stock's economics are being capitalized as if customer-specific success already equals market standardization. Their own disclosures show one customer was 67% of FY2025 revenue, and only one customer has been described as fully penetrated across all major swim lanes.\n\nA good answer shows replication — multiple customers moving from qualification to broad production at both 100G and upcoming 200G lane speeds. A bad answer reveals that Credo still has one dominant fully-penetrated account plus a set of narrower programs that can be delayed, dual-sourced, or redesigned.`, unique: true, uniqueNote: 'Focused on swim-lane deployment granularity and objective 12-month milestones, making it the most operationally verifiable question.' },
+    claude: { text: `"Bill, you've described a $5 billion AEC TAM and positioned Credo as the clear leader. Marvell demonstrated a working 224G 1.6T AEC at DesignCon in February running at 10⁻¹⁰ pre-FEC BER over 3 meters on their Alaska A DSP, and they've publicly stated they're sampling to customers. So here's my question: Of your top three hyperscaler customers, how many have formally communicated to Credo that they will NOT qualify a second AEC supplier for their next-generation 1.6T rack architecture? And if the answer is zero — if every one of them is evaluating alternatives — then isn't the right framework for valuing Credo a competitive-market multiple rather than a monopoly-IP-toll-gate multiple?"\n\nThis question is maximally revealing because it creates a binary trap. If he answers honestly that all hyperscalers are evaluating second sources (standard procurement practice), he implicitly concedes the monopoly thesis is time-limited. If he claims commitment to sole-sourcing, that's a material forward-looking statement requiring caution — and would be extraordinary enough to verify.`, unique: true, uniqueNote: 'Framed the question as a binary trap — any honest answer about second-sourcing implicitly concedes the monopoly thesis is time-limited.' },
+    gemini: { text: `"Given that your largest hyperscaler customers are aggressively designing custom silicon for almost every other critical component in the AI cluster to reduce external dependencies and control costs, what specific technical barriers prevent them from integrating your DSP and SerDes functionality directly into their own next-generation NICs or switches at the 448G node, thereby eliminating the need for your standalone AEC chips entirely?"\n\nThis question targets the vertical integration threat vector — distinct from AEC competition. It forces Credo to explain exactly what technical barriers prevent hyperscalers from simply absorbing the AEC function into their own custom silicon, rather than relying on an external vendor.\n\nA strong answer identifies specific technical constraints (power budgets, die area, thermal limits, qualification timeline) that make standalone AEC silicon necessary even for hyperscalers with massive internal silicon programs. A weak answer reveals that the only barrier is switching cost inertia — which is time-limited.`, unique: true, uniqueNote: 'Only model to frame the Loeb question around vertical integration of DSP/SerDes into custom hyperscaler NICs/switches at 448G — a distinct threat vector.' }
+  }
+};
+
+const MATRIX_DATA = [
+  { dim:'Moat Durability (5yr)', desc:'Who is hardest to displace by 2031?', scores:{NVDA:10,CRDO:8,PLTR:9,ZETA:7,BOX:6}, leader:'NVDA', explain:"NVIDIA's CUDA ecosystem — 4,000+ optimized libraries, every AI researcher trained on it — is a software moat sitting on a hardware moat. Displacing it requires rewriting a decade of scientific computing infrastructure." },
+  { dim:'Growth Visibility', desc:'Most predictable revenue over next 4 quarters?', scores:{NVDA:9,CRDO:8,PLTR:8,ZETA:6,BOX:7}, leader:'NVDA', explain:"NVIDIA disclosed $1T+ in purchase order visibility through end of CY2027 — not a forecast, a backlog disclosure. Q1 FY2027 guidance of $78B was already $5B above consensus before the quarter began." },
+  { dim:'Valuation vs. Opportunity', desc:'Widest gap between price and fair value?', scores:{NVDA:8,CRDO:9,PLTR:5,ZETA:9,BOX:8}, leader:'CRDO / ZETA', explain:"CRDO at $101 vs median analyst target of $200 (96% consensus upside

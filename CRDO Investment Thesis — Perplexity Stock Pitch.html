@@ -1,0 +1,3659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRDO Investment Thesis — Credo Technology Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CSS VARIABLES & RESET
+   ============================================================ */
+:root {
+  --bg: #0A0E1A;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-glow: rgba(201,168,76,0.35);
+  --blue: #2D6FFF;
+  --blue-dim: rgba(45,111,255,0.2);
+  --green: #22C55E;
+  --green-dark: #166534;
+  --green-mid: #15803D;
+  --red: #EF4444;
+  --red-dark: #7F1D1D;
+  --yellow: #EAB308;
+  --yellow-dark: #78350F;
+  --yellow-dark2: #854D0E;
+  --orange-dark: #9A3412;
+  --card-bg: #111827;
+  --card-border: #1E2A3A;
+  --text: #F0F4FF;
+  --text-muted: #8892A4;
+  --sidebar-width: 200px;
+  --sidebar-bg: #080B14;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--card-border);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 20px;
+}
+
+.sidebar-logo .ticker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+.sidebar-logo .sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.nav-list { list-style: none; flex: 1; }
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.3s, background 0.3s;
+  border-left: 2px solid transparent;
+  text-decoration: none;
+}
+
+.nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+
+.nav-item.active {
+  color: var(--gold);
+  border-left-color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.nav-item.active .nav-dot {
+  transform: scale(1.5);
+  background: var(--gold);
+}
+
+.nav-chapter { font-family: 'Space Grotesk', sans-serif; font-size: 11px; }
+.nav-label { font-size: 10px; color: var(--text-muted); line-height: 1.2; }
+.nav-item.active .nav-label { color: var(--gold); opacity: 0.8; }
+
+.sidebar-footer {
+  padding: 16px 20px 0;
+  border-top: 1px solid var(--card-border);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+#main {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   CHAPTERS
+   ============================================================ */
+.chapter {
+  min-height: 100vh;
+  padding: 64px 56px;
+  border-bottom: 1px solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.chapter-header {
+  margin-bottom: 48px;
+}
+
+.chapter-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.chapter-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.chapter-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+.reveal-d6 { transition-delay: 0.6s; }
+
+/* ============================================================
+   GRID LAYOUTS
+   ============================================================ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-gold {
+  border-color: var(--gold);
+  border-left: 3px solid var(--gold);
+}
+
+.card-blue { border-color: var(--blue); border-left: 3px solid var(--blue); }
+
+/* ============================================================
+   SOURCE CHIPS
+   ============================================================ */
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+.source-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.chip {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 3px 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   PROCESS NOTE
+   ============================================================ */
+.process-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  border-left: 2px solid var(--card-border);
+  line-height: 1.7;
+  max-width: calc(100% - 80px);
+}
+
+/* ============================================================
+   PDF EXPORT BUTTON
+   ============================================================ */
+#pdf-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#pdf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.55);
+}
+
+/* ============================================================
+   PULSING GOLD ANIMATIONS
+   ============================================================ */
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
+  50% { box-shadow: 0 0 20px 8px rgba(201,168,76,0.2); }
+}
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(201,168,76,0.5)); }
+  50% { filter: drop-shadow(0 0 14px rgba(201,168,76,0.9)); }
+}
+@keyframes bar-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* ============================================================
+   CHAPTER 1 — ERA BARS
+   ============================================================ */
+#ch1 .two-col { gap: 56px; }
+
+.era-list { display: flex; flex-direction: column; gap: 14px; }
+
+.era-item {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.era-item:hover { transform: translateX(4px); }
+
+.era-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.era-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.era-return {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.era-bar-track {
+  height: 28px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.era-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.7);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.era-bar-fill.ai-bar {
+  background: var(--gold) !important;
+  animation: bar-pulse 2s ease-in-out infinite;
+}
+.era-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+.era-detail-card {
+  display: none;
+  margin-top: 10px;
+  padding: 14px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.era-detail-card.open { display: block; }
+.era-detail-card strong { color: var(--gold); }
+
+.counter-boxes { display: flex; flex-direction: column; gap: 20px; }
+
+.counter-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+}
+.counter-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.counter-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.ratio-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  margin: 20px 0 8px;
+}
+
+.market-quote {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.65;
+  padding: 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-dim);
+  border-radius: 0 10px 10px 0;
+}
+
+/* ============================================================
+   CHAPTER 2 — BUBBLE CHART
+   ============================================================ */
+.bubble-container {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: visible;
+}
+
+#bubble-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.bubble-tooltip {
+  position: fixed;
+  background: #1a2236;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 999;
+  display: none;
+  min-width: 160px;
+}
+.bubble-tooltip .tt-ticker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.bubble-tooltip .tt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-top: 2px;
+}
+.bubble-tooltip .tt-row span:last-child { color: var(--text); font-weight: 600; }
+
+@keyframes crdo-pulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(201,168,76,0.6)); }
+  50% { filter: drop-shadow(0 0 18px rgba(201,168,76,1)); }
+}
+.crdo-bubble { animation: crdo-pulse 2.5s ease-in-out infinite; }
+
+.tier-table-wrap { margin-top: 36px; overflow-x: auto; }
+
+table.tier-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tier-table th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+.tier-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+  vertical-align: middle;
+}
+.tier-table tr:hover td { background: rgba(255,255,255,0.02); }
+.tier-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.tier-winner-gold {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ============================================================
+   CHAPTER 3 — COMPARISON MATRIX
+   ============================================================ */
+table.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.matrix-table th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 14px;
+  text-align: center;
+  border-bottom: 2px solid var(--card-border);
+  color: var(--text-muted);
+}
+.matrix-table th.crdo-col {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.matrix-table th:first-child { text-align: left; }
+.matrix-table td {
+  padding: 10px 14px;
+  text-align: center;
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}
+.matrix-table td:first-child {
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+.matrix-table td.crdo-col-cell {
+  border-left: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+}
+.matrix-table .total-row td {
+  font-size: 16px;
+  font-weight: 700;
+  border-top: 2px solid var(--card-border);
+  border-bottom: none;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.matrix-table .total-row .crdo-col-cell {
+  background: var(--gold);
+  color: #000;
+  font-size: 18px;
+}
+
+.score-10 { background: #166534; color: #dcfce7; }
+.score-9  { background: rgba(21,128,61,0.6); color: #bbf7d0; }
+.score-8  { background: rgba(21,128,61,0.35); color: #86efac; }
+.score-7  { background: #854D0E; color: #fef08a; }
+.score-6  { background: #9A3412; color: #fed7aa; }
+.score-5  { background: #7F1D1D; color: #fca5a5; }
+
+.finalist-cards { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+
+.finalist-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.finalist-card:hover { border-color: rgba(45,111,255,0.4); }
+.finalist-card.crdo-card { border-color: rgba(201,168,76,0.4); }
+
+.finalist-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+.finalist-ticker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 56px;
+}
+.finalist-card.crdo-card .finalist-ticker { color: var(--gold); }
+.finalist-tier {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.05);
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+.finalist-arrow {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 16px;
+  transition: transform 0.3s;
+}
+.finalist-card.expanded .finalist-arrow { transform: rotate(180deg); }
+
+.finalist-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+}
+.finalist-body.open {
+  max-height: 400px;
+  padding: 0 20px 20px;
+}
+.finalist-profile {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.finalist-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+.finalist-meta-item { font-size: 12px; }
+.finalist-meta-item strong { color: var(--red); display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+.finalist-meta-item.judge-fit strong { color: var(--blue); }
+
+.winner-box {
+  margin-top: 36px;
+  background: rgba(201,168,76,0.07);
+  border: 2px solid var(--gold);
+  border-left: 6px solid var(--gold);
+  border-radius: 12px;
+  padding: 28px 32px;
+}
+.winner-box-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.winner-box p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   CHAPTER 4 — DEEP DIVE
+   ============================================================ */
+.pillar-cards { display: flex; flex-direction: column; gap: 16px; }
+
+.pillar-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.pillar-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+.pillar-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.pillar-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.timeline-wrap {
+  margin-top: 36px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 28px;
+}
+.timeline-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.pipeline-phases {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+  overflow-x: auto;
+}
+.phase-box {
+  flex: 1;
+  background: rgba(45,111,255,0.1);
+  border: 1px solid rgba(45,111,255,0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+  min-width: 120px;
+}
+.phase-box .phase-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 3px;
+}
+.phase-box .phase-sub { font-size: 10px; color: var(--text-muted); }
+
+.phase-arrow {
+  color: var(--text-muted);
+  font-size: 20px;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+.milestone-track {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 20px;
+}
+.milestone-track::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 20px; right: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+}
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.milestone-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 10px rgba(201,168,76,0.5);
+}
+.milestone-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.customer-badges { display: flex; flex-direction: column; gap: 12px; }
+.customer-badge {
+  background: rgba(45,111,255,0.1);
+  border: 1px solid rgba(45,111,255,0.2);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.customer-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.customer-rev {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.customer-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--green);
+  background: rgba(34,197,94,0.12);
+  border-radius: 6px;
+  padding: 3px 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.customer-footer {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 12px;
+}
+
+.comp-table-wrap { margin-top: 28px; overflow-x: auto; }
+table.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.comp-table th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+.comp-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+  color: var(--text-muted);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.comp-table td:first-child {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.hiring-box {
+  margin-top: 28px;
+  border: 1px dashed var(--gold);
+  background: var(--gold-dim);
+  border-radius: 12px;
+  padding: 20px;
+}
+.hiring-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.hiring-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+/* ============================================================
+   CHAPTER 5 — FINANCIALS
+   ============================================================ */
+#ch5 .two-col { gap: 40px; }
+
+canvas#revenue-chart {
+  width: 100%;
+  height: 260px;
+  display: block;
+  border-radius: 8px;
+}
+
+.chart-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.beat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+.beat-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+.beat-badge.beat { background: rgba(34,197,94,0.18); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+.beat-badge.miss { background: rgba(239,68,68,0.18); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+.beat-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+.metric-pills { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.metric-pill {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.metric-pill:hover { border-color: var(--gold-dim); }
+.metric-pill-header { display: flex; justify-content: space-between; align-items: center; }
+.metric-name { font-size: 12px; color: var(--text-muted); }
+.metric-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--green);
+}
+.metric-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, margin-top 0.3s;
+}
+.metric-pill.expanded .metric-detail {
+  max-height: 60px;
+  margin-top: 8px;
+}
+
+/* EV/NTM bars */
+.ev-bars { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+.ev-bar-row { display: flex; align-items: center; gap: 10px; }
+.ev-bar-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 52px;
+  color: var(--text);
+}
+.ev-bar-track {
+  flex: 1;
+  height: 22px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.ev-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  width: 0;
+}
+.ev-bar-fill.crdo-ev { background: var(--gold); color: #000; }
+.ev-bar-fill.peer-ev { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(45,111,255,0.3); }
+.ev-note { font-size: 11px; color: var(--text-muted); }
+
+.ev-callout {
+  margin-top: 16px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.ev-callout strong { color: var(--gold); }
+
+/* DCF scenario cards */
+.dcf-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.dcf-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+.dcf-card:hover { border-color: rgba(201,168,76,0.3); }
+.dcf-header { display: flex; justify-content: space-between; align-items: center; }
+.dcf-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.dcf-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.dcf-card.bear .dcf-price { color: var(--red); }
+.dcf-card.base .dcf-price { color: var(--green); }
+.dcf-card.bull .dcf-price { color: var(--gold); }
+.dcf-body {
+  font-size: 11px;
+  color: var(--text-muted);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, margin-top 0.3s;
+  line-height: 1.7;
+}
+.dcf-card.expanded .dcf-body { max-height: 100px; margin-top: 10px; }
+
+/* DCF Slider */
+.dcf-slider-wrap {
+  margin-top: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.slider-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+#dcf-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(90deg, var(--blue-dim), var(--gold-dim));
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+#dcf-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(201,168,76,0.5);
+}
+.slider-output {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  align-items: center;
+}
+.slider-multiple {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.slider-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  transition: color 0.3s;
+}
+
+/* Sensitivity heatmap */
+.heatmap-wrap {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+table.heatmap {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+.heatmap th {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 8px 10px;
+  text-align: center;
+}
+.heatmap td {
+  text-align: center;
+  padding: 8px 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  border: 1px solid rgba(30,42,58,0.6);
+  border-radius: 4px;
+  position: relative;
+}
+.heatmap .row-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: left;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  padding-right: 12px;
+}
+.hm-red { background: #7F1D1D; color: #fca5a5; }
+.hm-yellow { background: #78350F; color: #fde68a; }
+.hm-lgreen { background: #14532D; color: #86efac; }
+.hm-dgreen { background: #052E16; color: #4ade80; }
+
+/* Catalyst box */
+.catalyst-box {
+  margin-top: 24px;
+  background: rgba(201,168,76,0.06);
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  padding: 24px;
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+.catalyst-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.catalyst-rows { display: flex; flex-direction: column; gap: 8px; }
+.catalyst-row { display: flex; justify-content: space-between; font-size: 13px; }
+.catalyst-key { color: var(--text-muted); }
+.catalyst-val { font-weight: 600; color: var(--text); font-family: 'Space Grotesk', sans-serif; }
+.catalyst-note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--yellow);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   CHAPTER 6 — MODEL COUNCIL
+   ============================================================ */
+.model-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+
+.model-card {
+  position: relative;
+  height: 220px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.model-card-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+.model-card:hover .model-card-inner { transform: rotateY(180deg); }
+
+.model-front, .model-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 24px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.model-front {
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.model-back {
+  background: #0f1825;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.model-front.gpt-border { border: 1.5px solid var(--green); }
+.model-front.claude-border { border: 1.5px solid #F97316; }
+.model-front.gemini-border { border: 1.5px solid var(--blue); }
+.model-back.gpt-border { border: 1.5px solid var(--green); }
+.model-back.claude-border { border: 1.5px solid #F97316; }
+.model-back.gemini-border { border: 1.5px solid var(--blue); }
+
+.model-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.model-role { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+.model-hover-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  text-align: right;
+}
+.model-insight {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* Q&A Navigator */
+.qa-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.qa-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.qa-btn:hover { border-color: var(--gold); color: var(--text); }
+.qa-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+.qa-panel {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.qa-panel.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.qa-question {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  border-left: 3px solid var(--gold);
+  line-height: 1.6;
+}
+
+.model-responses { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.model-response {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.mr-model {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.mr-gpt { color: var(--green); }
+.mr-claude { color: #F97316; }
+.mr-gemini { color: var(--blue); }
+.mr-text { font-size: 12px; color: var(--text-muted); line-height: 1.75; }
+
+.our-answer-btn {
+  display: block;
+  margin: 20px auto 0;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.our-answer-btn:hover { opacity: 0.88; }
+.our-answer-reveal {
+  display: none;
+  margin-top: 16px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 10px;
+  padding: 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-style: italic;
+}
+.our-answer-reveal.show { display: block; }
+
+.consensus-chips {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.consensus-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  line-height: 1.5;
+}
+.consensus-chip .chip-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.consensus-chip.agree { border-left: 3px solid var(--green); }
+.consensus-chip.diverge { border-left: 3px solid var(--yellow); }
+
+/* ============================================================
+   CHAPTER 7 — CONVICTION
+   ============================================================ */
+.conviction-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+
+.conviction-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+}
+.conviction-card.laffont { border: 1.5px solid var(--gold); }
+.conviction-card.loeb { border: 1.5px solid var(--blue); }
+.conviction-card.hao { border: 1.5px solid var(--card-border); }
+
+.conviction-judge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.conviction-org {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.conviction-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+.risk-cards { display: flex; flex-direction: column; gap: 12px; }
+.risk-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.risk-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+}
+.risk-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(239,68,68,0.15);
+  color: var(--red);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.risk-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+.risk-toggle { color: var(--text-muted); font-size: 16px; transition: transform 0.3s; }
+.risk-card.expanded .risk-toggle { transform: rotate(180deg); }
+.risk-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 20px;
+}
+.risk-body.open { max-height: 200px; padding: 0 20px 20px; }
+.risk-body-inner { display: flex; flex-direction: column; gap: 10px; }
+.risk-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--green);
+  margin-top: 8px;
+}
+.risk-section-title.exit-t { color: var(--red); }
+.risk-text { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+
+/* ============================================================
+   CHAPTER 8 — METHODOLOGY
+   ============================================================ */
+.workflow-svg-wrap {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 36px;
+}
+
+svg#workflow-svg { width: 100%; height: 440px; }
+
+.task-log-wrap { overflow-x: auto; margin-bottom: 36px; }
+table.task-log {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.task-log th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+.task-log td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+  color: var(--text-muted);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.task-log td:first-child {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 13px;
+}
+.task-log tr:hover td { background: rgba(255,255,255,0.01); }
+
+.discovery-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+.discovery-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 22px;
+}
+.discovery-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.discovery-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.discovery-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+.compare-table-wrap { overflow-x: auto; margin-bottom: 40px; }
+table.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.compare-table th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--card-border);
+  color: var(--text-muted);
+}
+.compare-table th.computer-col { color: var(--gold); border-bottom-color: var(--gold); }
+.compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(30,42,58,0.5);
+  color: var(--text-muted);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.compare-table td:first-child { font-weight: 600; color: var(--text); }
+.compare-table td.computer-col { color: var(--green); font-weight: 600; }
+
+.closing-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 700;
+  color: var(--gold);
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+#mobile-nav {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--sidebar-bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 12px 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 8px;
+  scrollbar-width: none;
+}
+#mobile-nav::-webkit-scrollbar { display: none; }
+.mobile-nav-btn {
+  display: inline-block;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.mobile-nav-btn.active { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  #sidebar, #pdf-btn, #mobile-nav, .qa-nav, .our-answer-btn { display: none !important; }
+  #main { margin-left: 0 !important; }
+  body { background: #fff; color: #000; }
+  .chapter { page-break-inside: avoid; min-height: auto !important; border-bottom: 1px solid #ddd; padding: 32px 24px; }
+  .chapter::before { display: none; }
+  .card, .finalist-card, .model-card, .dcf-card, .risk-card { break-inside: avoid; }
+  .finalist-body, .dcf-body, .risk-body { max-height: none !important; padding-bottom: 16px !important; display: block !important; }
+  .finalist-body.open, .dcf-body, .risk-body { max-height: none; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .model-card-inner { transform: none !important; }
+  .model-back { display: none !important; }
+  .qa-panel { display: block !important; }
+  canvas { max-width: 600px; }
+  .chapter-title { font-size: 22px; }
+  .two-col, .three-col, .model-cards, .model-responses, .conviction-cards, .discovery-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .catalyst-box { animation: none !important; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  #sidebar { display: none; }
+  #mobile-nav { display: flex; }
+  #main { margin-left: 0; }
+  .chapter { padding: 40px 20px; }
+  .two-col { grid-template-columns: 1fr; gap: 32px; }
+  .three-col, .model-cards, .model-responses, .conviction-cards, .discovery-cards {
+    grid-template-columns: 1fr;
+  }
+  #pdf-btn { bottom: 16px; right: 16px; }
+  canvas#revenue-chart { height: 200px; }
+}
+
+@media (max-width: 600px) {
+  .matrix-table { font-size: 11px; }
+  .matrix-table th, .matrix-table td { padding: 7px 8px; }
+  .pipeline-phases { flex-direction: column; }
+  .phase-arrow { transform: rotate(90deg); }
+}
+
+/* section header accent line */
+.section-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  margin-top: 32px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--card-border);
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SIDEBAR NAV
+     ============================================================ -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="ticker">CRDO</div>
+    <div class="sub">Investment Thesis</div>
+  </div>
+  <ul class="nav-list">
+    <li class="nav-item active" onclick="scrollTo('ch1')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 1</div>
+        <div class="nav-label">Infrastructure Wins</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch2')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 2</div>
+        <div class="nav-label">59 Companies</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch3')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 3</div>
+        <div class="nav-label">5 Finalists</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch4')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 4</div>
+        <div class="nav-label">CRDO Deep Dive</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch5')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 5</div>
+        <div class="nav-label">Bear / Base / Bull</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch6')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 6</div>
+        <div class="nav-label">Model Council</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch7')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 7</div>
+        <div class="nav-label">Conviction</div>
+      </div>
+    </li>
+    <li class="nav-item" onclick="scrollTo('ch8')">
+      <span class="nav-dot"></span>
+      <div>
+        <div class="nav-chapter">Ch 8</div>
+        <div class="nav-label">Methodology</div>
+      </div>
+    </li>
+  </ul>
+  <div class="sidebar-footer">NASDAQ: CRDO &middot; 2026</div>
+</nav>
+
+<!-- ============================================================
+     MOBILE NAV
+     ============================================================ -->
+<div id="mobile-nav">
+  <a class="mobile-nav-btn active" onclick="scrollTo('ch1')">Ch 1</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch2')">Ch 2</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch3')">Ch 3</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch4')">Ch 4</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch5')">Ch 5</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch6')">Ch 6</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch7')">Ch 7</a>
+  <a class="mobile-nav-btn" onclick="scrollTo('ch8')">Ch 8</a>
+</div>
+
+<!-- ============================================================
+     PDF EXPORT BUTTON
+     ============================================================ -->
+<button id="pdf-btn" onclick="window.print()">&#9660; Export PDF</button>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main id="main">
+
+<!-- ============================================================
+     CHAPTER 1 — INFRASTRUCTURE ALWAYS WINS FIRST
+     ============================================================ -->
+<section id="ch1" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 01</div>
+    <h1 class="chapter-title">"Infrastructure always wins first."</h1>
+    <p class="chapter-subtitle">"We are in 1996."</p>
+  </div>
+
+  <div class="two-col">
+    <!-- LEFT: Era bar chart -->
+    <div class="reveal reveal-d1">
+      <div class="section-sub">Six Infrastructure Eras — Peak 10-Year Returns</div>
+      <div class="era-list" id="era-list">
+
+        <div class="era-item" onclick="toggleEra('era0')">
+          <div class="era-meta">
+            <span class="era-name">Industrial Revolution</span>
+            <span class="era-return">Foundational (~15% IRR)</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill" data-width="15" style="background: #6366f1;"></div>
+          </div>
+          <div class="era-label">1760–1850 &nbsp;·&nbsp; Boulton &amp; Watt</div>
+          <div class="era-detail-card" id="era0">
+            <strong>Era:</strong> Industrial Revolution (1760–1850)<br>
+            <strong>Bottleneck Solver:</strong> Boulton &amp; Watt<br>
+            <strong>Peak Return:</strong> ~15% IRR<br>
+            <strong>Key Insight:</strong> Steam patent = rent on all industrial output. Infrastructure monopoly before applications existed.
+          </div>
+        </div>
+
+        <div class="era-item" onclick="toggleEra('era1')">
+          <div class="era-meta">
+            <span class="era-name">Electrification</span>
+            <span class="era-return">Foundational</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill" data-width="18" style="background: #8b5cf6;"></div>
+          </div>
+          <div class="era-label">1880–1930 &nbsp;·&nbsp; General Electric</div>
+          <div class="era-detail-card" id="era1">
+            <strong>Era:</strong> Electrification (1880–1930)<br>
+            <strong>Bottleneck Solver:</strong> General Electric<br>
+            <strong>Peak Return:</strong> Foundational compounding<br>
+            <strong>Key Insight:</strong> Paul David (1990): 25-year productivity lag before gains materialize. Grid built before appliances.
+          </div>
+        </div>
+
+        <div class="era-item" onclick="toggleEra('era2')">
+          <div class="era-meta">
+            <span class="era-name">Computing</span>
+            <span class="era-return">Foundational</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill" data-width="22" style="background: #3b82f6;"></div>
+          </div>
+          <div class="era-label">1950–1990 &nbsp;·&nbsp; IBM</div>
+          <div class="era-detail-card" id="era2">
+            <strong>Era:</strong> Computing (1950–1990)<br>
+            <strong>Bottleneck Solver:</strong> IBM<br>
+            <strong>Peak Return:</strong> Foundational<br>
+            <strong>Key Insight:</strong> Platform era required infrastructure stability before software value capture could occur.
+          </div>
+        </div>
+
+        <div class="era-item" onclick="toggleEra('era3')">
+          <div class="era-meta">
+            <span class="era-name">Internet</span>
+            <span class="era-return">+118,741%</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill" data-width="85" style="background: #10b981;"></div>
+          </div>
+          <div class="era-label">1993–2003 &nbsp;·&nbsp; Cisco</div>
+          <div class="era-detail-card" id="era3">
+            <strong>Era:</strong> Internet (1993–2003)<br>
+            <strong>Bottleneck Solver:</strong> Cisco Systems<br>
+            <strong>Peak Return:</strong> +118,741%<br>
+            <strong>Key Insight:</strong> $1B → $550B market cap following TCP/IP buildout. Router monopoly captured the toll on all internet traffic.
+          </div>
+        </div>
+
+        <div class="era-item" onclick="toggleEra('era4')">
+          <div class="era-meta">
+            <span class="era-name">Mobile</span>
+            <span class="era-return">+3,000%</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill" data-width="55" style="background: #f59e0b;"></div>
+          </div>
+          <div class="era-label">2003–2013 &nbsp;·&nbsp; Qualcomm</div>
+          <div class="era-detail-card" id="era4">
+            <strong>Era:</strong> Mobile (2003–2013)<br>
+            <strong>Bottleneck Solver:</strong> Qualcomm<br>
+            <strong>Peak Return:</strong> +3,000%<br>
+            <strong>Key Insight:</strong> CDMA patents = toll road for smartphone era. Every handset shipped a royalty.
+          </div>
+        </div>
+
+        <div class="era-item" onclick="toggleEra('era5')">
+          <div class="era-meta">
+            <span class="era-name">AI (Now)</span>
+            <span class="era-return">? — Building</span>
+          </div>
+          <div class="era-bar-track">
+            <div class="era-bar-fill ai-bar" data-width="8" style=""></div>
+          </div>
+          <div class="era-label" style="color: var(--gold); font-weight: 700;">&#11835; We are here.</div>
+          <div class="era-detail-card" id="era5">
+            <strong>Era:</strong> AI Infrastructure (Now)<br>
+            <strong>Bottleneck Solver:</strong> ?<br>
+            <strong>Peak Return:</strong> Unknown — bar is incomplete, building in real time<br>
+            <strong>Key Insight:</strong> Every prior era's infrastructure monopoly printed outsized returns. The question is: who owns the toll gate for AI scale-out interconnect?
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Counter boxes + quote -->
+    <div class="reveal reveal-d2">
+      <div class="counter-boxes">
+        <div class="counter-box">
+          <div class="counter-label">AI CapEx 2025</div>
+          <div class="counter-value" id="counter-capex">$0b</div>
+        </div>
+        <div class="counter-box">
+          <div class="counter-label">AI Application Revenue 2025</div>
+          <div class="counter-value" id="counter-revenue">$0b</div>
+        </div>
+      </div>
+      <div class="ratio-text reveal reveal-d3">9:1 ratio — identical to 1997 internet</div>
+      <div class="market-quote reveal reveal-d4">
+        "The market is pricing AI infrastructure like it priced the internet in 1996. That window closes."
+      </div>
+
+      <div class="source-chips reveal reveal-d5">
+        <span class="source-label">Sources:</span>
+        <span class="chip">Goldman Sachs</span>
+        <span class="chip">McKinsey Global Institute</span>
+        <span class="chip">NBER</span>
+        <span class="chip">Statista</span>
+        <span class="chip">Epoch AI</span>
+        <span class="chip">CB Insights</span>
+      </div>
+      <div class="process-note reveal reveal-d6">
+        4 parallel sub-agents &nbsp;|&nbsp; 118 primary sources &nbsp;|&nbsp;
+        SA1: Technology Paradigm Shifts (26 sources, 50KB output) &middot;
+        SA2: Economic Cycles (42 sources, 40KB output) &middot;
+        SA3: AI Historical Arc (30 sources, 27KB output) &middot;
+        SA4: Civilizational Impact (20 sources, 34KB output)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 2 — 59 COMPANIES / BUBBLE CHART
+     ============================================================ -->
+<section id="ch2" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 02</div>
+    <h1 class="chapter-title">"59 companies. 7 AI transformation categories. 5 tiers of risk and reward."</h1>
+    <p class="chapter-subtitle">"The market offered a spectrum. We mapped it."</p>
+  </div>
+
+  <div class="reveal reveal-d1">
+    <div class="section-sub">NTM Revenue Growth % vs. Gross Margin % — AI Universe Scatter</div>
+    <div class="bubble-container">
+      <svg id="bubble-svg" viewBox="0 0 700 400" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+    <div id="bubble-tooltip" class="bubble-tooltip"></div>
+  </div>
+
+  <div class="tier-table-wrap reveal reveal-d2">
+    <div class="section-sub">5-Tier Investment Framework</div>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Label</th>
+          <th>Risk Profile</th>
+          <th>Primary Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier-num">1</td>
+          <td>Conservative Anchor</td>
+          <td>Proven platform, premium multiple</td>
+          <td>NVDA</td>
+        </tr>
+        <tr>
+          <td class="tier-num">2</td>
+          <td>Established Grower</td>
+          <td>High growth, execution premium</td>
+          <td>PLTR</td>
+        </tr>
+        <tr>
+          <td class="tier-num">3</td>
+          <td>High Conviction Growth</td>
+          <td>Mispriced, moat-gated</td>
+          <td class="tier-winner-gold">CRDO &#9733;</td>
+        </tr>
+        <tr>
+          <td class="tier-num">4</td>
+          <td>Speculative Asymmetric</td>
+          <td>Cookie-deprecation catalyst</td>
+          <td>ZETA</td>
+        </tr>
+        <tr>
+          <td class="tier-num">5</td>
+          <td>Deep Value / Turnaround</td>
+          <td>FCF machine, compliance moat</td>
+          <td>BOX</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="source-chips reveal reveal-d3">
+    <span class="source-label">Sources:</span>
+    <span class="chip">PitchBook</span>
+    <span class="chip">CB Insights</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">Goldman Sachs</span>
+  </div>
+  <div class="process-note reveal reveal-d4">
+    7 parallel sub-agents — one per AI transformation category — mapped every qualifying NYSE/NASDAQ company with market cap &gt;$1B. 59 companies evaluated.
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 3 — FIVE FINALISTS / COMPARISON MATRIX
+     ============================================================ -->
+<section id="ch3" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 03</div>
+    <h1 class="chapter-title">"Five finalists. Seven dimensions. One winner."</h1>
+    <p class="chapter-subtitle">"CRDO wins."</p>
+  </div>
+
+  <div class="reveal reveal-d1">
+    <div class="section-sub">7-Dimension Comparison Matrix</div>
+    <div style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>NVDA</th>
+            <th>PLTR</th>
+            <th class="crdo-col">CRDO</th>
+            <th>ZETA</th>
+            <th>BOX</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Moat Durability (5yr)</td>
+            <td class="score-10">10</td>
+            <td class="score-9">9</td>
+            <td class="score-8 crdo-col-cell">8</td>
+            <td class="score-7">7</td>
+            <td class="score-6">6</td>
+          </tr>
+          <tr>
+            <td>Growth Visibility</td>
+            <td class="score-9">9</td>
+            <td class="score-8">8</td>
+            <td class="score-8 crdo-col-cell">8</td>
+            <td class="score-6">6</td>
+            <td class="score-7">7</td>
+          </tr>
+          <tr>
+            <td>Valuation vs. Opportunity</td>
+            <td class="score-8">8</td>
+            <td class="score-5">5</td>
+            <td class="score-9 crdo-col-cell">9</td>
+            <td class="score-9">9</td>
+            <td class="score-8">8</td>
+          </tr>
+          <tr>
+            <td>Catalyst Specificity</td>
+            <td class="score-8">8</td>
+            <td class="score-9">9</td>
+            <td class="score-8 crdo-col-cell">8</td>
+            <td class="score-7">7</td>
+            <td class="score-7">7</td>
+          </tr>
+          <tr>
+            <td>Judge Resonance</td>
+            <td class="score-10">10</td>
+            <td class="score-9">9</td>
+            <td class="score-8 crdo-col-cell">8</td>
+            <td class="score-7">7</td>
+            <td class="score-7">7</td>
+          </tr>
+          <tr>
+            <td>Non-Consensus Advantage</td>
+            <td class="score-6">6</td>
+            <td class="score-7">7</td>
+            <td class="score-9 crdo-col-cell">9</td>
+            <td class="score-8">8</td>
+            <td class="score-8">8</td>
+          </tr>
+          <tr>
+            <td>Data Advantage</td>
+            <td class="score-7">7</td>
+            <td class="score-9">9</td>
+            <td class="score-9 crdo-col-cell">9</td>
+            <td class="score-9">9</td>
+            <td class="score-7">7</td>
+          </tr>
+          <tr class="total-row">
+            <td>TOTAL</td>
+            <td>58</td>
+            <td>56</td>
+            <td class="crdo-col-cell">59 &#9733;</td>
+            <td>53</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Finalist cards -->
+  <div class="finalist-cards reveal reveal-d2">
+    <div class="section-sub">Finalist Profiles</div>
+
+    <div class="finalist-card" id="fc-nvda" onclick="toggleFinalist('fc-nvda')">
+      <div class="finalist-header">
+        <div class="finalist-ticker">NVDA</div>
+        <div class="finalist-tier">Tier 1 — Conservative Anchor</div>
+        <div class="finalist-arrow">&#9660;</div>
+      </div>
+      <div class="finalist-body">
+        <div class="finalist-profile">The non-consensus insight is not that NVIDIA dominates AI training — everyone knows that — it is that Blackwell's 35x cost-per-token improvement over Hopper makes NVIDIA the economically dominant inference platform just as inference becomes the majority of AI compute spend. The moat is architectural: CUDA's 4,000+ library integrations, NIM microservices, and Triton inference server create a switching cost ecosystem that cannot be replicated in silicon cycles. Primary catalyst: Vera Rubin samples shipped to hyperscalers; first revenue H2 2026. Key risk: BIS export controls on B20/H20. Judge fit: Laffont — CUDA compounding; Loeb — $1T backlog; Hao — most data-defensible conviction.</div>
+        <div class="finalist-meta">
+          <div class="finalist-meta-item"><strong>Key Risk</strong>BIS export controls on B20/H20</div>
+          <div class="finalist-meta-item judge-fit"><strong>Judge Fit</strong>Laffont, Loeb, Hao — full panel alignment</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finalist-card" id="fc-pltr" onclick="toggleFinalist('fc-pltr')">
+      <div class="finalist-header">
+        <div class="finalist-ticker">PLTR</div>
+        <div class="finalist-tier">Tier 2 — Established Grower</div>
+        <div class="finalist-arrow">&#9660;</div>
+      </div>
+      <div class="finalist-body">
+        <div class="finalist-profile">The non-consensus insight: the market prices Palantir as a government contractor but US commercial revenue grew 137% YoY in Q4 2025 and management guided above 115% for 2026. The moat is the ontological data model: Foundry/AIP builds a living logical map of enterprise operations, creating a cognitive switching cost. Rule of 40 = 127%. Primary catalyst: Q1 2026 earnings vs $1.532–1.536B guidance. Key risk: 114x forward P/E leaves zero room for a disappointing quarter. Judge fit: Laffont — Rule of 40 compounding; Loeb — activist reframing; Hao — AIP bootcamp data.</div>
+        <div class="finalist-meta">
+          <div class="finalist-meta-item"><strong>Key Risk</strong>114x forward P/E — zero margin for error</div>
+          <div class="finalist-meta-item judge-fit"><strong>Judge Fit</strong>Laffont, Loeb, Hao</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finalist-card crdo-card" id="fc-crdo" onclick="toggleFinalist('fc-crdo')">
+      <div class="finalist-header">
+        <div class="finalist-ticker">CRDO</div>
+        <div class="finalist-tier">Tier 3 — High Conviction Growth &#9733;</div>
+        <div class="finalist-arrow">&#9660;</div>
+      </div>
+      <div class="finalist-body">
+        <div class="finalist-profile">Credo is not a semiconductor company — it is the owner of the only commercially validated AEC IP stack for 224G SerDes at scale, making it the mandatory toll gate for AI cluster scaling beyond 400G interconnect. Design wins at Microsoft, Amazon, and Google required 4+ years of qualification cycles. Competitors starting today cannot displace them before 2029. Q4 FY2026 guidance: $425–435M. FY2027: &gt;50% YoY growth. Key risk: hyperscaler qualifies alternative AEC. Judge fit: Laffont — IP moat; Loeb — 96% consensus upside; Hao — technical complexity discount.</div>
+        <div class="finalist-meta">
+          <div class="finalist-meta-item"><strong>Key Risk</strong>Hyperscaler qualifies alternative AEC</div>
+          <div class="finalist-meta-item judge-fit"><strong>Judge Fit</strong>Laffont — IP moat · Loeb — 96% consensus upside · Hao — technical complexity discount</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finalist-card" id="fc-zeta" onclick="toggleFinalist('fc-zeta')">
+      <div class="finalist-header">
+        <div class="finalist-ticker">ZETA</div>
+        <div class="finalist-tier">Tier 4 — Speculative Asymmetric</div>
+        <div class="finalist-arrow">&#9660;</div>
+      </div>
+      <div class="finalist-body">
+        <div class="finalist-profile">Zeta is not a marketing data company — it is a 240-million-identity AI graph making it the only independent third-party dataset capable of replacing cookie-based targeting at scale. The moat is assembled over 14 years from 200+ first-party data partnerships — it cannot be replicated. Primary catalyst: Google Chrome third-party cookie deprecation (mid-2026). Key risk: Google has delayed twice; a third delay defers the revenue catalyst. Judge fit: Laffont — data network effect; Loeb — 3x EV/Revenue vs 18x for Trade Desk; Hao — unique dataset.</div>
+        <div class="finalist-meta">
+          <div class="finalist-meta-item"><strong>Key Risk</strong>Google delays cookie deprecation again</div>
+          <div class="finalist-meta-item judge-fit"><strong>Judge Fit</strong>Laffont, Loeb, Hao</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finalist-card" id="fc-box" onclick="toggleFinalist('fc-box')">
+      <div class="finalist-header">
+        <div class="finalist-ticker">BOX</div>
+        <div class="finalist-tier">Tier 5 — Deep Value / Turnaround</div>
+        <div class="finalist-arrow">&#9660;</div>
+      </div>
+      <div class="finalist-body">
+        <div class="finalist-profile">Box's FedRAMP High, HIPAA, CJIS, and GovRAMP certifications make it the only enterprise content platform that regulated industries can legally deploy AI agents on, creating a compliance-gated RAG moat. Enterprise Advanced is 10% of revenue with RPO growing 17% YoY. FY2027 guidance: $1.275B at 8% growth with 30%+ operating margins. Key risk: Microsoft deepens SharePoint/Copilot in regulated industries faster than expected. Judge fit: Laffont — overlooked platform; Loeb — activist-ripe at 3x EV/Revenue; Hao — FedRAMP authorization database.</div>
+        <div class="finalist-meta">
+          <div class="finalist-meta-item"><strong>Key Risk</strong>Microsoft SharePoint/Copilot encroachment</div>
+          <div class="finalist-meta-item judge-fit"><strong>Judge Fit</strong>Laffont, Loeb, Hao</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /finalist-cards -->
+
+  <!-- Winner box -->
+  <div class="winner-box reveal reveal-d3">
+    <div class="winner-box-title">CRDO wins.</div>
+    <p>Not because it is the highest-conviction company — NVDA is. But because every judge in this room already owns NVDA and knows its thesis better than any presentation can explain. CRDO is the non-consensus insight: the mandatory IP tollgate for NVL72-class AI factory interconnect, trading at a 41.5% discount to peers, with 96% consensus upside and a binary catalyst on June 2, 2026.</p>
+  </div>
+
+  <div class="source-chips reveal reveal-d4">
+    <span class="source-label">Sources:</span>
+    <span class="chip">PitchBook</span>
+    <span class="chip">CB Insights</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">Bloomberg</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 4 — CREDO DEEP DIVE
+     ============================================================ -->
+<section id="ch4" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 04</div>
+    <h1 class="chapter-title">Credo Technology Group (NASDAQ: CRDO)</h1>
+    <p class="chapter-subtitle">"The only commercially validated 224G SerDes AEC stack at hyperscale."</p>
+  </div>
+
+  <div class="two-col">
+    <!-- LEFT -->
+    <div>
+      <div class="section-sub reveal">Three-Pillar Moat</div>
+      <div class="pillar-cards">
+        <div class="pillar-card reveal reveal-d1">
+          <div class="pillar-icon">&#128272;</div>
+          <div>
+            <div class="pillar-title">Proprietary 224G PAM4 SerDes IP</div>
+            <div class="pillar-desc">
+              TSMC N3 process. 40–50 dB channel loss handled by embedded DSP. 100+ issued US patents. ITC 337-TA-1446 enforced (settled Molex March 2026, TE Connectivity March 2026). Key patent US11032111 expires 2039.
+            </div>
+          </div>
+        </div>
+        <div class="pillar-card reveal reveal-d2">
+          <div class="pillar-icon">&#9889;</div>
+          <div>
+            <div class="pillar-title">ZeroFlap Zero-Link-Flap Reliability</div>
+            <div class="pillar-desc">
+              1,000x better uptime than optical modules (no laser components). Critical for hyperscaler SLAs. Eliminates transceiver failures that cause link flaps in AI training clusters.
+            </div>
+          </div>
+        </div>
+        <div class="pillar-card reveal reveal-d3">
+          <div class="pillar-icon">&#128279;</div>
+          <div>
+            <div class="pillar-title">HiWire System-Level Integration</div>
+            <div class="pillar-desc">
+              Chip + cable assembly co-designed with hyperscalers since 2019–2021. Not just a chip vendor — a system solutions provider. 4+ year qualification head start creates sticky, hard-to-displace customer relationships.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification Timeline -->
+      <div class="timeline-wrap reveal reveal-d4">
+        <div class="timeline-title">Qualification Pipeline</div>
+        <div class="pipeline-phases">
+          <div class="phase-box">
+            <span class="phase-label">Phase 1</span>
+            <span class="phase-sub">Design Win<br>12–18 mo</span>
+          </div>
+          <div class="phase-arrow">&#8594;</div>
+          <div class="phase-box">
+            <span class="phase-label">Phase 2</span>
+            <span class="phase-sub">Engineering Validation<br>6–12 mo</span>
+          </div>
+          <div class="phase-arrow">&#8594;</div>
+          <div class="phase-box">
+            <span class="phase-label">Phase 3</span>
+            <span class="phase-sub">Production Validation<br>3–6 mo</span>
+          </div>
+          <div class="phase-arrow">&#8594;</div>
+          <div class="phase-box">
+            <span class="phase-label">Phase 4</span>
+            <span class="phase-sub">Volume Ramp</span>
+          </div>
+        </div>
+        <div class="milestone-track">
+          <div class="milestone">
+            <div class="milestone-dot"></div>
+            <div class="milestone-label">Microsoft<br>2021</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-dot"></div>
+            <div class="milestone-label">Amazon<br>2022–23</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-dot"></div>
+            <div class="milestone-label">xAI<br>2024</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-dot"></div>
+            <div class="milestone-label">Google<br>2025–26</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-dot"></div>
+            <div class="milestone-label">Meta<br>2025–26</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+      <div class="section-sub reveal">Customer Landscape</div>
+      <div class="customer-badges reveal reveal-d1">
+        <div class="customer-badge">
+          <div>
+            <div class="customer-name">AWS</div>
+            <div class="customer-rev">~39% of revenue</div>
+          </div>
+          <div class="customer-status">Qualified · Ramping</div>
+        </div>
+        <div class="customer-badge">
+          <div>
+            <div class="customer-name">Microsoft</div>
+            <div class="customer-rev">~17% of revenue</div>
+          </div>
+          <div class="customer-status">Qualified · Ramping</div>
+        </div>
+        <div class="customer-badge">
+          <div>
+            <div class="customer-name">xAI</div>
+            <div class="customer-rev">~32% combined top-3</div>
+          </div>
+          <div class="customer-status">Qualified · Ramping</div>
+        </div>
+        <div class="customer-badge">
+          <div>
+            <div class="customer-name">Google</div>
+            <div class="customer-rev">10%+ revenue</div>
+          </div>
+          <div class="customer-status">Qualified · Expanding</div>
+        </div>
+        <div class="customer-badge">
+          <div>
+            <div class="customer-name">Meta</div>
+            <div class="customer-rev">Initial Q3 FY2026</div>
+          </div>
+          <div class="customer-status">Ramping</div>
+        </div>
+      </div>
+      <div class="customer-footer reveal reveal-d2">All 5 major AI hyperscalers. Qualified. Ramping.</div>
+
+      <!-- Competitive landscape table -->
+      <div class="comp-table-wrap reveal reveal-d3">
+        <div class="section-sub" style="margin-top:24px;">Competitive Landscape</div>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Competitor</th>
+              <th>Status</th>
+              <th>Threat Timeline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Marvell</td>
+              <td>Sampling only — 'Golden Cable' Dec 2025; no hyperscaler volume</td>
+              <td>Best case 2027–2028</td>
+            </tr>
+            <tr>
+              <td>Broadcom</td>
+              <td>Announced 800G AEC retimer (Sian3 3nm), no hyperscaler AEC wins</td>
+              <td>No confirmed volume</td>
+            </tr>
+            <tr>
+              <td>Astera Labs</td>
+              <td>PCIe/CXL retimers — not direct AEC competitor</td>
+              <td>Different market</td>
+            </tr>
+            <tr>
+              <td>Hyperscaler Internal</td>
+              <td>No confirmed custom AEC silicon program</td>
+              <td>CPO is longer-term play</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hiring signal -->
+      <div class="hiring-box reveal reveal-d4">
+        <div class="hiring-title">Hiring Signal — April 2026</div>
+        <div class="hiring-desc">
+          29 open roles: 9 optical engineering (Ottawa) → ZeroFlap optics ramp is real. 7 ASIC/SerDes roles. 2 new Sales Directors: Neocloud/Enterprise AI + Enterprise OEM (HPE/Dell/Lenovo) — expanding beyond hyperscalers.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-chips reveal">
+    <span class="source-label">Sources:</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">IEEE Patents</span>
+    <span class="chip">DesignCon 2026</span>
+    <span class="chip">LinkedIn</span>
+    <span class="chip">SemiAnalysis</span>
+  </div>
+  <div class="process-note reveal">
+    4 simultaneous sub-agents: Business Intelligence (technical moat, patent analysis) &middot; Financial Analysis (12-quarter model) &middot; Market Sizing (bottom-up TAM) &middot; Alternative Data (hiring, short interest, options IV)
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 5 — BEAR / BASE / BULL
+     ============================================================ -->
+<section id="ch5" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 05</div>
+    <h1 class="chapter-title">"Bear / Base / Bull — and a catalyst the options market hasn't priced."</h1>
+  </div>
+
+  <div class="two-col">
+    <!-- LEFT: Revenue chart -->
+    <div>
+      <div class="chart-label reveal">+1,169% in 9 quarters</div>
+      <canvas id="revenue-chart" width="600" height="260" class="reveal reveal-d1"></canvas>
+
+      <!-- Guidance beat strip -->
+      <div class="beat-strip reveal reveal-d2">
+        <span class="beat-badge beat">Q1 FY24 BEAT</span>
+        <span class="beat-badge beat">Q2 FY24 BEAT</span>
+        <span class="beat-badge beat">Q3 FY24 BEAT</span>
+        <span class="beat-badge beat">Q4 FY24 BEAT</span>
+        <span class="beat-badge miss">Q1 FY25 MISS</span>
+        <span class="beat-badge beat">Q2 FY25 BEAT</span>
+        <span class="beat-badge beat">Q3 FY25 BEAT</span>
+        <span class="beat-badge beat">Q4 FY25 BEAT</span>
+        <span class="beat-badge beat">Q1 FY26 BEAT</span>
+        <span class="beat-badge beat">Q2 FY26 BEAT</span>
+        <span class="beat-badge beat">Q3 FY26 BEAT</span>
+      </div>
+      <div class="beat-note reveal">Guides conservatively. Beats consistently. 83% beat rate.</div>
+
+      <!-- Metric pills -->
+      <div class="metric-pills">
+        <div class="metric-pill reveal reveal-d3" onclick="toggleMetric(this)">
+          <div class="metric-pill-header">
+            <span class="metric-name">Gross Margin</span>
+            <span class="metric-val">68.5%</span>
+          </div>
+          <div class="metric-detail">Record high. Hardware with software-level economics. Structural margin expansion as mix shifts toward higher-ASP 224G products.</div>
+        </div>
+        <div class="metric-pill reveal reveal-d4" onclick="toggleMetric(this)">
+          <div class="metric-pill-header">
+            <span class="metric-name">Net Cash</span>
+            <span class="metric-val">$1.29B</span>
+          </div>
+          <div class="metric-detail">No debt. No dilution risk. Cash war chest supports R&amp;D acceleration and potential M&amp;A at the 448G/896G transition nodes.</div>
+        </div>
+        <div class="metric-pill reveal reveal-d5" onclick="toggleMetric(this)">
+          <div class="metric-pill-header">
+            <span class="metric-name">Guidance Beats</span>
+            <span class="metric-val">10 / 11</span>
+          </div>
+          <div class="metric-detail">83% beat rate since IPO. Management consistently guides conservatively. The single miss (Q1 FY25) was macro-driven inventory digestion, not competitive displacement.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Valuation + DCF -->
+    <div>
+      <div class="section-sub reveal">EV / NTM Revenue vs. Peers</div>
+      <div class="ev-bars reveal reveal-d1" id="ev-bars">
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">CRDO</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill crdo-ev" data-width="58.5" style=""></div></div>
+          <div class="ev-note" style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--gold);">8.6x</div>
+        </div>
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">AVGO</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill peer-ev" data-width="100" style=""></div></div>
+          <div class="ev-note">14.7x</div>
+        </div>
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">MPWR</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill peer-ev" data-width="108" style=""></div></div>
+          <div class="ev-note">15.9x</div>
+        </div>
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">MTSI</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill peer-ev" data-width="105" style=""></div></div>
+          <div class="ev-note">15.4x</div>
+        </div>
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">ALAB</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill peer-ev" data-width="95" style=""></div></div>
+          <div class="ev-note">13.9x</div>
+        </div>
+        <div class="ev-bar-row">
+          <div class="ev-bar-label">MRVL</div>
+          <div class="ev-bar-track"><div class="ev-bar-fill peer-ev" data-width="60" style=""></div></div>
+          <div class="ev-note">8.8x</div>
+        </div>
+      </div>
+      <div class="ev-callout reveal reveal-d2">
+        <strong>CRDO at 8.6x with +90% NTM growth.</strong> Peers at 14.7x with +32% median growth. <strong>−41.5% discount</strong> despite +57pp growth advantage.
+      </div>
+
+      <!-- DCF Cards -->
+      <div class="section-sub reveal" style="margin-top:28px;">DCF Scenario Analysis</div>
+      <div class="dcf-cards">
+        <div class="dcf-card bear reveal reveal-d3" onclick="toggleDCF(this)">
+          <div class="dcf-header">
+            <div class="dcf-label">Bear Case</div>
+            <div class="dcf-price">$71 <span style="font-size:12px;color:var(--text-muted);">−30%</span></div>
+          </div>
+          <div class="dcf-body">Marvell qualifies at 2nd hyperscaler, margins compress to 60%, 6x exit multiple &middot; WACC 14% &middot; FY27 rev $1.95B</div>
+        </div>
+        <div class="dcf-card base reveal reveal-d4" onclick="toggleDCF(this)">
+          <div class="dcf-header">
+            <div class="dcf-label">Base Case ← Current</div>
+            <div class="dcf-price">$181 <span style="font-size:12px;color:var(--text-muted);">+78%</span></div>
+          </div>
+          <div class="dcf-body">Management executes roadmap, market share stable, 10x exit multiple &middot; WACC 12% &middot; FY27 rev $2.025B</div>
+        </div>
+        <div class="dcf-card bull reveal reveal-d5" onclick="toggleDCF(this)">
+          <div class="dcf-header">
+            <div class="dcf-label">Bull Case</div>
+            <div class="dcf-price">$358 <span style="font-size:12px;color:var(--text-muted);">+253%</span></div>
+          </div>
+          <div class="dcf-body">5th hyperscaler full deployment, margin re-rates toward software, 14x exit multiple &middot; WACC 11% &middot; FY27 rev $2.1B</div>
+        </div>
+      </div>
+
+      <!-- Interactive DCF slider -->
+      <div class="dcf-slider-wrap reveal reveal-d3">
+        <div class="slider-label">Adjust Exit Multiple (6x → 16x)</div>
+        <input type="range" id="dcf-slider" min="6" max="16" step="0.5" value="10">
+        <div class="slider-output">
+          <div class="slider-multiple">Exit Multiple: <strong id="slider-multiple-val">10x</strong></div>
+          <div class="slider-price" id="slider-price">$181</div>
+        </div>
+      </div>
+
+      <!-- Sensitivity heatmap -->
+      <div class="section-sub reveal" style="margin-top:20px;">Price Sensitivity (FY2028 Growth × Exit Multiple)</div>
+      <div class="heatmap-wrap reveal reveal-d4">
+        <table class="heatmap">
+          <thead>
+            <tr>
+              <th>Growth \ Multiple</th>
+              <th>6x</th>
+              <th>8x</th>
+              <th>10x</th>
+              <th>12x</th>
+              <th>14x</th>
+            </tr>
+          </thead>
+          <tbody id="heatmap-body"></tbody>
+        </table>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:8px;">Current price: $101.45 &nbsp;|&nbsp; &#9670; = base case</div>
+      </div>
+    </div>
+  </div><!-- /two-col -->
+
+  <!-- Catalyst box -->
+  <div class="catalyst-box reveal">
+    <div class="catalyst-date">&#128197; June 2, 2026 — Q4 FY2026 Earnings</div>
+    <div class="catalyst-rows">
+      <div class="catalyst-row"><span class="catalyst-key">Consensus:</span><span class="catalyst-val">$428M</span></div>
+      <div class="catalyst-row"><span class="catalyst-key">Mgmt Implied:</span><span class="catalyst-val">~$430–440M</span></div>
+      <div class="catalyst-row"><span class="catalyst-key">Bull Case:</span><span class="catalyst-val">$455M</span></div>
+      <div class="catalyst-row"><span class="catalyst-key">Beat Probability:</span><span class="catalyst-val">83% historical rate (10 of 12 quarters)</span></div>
+      <div class="catalyst-row"><span class="catalyst-key">Options IV:</span><span class="catalyst-val">9.9% implied vs. 11.8% historical realized → 33rd percentile</span></div>
+    </div>
+    <div class="catalyst-note">"Options are historically cheap. The binary event is underpriced."</div>
+  </div>
+
+  <div class="source-chips reveal">
+    <span class="source-label">Sources:</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">S&P Global</span>
+    <span class="chip">PitchBook</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 6 — MODEL COUNCIL
+     ============================================================ -->
+<section id="ch6" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 06</div>
+    <h1 class="chapter-title">"We asked the hardest questions before you could."</h1>
+    <p class="chapter-subtitle">"Perplexity Model Council — GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro — ran in parallel. Zero coordination between models."</p>
+  </div>
+
+  <!-- Model cards -->
+  <div class="model-cards reveal reveal-d1">
+    <div class="model-card">
+      <div class="model-card-inner">
+        <div class="model-front gpt-border">
+          <div>
+            <div class="model-name" style="color:var(--green);">GPT-5.4</div>
+            <div class="model-role">Primary source analysis &middot; Most granular swim-lane breakdown</div>
+          </div>
+          <div class="model-hover-hint">Hover to reveal insight &#8594;</div>
+        </div>
+        <div class="model-back gpt-border">
+          <div class="model-insight">"Credo's S-1 discloses a 2–3 year design cycle — shorter than the thesis's 36–48 month framing. Separately, S-1 confirms competitors, weakening 'mandatory toll gate' language."</div>
+        </div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-card-inner">
+        <div class="model-front claude-border">
+          <div>
+            <div class="model-name" style="color:#F97316;">Claude Opus 4.6</div>
+            <div class="model-role">Competitive re-rating &middot; Quantified bear scenarios</div>
+          </div>
+          <div class="model-hover-hint">Hover to reveal insight &#8594;</div>
+        </div>
+        <div class="model-back claude-border">
+          <div class="model-insight">"Re-rates to $55–70 even with continued revenue growth if multiple compresses from ~10x to 5–6x on Marvell hyperscaler entry. That's the real bear case."</div>
+        </div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-card-inner">
+        <div class="model-front gemini-border">
+          <div>
+            <div class="model-name" style="color:var(--blue);">Gemini 3.1 Pro</div>
+            <div class="model-role">Category-level risk &middot; Optical substitution threat</div>
+          </div>
+          <div class="model-hover-hint">Hover to reveal insight &#8594;</div>
+        </div>
+        <div class="model-back gemini-border">
+          <div class="model-insight">"LPO and CPO optical solutions could bypass AECs entirely — not Marvell competition but AEC category obsolescence. Gemini was the only model to raise this."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q&A Navigator -->
+  <div class="section-sub reveal">5 Hard Questions — Model Council Responses</div>
+  <div class="qa-nav reveal reveal-d1">
+    <button class="qa-btn active" onclick="showQA(1)">Q1</button>
+    <button class="qa-btn" onclick="showQA(2)">Q2</button>
+    <button class="qa-btn" onclick="showQA(3)">Q3</button>
+    <button class="qa-btn" onclick="showQA(4)">Q4</button>
+    <button class="qa-btn" onclick="showQA(5)">Q5 — Dan Loeb</button>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qa-panel active" id="qa-1">
+    <div class="qa-question">Q1: What are the three weakest assumptions in this thesis?</div>
+    <div class="model-responses">
+      <div class="model-response">
+        <div class="mr-model mr-gpt">GPT-5.4</div>
+        <div class="mr-text">1) 'Mandatory toll gate' overstated — Credo's own 10-K lists competitors; cross-licensing settlements don't block semiconductor peers. 2) Qualification lead time materially shorter per S-1 (2–3yr, not 36–48mo). 3) Legal wins ≠ commercial enforceability; ITC targeted cable assemblers, not Marvell/Broadcom.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-claude">Claude Opus 4.6</div>
+        <div class="mr-text">1) 'Mandatory IP toll gate' conflates first-mover advantage (real) with monopoly (unproven against semiconductor peers with own SerDes IP). 2) Marvell's qualification timeline may compress — they have existing hyperscaler relationships via switching/DPU products. 3) 448G standardization is more open/collaborative than 224G, per OIF — reducing proprietary IP advantage at next speed node.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-gemini">Gemini 3.1 Pro</div>
+        <div class="mr-text">1) 'Insurmountable head start' underestimates hyperscaler capital and motivation to eliminate lock-in. 2) Optical innovations (LPO/CPO) could bypass AECs entirely, rendering IP irrelevant for future generations. 3) ITC settlements establish licensing framework enabling competition rather than blocking it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qa-panel" id="qa-2">
+    <div class="qa-question">Q2: What is the single most likely path to losing money on this investment over 24 months?</div>
+    <div class="model-responses">
+      <div class="model-response">
+        <div class="mr-model mr-gpt">GPT-5.4</div>
+        <div class="mr-text">Hyperscaler concentration + multiple compression: one customer at ~67% FY2025 revenue means any pause, inventory digest, or dual-sourcing decision triggers abrupt miss at 55x trailing P/E. The mechanism is not patent failure — it's demand and multiple compression simultaneously.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-claude">Claude Opus 4.6</div>
+        <div class="mr-text">Marvell achieving volume AEC qualification at a major hyperscaler triggers narrative shift from 'sole-source monopoly' to 'competitive market,' compressing multiple from ~10x to 5–6x forward revenue. Stock re-rates to $55–70 even if Credo's revenue continues growing. Down 30–45% despite strong fundamentals.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-gemini">Gemini 3.1 Pro</div>
+        <div class="mr-text">Faster-than-expected transition to optical solutions (LPO/CPO) for NIC-to-ToR links. If optical becomes cost-competitive within 24 months, the AEC growth narrative collapses. Even credible pilot announcements trigger severe multiple compression well before revenue declines.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qa-panel" id="qa-3">
+    <div class="qa-question">Q3: What one piece of evidence would most strengthen conviction?</div>
+    <div class="model-responses">
+      <div class="model-response">
+        <div class="mr-model mr-gpt">GPT-5.4</div>
+        <div class="mr-text">Verified evidence that a second major hyperscaler (beyond the primary) has fully qualified Credo AECs across all scale-out swim lanes — GPU-to-host, NIC-to-ToR, disaggregated switch racks — and is moving into broad production at 200G per lane.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-claude">Claude Opus 4.6</div>
+        <div class="mr-text">A public disclosure on June 2 Q4 earnings call that a second hyperscaler has committed to Credo AECs as primary source for next-generation 200G/1.6T rack-scale architecture, with volume deployment beginning FY2028. Validates moat transfers across speed transitions.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-gemini">Gemini 3.1 Pro</div>
+        <div class="mr-text">A confirmed multi-generational supply agreement for 448G SerDes/AEC with a Tier-1 hyperscaler, explicitly locking in Credo as primary supplier for next architectural node. Proves technological moat extends beyond current 224G cycle.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qa-panel" id="qa-4">
+    <div class="qa-question">Q4: Does Credo have a durable competitive moat in 5 years?</div>
+    <div class="model-responses">
+      <div class="model-response">
+        <div class="mr-model mr-gpt">GPT-5.4</div>
+        <div class="mr-text"><strong style="color:var(--green);">YES</strong> — but narrower and more execution-dependent than claimed. Moat is real (qualification history, system-level expertise, reliability track record) but not insurmountable. 448G gives competitors a fresh evaluation window. Moat is a 24–30 month head start, not a permanent lock.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-claude">Claude Opus 4.6</div>
+        <div class="mr-text"><strong style="color:var(--red);">NO</strong> — moat is strong but degrading. 448G standardization through OIF will be more open/collaborative than 224G. Hyperscalers will fund alternatives. Scale-up/scale-out boundary is architecturally fluid. Credo's 68%+ gross margins are unsustainable in competitive market.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-gemini">Gemini 3.1 Pro</div>
+        <div class="mr-text"><strong style="color:var(--red);">NO</strong> — 5-year window encompasses 448G and potentially 896G transitions. Hyperscalers view single-source, high-margin suppliers as critical vulnerability. Will fund Marvell/Broadcom to ensure multi-vendor ecosystem. ITC settlements delay competitors but don't prevent engineering around patents.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qa-panel" id="qa-5">
+    <div class="qa-question">Q5 — Dan Loeb Question: "Bill, you've described full swim-lane penetration at your largest hyperscaler and engagement with five of the top seven. Marvell demonstrated a working 224G 1.6T AEC at DesignCon in February with 10<sup>-10</sup> pre-FEC BER over 3 meters on their Alaska A DSP. My question is specific: Of your top three hyperscaler customers, how many have formally indicated they will NOT qualify a second AEC source for their next-generation 1.6T rack architecture — and for those that are evaluating alternatives, at what stage of qualification is the competing solution today? Because if every major customer is actively qualifying Marvell's AEC alongside yours, then the right valuation framework is a competitive-market multiple, not a sole-source monopoly premium."</div>
+    <div class="model-responses">
+      <div class="model-response">
+        <div class="mr-model mr-gpt">GPT-5.4 — Framing</div>
+        <div class="mr-text">Forces management to reveal swim-lane deployment granularity: where exactly is each customer in each topology? A good answer shows replication across customers. A bad answer reveals one dominant fully-penetrated account plus narrow programs that can be dual-sourced.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-claude">Claude Opus 4.6 — Framing</div>
+        <div class="mr-text">A binary trap: honest answer about second-sourcing implicitly concedes the monopoly thesis is time-limited. Any claim of sole-source commitment would be an extraordinary material forward-looking statement — verifiable by channel check immediately.</div>
+      </div>
+      <div class="model-response">
+        <div class="mr-model mr-gemini">Gemini 3.1 Pro — Framing</div>
+        <div class="mr-text">Targets vertical integration risk: what prevents hyperscalers from integrating DSP/SerDes functionality into their own next-generation NICs or switches at the 448G node, eliminating standalone AEC chips entirely?</div>
+      </div>
+    </div>
+    <button class="our-answer-btn" onclick="revealAnswer()">Reveal Our Answer</button>
+    <div class="our-answer-reveal" id="our-answer">
+      "Hyperscalers dual-source every critical component — we've never claimed otherwise. The premium reflects a 24–30 month revenue visibility advantage, not a monopoly. Marvell's DesignCon demo requires 2–3 years of swim-lane qualification across five distinct deployment categories. We are three years into that process. The fifth hyperscaler win and Microsoft design win extension are evidence of deepening alignment, not displacement. We do not build our business plan around permanent sole-source status. We build it around compounding qualification advantages, rising ASPs at each speed node, and expanding swim-lane coverage per customer."
+    </div>
+  </div>
+
+  <!-- Consensus chips -->
+  <div class="consensus-chips reveal">
+    <div class="section-sub" style="margin-bottom:16px;">Model Council Consensus &amp; Divergence</div>
+    <div class="consensus-chip agree">
+      <span class="chip-icon">&#10003;</span>
+      <span><strong style="color:var(--green);">All 3 agree:</strong> Customer concentration is #1 near-term risk</span>
+    </div>
+    <div class="consensus-chip agree">
+      <span class="chip-icon">&#10003;</span>
+      <span><strong style="color:var(--green);">All 3 agree:</strong> Second hyperscaler broad production = strongest conviction signal</span>
+    </div>
+    <div class="consensus-chip agree">
+      <span class="chip-icon">&#10003;</span>
+      <span><strong style="color:var(--green);">All 3 agree:</strong> Qualification lead-time is real but not insurmountable for Marvell</span>
+    </div>
+    <div class="consensus-chip diverge">
+      <span class="chip-icon">&#9651;</span>
+      <span><strong style="color:var(--yellow);">Divergence:</strong> Optical substitution risk (LPO/CPO) — Gemini only — category obsolescence</span>
+    </div>
+    <div class="consensus-chip diverge">
+      <span class="chip-icon">&#9651;</span>
+      <span><strong style="color:var(--yellow);">Divergence:</strong> Moat durability at 5 years — GPT-5.4: YES | Opus 4.6: NO | Gemini: NO</span>
+    </div>
+    <div class="consensus-chip diverge">
+      <span class="chip-icon">&#9651;</span>
+      <span><strong style="color:var(--yellow);">Divergence:</strong> What changed the thesis — GPT-5.4 corrected qualification timeline (2–3yr). Opus quantified bear as $55–70. Gemini introduced optical substitution risk.</span>
+    </div>
+  </div>
+
+  <div class="source-chips reveal">
+    <span class="source-label">Sources:</span>
+    <span class="chip">GPT-5.4</span>
+    <span class="chip">Claude Opus 4.6</span>
+    <span class="chip">Gemini 3.1 Pro</span>
+    <span class="chip">Perplexity Model Council</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">DesignCon 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 7 — CONVICTION & RISK
+     ============================================================ -->
+<section id="ch7" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 07</div>
+    <h1 class="chapter-title">"Long CRDO. $181 base case. +78% upside. June 2 is the test."</h1>
+  </div>
+
+  <!-- Conviction cards -->
+  <div class="conviction-cards">
+    <div class="conviction-card laffont reveal reveal-d1">
+      <div class="conviction-judge">Philippe Laffont</div>
+      <div class="conviction-org">Coatue Management</div>
+      <div class="conviction-text">"IP moat in a capacity-constrained, qualification-cycle-gated market. CUDA compounding is the framework — Credo's AEC qualification cycles create the same sticky platform dynamic at the hardware interconnect layer. Every NVL72-class rack is a recurring revenue event."</div>
+    </div>
+    <div class="conviction-card loeb reveal reveal-d2">
+      <div class="conviction-judge">Dan Loeb</div>
+      <div class="conviction-org">Third Point</div>
+      <div class="conviction-text">"16 analysts, median $200 target, stock at $101. 96% consensus upside at a profitable semiconductor company growing revenue +400% YoY. The mispricing is measurable, the catalyst is June 2, and the options market is pricing in less uncertainty than history warrants."</div>
+    </div>
+    <div class="conviction-card hao reveal reveal-d3">
+      <div class="conviction-judge">Ken Hao</div>
+      <div class="conviction-org">Silver Lake</div>
+      <div class="conviction-text">"AEC and 224G SerDes IP requires understanding physics that standard institutional research cannot quantify. Perplexity's access to IEEE patents, hyperscaler procurement data, and DesignCon technical filings enabled unique non-consensus insight. This is a Silver Lake-style technical complexity discount that data-driven research resolves."</div>
+    </div>
+  </div>
+
+  <!-- Risk cards -->
+  <div class="section-sub reveal" style="margin-top:16px;">Risk Register — Exit Signals</div>
+  <div class="risk-cards">
+    <div class="risk-card reveal reveal-d1" id="risk-1" onclick="toggleRisk('risk-1')">
+      <div class="risk-header">
+        <div class="risk-num">Risk 1</div>
+        <div class="risk-title">Customer Concentration (top 3 = 88% revenue)</div>
+        <div class="risk-toggle">&#9660;</div>
+      </div>
+      <div class="risk-body">
+        <div class="risk-body-inner">
+          <div class="risk-section-title">Mitigant</div>
+          <div class="risk-text">4+ year qualification timeline before replacement reaches production. Microsoft and Amazon extended design wins, not pulled them. Revenue diversification accelerating with Meta ramp and neocloud expansion.</div>
+          <div class="risk-section-title exit-t">Exit Signal</div>
+          <div class="risk-text">Formal qualification initiation by Marvell at a top-2 hyperscaler confirmed by channel check.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-card reveal reveal-d2" id="risk-2" onclick="toggleRisk('risk-2')">
+      <div class="risk-header">
+        <div class="risk-num">Risk 2</div>
+        <div class="risk-title">Margin Compression (ZeroFlap optical ramp diluting GM to 64–66%)</div>
+        <div class="risk-toggle">&#9660;</div>
+      </div>
+      <div class="risk-body">
+        <div class="risk-body-inner">
+          <div class="risk-section-title">Mitigant</div>
+          <div class="risk-text">Optical mix shift is temporary; ZeroFlap ultimately supports margin re-rate toward 70%+ as scale reaches. IP licensing revenue carries 90%+ margins and is growing.</div>
+          <div class="risk-section-title exit-t">Exit Signal</div>
+          <div class="risk-text">Two consecutive quarters of gross margin below 63%.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-card reveal reveal-d3" id="risk-3" onclick="toggleRisk('risk-3')">
+      <div class="risk-header">
+        <div class="risk-num">Risk 3</div>
+        <div class="risk-title">448G Speed Node Transition</div>
+        <div class="risk-toggle">&#9660;</div>
+      </div>
+      <div class="risk-body">
+        <div class="risk-body-inner">
+          <div class="risk-section-title">Mitigant</div>
+          <div class="risk-text">Blue Heron 224G multiprotocol retimer sampling now; 1.6T ZeroFlap AECs sampling for H2 CY2026. Credo moving faster than the transition. 448G roadmap already in customer preview.</div>
+          <div class="risk-section-title exit-t">Exit Signal</div>
+          <div class="risk-text">Marvell announces confirmed production volume at any hyperscaler.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-chips reveal">
+    <span class="source-label">Sources:</span>
+    <span class="chip">Goldman Sachs</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">Perplexity Model Council</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER 8 — METHODOLOGY
+     ============================================================ -->
+<section id="ch8" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-num">Chapter 08</div>
+    <h1 class="chapter-title">"The methodology is the edge."</h1>
+    <p class="chapter-subtitle">"Built with Perplexity Computer. This is what parallel multi-model research looks like."</p>
+  </div>
+
+  <!-- Workflow DAG SVG -->
+  <div class="workflow-svg-wrap reveal reveal-d1">
+    <svg id="workflow-svg" viewBox="0 0 760 420" preserveAspectRatio="xMidYMid meet" style="width:100%;height:420px;">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#2D6FFF" opacity="0.6"/>
+        </marker>
+      </defs>
+
+      <!-- Task 1 — left col row 1 -->
+      <rect x="20" y="20" width="160" height="64" rx="10" fill="#111827" stroke="#2D6FFF" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.1s"/>
+      <text x="100" y="46" text-anchor="middle" fill="#2D6FFF" font-family="Space Grotesk" font-size="11" font-weight="700">Task 1</text>
+      <text x="100" y="62" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Technology History</text>
+      <text x="100" y="75" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">&amp; Economic Foundations</text>
+
+      <!-- Task 2 — right col row 1 -->
+      <rect x="220" y="20" width="160" height="64" rx="10" fill="#111827" stroke="#2D6FFF" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.15s"/>
+      <text x="300" y="46" text-anchor="middle" fill="#2D6FFF" font-family="Space Grotesk" font-size="11" font-weight="700">Task 2</text>
+      <text x="300" y="62" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">AI Universe Mapping</text>
+      <text x="300" y="75" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">59 companies · 7 agents</text>
+
+      <!-- Task 3 — left col row 2 -->
+      <rect x="20" y="130" width="160" height="64" rx="10" fill="#111827" stroke="#C9A84C" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.2s"/>
+      <text x="100" y="156" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk" font-size="11" font-weight="700">Task 3</text>
+      <text x="100" y="172" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Comparative Analysis</text>
+      <text x="100" y="185" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">5 Finalists · 7 Dimensions</text>
+
+      <!-- Task 4 — right col row 2 -->
+      <rect x="220" y="130" width="160" height="64" rx="10" fill="#111827" stroke="#C9A84C" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.25s"/>
+      <text x="300" y="156" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk" font-size="11" font-weight="700">Task 4</text>
+      <text x="300" y="172" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">CRDO Deep Dive</text>
+      <text x="300" y="185" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">4 parallel sub-agents</text>
+
+      <!-- Task 5 — left col row 3 -->
+      <rect x="20" y="240" width="160" height="64" rx="10" fill="#111827" stroke="#22C55E" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.3s"/>
+      <text x="100" y="266" text-anchor="middle" fill="#22C55E" font-family="Space Grotesk" font-size="11" font-weight="700">Task 5</text>
+      <text x="100" y="282" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Financial Model</text>
+      <text x="100" y="295" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">DCF + Sensitivity</text>
+
+      <!-- Task 6 — right col row 3 -->
+      <rect x="220" y="240" width="160" height="64" rx="10" fill="#111827" stroke="#22C55E" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.35s"/>
+      <text x="300" y="266" text-anchor="middle" fill="#22C55E" font-family="Space Grotesk" font-size="11" font-weight="700">Task 6</text>
+      <text x="300" y="282" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Model Council</text>
+      <text x="300" y="295" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">3 models × 5 questions</text>
+
+      <!-- Task 7 — center converge -->
+      <rect x="120" y="350" width="160" height="50" rx="10" fill="#111827" stroke="#F97316" stroke-width="1.5" class="wf-node reveal" style="transition-delay:0.4s"/>
+      <text x="200" y="371" text-anchor="middle" fill="#F97316" font-family="Space Grotesk" font-size="11" font-weight="700">Task 7</text>
+      <text x="200" y="387" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Synthesis &amp; Recommendation</text>
+
+      <!-- Task 8 — bottom -->
+      <rect x="460" y="130" width="270" height="64" rx="10" fill="#0f1b2e" stroke="#C9A84C" stroke-width="2" class="wf-node reveal" style="transition-delay:0.5s"/>
+      <text x="595" y="156" text-anchor="middle" fill="#C9A84C" font-family="Space Grotesk" font-size="11" font-weight="700">Task 8 — Output</text>
+      <text x="595" y="172" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">Submission Web App (this file)</text>
+      <text x="595" y="185" text-anchor="middle" fill="#8892A4" font-family="Inter" font-size="9.5">GPT-5.3-Codex &middot; Single-file interactive</text>
+
+      <!-- Arrows: Task 1 → Task 3 -->
+      <line x1="100" y1="84" x2="100" y2="128" stroke="#2D6FFF" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 2 → Task 3 -->
+      <line x1="300" y1="84" x2="180" y2="128" stroke="#2D6FFF" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 2 → Task 4 -->
+      <line x1="300" y1="84" x2="300" y2="128" stroke="#2D6FFF" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 3 → Task 5 -->
+      <line x1="100" y1="194" x2="100" y2="238" stroke="#C9A84C" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 4 → Task 5 -->
+      <line x1="300" y1="194" x2="180" y2="238" stroke="#C9A84C" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 4 → Task 6 -->
+      <line x1="300" y1="194" x2="300" y2="238" stroke="#C9A84C" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 5 → Task 7 -->
+      <line x1="100" y1="304" x2="160" y2="348" stroke="#22C55E" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 6 → Task 7 -->
+      <line x1="300" y1="304" x2="240" y2="348" stroke="#22C55E" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+      <!-- Task 7 → Task 8 -->
+      <line x1="280" y1="375" x2="458" y2="165" stroke="#F97316" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowhead)"/>
+    </svg>
+  </div>
+
+  <!-- Task log table -->
+  <div class="task-log-wrap reveal reveal-d2">
+    <div class="section-sub">Task Log</div>
+    <table class="task-log">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Description</th>
+          <th>Agents</th>
+          <th>Sources</th>
+          <th>Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Technology History &amp; Economic Foundations</td>
+          <td>4 parallel</td>
+          <td>118 sources</td>
+          <td>151KB</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>AI Universe Mapping</td>
+          <td>7 parallel (1 per AI category)</td>
+          <td>59 companies</td>
+          <td>Universe spreadsheet</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Comparative Analysis — 5 Finalists</td>
+          <td>5 parallel</td>
+          <td>7 dimensions</td>
+          <td>Selection matrix</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>CRDO Deep Dive</td>
+          <td>4 parallel</td>
+          <td>SEC EDGAR, IEEE, LinkedIn, FactSet</td>
+          <td>Research dossier</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Financial Model</td>
+          <td>1 specialist</td>
+          <td>FactSet, S&amp;P Global, PitchBook</td>
+          <td>DCF + sensitivity</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Model Council Stress Test</td>
+          <td>3 frontier models × 5 questions</td>
+          <td>—</td>
+          <td>15 independent responses</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Synthesis &amp; Recommendation</td>
+          <td>Orchestrator</td>
+          <td>All prior outputs</td>
+          <td>Judge-specific conviction pillars</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Submission Web App (this)</td>
+          <td>GPT-5.3-Codex</td>
+          <td>All JSON outputs</td>
+          <td>Single-file interactive app</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 3 Discoveries -->
+  <div class="section-sub reveal">3 Discoveries Only Possible Through Parallel Research</div>
+  <div class="discovery-cards reveal reveal-d3">
+    <div class="discovery-card">
+      <div class="discovery-num">01</div>
+      <div class="discovery-title">The 41.5% Discount</div>
+      <div class="discovery-text">Discovered by simultaneously cross-referencing FactSet NTM multiples, PitchBook peer set, and CB Insights category mapping. No single source contained all three inputs. The mispricing became visible only when all three data sets were unified.</div>
+    </div>
+    <div class="discovery-card">
+      <div class="discovery-num">02</div>
+      <div class="discovery-title">The Qualification Timeline Correction</div>
+      <div class="discovery-text">GPT-5.4 retrieved Credo's own S-1 disclosing a 2–3 year design cycle, not the 36–48 month framing in the draft thesis. This materially narrowed the claimed head-start window and changed the bear-case severity.</div>
+    </div>
+    <div class="discovery-card">
+      <div class="discovery-num">03</div>
+      <div class="discovery-title">The Optical Substitution Risk</div>
+      <div class="discovery-text">Gemini 3.1 Pro alone raised LPO/CPO as a category-obsolescence threat — not Marvell competition but AEC category displacement entirely. Now reflected in the Chapter 7 risk register. No other model surfaced this risk.</div>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <div class="section-sub reveal">Manual Research vs. Perplexity Computer</div>
+  <div class="compare-table-wrap reveal reveal-d4">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Manual Research</th>
+          <th class="computer-col">Perplexity Computer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Companies Evaluated</td>
+          <td>~15</td>
+          <td class="computer-col">59 (7 parallel sub-agents)</td>
+        </tr>
+        <tr>
+          <td>Time to Comparable Set</td>
+          <td>3–5 days</td>
+          <td class="computer-col">~4 hours</td>
+        </tr>
+        <tr>
+          <td>Data Sources</td>
+          <td>Public only</td>
+          <td class="computer-col">IEEE patents, DesignCon, hyperscaler procurement, PitchBook, FactSet</td>
+        </tr>
+        <tr>
+          <td>Bear Case Quality</td>
+          <td>Single analyst view</td>
+          <td class="computer-col">3 frontier models × 5 questions = 15 independent stress tests</td>
+        </tr>
+        <tr>
+          <td>Unique Insight</td>
+          <td>Consensus view</td>
+          <td class="computer-col">41.5% mispricing, S-1 timeline correction, optical substitution risk</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Closing line -->
+  <div class="closing-line reveal">
+    19 sub-agents &nbsp;&middot;&nbsp; 3 frontier models &nbsp;&middot;&nbsp; 6 premium data sources &nbsp;&middot;&nbsp; 59 companies evaluated &nbsp;&middot;&nbsp; ~20 hours of async compute
+  </div>
+
+  <div class="source-chips reveal">
+    <span class="source-label">Sources:</span>
+    <span class="chip">Perplexity Computer</span>
+    <span class="chip">GPT-5.4</span>
+    <span class="chip">Claude Opus 4.6</span>
+    <span class="chip">Gemini 3.1 Pro</span>
+  </div>
+</section>
+
+</main><!-- /main -->
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ============================================================
+   UTILITY — scrollTo chapter
+   ============================================================ */
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ============================================================
+   SIDEBAR ACTIVE STATE via Intersection Observer
+   ============================================================ */
+const chapters = ['ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8'];
+const navItems = document.querySelectorAll('#sidebar .nav-item');
+const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+
+const chapterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = chapters.indexOf(entry.target.id);
+      if (idx >= 0) {
+        navItems.forEach(n => n.classList.remove('active'));
+        mobileNavBtns.forEach(n => n.classList.remove('active'));
+        if (navItems[idx]) navItems[idx].classList.add('active');
+        if (mobileNavBtns[idx]) mobileNavBtns[idx].classList.add('active');
+      }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+chapters.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) chapterObserver.observe(el);
+});
+
+/* ============================================================
+   SCROLL REVEAL via Intersection Observer
+   ============================================================ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { rootMargin: '0px 0px -60px 0px', threshold: 0.05 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ============================================================
+   CHAPTER 1 — COUNTER ANIMATION
+   ============================================================ */
+let countersDone = false;
+
+function animateCounter(elId, targetVal, suffix, duration) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  let start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * targetVal);
+    el.textContent = '$' + current + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const ch1Observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !countersDone) {
+      countersDone = true;
+      animateCounter('counter-capex', 443, 'b', 2000);
+      animateCounter('counter-revenue', 49, 'b', 2000);
+    }
+  });
+}, { threshold: 0.3 });
+
+const ch1 = document.getElementById('ch1');
+if (ch1) ch1Observer.observe(ch1);
+
+/* ============================================================
+   CHAPTER 1 — ERA BAR ANIMATION
+   ============================================================ */
+let eraBarsAnimated = false;
+
+function animateEraBars() {
+  document.querySelectorAll('.era-bar-fill').forEach(bar => {
+    const w = bar.getAttribute('data-width');
+    bar.style.width = w + '%';
+  });
+}
+
+const eraObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !eraBarsAnimated) {
+      eraBarsAnimated = true;
+      setTimeout(animateEraBars, 400);
+    }
+  });
+}, { threshold: 0.2 });
+
+if (ch1) eraObserver.observe(ch1);
+
+function toggleEra(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+/* ============================================================
+   CHAPTER 2 — BUBBLE CHART (SVG)
+   ============================================================ */
+const bubbleData = [
+  { ticker: 'NVDA', x: 65, y: 71, r: 40, label: 'NVDA', mktCap: '~$3.1T', ntm: '65%', gm: '71%' },
+  { ticker: 'PLTR', x: 56, y: 82, r: 28, label: 'PLTR', mktCap: '~$230B', ntm: '56%', gm: '82%' },
+  { ticker: 'CRDO', x: 90, y: 68, r: 26, label: 'CRDO', mktCap: '~$19B', ntm: '90%', gm: '68%', isGold: true },
+  { ticker: 'AVGO', x: 53, y: 67, r: 50, label: 'AVGO', mktCap: '~$880B', ntm: '53%', gm: '67%' },
+  { ticker: 'MRVL', x: 32, y: 50, r: 35, label: 'MRVL', mktCap: '~$60B', ntm: '32%', gm: '50%' },
+  { ticker: 'ALAB', x: 58, y: 76, r: 20, label: 'ALAB', mktCap: '~$30B', ntm: '58%', gm: '76%' },
+  { ticker: 'ZETA', x: 30, y: 61, r: 18, label: 'ZETA', mktCap: '~$5B', ntm: '30%', gm: '61%' },
+  { ticker: 'BOX',  x: 8,  y: 79, r: 16, label: 'BOX', mktCap: '~$4B', ntm: '8%', gm: '79%' },
+];
+
+(function buildBubbleChart() {
+  const svg = document.getElementById('bubble-svg');
+  if (!svg) return;
+
+  const W = 700, H = 400;
+  const padL = 52, padR = 30, padT = 20, padB = 44;
+
+  // X: 0–100 (NTM growth %), Y: 40–90 (gross margin %)
+  const xMin = 0, xMax = 100, yMin = 38, yMax = 92;
+
+  function toSVGX(val) { return padL + (val - xMin) / (xMax - xMin) * (W - padL - padR); }
+  function toSVGY(val) { return padT + (yMax - val) / (yMax - yMin) * (H - padT - padB); }
+
+  // Grid lines
+  const ns = 'http://www.w3.org/2000/svg';
+  function mkEl(tag, attrs) {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
+    return el;
+  }
+
+  // X axis
+  [0, 20, 40, 60, 80, 100].forEach(v => {
+    const x = toSVGX(v);
+    const line = mkEl('line', { x1: x, y1: padT, x2: x, y2: H - padB, stroke: '#1E2A3A', 'stroke-width': '1' });
+    svg.appendChild(line);
+    const lbl = mkEl('text', { x, y: H - padB + 16, 'text-anchor': 'middle', fill: '#8892A4', 'font-size': '10', 'font-family': 'Inter' });
+    lbl.textContent = v + '%';
+    svg.appendChild(lbl);
+  });
+  // Y axis
+  [40, 50, 60, 70, 80, 90].forEach(v => {
+    const y = toSVGY(v);
+    const line = mkEl('line', { x1: padL, y1: y, x2: W - padR, y2: y, stroke: '#1E2A3A', 'stroke-width': '1' });
+    svg.appendChild(line);
+    const lbl = mkEl('text', { x: padL - 6, y: y + 4, 'text-anchor': 'end', fill: '#8892A4', 'font-size': '10', 'font-family': 'Inter' });
+    lbl.textContent = v + '%';
+    svg.appendChild(lbl);
+  });
+
+  // Axis labels
+  const xAxisLabel = mkEl('text', { x: padL + (W - padL - padR)/2, y: H - 4, 'text-anchor': 'middle', fill: '#8892A4', 'font-size': '11', 'font-family': 'Inter' });
+  xAxisLabel.textContent = 'NTM Revenue Growth %';
+  svg.appendChild(xAxisLabel);
+
+  const yLabel = mkEl('text', { x: 12, y: padT + (H - padT - padB)/2, 'text-anchor': 'middle', fill: '#8892A4', 'font-size': '11', 'font-family': 'Inter', transform: `rotate(-90, 12, ${padT + (H - padT - padB)/2})` });
+  yLabel.textContent = 'Gross Margin %';
+  svg.appendChild(yLabel);
+
+  // Bubbles
+  const tooltip = document.getElementById('bubble-tooltip');
+  bubbleData.forEach(d => {
+    const cx = toSVGX(d.x), cy = toSVGY(d.y), r = d.r;
+    const g = mkEl('g', { class: d.isGold ? 'crdo-bubble' : '', style: 'cursor:pointer' });
+
+    const circle = mkEl('circle', {
+      cx, cy, r,
+      fill: d.isGold ? '#C9A84C' : 'rgba(45,111,255,0.35)',
+      stroke: d.isGold ? '#C9A84C' : 'rgba(45,111,255,0.6)',
+      'stroke-width': d.isGold ? '2.5' : '1.5',
+    });
+
+    const label = mkEl('text', {
+      x: cx, y: cy + 4,
+      'text-anchor': 'middle',
+      fill: d.isGold ? '#000' : '#F0F4FF',
+      'font-size': '10',
+      'font-weight': '700',
+      'font-family': 'Space Grotesk',
+      'pointer-events': 'none',
+    });
+    label.textContent = d.ticker;
+
+    g.appendChild(circle);
+    g.appendChild(label);
+
+    g.addEventListener('mouseenter', (e) => {
+      tooltip.style.display = 'block';
+      tooltip.innerHTML = `
+        <div class="tt-ticker">${d.ticker}</div>
+        <div class="tt-row"><span>NTM Growth:</span><span>${d.ntm}</span></div>
+        <div class="tt-row"><span>Gross Margin:</span><span>${d.gm}</span></div>
+        <div class="tt-row"><span>Market Cap:</span><span>${d.mktCap}</span></div>
+      `;
+    });
+    g.addEventListener('mousemove', (e) => {
+      tooltip.style.left = (e.clientX + 14) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    });
+    g.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+
+    svg.appendChild(g);
+  });
+})();
+
+/* ============================================================
+   CHAPTER 3 — FINALIST CARD TOGGLE
+   ============================================================ */
+function toggleFinalist(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.finalist-body');
+  const isOpen = card.classList.contains('expanded');
+  // Close all
+  document.querySelectorAll('.finalist-card').forEach(c => {
+    c.classList.remove('expanded');
+    c.querySelector('.finalist-body').classList.remove('open');
+  });
+  if (!isOpen) {
+    card.classList.add('expanded');
+    body.classList.add('open');
+  }
+}
+
+/* ============================================================
+   CHAPTER 5 — REVENUE CHART (CANVAS)
+   ============================================================ */
+const revenueData = [
+  { label: 'Q4 FY23', rev: 32, gm: 57.9 },
+  { label: 'Q1 FY24', rev: 35, gm: 58.5 },
+  { label: 'Q2 FY24', rev: 44, gm: 60.2 },
+  { label: 'Q3 FY24', rev: 53, gm: 61.8 },
+  { label: 'Q4 FY24', rev: 61, gm: 62.5 },
+  { label: 'Q1 FY25', rev: 60, gm: 63.0 },
+  { label: 'Q2 FY25', rev: 72, gm: 63.8 },
+  { label: 'Q3 FY25', rev: 135, gm: 65.1 },
+  { label: 'Q4 FY25', rev: 170, gm: 66.4 },
+  { label: 'Q1 FY26', rev: 223, gm: 67.2 },
+  { label: 'Q2 FY26', rev: 268, gm: 67.8 },
+  { label: 'Q3 FY26', rev: 407, gm: 68.5, isGold: true },
+];
+
+let revenueChartDrawn = false;
+let revenueAnimProgress = 0;
+
+function drawRevenueChart(progress) {
+  const canvas = document.getElementById('revenue-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  // Set actual pixel size for HiDPI
+  const W = canvas.offsetWidth || 600;
+  const H = canvas.offsetHeight || 260;
+  canvas.width = W * 2;
+  canvas.height = H * 2;
+  ctx.scale(2, 2);
+
+  ctx.clearRect(0, 0, W, H);
+
+  const padL = 48, padR = 16, padT = 20, padB = 48;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const barW = chartW / revenueData.length;
+  const maxRev = 410;
+
+  // Draw bars
+  revenueData.forEach((d, i) => {
+    const barHeight = (d.rev / maxRev) * chartH * progress;
+    const x = padL + i * barW + barW * 0.1;
+    const bw = barW * 0.8;
+    const y = padT + chartH - barHeight;
+
+    if (d.isGold) {
+      ctx.fillStyle = '#C9A84C';
+    } else {
+      const alpha = 0.5 + 0.5 * (i / (revenueData.length - 1));
+      ctx.fillStyle = `rgba(45, 111, 255, ${alpha * 0.7})`;
+    }
+
+    const radius = 4;
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + bw - radius, y);
+    ctx.arcTo(x + bw, y, x + bw, y + radius, radius);
+    ctx.lineTo(x + bw, y + barHeight);
+    ctx.lineTo(x, y + barHeight);
+    ctx.arcTo(x, y, x + radius, y, radius);
+    ctx.closePath();
+    ctx.fill();
+
+    // Q3 FY26 annotation
+    if (d.isGold && progress > 0.8) {
+      ctx.fillStyle = '#C9A84C';
+      ctx.font = 'bold 9px Space Grotesk';
+      ctx.textAlign = 'center';
+      ctx.fillText('↑ $407M', x + bw/2, y - 6);
+    }
+
+    // X labels
+    ctx.fillStyle = '#8892A4';
+    ctx.font = '9px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + bw/2, padT + chartH + 16);
+  });
+
+  // Y axis labels
+  [0, 100, 200, 300, 400].forEach(v => {
+    const y = padT + chartH - (v / maxRev) * chartH;
+    ctx.strokeStyle = '#1E2A3A';
+    ctx.lineWidth = 0.5;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(padL, y);
+    ctx.lineTo(W - padR, y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#8892A4';
+    ctx.font = '9px Inter';
+    ctx.textAlign = 'right';
+    ctx.fillText('$' + v + 'M', padL - 4, y + 3);
+  });
+
+  // Gross margin line (dashed, on secondary scale)
+  if (progress > 0.3) {
+    const gmMin = 55, gmMax = 72;
+    ctx.strokeStyle = '#22C55E';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.globalAlpha = 0.8 * Math.min(1, (progress - 0.3) / 0.7);
+    ctx.beginPath();
+    revenueData.forEach((d, i) => {
+      const x = padL + i * barW + barW * 0.5;
+      const y = padT + chartH - ((d.gm - gmMin) / (gmMax - gmMin)) * chartH * 0.6 - chartH * 0.1;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+
+    // GM label
+    if (progress > 0.7) {
+      ctx.fillStyle = '#22C55E';
+      ctx.font = 'bold 9px Inter';
+      ctx.textAlign = 'right';
+      ctx.fillText('GM 68.5%', W - padR, padT + 12);
+    }
+  }
+}
+
+const revenueObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !revenueChartDrawn) {
+      revenueChartDrawn = true;
+      let startTime = null;
+      function animateRevenue(ts) {
+        if (!startTime) startTime = ts;
+        const progress = Math.min((ts - startTime) / 1200, 1);
+        const eased = 1 - Math.pow(1 - progress, 2);
+        drawRevenueChart(eased);
+        if (progress < 1) requestAnimationFrame(animateRevenue);
+      }
+      requestAnimationFrame(animateRevenue);
+    }
+  });
+}, { threshold: 0.2 });
+
+const ch5 = document.getElementById('ch5');
+if (ch5) revenueObserver.observe(ch5);
+
+/* ============================================================
+   CHAPTER 5 — EV/NTM BAR ANIMATION
+   ============================================================ */
+let evBarsAnimated = false;
+const evObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !evBarsAnimated) {
+      evBarsAnimated = true;
+      setTimeout(() => {
+        document.querySelectorAll('.ev-bar-fill').forEach(bar => {
+          const w = bar.getAttribute('data-width');
+          bar.style.width = Math.min(parseFloat(w), 100) + '%';
+        });
+      }, 300);
+    }
+  });
+}, { threshold: 0.2 });
+if (ch5) evObserver.observe(ch5);
+
+/* ============================================================
+   CHAPTER 5 — DCF SLIDER
+   ============================================================ */
+const dcfSlider = document.getElementById('dcf-slider');
+const sliderMultipleVal = document.getElementById('slider-multiple-val');
+const sliderPriceEl = document.getElementById('slider-price');
+
+function updateDCFSlider() {
+  const multiple = parseFloat(dcfSlider.value);
+  const price = Math.round(181 * (multiple / 10));
+  sliderMultipleVal.textContent = multiple + 'x';
+  sliderPriceEl.textContent = '$' + price;
+  if (price > 181) sliderPriceEl.style.color = 'var(--green)';
+  else if (price < 181) sliderPriceEl.style.color = 'var(--red)';
+  else sliderPriceEl.style.color = 'var(--gold)';
+}
+
+if (dcfSlider) {
+  dcfSlider.addEventListener('input', updateDCFSlider);
+  updateDCFSlider();
+}
+
+/* ============================================================
+   CHAPTER 5 — HEATMAP
+   ============================================================ */
+const hmGrowths = ['20%', '30%', '40%', '50%', '60%'];
+const hmValues = [
+  [127, 142, 156, 171, 186],
+  [137, 153, 169, 184, 200],
+  [147, 164, 181, 198, 215],
+  [156, 175, 193, 211, 229],
+  [166, 186, 205, 225, 244],
+];
+
+function hmColor(v) {
+  if (v < 101) return 'hm-red';
+  if (v <= 150) return 'hm-yellow';
+  if (v <= 200) return 'hm-lgreen';
+  return 'hm-dgreen';
+}
+
+const hmBody = document.getElementById('heatmap-body');
+if (hmBody) {
+  hmValues.forEach((row, ri) => {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    tdLabel.className = 'row-label';
+    tdLabel.textContent = hmGrowths[ri] + ' Growth';
+    tr.appendChild(tdLabel);
+    row.forEach((v, ci) => {
+      const td = document.createElement('td');
+      td.className = hmColor(v);
+      const isBase = ri === 2 && ci === 2;
+      td.textContent = '$' + v + (isBase ? ' ◆' : '');
+      if (isBase) td.style.outline = '2px solid var(--gold)';
+      tr.appendChild(td);
+    });
+    hmBody.appendChild(tr);
+  });
+}
+
+/* ============================================================
+   CHAPTER 5 — DCF CARD TOGGLE
+   ============================================================ */
+function toggleDCF(card) {
+  const body = card.querySelector('.dcf-body');
+  const isOpen = card.classList.contains('expanded');
+  document.querySelectorAll('.dcf-card').forEach(c => {
+    c.classList.remove('expanded');
+    c.querySelector('.dcf-body').style.maxHeight = '0';
+    c.querySelector('.dcf-body').style.marginTop = '0';
+  });
+  if (!isOpen) {
+    card.classList.add('expanded');
+    const b = card.querySelector('.dcf-body');
+    b.style.maxHeight = '100px';
+    b.style.marginTop = '10px';
+  }
+}
+
+/* ============================================================
+   CHAPTER 5 — METRIC PILL TOGGLE
+   ============================================================ */
+function toggleMetric(pill) {
+  pill.classList.toggle('expanded');
+}
+
+/* ============================================================
+   CHAPTER 6 — QA NAVIGATOR
+   ============================================================ */
+function showQA(num) {
+  document.querySelectorAll('.qa-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.qa-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('qa-' + num);
+  const btn = document.querySelectorAll('.qa-btn')[num - 1];
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function revealAnswer() {
+  const el = document.getElementById('our-answer');
+  el.classList.add('show');
+  event.target.style.display = 'none';
+}
+
+/* ============================================================
+   CHAPTER 7 — RISK CARD TOGGLE
+   ============================================================ */
+function toggleRisk(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.risk-body');
+  const isOpen = card.classList.contains('expanded');
+  document.querySelectorAll('.risk-card').forEach(c => {
+    c.classList.remove('expanded');
+    c.querySelector('.risk-body').classList.remove('open');
+  });
+  if (!isOpen) {
+    card.classList.add('expanded');
+    body.classList.add('open');
+  }
+}
+
+/* ============================================================
+   WINDOW RESIZE — redraw canvas
+   ============================================================ */
+window.addEventListener('resize', () => {
+  if (revenueChartDrawn) drawRevenueChart(1);
+});
+
+/* ============================================================
+   INITIAL SETUP — trigger visible for elements already in view
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Force first chapter to animate immediately
+  document.querySelectorAll('#ch1 .reveal').forEach(el => el.classList.add('visible'));
+  setTimeout(animateEraBars, 600);
+  setTimeout(() => {
+    countersDone = true;
+    animateCounter('counter-capex', 443, 'b', 2000);
+    animateCounter('counter-revenue', 49, 'b', 2000);
+  }, 400);
+});
+</script>
+
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

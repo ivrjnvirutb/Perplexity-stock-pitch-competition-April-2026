@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRDO — Investment Thesis | Perplexity Stock Pitch 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET + BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: #0A0E1A;
+  color: #F0F0F0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TOKENS ===== */
+:root {
+  --navy: #0A0E1A;
+  --blue: #2D6FFF;
+  --gold: #C9A84C;
+  --text: #F0F0F0;
+  --muted: #8FA3C0;
+  --faint: #4A5568;
+  --surface: #111827;
+  --surface2: #1a2236;
+  --border: rgba(45,111,255,0.2);
+  --gold-border: rgba(201,168,76,0.4);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --red: #ef4444;
+  --green: #22c55e;
+}
+
+/* ===== PANELS ===== */
+.panel {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Panel separators */
+.panel:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45,111,255,0.3), transparent);
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.anim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.anim.visible { opacity: 1; transform: translateY(0); }
+.anim-d1 { transition-delay: 0.1s; }
+.anim-d2 { transition-delay: 0.2s; }
+.anim-d3 { transition-delay: 0.3s; }
+.anim-d4 { transition-delay: 0.4s; }
+.anim-d5 { transition-delay: 0.5s; }
+.anim-d6 { transition-delay: 0.6s; }
+.anim-d7 { transition-delay: 0.7s; }
+.anim-d8 { transition-delay: 0.8s; }
+.anim-d9 { transition-delay: 0.9s; }
+
+.anim-fade { opacity: 0; transition: opacity 0.8s ease; }
+.anim-fade.visible { opacity: 1; }
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* ===== SOURCE CHIPS ===== */
+.source-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 24px;
+}
+.chip {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: 1px solid rgba(45,111,255,0.35);
+  border-radius: 20px;
+  background: rgba(45,111,255,0.08);
+  color: var(--blue);
+  cursor: default;
+  letter-spacing: 0.02em;
+}
+
+/* ===== PDF EXPORT BUTTON ===== */
+#pdf-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: rgba(45,111,255,0.15);
+  border: 1px solid rgba(45,111,255,0.4);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.04em;
+}
+#pdf-btn:hover { background: rgba(45,111,255,0.25); border-color: var(--blue); }
+
+/* ============================================================
+   PANEL 1 — THE CALL
+   ============================================================ */
+#p1 {
+  background: radial-gradient(ellipse at 50% 0%, rgba(45,111,255,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
+              var(--navy);
+  text-align: center;
+  gap: 0;
+}
+
+.p1-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--gold);
+  border-radius: 40px;
+  padding: 6px 20px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.p1-badge::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.p1-company {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.p1-ticker {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 36px);
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+}
+.p1-thesis {
+  max-width: 780px;
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(240,240,240,0.85);
+  margin: 0 auto 40px;
+}
+.p1-thesis em { color: var(--gold); font-style: normal; font-weight: 700; }
+
+/* Stat cards */
+.stat-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.stat-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 28px;
+  min-width: 140px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.stat-card.card-in {
+  animation: card-enter 0.5s ease forwards;
+}
+.stat-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.15);
+}
+@keyframes card-enter {
+  to { opacity: 1; transform: translateY(0); }
+}
+.stat-val {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.stat-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: #1e2d45;
+  border: 1px solid var(--gold-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s, transform 0.18s;
+  z-index: 10;
+}
+.stat-card:hover .stat-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Scroll arrow */
+.scroll-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  animation: bounce-arrow 2s ease-in-out infinite;
+}
+.scroll-arrow span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.arrow-icon {
+  width: 28px; height: 28px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 16px;
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ============================================================
+   PANEL 2 — THE CLOCK
+   ============================================================ */
+#p2 {
+  background: radial-gradient(ellipse at 20% 50%, rgba(45,111,255,0.08) 0%, transparent 60%),
+              var(--navy);
+}
+.p2-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.p2-header { grid-column: 1 / -1; text-align: center; margin-bottom: 8px; }
+.panel-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text);
+  max-width: 700px;
+  margin: 0 auto 8px;
+}
+.panel-title em { color: var(--gold); font-style: normal; }
+
+/* Horizontal bar chart */
+.era-chart { width: 100%; }
+.era-bar-row {
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.era-bar-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.era-bar-label .era-return {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+}
+.era-bar-track {
+  height: 28px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.era-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  width: 0;
+  transition: width 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(240,240,240,0.9);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.era-bar-fill.foundational { background: rgba(45,111,255,0.3); color: var(--muted); }
+.era-bar-fill.large { background: rgba(45,111,255,0.6); }
+.era-bar-fill.gold-pulse {
+  background: linear-gradient(90deg, rgba(201,168,76,0.6), rgba(201,168,76,0.9));
+  animation: gold-bar-pulse 2s ease-in-out infinite;
+  width: 0;
+}
+.era-bar-fill.gold-pulse.bar-in { width: 60% !important; }
+@keyframes gold-bar-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.era-detail-card {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.era-detail-card.show { display: block; animation: fade-in 0.3s ease; }
+.era-detail-card strong { color: var(--text); }
+.era-detail-card.gold-card {
+  border-color: var(--gold-border);
+  color: var(--text);
+}
+.era-detail-card.gold-card em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Ratio counter */
+.ratio-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+.ratio-numbers {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.ratio-num-block { text-align: center; }
+.ratio-big {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+  display: block;
+}
+.ratio-big.gold-num { color: var(--gold); }
+.ratio-big.blue-num { color: var(--blue); }
+.ratio-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  display: block;
+}
+.ratio-divider {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: width 0.8s ease 0.3s;
+  align-self: stretch;
+}
+.ratio-divider.show { width: 100%; }
+.ratio-tag {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  padding: 10px 20px;
+  border: 1px solid var(--gold-border);
+  border-radius: 8px;
+}
+.ratio-tag.show { opacity: 1; }
+.ratio-quote {
+  max-width: 320px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  line-height: 1.6;
+}
+.ratio-quote.show { opacity: 1; }
+
+/* ============================================================
+   PANEL 3 — THE COMPANY
+   ============================================================ */
+#p3 {
+  background: radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+              var(--navy);
+}
+.p3-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.p3-header { grid-column: 1 / -1; text-align: center; margin-bottom: 0; }
+
+/* Revenue chart */
+.rev-chart-wrap {
+  width: 100%;
+}
+.rev-bars {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 160px;
+  min-height: 160px;
+  padding: 0;
+  position: relative;
+  margin-bottom: 8px;
+}
+.rev-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.rev-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  height: 0px;
+  transition: height 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  position: relative;
+  flex-shrink: 0;
+}
+.rev-bar.blue-bar { background: linear-gradient(180deg, rgba(45,111,255,0.9), rgba(45,111,255,0.5)); }
+.rev-bar.gold-bar { background: linear-gradient(180deg, rgba(201,168,76,0.95), rgba(201,168,76,0.6)); }
+
+.rev-tooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e2d45;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 20;
+  transition: opacity 0.15s;
+}
+.rev-bar-col:hover .rev-tooltip { opacity: 1; }
+
+.rev-label {
+  font-size: 9px;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.rev-x-axis {
+  height: 1px;
+  background: var(--faint);
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.gold-annotation {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: right;
+  margin-bottom: 16px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.8s;
+}
+.gold-annotation.show { opacity: 1; }
+
+.metric-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  opacity: 0;
+  transition: opacity 0.5s ease, border-color 0.2s, background 0.2s;
+}
+.pill.pill-in { opacity: 1; }
+.pill:hover { border-color: var(--blue); background: rgba(45,111,255,0.08); }
+.pill-explain {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  display: none;
+  line-height: 1.5;
+}
+.pill.open .pill-explain { display: block; }
+.pill.open { border-color: var(--blue); background: rgba(45,111,255,0.08); }
+
+/* Valuation block */
+.val-block {
+  cursor: pointer;
+}
+.val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+.val-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  width: 60px;
+  flex-shrink: 0;
+}
+.val-multiple {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+}
+.val-multiple.big-num { font-size: clamp(28px, 4vw, 52px); color: var(--text); }
+.val-multiple.small-num { font-size: clamp(22px, 3vw, 40px); color: var(--blue); }
+
+.val-divider-line {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 12px 0;
+  transition: width 0.7s ease;
+}
+.val-divider-line.show { width: 100%; }
+
+.val-discount {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.val-discount.show { opacity: 1; }
+.val-implied {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+}
+.val-implied.show { opacity: 1; }
+.val-implied strong { color: var(--text); }
+
+/* Comp table flip card */
+.comp-table-wrap {
+  display: none;
+  margin-top: 16px;
+  animation: fade-in 0.35s ease;
+}
+.comp-table-wrap.show { display: block; }
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.comp-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--faint);
+}
+.comp-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+}
+.comp-table tr.crdo-row td {
+  color: var(--gold);
+  font-weight: 700;
+  background: rgba(201,168,76,0.06);
+}
+
+/* Moat callout */
+.moat-box {
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 16px;
+  background: rgba(45,111,255,0.05);
+}
+.moat-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+.moat-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--blue);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 0.7s step-end infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* ============================================================
+   PANEL 4 — THE NUMBERS
+   ============================================================ */
+#p4 {
+  background: radial-gradient(ellipse at 50% 100%, rgba(45,111,255,0.08) 0%, transparent 60%),
+              var(--navy);
+}
+.p4-inner {
+  width: 100%;
+  max-width: 860px;
+}
+.p4-inner .panel-title { text-align: center; }
+.p4-inner .section-label { text-align: center; }
+
+/* Scenario bars */
+.scenario-chart { margin: 32px 0 0; }
+.scenario-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+.scenario-label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  width: 48px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.scenario-track {
+  flex: 1;
+  height: 44px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.scenario-fill {
+  height: 100%;
+  border-radius: 8px;
+  width: 0;
+  transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  gap: 10px;
+  overflow: hidden;
+}
+.scenario-fill .s-price {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+  color: rgba(240,240,240,0.95);
+}
+.scenario-fill .s-upside {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(240,240,240,0.7);
+}
+.scenario-fill.bear-fill { background: linear-gradient(90deg, rgba(239,68,68,0.7), rgba(239,68,68,0.4)); }
+.scenario-fill.base-fill { background: linear-gradient(90deg, rgba(45,111,255,0.8), rgba(45,111,255,0.5)); }
+.scenario-fill.bull-fill { background: linear-gradient(90deg, rgba(201,168,76,0.8), rgba(201,168,76,0.5)); }
+
+.price-marker {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(240,240,240,0.7);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.price-marker::after {
+  content: '$101.45';
+  position: absolute;
+  top: -18px;
+  left: 4px;
+  transform: none;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(240,240,240,0.7);
+  white-space: nowrap;
+}
+.price-marker.show { opacity: 1; }
+
+.scenario-card {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  animation: fade-in 0.3s ease;
+}
+.scenario-card.show { display: block; }
+.scenario-card strong { color: var(--text); }
+
+/* DCF slider */
+.dcf-slider-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.3s;
+}
+.dcf-slider-box.show { opacity: 1; }
+.dcf-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.dcf-slider-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.dcf-slider-output {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+}
+input[type="range"] {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--blue) var(--pct, 40%), rgba(255,255,255,0.1) var(--pct, 40%));
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 2px solid var(--text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { background: var(--gold); }
+.dcf-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--faint);
+  margin-top: 6px;
+}
+
+/* Catalyst box */
+.catalyst-box {
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  background: rgba(201,168,76,0.04);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.catalyst-box.show { opacity: 1; }
+.catalyst-date {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+.catalyst-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.catalyst-cols {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.cat-col {
+  text-align: center;
+  position: relative;
+  cursor: default;
+}
+.cat-val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+}
+.cat-lbl {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.cat-col:hover .cat-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+.cat-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1e2d45;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  z-index: 20;
+}
+.options-line {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  cursor: pointer;
+  padding: 8px 0;
+  border-top: 1px solid rgba(201,168,76,0.2);
+  position: relative;
+}
+.options-tooltip {
+  display: none;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 8px;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: left;
+  padding: 10px;
+  background: rgba(201,168,76,0.06);
+  border-radius: 6px;
+  border: 1px solid rgba(201,168,76,0.2);
+  animation: fade-in 0.25s ease;
+}
+.options-line.open .options-tooltip { display: block; }
+
+/* ============================================================
+   PANEL 5 — THE CHALLENGE
+   ============================================================ */
+#p5 {
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+              var(--navy);
+}
+.p5-inner {
+  width: 100%;
+  max-width: 860px;
+  text-align: center;
+}
+.p5-intro {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.p5-intro em { color: var(--text); font-style: normal; }
+
+/* Model cards */
+.model-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.model-card {
+  flex: 1;
+  min-width: 200px;
+  max-width: 260px;
+  border-radius: 12px;
+  padding: 20px 18px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.model-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(255,255,255,0.04);
+}
+.model-card:hover::before { opacity: 1; }
+.model-card:hover { transform: translateY(-4px); }
+.model-card.gpt { border: 1px solid rgba(34,197,94,0.4); background: rgba(34,197,94,0.05); }
+.model-card.claude { border: 1px solid rgba(249,115,22,0.4); background: rgba(249,115,22,0.05); }
+.model-card.gemini { border: 1px solid rgba(45,111,255,0.4); background: rgba(45,111,255,0.05); }
+.model-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+.model-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.model-card.gpt .model-name { color: #22c55e; }
+.model-card.claude .model-name { color: #f97316; }
+.model-card.gemini .model-name { color: var(--blue); }
+
+.model-flag-default {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+.model-flag-hover {
+  display: none;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-top: 8px;
+  font-style: italic;
+}
+.model-card:hover .model-flag-default { display: none; }
+.model-card:hover .model-flag-hover { display: block; }
+
+/* Loeb box */
+.loeb-box {
+  border: 1.5px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  background: rgba(201,168,76,0.04);
+  margin-bottom: 24px;
+  text-align: left;
+}
+.loeb-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+.loeb-question {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  font-style: italic;
+}
+.loeb-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 0.7s step-end infinite;
+}
+
+/* Our answer */
+.answer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: #0A0E1A;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 32px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-bottom: 24px;
+}
+.answer-btn:hover { background: #d4b060; transform: translateY(-2px); }
+.answer-btn.done { display: none; }
+
+.answer-panel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  animation: slide-down 0.4s ease;
+}
+.answer-panel.show { display: block; }
+.answer-panel strong { color: var(--text); font-weight: 600; }
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Consensus chips */
+.consensus-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.con-chip {
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  text-align: left;
+}
+.con-chip.agree { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: #22c55e; }
+.con-chip.diverge { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); }
+.con-chip.show { opacity: 1; }
+
+/* Closing line */
+.closing-line {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.closing-line.show { opacity: 1; }
+.closing-line em { color: var(--gold); font-style: normal; }
+.closing-line strong { color: var(--text); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .panel { padding: 50px 20px; }
+  .p2-inner, .p3-inner { grid-template-columns: 1fr; gap: 40px; }
+  .p2-header { margin-bottom: 0; }
+  .ratio-big { font-size: 48px; }
+  .stat-cards { gap: 10px; }
+  .stat-card { min-width: 120px; padding: 16px 18px; }
+  .stat-val { font-size: 20px; }
+  .model-cards { flex-direction: column; align-items: center; }
+  .model-card { max-width: 100%; width: 100%; }
+  .catalyst-cols { flex-direction: column; gap: 12px; }
+  .rev-bars { height: 140px; }
+}
+
+@media (max-width: 480px) {
+  .p1-company { font-size: 28px; }
+  .stat-cards { flex-wrap: wrap; }
+  .stat-card { flex: 1 1 calc(50% - 5px); min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== PANEL 1 — THE CALL ===== -->
+<section class="panel" id="p1">
+  <div class="p1-badge anim anim-d1">LONG</div>
+
+  <div class="p1-company anim anim-d2">Credo Technology Group</div>
+  <div class="p1-ticker anim anim-d3">NASDAQ: CRDO</div>
+
+  <p class="p1-thesis anim anim-d4">
+    The dominant qualified incumbent at 224G SerDes —
+    every <em>NVL72-class AI factory</em> rack must use Credo's technology —
+    trading at a <em>41.5% discount</em> to peers with a binary catalyst on
+    <em>June 2, 2026.</em>
+  </p>
+
+  <div class="stat-cards" id="stat-cards">
+    <div class="stat-card" id="sc1" tabindex="0" aria-label="Current price $101.45">
+      <span class="stat-val" id="sv1">$0</span>
+      <span class="stat-label">Current Price</span>
+      <div class="stat-tooltip">Current price as of April 2, 2026</div>
+    </div>
+    <div class="stat-card" id="sc2" tabindex="0" aria-label="Base target $181">
+      <span class="stat-val" id="sv2">$0</span>
+      <span class="stat-label">Base Target</span>
+      <div class="stat-tooltip">Base case DCF: 12% WACC, 10x exit, $2.025B FY27 revenue</div>
+    </div>
+    <div class="stat-card" id="sc3" tabindex="0" aria-label="Upside +78%">
+      <span class="stat-val" id="sv3">0%</span>
+      <span class="stat-label">Upside</span>
+      <div class="stat-tooltip">15 Buy / 2 Hold / 0 Sell · $200 median analyst PT</div>
+    </div>
+    <div class="stat-card" id="sc4" tabindex="0" aria-label="Net cash $1.29B">
+      <span class="stat-val" id="sv4">$0</span>
+      <span class="stat-label">Net Cash</span>
+      <div class="stat-tooltip">Net cash — no dilution risk in any scenario</div>
+    </div>
+  </div>
+
+  <div class="source-chips anim anim-d6">
+    <span class="chip">PitchBook</span>
+    <span class="chip">FactSet</span>
+    <span class="chip">SEC EDGAR</span>
+    <span class="chip">CB Insights</span>
+  </div>
+
+  <div class="scroll-arrow anim anim-d7" onclick="scrollTo(0, document.getElementById('p2').offsetTop)" aria-label="Scroll to next panel">
+    <span>Scroll</span>
+    <div class="arrow-icon">↓</div>
+  </div>
+</section>
+
+<!-- ===== PANEL 2 — THE CLOCK ===== -->
+<section class="panel" id="p2">
+  <div class="p2-inner">
+    <div class="p2-header anim anim-d1">
+      <div class="section-label">The Historical Pattern</div>
+      <h2 class="panel-title">The infrastructure phase is the entry point.<br><em>We are in 1996.</em></h2>
+    </div>
+
+    <!-- LEFT: bar chart -->
+    <div class="era-chart anim anim-d2">
+      <!-- Bars built by JS -->
+      <div id="era-bars-container"></div>
+      <div class="source-chips" style="justify-content:flex-start;margin-top:16px">
+        <span class="chip">Goldman Sachs</span>
+        <span class="chip">CB Insights</span>
+        <span class="chip">Statista</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: ratio counter -->
+    <div class="ratio-box anim anim-d3" id="ratio-box">
+      <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">AI Infrastructure vs Application Revenue — 2025</div>
+      <div class="ratio-numbers">
+        <div class="ratio-num-block">
+          <span class="ratio-big gold-num" id="rc-capex">$0B</span>
+          <span class="ratio-sub">AI CapEx</span>
+        </div>
+        <div style="display:flex;align-items:center;padding-bottom:12px">
+          <span style="font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--faint)">vs</span>
+        </div>
+        <div class="ratio-num-block">
+          <span class="ratio-big blue-num" id="rc-rev">$0B</span>
+          <span class="ratio-sub">App Revenue</span>
+        </div>
+      </div>
+      <div class="ratio-divider" id="ratio-divider"></div>
+      <div class="ratio-tag" id="ratio-tag">9:1 ratio — identical to 1997</div>
+      <div class="ratio-quote" id="ratio-quote">
+        "The market is pricing AI infrastructure like it priced the internet in 1996. That window closes."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PANEL 3 — THE COMPANY ===== -->
+<section class="panel" id="p3">
+  <div class="p3-inner">
+    <div class="p3-header anim anim-d1">
+      <div class="section-label">Why Credo</div>
+      <h2 class="panel-title">1,169% revenue growth. 41.5% discount to peers.<br><em>One reason.</em></h2>
+    </div>
+
+    <!-- LEFT: Revenue chart -->
+    <div class="rev-chart-wrap anim anim-d2" id="rev-chart-left">
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em">Revenue Trajectory ($M)</div>
+      <div class="rev-bars" id="rev-bars">
+        <!-- JS built -->
+      </div>
+      <div class="rev-x-axis"></div>
+      <div class="gold-annotation" id="gold-ann">↑ $407M / quarter run-rate</div>
+      <div class="metric-pills" id="metric-pills" style="margin-top:16px">
+        <div class="pill" id="pill-gm" onclick="togglePill(this,'pill-gm')">
+          Gross Margin: 68.5%
+          <div class="pill-explain">Record high gross margin — hardware with software economics, expanding as AEC mix grows.</div>
+        </div>
+        <div class="pill" id="pill-nc" onclick="togglePill(this,'pill-nc')">
+          Net Cash: $1.29B
+          <div class="pill-explain">Fortress balance sheet. No debt. No dilution risk in bear, base, or bull scenario.</div>
+        </div>
+        <div class="pill" id="pill-gb" onclick="togglePill(this,'pill-gb')">
+          Guidance Beats: 10/11
+          <div class="pill-explain">Beat consensus in 10 of 11 quarters since IPO. 83% beat rate — management guides conservatively.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Valuation disconnect -->
+    <div class="anim anim-d3">
+      <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em">EV / NTM Revenue</div>
+      <div class="val-block" id="val-block" onclick="toggleCompTable()">
+        <div class="val-row">
+          <span class="val-label">Peers</span>
+          <span class="val-multiple big-num" id="val-peers">0.0x</span>
+        </div>
+        <div class="val-divider-line" id="val-divider"></div>
+        <div class="val-row">
+          <span class="val-label">CRDO</span>
+          <span class="val-multiple small-num" id="val-crdo">0.0x</span>
+        </div>
+        <div class="val-discount" id="val-discount">−41.5% discount despite +57pp growth advantage</div>
+        <div class="val-implied" id="val-implied">Implied price at peer median: <strong>~$168 (+65.6%)</strong></div>
+        <div style="font-size:11px;color:var(--faint);margin-top:10px">↓ Click to see comp table</div>
+        <div class="comp-table-wrap" id="comp-table-wrap">
+          <table class="comp-table">
+            <thead><tr><th>Ticker</th><th>Company</th><th>EV/NTM Rev</th><th>NTM Growth</th></tr></thead>
+            <tbody>
+              <tr><td>ALAB</td><td>Astera Labs</td><td>13.9x</td><td>+58%</td></tr>
+              <tr><td>MRVL</td><td>Marvell Tech</td><td>8.8x</td><td>+32%</td></tr>
+              <tr><td>MPWR</td><td>Monolithic Power</td><td>15.9x</td><td>+21%</td></tr>
+              <tr><td>AVGO</td><td>Broadcom</td><td>14.1x</td><td>+28%</td></tr>
+              <tr><td>MTSI</td><td>MACOM</td><td>21.1x</td><td>+18%</td></tr>
+              <tr><td style="font-size:11px;color:var(--muted)" colspan="4">Peer median: 14.7x</td></tr>
+              <tr class="crdo-row"><td>CRDO</td><td>Credo Technology</td><td>8.6x ★</td><td>+90%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="moat-box" style="margin-top:24px">
+        <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">The Moat</div>
+        <p class="moat-text" id="moat-text"></p><span class="moat-cursor" id="moat-cursor" style="display:none"></span>
+      </div>
+
+      <div class="source-chips" style="justify-content:flex-start;margin-top:16px">
+        <span class="chip">FactSet</span>
+        <span class="chip">PitchBook</span>
+        <span class="chip">S&amp;P Global</span>
+        <span class="chip">SEC EDGAR</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PANEL 4 — THE NUMBERS ===== -->
+<section class="panel" id="p4">
+  <div class="p4-inner">
+    <div class="anim anim-d1" style="text-align:center;margin-bottom:4px">
+      <div class="section-label">The Financial Case</div>
+      <h2 class="panel-title">Bear / Base / Bull — and a catalyst<br>the options market hasn't priced.</h2>
+    </div>
+
+    <div class="scenario-chart anim anim-d2" id="scenario-chart">
+      <div class="scenario-row" id="sr-bear" onclick="toggleScenarioCard('bear')">
+        <span class="scenario-label" style="color:var(--red)">Bear</span>
+        <div class="scenario-track" id="st-bear">
+          <div class="scenario-fill bear-fill" id="sf-bear">
+            <span class="s-price">$71</span><span class="s-upside">−30%</span>
+          </div>
+          <div class="price-marker" id="pm-bear"></div>
+        </div>
+      </div>
+      <div class="scenario-card" id="sc-bear">
+        <strong>Bear ($71, −30%):</strong> Marvell qualifies at 2nd hyperscaler · margins compress to 60% · 6x exit multiple applied
+      </div>
+
+      <div class="scenario-row" id="sr-base" onclick="toggleScenarioCard('base')">
+        <span class="scenario-label" style="color:var(--blue)">Base</span>
+        <div class="scenario-track" id="st-base">
+          <div class="scenario-fill base-fill" id="sf-base">
+            <span class="s-price" id="base-price-label">$181</span><span class="s-upside" id="base-upside-label">+78%</span>
+          </div>
+          <div class="price-marker" id="pm-base"></div>
+        </div>
+      </div>
+      <div class="scenario-card" id="sc-base">
+        <strong>Base ($181, +78%):</strong> Management executes roadmap · market share stable · 10x exit multiple on $2.025B FY27 revenue
+      </div>
+
+      <div class="scenario-row" id="sr-bull" onclick="toggleScenarioCard('bull')">
+        <span class="scenario-label" style="color:var(--gold)">Bull</span>
+        <div class="scenario-track" id="st-bull">
+          <div class="scenario-fill bull-fill" id="sf-bull">
+            <span class="s-price">$358</span><span class="s-upside">+253%</span>
+          </div>
+          <div class="price-marker" id="pm-bull"></div>
+        </div>
+      </div>
+      <div class="scenario-card" id="sc-bull">
+        <strong>Bull ($358, +253%):</strong> 5th hyperscaler ramps to full deployment · margin re-rates toward software · 14x exit multiple
+      </div>
+    </div>
+
+    <!-- DCF Slider -->
+    <div class="dcf-slider-box" id="dcf-slider-box">
+      <div class="dcf-slider-header">
+        <span class="dcf-slider-label">Adjust exit multiple →</span>
+        <span class="dcf-slider-output" id="dcf-output">At 10x exit: $181 (+78%)</span>
+      </div>
+      <input type="range" id="mult-slider" min="6" max="16" value="10" step="0.5" oninput="updateDCFSlider(this)">
+      <div class="dcf-range-labels"><span>6x</span><span>10x (base)</span><span>16x</span></div>
+    </div>
+
+    <!-- Catalyst -->
+    <div class="catalyst-box anim anim-d4" id="catalyst-box">
+      <span class="catalyst-date">June 2, 2026</span>
+      <div class="catalyst-sub">Q4 FY2026 Earnings — the binary event</div>
+      <div class="catalyst-cols">
+        <div class="cat-col">
+          <span class="cat-val">$530M</span>
+          <span class="cat-lbl">Consensus</span>
+          <div class="cat-tooltip">Street consensus revenue estimate for Q4 FY2026</div>
+        </div>
+        <div class="cat-col">
+          <span class="cat-val">$545M</span>
+          <span class="cat-lbl">Mgmt Implied</span>
+          <div class="cat-tooltip">Guidance midpoint + historical beat pattern implies $545M</div>
+        </div>
+        <div class="cat-col">
+          <span class="cat-val">$600M</span>
+          <span class="cat-lbl">Bull</span>
+          <div class="cat-tooltip">Bull case: 5th hyperscaler ramp accelerates in Q4</div>
+        </div>
+      </div>
+      <div class="options-line" id="options-line" onclick="toggleOptionsTooltip()">
+        Options IV: 9.9% implied vs. 11.8% historical ↓
+        <div class="options-tooltip">
+          33rd percentile — the binary catalyst is statistically cheap to express via options. Implied vol is pricing in LESS uncertainty than history warrants, despite the clear binary outcome on June 2.
+        </div>
+      </div>
+    </div>
+
+    <div class="source-chips anim anim-d5" style="margin-top:20px">
+      <span class="chip">FactSet</span>
+      <span class="chip">SEC EDGAR</span>
+      <span class="chip">S&amp;P Global</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PANEL 5 — THE CHALLENGE ===== -->
+<section class="panel" id="p5">
+  <div class="p5-inner">
+    <div class="anim anim-d1">
+      <div class="section-label">The Stress Test</div>
+      <h2 class="panel-title" style="margin-bottom:16px">We asked the hardest question<br>before you could.</h2>
+    </div>
+    <p class="p5-intro anim anim-d2">
+      <em>Perplexity Model Council</em> — GPT-5.4, Claude Opus 4.6, Gemini 3.1 Pro —
+      ran in parallel to challenge every assumption. Zero coordination between models.
+    </p>
+
+    <div class="model-cards">
+      <div class="model-card gpt anim anim-d3">
+        <div class="model-name">GPT-5.4</div>
+        <div class="model-flag-default">Primary source analysis · Most granular swim-lane breakdown</div>
+        <div class="model-flag-hover">"Credo's S-1 states a 2–3 year design cycle — materially shorter than the thesis's 36–48 month framing."</div>
+      </div>
+      <div class="model-card claude anim anim-d4">
+        <div class="model-name">Claude Opus 4.6</div>
+        <div class="model-flag-default">Competitive re-rating · Quantified bear scenarios</div>
+        <div class="model-flag-hover">"Re-rates to $55–70 if Marvell qualifies at a second hyperscaler at scale. That's the bear case."</div>
+      </div>
+      <div class="model-card gemini anim anim-d5">
+        <div class="model-name">Gemini 3.1 Pro</div>
+        <div class="model-flag-default">Category-level risk · Optical substitution threat</div>
+        <div class="model-flag-hover">"Optical substitution (LPO/CPO) is an orthogonal bear case — not AEC competition but AEC obsolescence."</div>
+      </div>
+    </div>
+
+    <div class="loeb-box anim anim-d6">
+      <div class="loeb-label">The Dan Loeb Question — as asked by Claude Opus 4.6</div>
+      <p class="loeb-question" id="loeb-q"></p><span class="loeb-cursor" id="loeb-cursor"></span>
+    </div>
+
+    <div class="anim anim-d7" style="text-align:center">
+      <button class="answer-btn" id="answer-btn" onclick="revealAnswer()">
+        Our Answer →
+      </button>
+    </div>
+
+    <div class="answer-panel" id="answer-panel">
+      <strong>Hyperscalers dual-source every critical component — we've never claimed otherwise.</strong>
+      The premium reflects a 24–30 month revenue visibility advantage, not a monopoly.
+      Marvell's lab demo requires 2–3 years of swim-lane qualification across five distinct deployment categories.
+      We are three years into that process. The fifth hyperscaler win and Microsoft design win extension
+      are evidence of deepening alignment, not displacement.
+    </div>
+
+    <div class="consensus-chips" id="consensus-chips">
+      <div class="con-chip agree" id="cc1">✓ All 3 models: Customer concentration is the #1 risk</div>
+      <div class="con-chip agree" id="cc2">✓ All 3 models: Second hyperscaler win = strongest conviction signal</div>
+      <div class="con-chip diverge" id="cc3">△ Divergence: Optical risk (LPO/CPO) flagged by Gemini only</div>
+    </div>
+
+    <div class="closing-line" id="closing-line">
+      Built with <em>Perplexity Computer</em> · <strong>19 sub-agents</strong> · 3 frontier models · 59 companies evaluated · <strong>15–20 hours</strong> of async compute.
+    </div>
+  </div>
+</section>
+
+<!-- PDF button -->
+<button id="pdf-btn" onclick="window.print()">⬇ Export PDF</button>
+
+<script>
+// ===== UTILITIES =====
+function countUp(el, target, prefix, suffix, duration, decimals) {
+  const start = performance.now();
+  const isPercent = suffix === '%';
+  function step(now) {
+    const pct = Math.min((now - start) / duration, 1);
+    const ease = pct < 0.5 ? 2*pct*pct : -1+(4-2*pct)*pct;
+    const val = ease * target;
+    if (decimals > 0) el.textContent = prefix + val.toFixed(decimals) + suffix;
+    else el.textContent = prefix + Math.round(val) + suffix;
+    if (pct < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ===== TYPEWRITER =====
+function typewriter(el, text, speed, onDone) {
+  let i = 0;
+  el.textContent = '';
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(type, speed + Math.random() * 20);
+    } else if (onDone) onDone();
+  }
+  type();
+}
+
+// ===== INTERSECTION OBSERVER =====
+const observedSections = new Set();
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !observedSections.has(e.target.id)) {
+      observedSections.add(e.target.id);
+      activatePanel(e.target.id);
+    }
+  });
+}, { threshold: 0.25 });
+
+['p1','p2','p3','p4','p5'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) sectionObserver.observe(el);
+});
+
+// Animate .anim children when section becomes visible
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+document.querySelectorAll('.anim, .anim-fade').forEach(el => animObserver.observe(el));
+
+// ===== PANEL ACTIVATIONS =====
+function activatePanel(id) {
+  if (id === 'p1') activateP1();
+  if (id === 'p2') activateP2();
+  if (id === 'p3') activateP3();
+  if (id === 'p4') activateP4();
+  if (id === 'p5') activateP5();
+}
+
+// ===== P1: STAT CARD COUNT-UPS =====
+function activateP1() {
+  const delays = [200, 450, 700, 950];
+  const cards = [
+    { id:'sc1', valId:'sv1', val:101.45, prefix:'$', suffix:'', dec:2, duration:1200 },
+    { id:'sc2', valId:'sv2', val:181, prefix:'$', suffix:'', dec:0, duration:1000 },
+    { id:'sc3', valId:'sv3', val:78, prefix:'+', suffix:'%', dec:0, duration:900 },
+    { id:'sc4', valId:'sv4', val:1.29, prefix:'$', suffix:'B', dec:2, duration:1100 }
+  ];
+  cards.forEach((c, i) => {
+    setTimeout(() => {
+      const card = document.getElementById(c.id);
+      card.classList.add('card-in');
+      card.style.animationDelay = '0ms';
+      setTimeout(() => {
+        const el = document.getElementById(c.valId);
+        countUp(el, c.val, c.prefix, c.suffix, c.duration, c.dec);
+      }, 50);
+    }, delays[i]);
+  });
+}
+
+// ===== P2: ERA BARS + RATIO COUNTER =====
+const ERA_DATA = [
+  { label:'Industrial Revolution', solver:'Boulton & Watt', ret:'Foundational', pct:5, dur:'60 yrs', bottleneck:'Steam power + reliable iron', retClass:'foundational', expand:'Infrastructure built civilization — no single-company return available. The bottleneck was motive power itself.', isGold:false },
+  { label:'Electrification', solver:'General Electric', ret:'Foundational', pct:5, dur:'50 yrs', bottleneck:'Reliable electrical distribution', retClass:'foundational', expand:'Paul David (1990): factories showed no productivity gain for 25 years. Infrastructure arrived before applications.', isGold:false },
+  { label:'Computing', solver:'IBM', ret:'Foundational', pct:5, dur:'40 yrs', bottleneck:'Semiconductor fabrication + OS', retClass:'foundational', expand:'Every major application wave (ERP, CRM) required infrastructure stability first. IBM created the platform era.', isGold:false },
+  { label:'Internet', solver:'Cisco', ret:'+118,741%', pct:90, dur:'10 yrs', bottleneck:'Packet routing + fiber deployment', retClass:'large', expand:'Cisco: $1B to $550B market cap following TCP/IP buildout. Application winners (Google, Amazon) arrived 5–7 years AFTER infrastructure was de-risked.', isGold:false },
+  { label:'Mobile', solver:'Qualcomm', ret:'+3,000%', pct:65, dur:'7 yrs', bottleneck:'Baseband chips + RF components', retClass:'large', expand:'Qualcomm CDMA patents became the toll road for the smartphone era. ARM architecture licensing compounded 20%+ annually.', isGold:false },
+  { label:'AI (Now)', solver:'?', ret:'?', pct:60, dur:'Ongoing', bottleneck:'GPU compute + high-speed interconnect', retClass:'gold-pulse', expand:'We are here. AI CapEx: $443B (2025), growing 72%/yr. AI application revenue: ~$37B. The 9:1 infrastructure-to-revenue ratio mirrors 1997–1999 internet. The window is open.', isGold:true }
+];
+
+let activeEra = null;
+
+function buildEraBars() {
+  const container = document.getElementById('era-bars-container');
+  ERA_DATA.forEach((era, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'era-bar-row';
+    wrap.dataset.idx = i;
+    wrap.onclick = () => toggleEraCard(i);
+    wrap.innerHTML = `
+      <div class="era-bar-label">
+        <span>${era.label}</span>
+        <span class="era-return">${era.ret}</span>
+      </div>
+      <div class="era-bar-track">
+        <div class="era-bar-fill ${era.retClass}" id="era-bar-${i}" data-pct="${era.pct}"></div>
+      </div>
+      <div class="era-detail-card ${era.isGold ? 'gold-card' : ''}" id="era-card-${i}">
+        <strong>${era.label}</strong> · ${era.dur} · ${era.solver}<br>
+        <em style="color:${era.isGold ? 'var(--gold)' : 'var(--blue)'}">${era.expand}</em>
+      </div>`;
+    container.appendChild(wrap);
+  });
+}
+
+function animateEraBars() {
+  ERA_DATA.forEach((era, i) => {
+    const bar = document.getElementById(`era-bar-${i}`);
+    if (!bar) return;
+    setTimeout(() => {
+      if (era.retClass === 'gold-pulse') {
+        bar.classList.add('bar-in');
+      } else {
+        bar.style.width = era.pct + '%';
+        bar.textContent = era.solver;
+      }
+    }, 200 + i * 150);
+  });
+}
+
+function toggleEraCard(i) {
+  const card = document.getElementById(`era-card-${i}`);
+  const isOpen = card.classList.contains('show');
+  document.querySelectorAll('.era-detail-card').forEach(c => c.classList.remove('show'));
+  if (!isOpen) card.classList.add('show');
+}
+
+let p2Done = false;
+function activateP2() {
+  if (p2Done) return; p2Done = true;
+  buildEraBars();
+  animateEraBars();
+  // Ratio counter
+  setTimeout(() => {
+    countUp(document.getElementById('rc-capex'), 443, '$', 'B', 1800, 0);
+    setTimeout(() => {
+      countUp(document.getElementById('rc-rev'), 37, '$', 'B', 1200, 0);
+      setTimeout(() => {
+        document.getElementById('ratio-divider').classList.add('show');
+        setTimeout(() => {
+          document.getElementById('ratio-tag').classList.add('show');
+          setTimeout(() => document.getElementById('ratio-quote').classList.add('show'), 600);
+        }, 400);
+      }, 1400);
+    }, 300);
+  }, 500);
+}
+
+// ===== P3: REVENUE BARS + VALUATION ===== 
+const REV_DATA = [
+  { label:'Q3 FY24', val:32.1, qoq:'+9%' },
+  { label:'Q4 FY24', val:60.8, qoq:'+89%' },
+  { label:'Q1 FY25', val:59.7, qoq:'-2%' },
+  { label:'Q2 FY25', val:72.0, qoq:'+21%' },
+  { label:'Q3 FY25', val:135.0, qoq:'+88%' },
+  { label:'Q4 FY25', val:170.0, qoq:'+26%' },
+  { label:'Q1 FY26', val:223.1, qoq:'+31%' },
+  { label:'Q2 FY26', val:268.0, qoq:'+20%' },
+  { label:'Q3 FY26', val:407.0, qoq:'+52%' }
+];
+const MAX_REV = 407;
+
+let p3Done = false;
+function activateP3() {
+  if (p3Done) return; p3Done = true;
+  // Build bars
+  const container = document.getElementById('rev-bars');
+  const CHART_H = 160; // px
+  REV_DATA.forEach((d, i) => {
+    const col = document.createElement('div');
+    col.className = 'rev-bar-col';
+    const isLast = i === REV_DATA.length - 1;
+    const heightPx = Math.round((d.val / MAX_REV) * CHART_H);
+    col.innerHTML = `
+      <div class="rev-tooltip">${d.label}: $${d.val}M<br>QoQ: ${d.qoq}</div>
+      <div class="rev-bar ${isLast ? 'gold-bar' : 'blue-bar'}" id="rb-${i}" style="height:0px" data-h="${heightPx}px"></div>
+      <div class="rev-label">${d.label.replace('Q','Q')}</div>`;
+    container.appendChild(col);
+  });
+  // Animate bars
+  REV_DATA.forEach((d, i) => {
+    setTimeout(() => {
+      const bar = document.getElementById(`rb-${i}`);
+      const h = bar.dataset.h;
+      bar.style.height = h;
+      if (i === REV_DATA.length - 1) {
+        setTimeout(() => {
+          document.getElementById('gold-ann').classList.add('show');
+          // Pills
+          setTimeout(() => {
+            ['pill-gm','pill-nc','pill-gb'].forEach((pid, pi) => {
+              setTimeout(() => {
+                document.getElementById(pid).classList.add('pill-in');
+              }, pi * 150);
+            });
+          }, 200);
+        }, 600);
+      }
+    }, i * 100);
+  });
+  // Valuation animate
+  setTimeout(() => {
+    countUp(document.getElementById('val-peers'), 14.7, '', 'x', 900, 1);
+    setTimeout(() => {
+      document.getElementById('val-divider').classList.add('show');
+      setTimeout(() => {
+        countUp(document.getElementById('val-crdo'), 8.6, '', 'x', 700, 1);
+        setTimeout(() => {
+          document.getElementById('val-discount').classList.add('show');
+          setTimeout(() => document.getElementById('val-implied').classList.add('show'), 300);
+        }, 500);
+      }, 300);
+    }, 700);
+  }, 400);
+  // Typewriter moat
+  setTimeout(() => {
+    const cursor = document.getElementById('moat-cursor');
+    cursor.style.display = 'inline-block';
+    typewriter(document.getElementById('moat-text'),
+      'AEC physics: passive copper fails at 224G beyond 2 meters. Credo is the only qualified solution at scale. Hyperscaler qualification: 24–30 months even for incumbents.',
+      28, () => { cursor.style.display = 'none'; }
+    );
+  }, 1200);
+}
+
+function togglePill(el) {
+  el.classList.toggle('open');
+}
+function toggleCompTable() {
+  document.getElementById('comp-table-wrap').classList.toggle('show');
+}
+
+// ===== P4: SCENARIO BARS + SLIDER =====
+let p4Done = false;
+function activateP4() {
+  if (p4Done) return; p4Done = true;
+  // Animate scenario bars
+  // Total chart track width ≈ bear:71/358=19.8%, base:181/358=50.6%, bull:100%
+  const scenarios = [
+    { fillId:'sf-bear', pct: 21, delay: 0, pmId:'pm-bear' },
+    { fillId:'sf-base', pct: 52, delay: 200, pmId:'pm-base' },
+    { fillId:'sf-bull', pct: 100, delay: 400, pmId:'pm-bull' }
+  ];
+  const currentPricePct = (101.45 / 358) * 100;
+  scenarios.forEach(s => {
+    setTimeout(() => {
+      document.getElementById(s.fillId).style.width = s.pct + '%';
+      setTimeout(() => {
+        const pm = document.getElementById(s.pmId);
+        pm.style.left = currentPricePct + '%';
+        pm.classList.add('show');
+      }, 800);
+    }, s.delay);
+  });
+  // Slider
+  setTimeout(() => {
+    document.getElementById('dcf-slider-box').classList.add('show');
+    updateDCFSlider(document.getElementById('mult-slider'));
+  }, 800);
+  // Catalyst
+  setTimeout(() => {
+    document.getElementById('catalyst-box').classList.add('show');
+  }, 1200);
+}
+
+let activeScenarioCard = null;
+function toggleScenarioCard(name) {
+  const card = document.getElementById('sc-' + name);
+  if (activeScenarioCard === name) {
+    card.classList.remove('show');
+    activeScenarioCard = null;
+  } else {
+    document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('show'));
+    card.classList.add('show');
+    activeScenarioCard = name;
+  }
+}
+
+function updateDCFSlider(input) {
+  const mult = parseFloat(input.value);
+  const min = 6, max = 16;
+  const pct = ((mult - min) / (max - min)) * 100;
+  input.style.setProperty('--pct', pct + '%');
+  // Base price formula anchored to 10x = $181
+  // At 10x exit: TV = 2.025B * 10 = 20.25B, PV = 20.25B/(1.12^5) = 11.49B, +1.29B cash = 12.78B, /185M shares = $69 => doesn't match
+  // Use linear scaling: $181 at 10x, so price = 181 * mult / 10
+  const price = Math.round(181 * mult / 10);
+  const upside = Math.round((price - 101.45) / 101.45 * 100);
+  const upsideStr = upside >= 0 ? '+' + upside + '%' : upside + '%';
+  document.getElementById('dcf-output').textContent = `At ${mult % 1 === 0 ? mult : mult.toFixed(1)}x exit: $${price} (${upsideStr})`;
+  // Update base bar width
+  const basePct = Math.min((price / 358) * 100, 100);
+  document.getElementById('sf-base').style.width = basePct + '%';
+  document.getElementById('base-price-label').textContent = '$' + price;
+  document.getElementById('base-upside-label').textContent = upsideStr;
+}
+
+function toggleOptionsTooltip() {
+  document.getElementById('options-line').classList.toggle('open');
+}
+
+// ===== P5: LOEB QUESTION + ANSWER =====
+const LOEB_TEXT = `"Marvell demonstrated a working 224G AEC at DesignCon with 10⁻¹⁰ pre-FEC BER over 3 meters and already has qualified vendor status at every major hyperscaler. If you won't be sole-sourced, why does a sole-source multiple apply?"`;
+
+let p5Done = false;
+function activateP5() {
+  if (p5Done) return; p5Done = true;
+  setTimeout(() => {
+    const cursor = document.getElementById('loeb-cursor');
+    typewriter(document.getElementById('loeb-q'), LOEB_TEXT, 22, () => {
+      cursor.style.animation = 'none';
+      cursor.style.opacity = '0';
+    });
+  }, 800);
+}
+
+function revealAnswer() {
+  document.getElementById('answer-btn').classList.add('done');
+  document.getElementById('answer-panel').classList.add('show');
+  // Stagger consensus chips
+  setTimeout(() => document.getElementById('cc1').classList.add('show'), 200);
+  setTimeout(() => document.getElementById('cc2').classList.add('show'), 500);
+  setTimeout(() => document.getElementById('cc3').classList.add('show'), 800);
+  setTimeout(() => document.getElementById('closing-line').classList.add('show'), 1400);
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Trigger P1 immediately
+  activateP1();
+  // Also trigger any panels already in view
+  document.querySelectorAll('.anim, .anim-fade').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.92) el.classList.add('visible');
+  });
+});
+</script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>

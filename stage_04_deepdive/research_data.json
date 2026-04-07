@@ -1,0 +1,289 @@
+{
+  "exec_summary": {
+    "thesis_validated": true,
+    "key_findings": [
+      "Agent A (Technical Moat): Credo owns 100+ issued US patents on HiWire AEC and 224G SerDes technology validated by successful ITC enforcement action and March 2026 settlements with Molex and TE Connectivity. The company is 2-3 years ahead of all competitors (Marvell, Broadcom, Astera Labs) and has achieved production-scale qualification with all 5 major hyperscalers — Microsoft, Amazon/AWS, xAI, Google, and Meta.",
+      "Agent B (Financial Analysis): Revenue has grown from $32M in Q4 FY2023 to $407M in Q3 FY2026 (+1,169%), with gross margin expanding from 57.9% to 68.5% over the same period. The company beat its own guidance midpoint in 10 of 11 completed quarters with an average recent beat of +10-17%. Net cash position stands at $1.29B with FCF of $140M in Q3 FY2026 alone. Q4 FY2026 guided at $425-435M; FY2027 guided at >50% YoY growth.",
+      "Agent C (Market Sizing): Big-4 hyperscaler combined capex is surging from $359B (2025) to $650B (2026). The data-center-specific AEC market is growing from $296M (2024) to an estimated $2.1B by 2028 at 23.8% CAGR. Credo holds 75% AEC market share today. Bottom-up TAM model implies Credo-addressable revenue of ~$1.3B in FY2026 growing to ~$2.5B in FY2028. Goldman Sachs projects $4-5B long-term AEC revenue potential.",
+      "Agent D (Alternative & Sentiment Data): 17 analysts cover CRDO with 15 Buy/2 Hold/0 Sell consensus and a median price target of $200 (vs. $101.45 current price, implying ~97% upside). Short interest at 6.1% of float with days-to-cover of only 1.4. Options IV at ~80% in the 33rd percentile — options are historically cheap. Institutional ownership at 80.46% with net inflows. AEC patent litigation resolved via Molex and TE Connectivity settlements in March 2026, removing a key legal overhang."
+    ],
+    "top_risks": [
+      "Risk 1: Customer concentration — Top 3 hyperscalers represent 88% of Q3 FY2026 revenue (39% + 32% + 17%). Any single hyperscaler pause, pivot to CPO, or qualification delay creates outsized revenue risk.",
+      "Risk 2: Marvell AEC competitive entry — Marvell launched its 'Golden Cable' initiative (Dec 2025) and demonstrated 800G/1.6T AECs at SC25. Best-case production ramp 2027-2028, still 2-3 years behind Credo, but potential for market share erosion from 75% toward 60-65% by 2027.",
+      "Risk 3: Margin compression and valuation risk — Q4 FY2026 gross margin guided at 64-66% vs Q3's 68.6%, driven by ZeroFlap optical ramp product mix. Stock trades at ~55x trailing P/E; if FY2027 growth prints at only 30-40% vs. guided 50%+, significant multiple compression risk at current $101.45 price."
+    ]
+  },
+  "business": {
+    "segments": [
+      {
+        "name": "Product Sales (AEC, Optical DSP, Line Card PHY)",
+        "fy2024_revenue_m": 145.0,
+        "fy2024_pct": "75.2%",
+        "fy2025_revenue_m": 412.2,
+        "fy2025_pct": "94.4%",
+        "description": "HiWire Active Electrical Cables (primary), ZeroFlap AECs, optical DSP transceivers, line card PHY chips"
+      },
+      {
+        "name": "IP License (SerDes IP)",
+        "fy2024_revenue_m": 28.0,
+        "fy2024_pct": "14.5%",
+        "fy2025_revenue_m": 12.5,
+        "fy2025_pct": "2.9%",
+        "description": "SerDes IP licensing to semiconductor partners; Arm Total Design chiplets"
+      },
+      {
+        "name": "Product Engineering Services",
+        "fy2024_revenue_m": 19.9,
+        "fy2024_pct": "10.3%",
+        "fy2025_revenue_m": 12.1,
+        "fy2025_pct": "2.8%",
+        "description": "Custom engineering services for hyperscaler qualification and integration"
+      }
+    ],
+    "moat": {
+      "technical_explanation": "Credo's moat rests on three pillars: (1) Proprietary 224G PAM4 SerDes IP on TSMC N3 process — at 56 GHz Nyquist, channel loss can reach 40-50 dB in typical rack environments; Credo's embedded DSP with CDR+re-equalization enables 3-7m reach over 32 AWG twinax that is physically impossible with passive DAC. (2) ZeroFlap zero-link-flap reliability — 1,000x better than optical modules per management due to no laser components; critical for hyperscaler uptime SLAs. (3) HiWire system-level integration — Credo designs not just the chip but the complete cable assembly, co-designing with hyperscalers since 2019-2021, creating sticky customer relationships and switching costs.",
+      "qualification_timeline": "Qualification Phase 1 (Design Win): 12-18 months of signal integrity testing. Phase 2 (Engineering Validation): 6-12 months of system integration. Phase 3 (Production Validation): 3-6 months at scale. Phase 4 (Volume Ramp): Full production. Microsoft qualified 2021, Amazon qualified 2022-2023, xAI 2024, Google 2025-2026, Meta 2025-2026. Total pipeline ~3-4 year head start vs. new entrants.",
+      "patent_count": 100,
+      "competitor_status": {
+        "marvell": "Sampling stage only. Announced 'Golden Cable' initiative Dec 2025; Foxconn demonstrated 800G/1.6T AECs at SC25. No confirmed hyperscaler volume production. Entering qualification cycles Credo began in 2019-2021. Best-case volume ramp 2027-2028, ~3-4 years behind Credo.",
+        "broadcom": "Announced 'industry first' 800G AEC retimer (7m+ reach) March 2025 via Sian3 3nm DSP. Primary focus is optical transceivers, not copper AEC. CEO Hock Tan (March 2026) stated copper sufficient through 2028 — implicitly validating Credo's market. No confirmed hyperscaler AEC design wins.",
+        "astera_labs": "Competing in AEC paddle card / NIC-to-ToR market. Primarily focused on PCIe/CXL retimers. 5-10% estimated AEC market share and growing. Deutsche Bank estimates AEC modules ~$3B by 2027; Astera is better positioned for PCIe AEC than HiWire-style deployments.",
+        "hyperscaler_internal": "No confirmed case of a hyperscaler developing its own AEC silicon. Co-Packaged Optics (CPO) is the primary internal push — SemiAnalysis projects CPO begins production 2026-2027, representing a longer-term displacement risk but also a market Credo is entering via ZeroFlap optics."
+      }
+    },
+    "customers": {
+      "concentration_q3_fy2026": {
+        "top_3_each_above_10pct": true,
+        "customer_1_pct": 39,
+        "customer_2_pct": 32,
+        "customer_3_pct": 17,
+        "combined_top_3_pct": 88
+      },
+      "confirmed_hyperscalers": [
+        {"name": "Amazon/AWS", "status": "Confirmed — largest customer", "products": "HiWire AECs for AWS AI cluster scale-out", "ramp": "Aggressive ramp Q3 FY2025 onwards"},
+        {"name": "Microsoft", "status": "Confirmed — first hyperscaler customer", "products": "HiWire Switch AEC for dual-ToR Azure AI architecture", "ramp": "First hyperscaler; 17% of Q3 FY2026 revenue"},
+        {"name": "xAI", "status": "Confirmed — third hyperscaler", "products": "HiWire AECs for Colossus AI cluster", "ramp": "FY2025 ramp"},
+        {"name": "Google", "status": "Confirmed — Q3 FY2026 10%+ customer", "products": "HiWire AECs for Google AI cluster scale-out", "ramp": "Full volume ramp FY2026"},
+        {"name": "Meta", "status": "Confirmed — Q3 FY2026 initial revenue", "products": "HiWire AECs for Meta MTIA cluster", "ramp": "Initial revenue Q3 FY2026; production ramp Q4 FY2026+"}
+      ],
+      "total_hyperscalers": 5
+    },
+    "hiring": {
+      "total_open_roles": 29,
+      "primary_locations": ["San Jose, CA", "Ottawa, Ontario (optical R&D)", "Austin, TX (sales)"],
+      "key_signals": [
+        "9 optical engineering roles in Ottawa — ZeroFlap optics ramp is real and accelerating",
+        "7 ASIC/SerDes roles including Director ASIC Design and Program Manager SerDes",
+        "2 new Sales Director roles: Neocloud/Enterprise AI and Enterprise OEM (HPE/Dell/Lenovo) — expanding beyond hyperscalers"
+      ]
+    }
+  },
+  "financials": {
+    "quarterly_income": [
+      {"quarter": "Q4 FY2023", "calendar_date": "2023-04-30", "revenue_m": 32.09, "gross_profit_m": 18.59, "gross_margin_pct": 57.92, "rd_m": 21.40, "operating_income_m": -16.39, "net_income_m": -15.94, "eps_diluted": -0.11, "fcf_m": -15.74},
+      {"quarter": "Q1 FY2024", "calendar_date": "2023-07-29", "revenue_m": 35.09, "gross_profit_m": 20.79, "gross_margin_pct": 59.24, "rd_m": 22.64, "operating_income_m": -14.39, "net_income_m": -11.70, "eps_diluted": -0.08, "fcf_m": 19.30},
+      {"quarter": "Q2 FY2024", "calendar_date": "2023-10-28", "revenue_m": 44.03, "gross_profit_m": 26.12, "gross_margin_pct": 59.31, "rd_m": 21.74, "operating_income_m": -8.88, "net_income_m": -6.62, "eps_diluted": -0.04, "fcf_m": 2.96},
+      {"quarter": "Q3 FY2024", "calendar_date": "2024-01-27", "revenue_m": 53.06, "gross_profit_m": 32.56, "gross_margin_pct": 61.36, "rd_m": 24.24, "operating_income_m": -5.91, "net_income_m": 0.43, "eps_diluted": 0.00, "fcf_m": -6.14},
+      {"quarter": "Q4 FY2024", "calendar_date": "2024-04-30", "revenue_m": 60.78, "gross_profit_m": 39.97, "gross_margin_pct": 65.75, "rd_m": 26.92, "operating_income_m": -7.88, "net_income_m": -10.48, "eps_diluted": -0.06, "fcf_m": 0.96},
+      {"quarter": "Q1 FY2025", "calendar_date": "2024-08-03", "revenue_m": 59.71, "gross_profit_m": 37.28, "gross_margin_pct": 62.44, "rd_m": 30.41, "operating_income_m": -14.45, "net_income_m": -9.54, "eps_diluted": -0.06, "fcf_m": -13.10},
+      {"quarter": "Q2 FY2025", "calendar_date": "2024-11-02", "revenue_m": 72.03, "gross_profit_m": 45.51, "gross_margin_pct": 63.18, "rd_m": 31.74, "operating_income_m": -8.41, "net_income_m": -4.22, "eps_diluted": -0.03, "fcf_m": -11.66},
+      {"quarter": "Q3 FY2025", "calendar_date": "2025-02-01", "revenue_m": 135.00, "gross_profit_m": 85.93, "gross_margin_pct": 63.65, "rd_m": 36.26, "operating_income_m": 26.19, "net_income_m": 29.36, "eps_diluted": 0.16, "fcf_m": -0.38},
+      {"quarter": "Q4 FY2025", "calendar_date": "2025-04-30", "revenue_m": 170.03, "gross_profit_m": 114.19, "gross_margin_pct": 67.16, "rd_m": 47.58, "operating_income_m": 33.79, "net_income_m": 36.59, "eps_diluted": 0.20, "fcf_m": 54.17},
+      {"quarter": "Q1 FY2026", "calendar_date": "2025-08-02", "revenue_m": 223.07, "gross_profit_m": 150.37, "gross_margin_pct": 67.41, "rd_m": 52.45, "operating_income_m": 60.74, "net_income_m": 63.40, "eps_diluted": 0.34, "fcf_m": 51.35},
+      {"quarter": "Q2 FY2026", "calendar_date": "2025-11-01", "revenue_m": 268.03, "gross_profit_m": 181.05, "gross_margin_pct": 67.55, "rd_m": 57.92, "operating_income_m": 78.80, "net_income_m": 82.64, "eps_diluted": 0.44, "fcf_m": 38.48},
+      {"quarter": "Q3 FY2026", "calendar_date": "2026-01-31", "revenue_m": 407.01, "gross_profit_m": 278.87, "gross_margin_pct": 68.52, "rd_m": 78.48, "operating_income_m": 149.62, "net_income_m": 157.14, "eps_diluted": 0.82, "fcf_m": 139.70}
+    ],
+    "gross_margin_trend": [
+      {"quarter": "Q4 FY2023", "gaap_gm_pct": 57.92},
+      {"quarter": "Q1 FY2024", "gaap_gm_pct": 59.24},
+      {"quarter": "Q2 FY2024", "gaap_gm_pct": 59.31},
+      {"quarter": "Q3 FY2024", "gaap_gm_pct": 61.36},
+      {"quarter": "Q4 FY2024", "gaap_gm_pct": 65.75},
+      {"quarter": "Q1 FY2025", "gaap_gm_pct": 62.44},
+      {"quarter": "Q2 FY2025", "gaap_gm_pct": 63.18},
+      {"quarter": "Q3 FY2025", "gaap_gm_pct": 63.65},
+      {"quarter": "Q4 FY2025", "gaap_gm_pct": 67.16},
+      {"quarter": "Q1 FY2026", "gaap_gm_pct": 67.41},
+      {"quarter": "Q2 FY2026", "gaap_gm_pct": 67.55},
+      {"quarter": "Q3 FY2026", "gaap_gm_pct": 68.52}
+    ],
+    "guidance_accuracy": [
+      {"quarter": "Q1 FY2024", "guidance_mid_m": 34.0, "actual_m": 35.1, "beat_miss_pct": 3.2, "result": "BEAT"},
+      {"quarter": "Q2 FY2024", "guidance_mid_m": 43.0, "actual_m": 44.0, "beat_miss_pct": 2.3, "result": "BEAT"},
+      {"quarter": "Q3 FY2024", "guidance_mid_m": 52.0, "actual_m": 53.1, "beat_miss_pct": 2.1, "result": "BEAT"},
+      {"quarter": "Q4 FY2024", "guidance_mid_m": 60.0, "actual_m": 60.8, "beat_miss_pct": 1.3, "result": "BEAT"},
+      {"quarter": "Q1 FY2025", "guidance_mid_m": 64.0, "actual_m": 59.7, "beat_miss_pct": -6.7, "result": "MISS"},
+      {"quarter": "Q2 FY2025", "guidance_mid_m": 66.5, "actual_m": 72.0, "beat_miss_pct": 8.3, "result": "BEAT"},
+      {"quarter": "Q3 FY2025", "guidance_mid_m": 120.0, "actual_m": 135.0, "beat_miss_pct": 12.5, "result": "BEAT"},
+      {"quarter": "Q4 FY2025", "guidance_mid_m": 135.0, "actual_m": 170.0, "beat_miss_pct": 25.9, "result": "BEAT"},
+      {"quarter": "Q1 FY2026", "guidance_mid_m": 190.0, "actual_m": 223.1, "beat_miss_pct": 17.4, "result": "BEAT"},
+      {"quarter": "Q2 FY2026", "guidance_mid_m": 235.0, "actual_m": 268.0, "beat_miss_pct": 14.0, "result": "BEAT"},
+      {"quarter": "Q3 FY2026", "guidance_mid_m": 340.0, "actual_m": 407.0, "beat_miss_pct": 19.7, "result": "BEAT (vs original guidance)"},
+      {"quarter": "Q4 FY2026", "guidance_low_m": 425.0, "guidance_high_m": 435.0, "guidance_mid_m": 430.0, "actual_m": null, "result": "PENDING"}
+    ],
+    "q2_fy2027_setup": {
+      "timing_note": "Q4 FY2026 reports June 2, 2026. Q1 FY2027 (fiscal quarter ending ~late July 2026) reports September 2026. The 'August 2026' catalyst likely refers to Q1 FY2027 results.",
+      "q4_fy2026_guidance_m": {"low": 425, "high": 435, "midpoint": 430},
+      "fy2027_management_guidance": ">50% YoY growth from FY2026 ~$1.3B base; mid-single-digit sequential growth starting Q1 FY2027",
+      "consensus_q1_fy2027_implied_m": "~$450-470M (Q4 base ~$430M + mid-single-digit sequential)",
+      "thesis_consensus_234m_note": "The $234M figure is stale — predates the massive FY2026 beat-and-raise sequence. Current run-rate is ~$430M+ per quarter.",
+      "bull_case": "ZeroFlap optics ramp adds $50-100M+ incremental per quarter in H2 FY2027. AEC 200G/lane transition drives ASP uplift. PCIe Gen6 retimers convert to revenue. FY2027 revenue could reach $2.1B+ (60%+ YoY growth).",
+      "bear_case": "Hyperscaler customer pause, ZeroFlap optical margin dilution continues below 65%, Marvell accelerated ramp, tariff headwinds on China operations. FY2027 growth at 30-40% would cause significant multiple compression."
+    },
+    "insiders": {
+      "total_insider_ownership_pct": 10.44,
+      "total_insider_shares_m": 19.59,
+      "key_insiders": [
+        {"name": "Chi Fung Cheng", "title": "CTO (Co-founder)", "shares_m": 6.30, "ownership_pct": 3.36},
+        {"name": "Pantas Sutardja", "title": "Director (Marvell Co-founder)", "shares_m": 5.89, "ownership_pct": 3.14},
+        {"name": "Yat Tung Lam", "title": "COO (Co-founder)", "shares_m": 2.62, "ownership_pct": 1.40},
+        {"name": "William J. Brennan", "title": "CEO", "shares_m": 1.80, "ownership_pct": 0.97},
+        {"name": "Daniel W. Fleming", "title": "CFO", "shares_m": 0.57, "ownership_pct": 0.30}
+      ],
+      "insider_sales_6mo_total_usd_m": 291,
+      "insider_purchases_6mo": 0,
+      "assessment": "CTO sold ~$122M, COO ~$91M, CEO ~$49M in last 6 months — likely via pre-planned 10b5-1 plans. No open-market purchases. Notable but not unusual for executives with large equity comp in stock up 137% over prior year. Overall insider stake at ~10.4% remains substantial and long-term aligned."
+    }
+  },
+  "market": {
+    "hyperscaler_capex": {
+      "microsoft": {"2025_b": 64.6, "2026_b": 120.0, "notes": "FY2025 actual $64.6B, FY2026 tracking $120B+"},
+      "amazon": {"2025_b": 131.0, "2026_b": 200.0, "notes": "2025 actual $131B; 2026 guidance $200B (AWS data centers)"},
+      "google": {"2025_b": 91.4, "2026_b": 180.0, "notes": "2025 actual $91.4B; 2026 guidance $175-185B; 40% to DC+networking"},
+      "meta": {"2025_b": 72.0, "2026_b": 125.0, "notes": "2025 actual ~$72B; 2026 guidance $115-135B midpoint $125B"},
+      "total_2025_b": 359.0,
+      "total_2026_b": 625.0
+    },
+    "aec_tam": {
+      "2024_m": 296.0,
+      "2025_m": 738.0,
+      "2026_m": 1050.0,
+      "2027_m": 1500.0,
+      "2028_m": 2100.0,
+      "2032_m": 3574.0,
+      "cagr_2025_2034_pct": 23.8,
+      "ai_cluster_subset_2025_b": 1.2,
+      "ai_cluster_subset_2030_b": 7.0,
+      "credo_management_tam_reference": "$5B AEC TAM per Q3 FY2026 earnings call"
+    },
+    "bottom_up_build": {
+      "nvl72_racks_shipped_2025": 27300,
+      "nvl72_racks_shipped_2026": 75000,
+      "nvl72_racks_shipped_2027_est": 120000,
+      "credo_addressable_aec_per_rack": 100,
+      "asp_per_cable_usd": 504.5,
+      "model_2025": {"total_tam_m": 1365, "credo_share_pct": 75, "credo_revenue_m": 1024},
+      "model_2026": {"total_tam_m": 3900, "credo_share_pct": 75, "credo_revenue_m": 2925},
+      "model_2027": {"total_tam_m": 7776, "credo_share_pct": 65, "credo_revenue_m": 5054},
+      "analyst_consensus_fy2026_m": 1300,
+      "analyst_consensus_fy2027_m": 1840
+    },
+    "market_share": {
+      "current_2025_pct": 75,
+      "estimate_2026_pct": 75,
+      "estimate_2027_pct": 65,
+      "source": "Goldman Sachs Buy initiation; 5 hyperscaler wins",
+      "key_moat_factors": [
+        "Proprietary low-power SerDes on 28nm/3nm (vs. competitors' more expensive nodes)",
+        "ZeroFlap reliability — 1,000x better than optical modules",
+        "First-mover at all 5 major hyperscalers",
+        "System-level integration expertise (chip + cable assembly)",
+        "Expanding product portfolio: PCIe Gen6 AECs, Blue Heron 224G retimer, ZF Optics, OmniConnect"
+      ]
+    },
+    "next_gen_448g": {
+      "current_gen": "224G PAM4 (NVLink 5, GB200/GB300 NVL72)",
+      "next_gen": "448G bidirectional (NVLink 6, Vera Rubin NVL72) — effectively 448G aggregate per lane pair",
+      "vera_rubin_key_change": "Doubles scale-out NICs per GPU (2x CX-9 per GPU = 1.6T), doubles NIC-to-ToR AEC demand per rack. Same copper backplane cable count but 2x bandwidth via bidirectional SerDes.",
+      "credo_positioning": "Blue Heron 224G multiprotocol retimer (UALink, ESUN, Ethernet) on 3nm — sampling now, production Q3 CY2026. 1.6T ZeroFlap AECs sampling, production ramp H2 CY2026.",
+      "thesis_extension": true,
+      "rationale": "Vera Rubin doubles NIC-to-ToR AEC demand per rack; 1.6T AECs command higher ASPs; Blue Heron opens new scale-UP backplane TAM; Rubin Ultra (H2 2027) drives next upgrade cycle."
+    }
+  },
+  "alt_data": {
+    "patent_velocity": {
+      "total_issued_us_patents": "100+",
+      "key_asserted_patents": [
+        {"number": "US10877233", "title": "Active Ethernet Cable with Preset Pre-Equalization", "status": "Asserted in ITC 337-TA-1446"},
+        {"number": "US11012252", "title": "AEC Technology", "status": "Asserted in ITC complaint"},
+        {"number": "US11032111", "title": "SerDes Pre-Equalizer Having Adaptable Preset", "status": "Asserted; expiry 2039"},
+        {"number": "US11495898", "title": "AEC-related", "status": "Active"}
+      ],
+      "ip_events": [
+        {"date": "2025-03-13", "event": "Filed ITC complaint against Amphenol, Molex, TE Connectivity, Volex (ITC 337-TA-1446)"},
+        {"date": "2025-09-24", "event": "Launched 224G PAM4 SerDes IP on TSMC N3 process"},
+        {"date": "2025-10-14", "event": "Joined Arm Total Design program"},
+        {"date": "2026-01-29", "event": "Introduced Blue Heron 224G AI scale-up retimer on 3nm"},
+        {"date": "2026-03-26", "event": "Settled AEC patent disputes with Molex — confidential cross-license"},
+        {"date": "2026-03-27", "event": "Settled AEC patent disputes with TE Connectivity — confidential cross-license"}
+      ],
+      "competitive_comparison": {
+        "crdo": "100+ focused SerDes/AEC patents; actively enforced with 4 settlements",
+        "marvell": "~10,591 US patents — broad portfolio; SerDes embedded in larger ASIC platform",
+        "broadcom": "~15,400 US patents — largest; primarily custom ASIC/switch, not AEC-focused",
+        "astera_labs": "PCIe/CXL retimer focus; not directly competing in HiWire AEC IP space"
+      }
+    },
+    "short_interest": {
+      "current_pct_float": 6.11,
+      "shares_short_m": 9.32,
+      "days_to_cover": 1.4,
+      "trend": "Re-increased post-Q3 FY2026 earnings selloff (March 2026) — skeptics positioning on margin guidance step-down",
+      "peak_pct_float": 9.1,
+      "peak_date": "April 2024",
+      "assessment": "Moderate bearish positioning; 1.4 days-to-cover removes short squeeze risk as catalyst"
+    },
+    "options_iv": {
+      "current_iv_pct": 79.2,
+      "iv_percentile_30d": 33,
+      "interpretation": "Options are cheap relative to trailing 30-day history — historically CRDO has realized higher volatility than options have priced (Schaeffer's SVI score 80/100)",
+      "q3_fy2026_implied_vs_actual": {"implied": "±12.0%", "actual": "-14.8%"},
+      "expected_move_aug_2026": "~48-50% for 17-week window at current IV levels",
+      "put_call_volume_ratio": 0.50,
+      "interpretation_pcr": "Bullish — more calls being traded",
+      "upcoming_earnings": "Q4 FY2026 expected June 1-2, 2026"
+    },
+    "analyst_coverage": {
+      "total_analysts": 17,
+      "buy_count": 15,
+      "hold_count": 2,
+      "sell_count": 0,
+      "price_target_low": 125,
+      "price_target_high": 260,
+      "price_target_median": 200,
+      "price_target_average": 187.78,
+      "current_price": 101.45,
+      "implied_upside_to_median_pct": 97,
+      "key_analysts": [
+        {"firm": "B of A Securities", "analyst": "Vivek Arya", "rating": "Buy", "pt": 240},
+        {"firm": "Roth Capital", "analyst": "Suji Desilva", "rating": "Buy", "pt": 250},
+        {"firm": "Barclays", "analyst": "Thomas O'Malley", "rating": "Overweight", "pt": 220},
+        {"firm": "Needham", "analyst": "N. Quinn Bolton", "rating": "Buy", "pt": 220},
+        {"firm": "Mizuho", "analyst": "Vijay Rakesh", "rating": "Outperform", "pt": 200},
+        {"firm": "Susquehanna", "analyst": "Christopher Rolland", "rating": "Positive", "pt": 170},
+        {"firm": "JP Morgan", "analyst": "Joseph Cardoso", "rating": "Overweight", "pt": 165},
+        {"firm": "Goldman Sachs", "rating": "Buy", "pt": 165},
+        {"firm": "Rosenblatt", "analyst": "Mike Genovese", "rating": "Neutral", "pt": 125}
+      ]
+    },
+    "institutional_ownership": {
+      "total_institutional_pct": 80.46,
+      "total_holders": 825,
+      "net_12mo_inflow_m": 180,
+      "q4_2025_buyers": 461,
+      "q4_2025_sellers": 338,
+      "top_buyers_q4_2025": [
+        {"institution": "BlackRock Inc.", "shares_m": 21.07, "qoq_change_pct": 20.52},
+        {"institution": "Corient Private Wealth LLC", "shares_m": 3.60, "qoq_change_pct": 239025},
+        {"institution": "Amundi", "shares_m": 1.55, "qoq_change_pct": 28478},
+        {"institution": "Janus Henderson Group PLC", "shares_m": 1.42, "qoq_change_pct": 842},
+        {"institution": "Goldman Sachs Group Inc.", "shares_m": 2.02, "qoq_change_pct": 11}
+      ],
+      "top_sellers_q4_2025": [
+        {"institution": "JPMorgan Chase & Co", "qoq_change_pct": -24.74},
+        {"institution": "D.E. Shaw & Co.", "qoq_change_pct": -51.9},
+        {"institution": "T. Rowe Price", "qoq_change_pct": -28.8}
+      ]
+    }
+  }
+}

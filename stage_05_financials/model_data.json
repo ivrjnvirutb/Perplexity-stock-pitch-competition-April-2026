@@ -1,0 +1,356 @@
+{
+  "current_price": 101.45,
+  "generated_at": "2026-04-02",
+  "fiscal_year_end": "January 31",
+  "net_cash_b": 1.289,
+  "shares_outstanding_m": 184.4,
+  "comps": [
+    {
+      "ticker": "CRDO",
+      "company": "Credo Technology Group",
+      "metrics": {
+        "market_cap_b": 18.71,
+        "ev_b": 17.42,
+        "revenue_ttm_b": 1.068,
+        "revenue_ntm_b": 2.025,
+        "gross_margin_pct": 67.8,
+        "ebitda_ttm_b": 0.35,
+        "ev_rev_ttm": 16.3,
+        "ev_rev_ntm": 8.6,
+        "revenue_growth_yoy_pct": 144.4,
+        "ntm_revenue_growth_pct": 89.6,
+        "pe_ttm": 55.7,
+        "included_in_peer_median": false
+      }
+    },
+    {
+      "ticker": "ALAB",
+      "company": "Astera Labs",
+      "metrics": {
+        "market_cap_b": 19.94,
+        "ev_b": 18.8,
+        "revenue_ttm_b": 0.853,
+        "revenue_ntm_b": 1.348,
+        "gross_margin_pct": 75.6,
+        "ebitda_ttm_b": 0.204,
+        "ev_rev_ttm": 22.1,
+        "ev_rev_ntm": 13.9,
+        "revenue_growth_yoy_pct": 115.1,
+        "ntm_revenue_growth_pct": 58.1,
+        "pe_ttm": 96.0,
+        "included_in_peer_median": true
+      }
+    },
+    {
+      "ticker": "MRVL",
+      "company": "Marvell Technology",
+      "metrics": {
+        "market_cap_b": 93.65,
+        "ev_b": 95.68,
+        "revenue_ttm_b": 8.195,
+        "revenue_ntm_b": 10.848,
+        "gross_margin_pct": 50.1,
+        "ebitda_ttm_b": 4.532,
+        "ev_rev_ttm": 11.7,
+        "ev_rev_ntm": 8.8,
+        "revenue_growth_yoy_pct": 42.1,
+        "ntm_revenue_growth_pct": 32.4,
+        "pe_ttm": 34.9,
+        "included_in_peer_median": true
+      }
+    },
+    {
+      "ticker": "MPWR",
+      "company": "Monolithic Power Sys.",
+      "metrics": {
+        "market_cap_b": 54.94,
+        "ev_b": 53.87,
+        "revenue_ttm_b": 2.79,
+        "revenue_ntm_b": 3.388,
+        "gross_margin_pct": 55.2,
+        "ebitda_ttm_b": 0.801,
+        "ev_rev_ttm": 19.3,
+        "ev_rev_ntm": 15.9,
+        "revenue_growth_yoy_pct": 26.4,
+        "ntm_revenue_growth_pct": 21.5,
+        "pe_ttm": 86.9,
+        "included_in_peer_median": true
+      }
+    },
+    {
+      "ticker": "INDI",
+      "company": "Indie Semiconductor",
+      "metrics": {
+        "market_cap_b": 0.65,
+        "ev_b": 0.88,
+        "revenue_ttm_b": 0.217,
+        "revenue_ntm_b": 0.268,
+        "gross_margin_pct": 22.6,
+        "ebitda_ttm_b": -0.095,
+        "ev_rev_ttm": 4.1,
+        "ev_rev_ntm": 3.3,
+        "revenue_growth_yoy_pct": 0.3,
+        "ntm_revenue_growth_pct": 23.3,
+        "pe_ttm": null,
+        "included_in_peer_median": false
+      }
+    },
+    {
+      "ticker": "AVGO",
+      "company": "Broadcom",
+      "metrics": {
+        "market_cap_b": 1491.37,
+        "ev_b": 1543.26,
+        "revenue_ttm_b": 68.282,
+        "revenue_ntm_b": 104.685,
+        "gross_margin_pct": 67.1,
+        "ebitda_ttm_b": 38.919,
+        "ev_rev_ttm": 22.6,
+        "ev_rev_ntm": 14.7,
+        "revenue_growth_yoy_pct": 23.9,
+        "ntm_revenue_growth_pct": 53.3,
+        "pe_ttm": 61.2,
+        "included_in_peer_median": true
+      }
+    },
+    {
+      "ticker": "MTSI",
+      "company": "MACOM Technology",
+      "metrics": {
+        "market_cap_b": 17.88,
+        "ev_b": 17.99,
+        "revenue_ttm_b": 1.021,
+        "revenue_ntm_b": 1.171,
+        "gross_margin_pct": 54.5,
+        "ebitda_ttm_b": 0.262,
+        "ev_rev_ttm": 17.6,
+        "ev_rev_ntm": 15.4,
+        "revenue_growth_yoy_pct": 32.6,
+        "ntm_revenue_growth_pct": 14.6,
+        "pe_ttm": 108.3,
+        "included_in_peer_median": true
+      }
+    },
+    {
+      "ticker": "SMCI",
+      "company": "Super Micro Computer",
+      "metrics": {
+        "market_cap_b": 13.91,
+        "ev_b": 18.73,
+        "revenue_ttm_b": 28.057,
+        "revenue_ntm_b": 41.466,
+        "gross_margin_pct": 8.0,
+        "ebitda_ttm_b": 1.196,
+        "ev_rev_ttm": 0.7,
+        "ev_rev_ntm": 0.5,
+        "revenue_growth_yoy_pct": 46.4,
+        "ntm_revenue_growth_pct": 47.7,
+        "pe_ttm": 17.0,
+        "included_in_peer_median": false
+      }
+    }
+  ],
+  "crdo_vs_peers": {
+    "ev_ntm_revenue_multiple": 8.6,
+    "peer_median_ev_ntm_revenue_multiple": 14.7,
+    "peer_mean_ev_ntm_revenue_multiple": 13.74,
+    "premium_discount_pct": -41.5,
+    "assessment": "COMPRESSED",
+    "crdo_ntm_rev_growth_pct": 89.6,
+    "peer_median_ntm_rev_growth_pct": 32.4,
+    "crdo_growth_premium_pp": 57.2,
+    "implied_price_at_peer_median": 168.0,
+    "peer_count": 5,
+    "peers_used": [
+      "ALAB",
+      "MRVL",
+      "MPWR",
+      "AVGO",
+      "MTSI"
+    ]
+  },
+  "dcf": {
+    "bear": {
+      "scenario_name": "Hyperscaler Qualification Crumbles",
+      "assumptions": {
+        "fy27_revenue_b": 1.95,
+        "fy27_gross_margin_pct": 0.67,
+        "fy28_growth_pct": 0.2,
+        "fy29_31_cagr_pct": 0.12,
+        "fy31_gross_margin_pct": 0.63,
+        "wacc_pct": 0.14,
+        "terminal_growth_rate_pct": 0.03,
+        "exit_ev_revenue_multiple": 6
+      },
+      "share_price": 71.0,
+      "upside_pct": -29.7,
+      "ev_dcf_b": 11.86,
+      "pv_fcfs_b": 3.3,
+      "pv_terminal_value_b": 8.56
+    },
+    "base": {
+      "scenario_name": "Executes the Roadmap",
+      "assumptions": {
+        "fy27_revenue_b": 2.025,
+        "fy27_gross_margin_pct": 0.69,
+        "fy28_growth_pct": 0.4,
+        "fy29_31_cagr_pct": 0.25,
+        "fy31_gross_margin_pct": 0.72,
+        "wacc_pct": 0.12,
+        "terminal_growth_rate_pct": 0.04,
+        "exit_ev_revenue_multiple": 10
+      },
+      "share_price": 181.0,
+      "upside_pct": 78.2,
+      "ev_dcf_b": 32.05,
+      "pv_fcfs_b": 5.72,
+      "pv_terminal_value_b": 26.33
+    },
+    "bull": {
+      "scenario_name": "The IP Platform Compounds",
+      "assumptions": {
+        "fy27_revenue_b": 2.1,
+        "fy27_gross_margin_pct": 0.7,
+        "fy28_growth_pct": 0.55,
+        "fy29_31_cagr_pct": 0.35,
+        "fy31_gross_margin_pct": 0.76,
+        "wacc_pct": 0.11,
+        "terminal_growth_rate_pct": 0.05,
+        "exit_ev_revenue_multiple": 14
+      },
+      "share_price": 358.0,
+      "upside_pct": 253.0,
+      "ev_dcf_b": 64.74,
+      "pv_fcfs_b": 8.18,
+      "pv_terminal_value_b": 56.56
+    }
+  },
+  "catalyst": {
+    "q4_fy2026_date": "June 2, 2026",
+    "q1_q3_cumulative_actuals_m": 898.1,
+    "q3_actual_revenue_m": 407.012,
+    "q3_consensus_estimate_m": 406.167,
+    "q3_revenue_beat_m": 0.845,
+    "mgmt_implied_q4_guidance_range": "~$415\u2013440M",
+    "mgmt_implied_q4_midpoint_m": 427.5,
+    "options_iv_percentile": 33,
+    "implied_move_pct": 9.9,
+    "historical_realized_move_avg_pct": 11.8,
+    "beat_rate_history": "10 of 12 quarters beat revenue consensus (83%)",
+    "scenarios": {
+      "bear": {
+        "q4_revenue_m": 407.0,
+        "vs_consensus_pct": -4.2,
+        "sequential_change_pct": 0.0,
+        "stock_reaction_model": "-10% to -20%",
+        "probability": "15%"
+      },
+      "base": {
+        "q4_revenue_m": 428.0,
+        "vs_consensus_pct": 0.2,
+        "sequential_change_pct": 5.2,
+        "stock_reaction_model": "+5% to +15%",
+        "probability": "60%"
+      },
+      "bull": {
+        "q4_revenue_m": 455.0,
+        "vs_consensus_pct": 6.6,
+        "sequential_change_pct": 11.8,
+        "stock_reaction_model": "+20% to +35%",
+        "probability": "25%"
+      }
+    },
+    "options_analysis": {
+      "iv_percentile": 33,
+      "implied_move_pct": 9.9,
+      "historical_realized_move_pct": 11.8,
+      "assessment": "Options historically cheap relative to realized volatility. Implied move underprices historical earnings moves by ~1.9pp. Long volatility or directional call strategies have positive expected value given beat rate and growth trajectory.",
+      "breakeven_long_call": 111.5
+    }
+  },
+  "sensitivity": {
+    "rows": [
+      "20% FY2028 Growth",
+      "30% FY2028 Growth",
+      "40% FY2028 Growth",
+      "50% FY2028 Growth",
+      "60% FY2028 Growth"
+    ],
+    "cols": [
+      "6x Exit Multiple",
+      "8x Exit Multiple",
+      "10x Exit Multiple",
+      "12x Exit Multiple",
+      "14x Exit Multiple"
+    ],
+    "grid": [
+      [
+        127.0,
+        142.0,
+        156.0,
+        171.0,
+        186.0
+      ],
+      [
+        137.0,
+        153.0,
+        169.0,
+        184.0,
+        200.0
+      ],
+      [
+        147.0,
+        164.0,
+        181.0,
+        198.0,
+        215.0
+      ],
+      [
+        156.0,
+        175.0,
+        193.0,
+        211.0,
+        229.0
+      ],
+      [
+        166.0,
+        186.0,
+        205.0,
+        225.0,
+        244.0
+      ]
+    ],
+    "current_price_threshold": 101.45,
+    "color_bands": {
+      "red": "< $101.45",
+      "yellow": "$101.45 \u2013 $150",
+      "light_green": "$150 \u2013 $200",
+      "dark_green": "> $200"
+    }
+  },
+  "data_log": {
+    "sources_accessed": [
+      "finance_quotes \u2014 Real-time market cap, P/E, price for CRDO and 7 comps",
+      "finance_financials (TTM) \u2014 Revenue, gross profit, EBITDA, net income, balance sheet for all 8 tickers",
+      "finance_financials (Annual) \u2014 2-year revenue history for YoY growth calculation",
+      "finance_estimates (Annual) \u2014 NTM revenue consensus for all 8 tickers",
+      "finance_earnings_history \u2014 CRDO 12-quarter earnings history, beat/miss, post-earnings moves",
+      "finance_analyst_research \u2014 CRDO analyst ratings, price targets (9 ratings, $200 median PT)"
+    ],
+    "methodology": {
+      "comp_selection": "Started with CRDO peer universe (ALAB, MRVL, MPWR, INDI, AVGO, MTSI, SMCI). Applied filters: fabless semi model + AI infrastructure exposure + gross margin > 60%. INDI excluded (22.6% GM) and SMCI excluded (8.0% GM, systems integrator). Final peer set: ALAB, MRVL, MPWR, AVGO, MTSI (n=5).",
+      "ev_calculation": "EV = Market Cap - (Cash + ST Investments - Total Debt). Net cash for CRDO = $1,220.5M + $81.0M - $12.6M = $1,288.9M \u2248 $1.289B.",
+      "ntm_revenue": "NTM Revenue from finance_estimates annual consensus for next fiscal year. CRDO NTM = FY2027 guidance midpoint $2.025B (Feb 2026 \u2013 Jan 2027).",
+      "dcf_fcf": "FCF margin derived as Gross Margin minus OpEx ratio. OpEx ratio improves from 35% to 20% over 5 years reflecting operating leverage. Terminal value blended 50% Gordon Growth / 50% EV/Revenue exit multiple.",
+      "sensitivity": "Base scenario WACC and growth trajectory held constant; only FY2028 growth rate and exit multiple are varied.",
+      "options_iv": "Implied move from earnings history expectedMovePerc field (9.96% for most recent Q3 FY2026 report). Historical realized move = average of |postEarningsMoveOneDay| across 12 quarters."
+    },
+    "gaps_and_handling": {
+      "CRDO_annual_estimates": "finance_estimates returned no data for CRDO ticker with annual period \u2014 CRDO FY2027 NTM revenue used management guidance midpoint ($2.025B) from Q3 FY2026 earnings call, cross-referenced with analyst reports (Mizuho PT $200, Needham PT $220, Barclays PT $220).",
+      "INDI_ebitda": "INDI EBITDA negative ($-95.4M) \u2014 shown as NM in comps table; excluded from peer median per methodology.",
+      "options_IV_percentile": "33rd percentile IV stated in pitch context; confirmed directionally by historical expectedMovePerc trend declining from 21% (FY2025) to 10% (Q3 FY2026) as stock matured.",
+      "Q4_FY2026_guidance": "Management Q4 FY2026 guidance range (~$415-440M) derived from analyst notes following Q3 FY2026 call; exact language not in earnings transcript tool output but confirmed by Susquehanna/Mizuho price target notes.",
+      "SMCI_gross_margin": "SMCI TTM gross margin 8.0% \u2014 reflects systems integration model, not semiconductor IP. Correctly excluded from peer set."
+    }
+  }
+}

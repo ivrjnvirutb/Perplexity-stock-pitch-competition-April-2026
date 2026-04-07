@@ -1,0 +1,2716 @@
+{
+  "metadata": {
+    "title": "AI Transformation Infrastructure \u2014 Public Market Universe",
+    "description": "Comprehensive universe of public AI transformation infrastructure companies (NYSE/NASDAQ, market cap > $1B) organized across a risk/reward spectrum from conservative to speculative",
+    "generated_date": "2026-04-02",
+    "total_companies": 59,
+    "exchanges": [
+      "NYSE",
+      "NASDAQ"
+    ],
+    "market_cap_floor_b": 1.0,
+    "categories": {
+      "1": "Training Data Quality, Curation & Synthetic Data Generation",
+      "2": "AI Inference Efficiency & Cost Optimization",
+      "3": "Context Management, Persistent Memory & RAG Infrastructure",
+      "4": "Simulation Environments for Agent/Robotics Training",
+      "5": "Human Behavioral Data Collection for Embodied AI",
+      "6": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "7": "AI Verification, Evaluation & Alignment Infrastructure"
+    },
+    "scoring": {
+      "dimensions": {
+        "moat_strength": {
+          "weight": 0.25,
+          "scale": "1\u201310",
+          "description": "Defensibility and durability of competitive advantage"
+        },
+        "revenue_growth": {
+          "weight": 0.2,
+          "scale": "1\u201310",
+          "description": "Revenue growth rate normalized within tier"
+        },
+        "valuation_attractiveness": {
+          "weight": 0.2,
+          "scale": "1\u201310",
+          "description": "Analyst price target upside relative to growth rate"
+        },
+        "judge_resonance": {
+          "weight": 0.2,
+          "scale": "1\u201310",
+          "description": "Fit with Laffont/Loeb/Hao investment frameworks"
+        },
+        "data_advantage": {
+          "weight": 0.15,
+          "scale": "1\u201310",
+          "description": "Degree to which premium data enables unique investment insight"
+        }
+      },
+      "composite_formula": "0.25\u00d7Moat + 0.20\u00d7Growth + 0.20\u00d7Valuation + 0.20\u00d7Judge + 0.15\u00d7Data"
+    },
+    "summary_stats": {
+      "avg_composite_conviction": 6.42,
+      "top_conviction_ticker": "NVDA",
+      "tier_counts": {
+        "1": 12,
+        "2": 16,
+        "3": 12,
+        "4": 12,
+        "5": 7
+      }
+    }
+  },
+  "tiers": {
+    "1": {
+      "tier": 1,
+      "name": "Conservative",
+      "profile": "Large-cap (>$20B), diversified revenue, AI infrastructure as one of multiple durable business lines, strong FCF, proven management",
+      "company_count": 12,
+      "companies": [
+        {
+          "ticker": "NVDA",
+          "name": "NVIDIA Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 1993,
+          "market_cap_b": 4305.6,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization",
+            "Simulation Environments for Agent/Robotics Training",
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Designs and manufactures the dominant GPU architecture (H100/B200/Blackwell) used for virtually all large-scale AI inference workloads, with CUDA software ecosystem creating unmatched developer lock-in.",
+          "metrics": {
+            "revenue_ttm_m": 215938.0,
+            "revenue_growth_yoy_pct": 65.5,
+            "gross_margin_pct": 71.1,
+            "rd_pct_revenue": 8.6,
+            "analyst_upside_pct": 67.7,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 10,
+            "revenue_growth": 8,
+            "valuation_attractiveness": 9,
+            "judge_resonance": 10,
+            "data_advantage": 6,
+            "composite_conviction": 8.8
+          },
+          "recent_catalyst": "Blackwell B200 GPU ramp drove record data center revenue in FY2026; CEO Jensen Huang announced a $100B partnership with OpenAI for a massive data center buildout in September 2025, cementing NVDA as the backbone of frontier AI inference infrastructure.",
+          "thesis_sentence": "Despite dominant market position, NVDA trades below consensus because of DeepSeek-induced fears of AI inference commoditization, which actually increases token demand and validates GPU compute needs rather than reducing them."
+        },
+        {
+          "ticker": "AVGO",
+          "name": "Broadcom Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1991,
+          "market_cap_b": 1485.7,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Engineers custom AI inference XPUs/ASICs for Google (TPUs), Meta (MTIA), ByteDance, and others, plus AI Ethernet networking (Tomahawk/Jericho switches), making it the leading enabler of hyperscaler-specific inference hardware that displaces general-purpose GPUs.",
+          "metrics": {
+            "revenue_ttm_m": 68282.0,
+            "revenue_growth_yoy_pct": 32.4,
+            "gross_margin_pct": 67.1,
+            "rd_pct_revenue": 17.1,
+            "analyst_upside_pct": 50.0,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 8,
+            "data_advantage": 5,
+            "composite_conviction": 7.4
+          },
+          "recent_catalyst": "CEO Hock Tan stated in March 2026 that AI chip revenue is on track to exceed $100B by 2027, securing supply chain through 2028 under multi-year agreements with six hyperscaler customers; Q1 FY2026 AI semiconductor revenue grew 106% YoY to $8.4B, accelerating further than analyst expectations.",
+          "thesis_sentence": "Broadcom's custom XPU programs are effectively long-term, take-or-pay contracts that guarantee revenue for multiple chip generations, yet the stock has sold off with the broader market; the $100B+ AI chip revenue forecast for 2027 implies the AI hardware segment alone is worth more than the current enterprise value."
+        },
+        {
+          "ticker": "MSFT",
+          "name": "Microsoft Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 1975,
+          "market_cap_b": 2769.0,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Exclusive cloud partner and largest external investor in OpenAI, embedding GPT-4-class generative AI across Microsoft 365 Copilot, GitHub Copilot, Azure OpenAI Service, and Bing, creating the broadest enterprise generative AI distribution surface of any public company.",
+          "metrics": {
+            "revenue_ttm_m": 305453.0,
+            "revenue_growth_yoy_pct": 24.6,
+            "gross_margin_pct": 68.6,
+            "rd_pct_revenue": 11.0,
+            "analyst_upside_pct": 41.6,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 9,
+            "data_advantage": 4,
+            "composite_conviction": 7.05
+          },
+          "recent_catalyst": "Copilot+ integration across Microsoft 365 suite broadly released H2 2025; $80B AI infrastructure investment commitment announced for calendar 2025, validating long-term generative AI capex; GitHub Copilot reaching >2M paid seats.",
+          "thesis_sentence": "MSFT is underpriced relative to its terminal value as the default enterprise generative AI platform: switching costs embedded in M365, Teams, GitHub, and Azure are underappreciated by a market focused on near-term AI revenue contribution rather than multi-year seat expansion economics."
+        },
+        {
+          "ticker": "ISRG",
+          "name": "Intuitive Surgical, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1995,
+          "market_cap_b": 160.4,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Pioneer and dominant player in robotic-assisted surgery systems. The da Vinci surgical platform captures highly precise 3D motion data from surgeon hand movements, instrument trajectories, tissue interactions, and procedural outcomes across millions of surgeries annually \u2014 creating the world's largest and most detailed dataset of expert human surgical behavior. This data is foundational for training surgical AI systems, automated robotic assistance, and next-generation embodied medical AI that learns from expert human motor patterns.",
+          "metrics": {
+            "revenue_ttm_m": 10064.7,
+            "revenue_growth_yoy_pct": 20.5,
+            "gross_margin_pct": 66.0,
+            "rd_pct_revenue": 13.0,
+            "analyst_upside_pct": 29.2,
+            "moat_type": "Installed-base data monopoly + clinical switching costs \u2014 9,000+ da Vinci systems installed globally generate an irreplaceable surgical motion dataset; hospital training programs, credentialing, and surgeon familiarity create 10+ year switching costs; Ion endoscopy system expanding into new procedural categories; regulatory pathway experience creates competitive barriers for new entrants"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 8,
+            "data_advantage": 6,
+            "composite_conviction": 6.95
+          },
+          "recent_catalyst": "Q4 2025 adjusted EPS $2.53 vs $2.27 est (+11.5% beat); full-year 2025 revenue $10.06B (+20.5% YoY); da Vinci 5 system rollout accelerating with 2026 procedure growth guided at 13\u201315%; Ion bronchoscopy system gaining rapid adoption in lung biopsy procedures; stock sold off on 'cautious' 2026 procedure guidance but IBD analyst noted guidance conservatism is typical Intuitive pattern; Q3 2025 saw 22.9% revenue growth at $2.51B, beating estimates by $100M.",
+          "thesis_sentence": "ISRG holds a natural monopoly on high-fidelity surgical motion data \u2014 the most expert and consequential form of human physical behavioral data \u2014 with 20%+ annual revenue growth and no credible near-term competitor for robotic surgery leadership. At 29% consensus upside, the market underestimates two compounding assets: (1) the da Vinci 5 supercycle as hospitals upgrade from earlier generations, and (2) the AI training data moat from millions of annotated surgical procedures. As surgical AI (automated instrument guidance, real-time tissue identification) becomes commercially viable, ISRG's proprietary motion dataset becomes the scarcest input in the entire value chain."
+        },
+        {
+          "ticker": "MU",
+          "name": "Micron Technology, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1978,
+          "market_cap_b": 411.7,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Manufactures HBM3E and HBM4 high-bandwidth memory \u2014 the critical bandwidth bottleneck component for AI inference GPUs \u2014 with its 12-Hi HBM3E offering 30% better power efficiency than competitors, shipping inside NVIDIA H200/B200 and AMD MI300X/MI350X accelerators.",
+          "metrics": {
+            "revenue_ttm_m": 58119.0,
+            "revenue_growth_yoy_pct": 131.4,
+            "gross_margin_pct": 58.4,
+            "rd_pct_revenue": 7.6,
+            "analyst_upside_pct": 31.8,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 9,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 6,
+            "data_advantage": 5,
+            "composite_conviction": 6.9
+          },
+          "recent_catalyst": "Micron began mass production of HBM4 in early 2026 with a TSMC partnership for custom logic base dies, targeting NVIDIA Rubin and AMD MI400 platforms; FY2025 HBM revenue tripled and FY2026 HBM is fully sold out with higher pricing, driving gross margin expansion from below 20% in 2023 to nearly 60% TTM.",
+          "thesis_sentence": "The memory market is fundamentally different this cycle \u2014 HBM content per AI GPU is growing 3-4x per generation (H100 \u2192 B300) and Micron is fully sold out through 2027; the stock trades at a significant discount to historical peak-cycle multiples despite structurally higher and more durable AI-driven demand that prevents the typical oversupply bust."
+        },
+        {
+          "ticker": "GOOGL",
+          "name": "Alphabet Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1998,
+          "market_cap_b": 3570.0,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Pioneer of the transformer architecture (2017 'Attention Is All You Need') and operator of DeepMind, Google Brain, and Google DeepMind, making it the world's most prolific foundational generative AI research institution alongside its production Gemini model family.",
+          "metrics": {
+            "revenue_ttm_m": 402904.0,
+            "revenue_growth_yoy_pct": 15.1,
+            "gross_margin_pct": 59.7,
+            "rd_pct_revenue": 15.2,
+            "analyst_upside_pct": 28.9,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 9,
+            "data_advantage": 4,
+            "composite_conviction": 6.85
+          },
+          "recent_catalyst": "Gemini 2.0 launch with native multimodality and agentic capabilities; Wells Fargo upgrade Feb 2026 citing Google Cloud AI momentum; expanded enterprise AI partnerships through Google Cloud Vertex AI.",
+          "thesis_sentence": "The market applies a regulatory overhang discount to GOOGL that underweights Alphabet's unmatched proprietary training data corpus (Search, YouTube, Gmail, Maps) and DeepMind's frontier research pipeline, which positions Gemini to close the gap with GPT-4-class models in enterprise deployments."
+        },
+        {
+          "ticker": "META",
+          "name": "Meta Platforms, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2004,
+          "market_cap_b": 1446.91,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI",
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Social media and AI infrastructure company operating the world's largest multi-modal behavioral data platform \u2014 Facebook, Instagram, WhatsApp, and Messenger reach 3.58B daily active people. Meta's wearable hardware (Ray-Ban smart glasses, Quest VR/MR headsets) captures spatial, visual, and physiological behavioral data. The Ray-Ban glasses and Orion AR platform generate continuous egocentric video and audio data streams, creating the world's most diverse embodied AI training dataset for human behavior, context understanding, and physical world interaction.",
+          "metrics": {
+            "revenue_ttm_m": 200966.0,
+            "revenue_growth_yoy_pct": 22.2,
+            "gross_margin_pct": 82.0,
+            "rd_pct_revenue": 28.5,
+            "analyst_upside_pct": 44.2,
+            "moat_type": "Data network effects at global scale \u2014 3.58B daily active users generate unmatched behavioral training data; Ray-Ban glasses sales provide egocentric video data for embodied AI; $57B+ R&D creates compounding AI model advantages; Llama open-source ecosystem builds developer network effects; custom MTIA silicon reduces compute costs creating structural margin advantages vs. cloud-dependent competitors"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 9,
+            "data_advantage": 4,
+            "composite_conviction": 6.8
+          },
+          "recent_catalyst": "Q4 2025 revenue $59.89B (+23.8% YoY); Meta AI daily active users generating media tripled YoY; Advantage+ AI ad tool handling $60B+ in annual spend; Ray-Ban smart glasses expansion with new form factors; Llama 4.5 'Avocado' (closed frontier model) expected Q2 2026; Morgan Stanley named META new Top Pick with $775 target (March 31, 2026); $115\u2013135B capex budget for 2026 securing AI infrastructure leadership.",
+          "thesis_sentence": "META trades at a 44% discount to analyst consensus following a sharp selloff driven by CAPEX concerns and a social media addiction jury verdict. At 15x projected 2027 earnings with 82% gross margins and 22%+ revenue growth, Meta is arguably the highest-quality large-cap behavioral data asset globally. The Ray-Ban smart glasses represent the first scalable egocentric video data collection platform \u2014 foundational infrastructure for training embodied AI that operates in human environments. The $115B 2026 CAPEX is a bet on AI infrastructure that should yield compounding returns through improved ad targeting and new AI product monetization."
+        },
+        {
+          "ticker": "AMZN",
+          "name": "Amazon.com, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1994,
+          "market_cap_b": 2246.0,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Operates Amazon Bedrock (multi-model generative AI API platform), the Amazon Nova foundation model family, and AWS Trainium/Inferentia custom AI silicon, making AWS the primary infrastructure layer for enterprise generative AI deployment at scale.",
+          "metrics": {
+            "revenue_ttm_m": 716924.0,
+            "revenue_growth_yoy_pct": 12.4,
+            "gross_margin_pct": 50.3,
+            "rd_pct_revenue": 15.1,
+            "analyst_upside_pct": 41.9,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 8,
+            "data_advantage": 4,
+            "composite_conviction": 6.4
+          },
+          "recent_catalyst": "Amazon Nova model family launched on Bedrock (Q4 2025) \u2014 competitive price/performance vs GPT-4o; Trainium2 chips sampling to select customers; Bedrock Marketplace expanded to 100+ third-party models including Anthropic Claude 3.5 and Meta Llama 4.",
+          "thesis_sentence": "The market underweights AWS's structural advantage as the neutral, multi-model cloud layer for enterprise generative AI: unlike Azure (OpenAI-anchored) or GCP (Gemini-anchored), Bedrock's model-agnostic approach with integrated custom silicon creates a winner-take-most dynamic in enterprise AI workloads."
+        },
+        {
+          "ticker": "AMD",
+          "name": "Advanced Micro Devices, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1969,
+          "market_cap_b": 353.9,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Designs GPU accelerators (MI300X/MI350X) and CPUs (EPYC) targeting AI inference workloads as the primary alternative to NVIDIA, leveraging an open ROCm software ecosystem and strong hyperscaler partnerships.",
+          "metrics": {
+            "revenue_ttm_m": 34639.0,
+            "revenue_growth_yoy_pct": 34.3,
+            "gross_margin_pct": 49.5,
+            "rd_pct_revenue": 23.4,
+            "analyst_upside_pct": 27.6,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 5,
+            "composite_conviction": 6.3
+          },
+          "recent_catalyst": "AMD launched the MI350X GPU featuring 288GB HBM3e memory (on par with NVIDIA Blackwell Ultra) and secured multi-year hyperscaler contracts, with data center GPU revenue surpassing $5B in 2025 as ROCm software maturity improved.",
+          "thesis_sentence": "AMD is priced as if it will remain a permanent #2, but its MI400 roadmap with 432GB HBM4 and improving ROCm developer adoption could allow it to undercut NVIDIA on price/performance for inference workloads where CUDA lock-in is weakest."
+        },
+        {
+          "ticker": "AAPL",
+          "name": "Apple Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1976,
+          "market_cap_b": 3746.0,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Consumer technology platform operating the world's largest installed base of wearable sensors and motion-capture devices. Apple Watch and AirPods generate continuous biometric, motion, and behavioral data streams (heart rate, ECG, blood oxygen, gait analysis, activity patterns, sleep staging, fall detection) from 300M+ active wearable users. This proprietary health behavioral dataset is a foundational asset for training embodied AI, personal health AI agents, and ambient intelligence systems.",
+          "metrics": {
+            "revenue_ttm_m": 435617.0,
+            "revenue_growth_yoy_pct": 11.4,
+            "gross_margin_pct": 47.3,
+            "rd_pct_revenue": 8.5,
+            "analyst_upside_pct": 28.8,
+            "moat_type": "Ecosystem network effects + data moat \u2014 Apple's closed hardware-software-services ecosystem generates unique multi-modal behavioral data unavailable to any third party; HealthKit data sharing creates an industry-standard behavioral data API; brand loyalty with 2B+ active devices creates persistent data collection at unmatched scale"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 4,
+            "composite_conviction": 6.25
+          },
+          "recent_catalyst": "Apple Intelligence (generative AI features) rolling out across iPhone 16/15 and Mac platforms in 2025\u20132026; Vision Pro establishing spatial computing behavioral data capture paradigm; Health app expanding into mental health and medication management behavioral tracking; partnership with OpenAI for on-device AI processing; Apple Watch Series 10 with blood pressure monitoring expanding biometric dataset.",
+          "thesis_sentence": "AAPL's 29% analyst upside consensus underestimates the monetization potential of Apple Intelligence \u2014 an on-device AI platform trained on the world's richest individual behavioral dataset. With 300M+ wearable users generating continuous biometric and motion data, Apple is uniquely positioned to monetize health AI services at scale. The services segment (now 30%+ of gross profit) and Vision Pro spatial computing data moat represent underappreciated long-term value drivers relative to current market pricing."
+        },
+        {
+          "ticker": "CRM",
+          "name": "Salesforce, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 1999,
+          "market_cap_b": 174.2,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Enterprise CRM platform whose Data Cloud unifies customer data as a real-time retrieval layer for AI agents (Agentforce), enabling RAG over proprietary enterprise data across sales, service, marketing, and commerce workflows at Fortune 500 scale.",
+          "metrics": {
+            "revenue_ttm_m": 41525.0,
+            "revenue_growth_yoy_pct": 9.6,
+            "gross_margin_pct": 77.7,
+            "rd_pct_revenue": 14.4,
+            "analyst_upside_pct": 30.1,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 5,
+            "composite_conviction": 6.15
+          },
+          "recent_catalyst": "Salesforce launched Agentforce 2.0 with expanded Agentforce 360 in late 2025, enabling autonomous AI agents to natively retrieve from Data Cloud's unified customer knowledge graph, with the company reporting significant Agentforce seat expansion in Q4 FY2026 earnings.",
+          "thesis_sentence": "Market is penalizing Salesforce for low single-digit growth without recognizing that Agentforce creates a new consumption revenue stream on top of existing seat licenses, where even modest AI agent adoption by existing customers could reaccelerate revenue growth to mid-teens by FY2027."
+        },
+        {
+          "ticker": "IBM",
+          "name": "International Business Machines Corporation",
+          "exchange": "NYSE",
+          "founding_year": 1911,
+          "market_cap_b": 231.5,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG",
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Hybrid cloud and AI company whose watsonx.data platform integrates OpenRAG (an open agentic retrieval framework) and OpenSearch as a managed enterprise knowledge retrieval engine, targeting regulated enterprises requiring on-premises or hybrid RAG with full data governance.",
+          "metrics": {
+            "revenue_ttm_m": 67535.0,
+            "revenue_growth_yoy_pct": 7.6,
+            "gross_margin_pct": 59.5,
+            "rd_pct_revenue": 12.3,
+            "analyst_upside_pct": 13.2,
+            "moat_type": "regulatory"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 3,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 5,
+            "composite_conviction": 5.3
+          },
+          "recent_catalyst": "In March 2026, IBM announced OpenRAG on watsonx.data \u2014 an open, agentic retrieval framework that combines OpenSearch hybrid/vector search with governance controls \u2014 alongside pending acquisition of DataStax to integrate its Apache Cassandra and vector database capabilities into the watsonx platform.",
+          "thesis_sentence": "IBM's watsonx is quietly becoming the compliance-first RAG infrastructure standard for regulated industries (banking, government, healthcare) that cannot use hyperscaler AI due to data residency requirements, and the market's 'hold' consensus underestimates the strategic value of IBM's trusted enterprise brand in winning sovereign AI deployments."
+        }
+      ]
+    },
+    "2": {
+      "tier": 2,
+      "name": "Established Growth",
+      "profile": "Mid-to-large cap, AI infrastructure as primary revenue driver, proven product-market fit, growing but not yet dominant market share",
+      "company_count": 16,
+      "companies": [
+        {
+          "ticker": "PLTR",
+          "name": "Palantir Technologies Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2003,
+          "market_cap_b": 337.9,
+          "category": "Training Data Quality, Curation & Synthetic Data",
+          "category_number": 1,
+          "all_categories": [
+            "Training Data Quality, Curation & Synthetic Data",
+            "Context Management, Persistent Memory & RAG",
+            "Human Behavioral Data for Embodied AI",
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Builds AI-powered data integration and analytics platforms (Foundry, AIP) for government and commercial enterprises, enabling organizations to run AI workflows on proprietary data for training and inference.",
+          "metrics": {
+            "revenue_ttm_m": 4475.0,
+            "revenue_growth_yoy_pct": 56.2,
+            "gross_margin_pct": 82.4,
+            "rd_pct_revenue": 12.5,
+            "analyst_upside_pct": 27.7,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 7,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 9,
+            "data_advantage": 9,
+            "composite_conviction": 7.75
+          },
+          "recent_catalyst": "FY2025 US commercial revenue surged +109% YoY to $1.47B; Rule of 40 score of 106%; cash position of $7.2B; 2026 revenue guidance of $7.19B implying continued hypergrowth.",
+          "thesis_sentence": "Market underestimates the pace of commercial AIP adoption; 109% US commercial growth run rate is not yet priced into conservative consensus targets anchored to slower government-led revenue assumptions."
+        },
+        {
+          "ticker": "DDOG",
+          "name": "Datadog",
+          "exchange": "NASDAQ",
+          "founding_year": 2010,
+          "market_cap_b": 42.4,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Datadog is the leading cloud observability platform and has evolved into the primary AI observability infrastructure layer: its LLM Observability, AI Agents Console, and LLM Experiments products monitor, trace, and evaluate AI agents and LLM applications in production. The March 2026 GA of Datadog's MCP Server enables real-time live observability data ingestion by AI agents, making Datadog the connective tissue between AI model evaluation and live production monitoring. Over 5,000 AI-native customers (67% YoY growth) now represent ~12% of total ARR, establishing Datadog as the default AI verification and evaluation platform for cloud-native organizations.",
+          "metrics": {
+            "revenue_ttm_m": 3427.2,
+            "revenue_growth_yoy_pct": 27.7,
+            "gross_margin_pct": 79.9,
+            "rd_pct_revenue": 45.2,
+            "analyst_upside_pct": 63.9,
+            "moat_type": "network effects"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 9,
+            "data_advantage": 6,
+            "composite_conviction": 7.5
+          },
+          "recent_catalyst": "Launched MCP Server GA (March 9, 2026) enabling AI agents to consume live observability data, and unveiled AI Agent Monitoring, LLM Experiments, and AI Agents Console at DASH 2025 \u2014 cementing Datadog as the AI observability standard with 5,000+ AI customers growing 67% YoY.",
+          "thesis_sentence": "DDOG is significantly underpriced relative to its role as the dominant AI observability layer: the market is pricing it as a mature cloud monitoring vendor while the AI product suite is just beginning to ramp. With AI customers at 12% of revenue and growing 67% YoY, the total addressable market expansion from monitoring cloud infrastructure to monitoring AI agents is 5-10x the existing market. At ~13x NTM revenue vs. historical peaks near 30x, the current multiple already prices in minimal AI monetization \u2014 creating a favorable asymmetry as AI-specific SKUs scale."
+        },
+        {
+          "ticker": "VEEV",
+          "name": "Veeva Systems Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2007,
+          "market_cap_b": 28.4,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG",
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Life sciences industry cloud whose Vault platform serves as the regulated knowledge management and retrieval layer for drug development, with Veeva AI Agents embedding RAG over clinical, regulatory, safety, and quality documents for the top 20 global pharmaceutical companies.",
+          "metrics": {
+            "revenue_ttm_m": 3195.0,
+            "revenue_growth_yoy_pct": 16.3,
+            "gross_margin_pct": 75.5,
+            "rd_pct_revenue": 24.0,
+            "analyst_upside_pct": 60.5,
+            "moat_type": "regulatory"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 8,
+            "data_advantage": 6,
+            "composite_conviction": 7.35
+          },
+          "recent_catalyst": "In October 2025, Veeva announced the phased rollout of Veeva AI Agents across all Vault applications starting December 2025 (commercial/CRM), with clinical, regulatory, and quality agents following through 2026, enabling pharmaceutical companies to deploy validated AI over their proprietary drug development knowledge bases.",
+          "thesis_sentence": "Veeva's complete Vault CRM migration from Salesforce creates a short-term revenue noise that masks the structural durability of its validated cloud monopoly in life sciences content management, where FDA 21 CFR Part 11 compliance requirements functionally prevent customers from switching to non-validated alternatives."
+        },
+        {
+          "ticker": "ANET",
+          "name": "Arista Networks",
+          "exchange": "NYSE",
+          "founding_year": 2004,
+          "market_cap_b": 159.3,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Arista Networks provides the cloud networking infrastructure \u2014 Ethernet switches, EOS (Extensible Operating System), and CloudVision \u2014 that forms the physical data plane through which AI model training, evaluation, and verification workloads flow at scale. AI/ML data centers require Arista's ultra-low-latency spine-leaf architectures to enable the deterministic network behavior needed for distributed AI training and inference verification. Arista is the primary networking vendor for AI infrastructure at Microsoft, Meta, and cloud hyperscalers, with AI-related revenue representing a growing share of its record backlog.",
+          "metrics": {
+            "revenue_ttm_m": 9005.7,
+            "revenue_growth_yoy_pct": 28.6,
+            "gross_margin_pct": 64.1,
+            "rd_pct_revenue": 13.7,
+            "analyst_upside_pct": 51.0,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 8,
+            "data_advantage": 6,
+            "composite_conviction": 7.3
+          },
+          "recent_catalyst": "Q4 2025 revenue beat consensus expectations; Goldman Sachs raised its price target to $188 in early 2026, citing AI data center networking demand driving a record backlog as hyperscalers double down on Ethernet-based AI fabric investments.",
+          "thesis_sentence": "ANET is underpriced as the AI infrastructure networking cycle is multi-year and the market is anchoring to near-term margin compression risk from product mix shifts. Arista's EOS software moat and CloudVision management layer create durable switching costs even as hardware commoditizes \u2014 competitors (Cisco, Juniper) have failed to replicate EOS's programmability at scale. At 64% gross margin and 28.6% revenue growth, Arista's FCF conversion is exceptional; at ~17x NTM revenue vs. historical peaks of 25x+, the current valuation does not price in an AI networking super-cycle that could sustain 25%+ growth for 3-5 years."
+        },
+        {
+          "ticker": "AXON",
+          "name": "Axon Enterprise, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1993,
+          "market_cap_b": 33.04,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Public safety technology platform providing conducted energy weapons (TASER), body-worn cameras, in-car cameras, and a cloud software ecosystem (Axon Cloud/Evidence.com) to law enforcement and civilian markets globally. Axon generates one of the world's largest and most consequential datasets of human behavioral video \u2014 officer-civilian encounters, incident recordings, and real-time spatial data \u2014 directly applicable to embodied AI safety training and human action recognition models.",
+          "metrics": {
+            "revenue_ttm_m": 2779.5,
+            "revenue_growth_yoy_pct": 33.5,
+            "gross_margin_pct": 59.7,
+            "rd_pct_revenue": 22.5,
+            "analyst_upside_pct": 63.1,
+            "moat_type": "Data network effects + switching-cost moat \u2014 Evidence.com holds terabytes of proprietary law enforcement behavioral video; deep government procurement relationships with multi-year contracts; TASER brand synonymous with CEW category; AI models trained on proprietary video data create compounding defensibility"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 7.25
+          },
+          "recent_catalyst": "Q4 2025 revenue $797M (+39% YoY), full-year 2025 revenue $2.08B; launched Draft One AI (auto-transcribes body-cam footage to police reports), ABW Mini workplace camera entering new verticals; acquired Carbyne next-generation 911 platform for $625M, expanding addressable market into emergency dispatch and public safety AI infrastructure.",
+          "thesis_sentence": "AXON has a near-monopoly on law enforcement body camera video \u2014 the world's most regulated and behaviorally rich human action dataset. Draft One AI turns this data moat into an AI products revenue stream with 90%+ gross margins. At 33%+ revenue growth with accelerating software attach rates and a $625M acquisition expanding the addressable market, the 63% analyst consensus upside reflects the market underpricing both the AI data flywheel and the international expansion of body-cam mandates."
+        },
+        {
+          "ticker": "ARM",
+          "name": "Arm Holdings plc",
+          "exchange": "NASDAQ",
+          "founding_year": 1990,
+          "market_cap_b": 158.7,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Licenses inference-optimized ISA and CPU/NPU designs (Cortex-X, Ethos NPU) that underpin virtually all edge inference silicon, collecting royalties from every AI-capable chip manufactured by NVIDIA, Qualcomm, Apple, and others.",
+          "metrics": {
+            "revenue_ttm_m": 4671.0,
+            "revenue_growth_yoy_pct": 16.6,
+            "gross_margin_pct": 95.4,
+            "rd_pct_revenue": 56.3,
+            "analyst_upside_pct": 30.0,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 9,
+            "data_advantage": 6,
+            "composite_conviction": 7.15
+          },
+          "recent_catalyst": "ARM expanded its Total Design ecosystem in October 2025 to include Credo Technology's SerDes IP, enabling faster custom AI ASIC development; meanwhile royalty rates increased as hyperscalers adopted Neoverse V3 for inference workloads, with AWS Graviton and Microsoft Cobalt driving volumes.",
+          "thesis_sentence": "ARM collects a royalty on inference operations running on virtually every non-NVIDIA edge chip; as AI PCs and smartphones move model inference on-device, ARM's per-chip royalty revenue could double or triple within 3 years on units already guaranteed under existing licenses, a dynamic not reflected at current valuations."
+        },
+        {
+          "ticker": "NOW",
+          "name": "ServiceNow, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2004,
+          "market_cap_b": 106.4,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Enterprise workflow platform that introduced RaptorDB and Workflow Data Fabric as an enterprise AI memory layer, enabling AI agents to retrieve from a unified knowledge graph that spans IT, HR, customer service, and finance workflows across the enterprise.",
+          "metrics": {
+            "revenue_ttm_m": 13278.0,
+            "revenue_growth_yoy_pct": 20.9,
+            "gross_margin_pct": 77.5,
+            "rd_pct_revenue": 22.3,
+            "analyst_upside_pct": 75.0,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 9,
+            "judge_resonance": 8,
+            "data_advantage": 5,
+            "composite_conviction": 7.15
+          },
+          "recent_catalyst": "At Knowledge 2025 (May 2025), ServiceNow unveiled long-term memory capabilities for AI agents with context-aware state persistence, AI Agent Orchestrator for multi-agent coordination, and RaptorDB as a high-performance proprietary database underpinning real-time knowledge retrieval across enterprise workflows.",
+          "thesis_sentence": "ServiceNow has experienced an extreme selloff (stock declined ~88% from 2025 highs to current $101 level) that has priced in severe demand destruction, while the company's deeply embedded workflow data fabric and 20%+ organic revenue growth in FY2025 suggest the selloff represents a significant dislocation between fundamentals and valuation."
+        },
+        {
+          "ticker": "SNOW",
+          "name": "Snowflake Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2012,
+          "market_cap_b": 52.59,
+          "category": "Training Data Quality, Curation & Synthetic Data",
+          "category_number": 1,
+          "all_categories": [
+            "Training Data Quality, Curation & Synthetic Data"
+          ],
+          "description": "Cloud data platform that stores, processes, and governs enterprise data at scale, with Cortex AI and Snowflake Intelligence making it a primary pipeline for training data curation and synthetic data generation for AI/ML workloads.",
+          "metrics": {
+            "revenue_ttm_m": 4684.0,
+            "revenue_growth_yoy_pct": 29.3,
+            "gross_margin_pct": 67.2,
+            "rd_pct_revenue": 42.0,
+            "analyst_upside_pct": 48.2,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 6.8
+          },
+          "recent_catalyst": "Q4 FY2026 beat estimates with 30% revenue growth; signed largest deal in company history ($400M TCV); added 740 net new customers (+40% YoY); RPO grew 42% to $9.77B; Snowflake Intelligence scaled to 2,500+ accounts.",
+          "thesis_sentence": "AI Data Cloud consumption model is poised to accelerate as enterprise AI agents require governed, centralized training data pipelines; RPO growth of 42% implies revenue reacceleration not yet reflected in current stock price."
+        },
+        {
+          "ticker": "MRVL",
+          "name": "Marvell Technology, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1997,
+          "market_cap_b": 93.4,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Designs custom AI inference ASICs (XPUs) for hyperscalers and provides high-speed networking silicon critical for AI data center interconnect, with rapidly growing custom silicon programs replacing merchant GPU spend at leading cloud providers.",
+          "metrics": {
+            "revenue_ttm_m": 8195.0,
+            "revenue_growth_yoy_pct": 42.1,
+            "gross_margin_pct": 50.1,
+            "rd_pct_revenue": 25.3,
+            "analyst_upside_pct": 22.4,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 7,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 6.8
+          },
+          "recent_catalyst": "Marvell and NVIDIA announced a partnership in May 2025 to deliver custom silicon with NVLink Fusion, enabling hyperscalers to build custom inference accelerators that integrate with NVIDIA's NVLink fabric; data center revenue grew 37.8% in FY2026, driven by XPU program scale-up with multiple hyperscalers.",
+          "thesis_sentence": "Marvell's custom ASIC business has multi-year hyperscaler design wins that give revenue visibility rarely seen in semiconductors, yet the stock trades at a discount to peers because investors underestimate the magnitude and margin durability of XPU royalty-like recurring revenue streams."
+        },
+        {
+          "ticker": "CRWD",
+          "name": "CrowdStrike",
+          "exchange": "NASDAQ",
+          "founding_year": 2011,
+          "market_cap_b": 100.6,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "CrowdStrike is the dominant AI-native cybersecurity platform whose Charlotte AI acts as an AI verification and threat-detection layer trained on the world's largest threat intelligence dataset (Threat Graph, processing 2 trillion+ events per day). The March 2026 Charlotte AI AgentWorks Ecosystem launch \u2014 partnering with Accenture, AWS, Anthropic, NVIDIA, and OpenAI \u2014 establishes CRWD as the orchestration and evaluation layer for enterprise AI security agents. FedRAMP High Authorization for Charlotte AI (November 2025) creates a durable government AI verification moat.",
+          "metrics": {
+            "revenue_ttm_m": 4812.0,
+            "revenue_growth_yoy_pct": 29.4,
+            "gross_margin_pct": 74.9,
+            "rd_pct_revenue": 29.0,
+            "analyst_upside_pct": 28.6,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 8,
+            "data_advantage": 5,
+            "composite_conviction": 6.75
+          },
+          "recent_catalyst": "Launched Charlotte AI AgentWorks Ecosystem (March 25, 2026) with Accenture, AWS, Anthropic, NVIDIA, and OpenAI as anchor partners, while Charlotte AI received FedRAMP High Authorization (November 2025) \u2014 making CRWD the only AI security agent platform cleared for the highest-sensitivity U.S. government workloads.",
+          "thesis_sentence": "CRWD is underpriced relative to the earnings power unlocked by Charlotte AI AgentWorks becoming the default enterprise AI security orchestration ecosystem: as customers consolidate security vendors onto the Falcon platform ('Falcon Flex'), CRWD captures AI verification revenue that would otherwise fragment across point solutions. The FedRAMP High clearance for Charlotte AI is a near-permanent competitive moat that cannot be replicated quickly by PANW or S \u2014 and the government AI security market alone could add multiple ARR points. CrowdStrike has also substantially recovered from the 2024 outage, with retention metrics rebounding, removing the key bear-case overhang."
+        },
+        {
+          "ticker": "NET",
+          "name": "Cloudflare, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2009,
+          "market_cap_b": 74.1,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Connectivity cloud that provides edge-native vector storage (Vectorize), Workers AI inference, and AutoRAG as fully managed services, enabling developers to deploy RAG applications with persistent memory at the network edge without managing infrastructure.",
+          "metrics": {
+            "revenue_ttm_m": 2168.0,
+            "revenue_growth_yoy_pct": 29.8,
+            "gross_margin_pct": 74.7,
+            "rd_pct_revenue": 23.6,
+            "analyst_upside_pct": 16.1,
+            "moat_type": "network effects"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 8,
+            "data_advantage": 6,
+            "composite_conviction": 6.45
+          },
+          "recent_catalyst": "At AI Week 2025 (March 2026), Cloudflare launched AutoRAG as a one-click conversational search layer for websites and MCP Server Portals in open beta, positioning its network as the standard infrastructure layer for agentic AI traffic, with $2.795B 2026 revenue guidance implying 29% growth.",
+          "thesis_sentence": "Cloudflare's global anycast network of 300+ PoPs creates a structural edge latency advantage for real-time RAG retrieval that no cloud provider can replicate, and its usage-based developer services (Workers AI, Vectorize, R2) represent an embedded moat that will compound as AI inference moves to the edge."
+        },
+        {
+          "ticker": "SNPS",
+          "name": "Synopsys Inc. (incl. Ansys)",
+          "exchange": "NASDAQ",
+          "founding_year": 1986,
+          "market_cap_b": 75.7,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 8007.7,
+            "revenue_growth_yoy_pct": 13.5,
+            "gross_margin_pct": 75.1,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 9,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 7,
+            "data_advantage": 5,
+            "composite_conviction": 6.2
+          },
+          "recent_catalyst": "Completed $35B Ansys acquisition July 17, 2025, creating an integrated EDA + multiphysics simulation platform targeting a $31B TAM; first combined product releases expected H1 2026.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "PANW",
+          "name": "Palo Alto Networks",
+          "exchange": "NASDAQ",
+          "founding_year": 2005,
+          "market_cap_b": 110.8,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Palo Alto Networks is a leading cybersecurity platform with a growing AI security verification portfolio centered on Prisma AIRS (AI Runtime Security) \u2014 a dedicated platform for AI red-teaming, model security validation, and AI application governance. Prisma AIRS performs automated adversarial testing of AI systems, model behavior evaluation, and runtime monitoring of AI model inputs/outputs, making PANW one of the few public companies with a formal AI red-teaming and evaluation commercial product. Its platformization strategy (10 security platforms \u2192 3 unified) reduces friction for enterprise AI security governance adoption.",
+          "metrics": {
+            "revenue_ttm_m": 9893.3,
+            "revenue_growth_yoy_pct": 14.9,
+            "gross_margin_pct": 73.5,
+            "rd_pct_revenue": 20.6,
+            "analyst_upside_pct": 30.0,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 5,
+            "composite_conviction": 6.15
+          },
+          "recent_catalyst": "Continued platformization consolidation with Prisma AIRS launch for AI red-teaming and security validation \u2014 providing automated adversarial testing and runtime governance for enterprise AI models, while Q2 FY2026 results showed next-generation security ARR growing ahead of expectations.",
+          "thesis_sentence": "PANW is underpriced as the market prices in revenue growth deceleration (14.9% YoY) without fully crediting the multi-year ARR acceleration embedded in its platformization billings structure. Prisma AIRS is the only enterprise-grade AI red-teaming product from a public company, and as regulatory requirements for AI security testing expand (EU AI Act, U.S. executive orders), PANW is positioned to capture mandatory compliance spend. At ~11x NTM revenue vs. CRWD at ~15x, PANW trades at an unjustified discount given comparable gross margins and superior GAAP profitability ($1.28B net income TTM)."
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QUALCOMM Incorporated",
+          "exchange": "NASDAQ",
+          "founding_year": 1985,
+          "market_cap_b": 135.4,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Designs Snapdragon NPUs and edge AI accelerators enabling on-device inference for smartphones, PCs, and automotive platforms, offering dramatically lower latency and cost than cloud-based inference at the network edge.",
+          "metrics": {
+            "revenue_ttm_m": 44867.0,
+            "revenue_growth_yoy_pct": 15.2,
+            "gross_margin_pct": 55.1,
+            "rd_pct_revenue": 20.6,
+            "analyst_upside_pct": 14.4,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 5,
+            "composite_conviction": 5.95
+          },
+          "recent_catalyst": "Qualcomm's Snapdragon X Elite PC platform established a 45 TOPS AI inference benchmark standard, and the company expanded into automotive AI inference with a Snapdragon Digital Chassis win at a major OEM, while guiding AI PC chip shipments to reach 100M+ units by 2027.",
+          "thesis_sentence": "Market is pricing QCOM as a smartphone cycle stock, ignoring that on-device inference for AI applications (eliminating cloud API costs) is set to be the dominant inference paradigm within 3 years, and QCOM's ISA+modem integration creates a near-unassailable position in edge compute."
+        },
+        {
+          "ticker": "GRMN",
+          "name": "Garmin Ltd.",
+          "exchange": "NASDAQ",
+          "founding_year": 1989,
+          "market_cap_b": 45.8,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Precision GPS and wearable technology company serving fitness, outdoor, aviation, marine, and automotive markets. Garmin wearables (Fenix, Forerunner, Venu series) capture highly granular human physiological and behavioral data \u2014 running dynamics, VO2 max, body battery stress scores, sleep architecture, HRV, cycling power metrics \u2014 generating one of the deepest sport and fitness behavioral datasets globally. This data directly trains embodied AI models for human performance optimization and motion analysis.",
+          "metrics": {
+            "revenue_ttm_m": 7245.5,
+            "revenue_growth_yoy_pct": 15.1,
+            "gross_margin_pct": 58.7,
+            "rd_pct_revenue": 15.5,
+            "analyst_upside_pct": 10.7,
+            "moat_type": "Brand + data moat \u2014 Garmin's 100M+ device installed base generates proprietary behavioral datasets unavailable elsewhere; dominance in aviation GPS creates separate defensible moat; fitness community lock-in through Garmin Connect platform with 30M+ registered users and decades of individual activity histories; aerospace/defense certifications create high switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 5,
+            "data_advantage": 6,
+            "composite_conviction": 5.65
+          },
+          "recent_catalyst": "CEO hints 2026 will be 'very active' for new outdoor watch launches; launched AI nutrition tracking in Garmin Connect+ platform (AI analyzes food photos for macro tracking); record Q4 2025 revenue driven by wearables and aviation; expanding health AI features including overnight HRV analysis and stress tracking; Connect+ premium subscription model testing new monetization layer on behavioral data platform.",
+          "thesis_sentence": "GRMN's modest 11% analyst upside understates the company's position as a premium behavioral data collector across fitness, aviation, and outdoor verticals. With 15% revenue growth at 59% gross margins, Garmin trades at a reasonable multiple for a company with durable brand loyalty and an expanding health AI platform. The Connect+ subscription launch represents a high-margin behavioral data monetization pathway that current consensus models have not fully priced in. Aviation remains a highly defensible cash-generating segment."
+        },
+        {
+          "ticker": "ADBE",
+          "name": "Adobe Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1982,
+          "market_cap_b": 98.6,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Integrates proprietary diffusion-based generative AI (Firefly) natively into Creative Cloud and Document Cloud workflows, uniquely trained on licensed and public-domain content to produce commercially safe generative images, video, and vector assets at scale.",
+          "metrics": {
+            "revenue_ttm_m": 24453.0,
+            "revenue_growth_yoy_pct": 13.7,
+            "gross_margin_pct": 89.1,
+            "rd_pct_revenue": 17.9,
+            "analyst_upside_pct": 8.6,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 4,
+            "judge_resonance": 7,
+            "data_advantage": 5,
+            "composite_conviction": 5.5
+          },
+          "recent_catalyst": "Adobe MAX October 2025: launched Firefly Image Model 5 (photorealistic quality), Firefly Foundry (enterprise custom brand model training), and multi-model choice (Google Imagen, OpenAI, Runway integration); Quick Cut AI video editor entered beta March 2026; $1.9B Semrush acquisition announced to expand AI content-to-distribution pipeline.",
+          "thesis_sentence": "ADBE is underpriced if Firefly's commercially safe generation IP becomes a regulatory moat: as generative AI copyright litigation accelerates globally, enterprises will pay a premium for indemnified, licensed-content AI tools, and Adobe's existing 30M+ Creative Cloud subscriber base provides an unmatched upsell surface."
+        }
+      ]
+    },
+    "3": {
+      "tier": 3,
+      "name": "High Conviction Growth",
+      "profile": "Mid-cap ($1B\u2013$5B), pure-play on structural AI flaw, clear moat, specific near-term catalyst, market underpricing TAM or growth rate",
+      "company_count": 12,
+      "companies": [
+        {
+          "ticker": "CRDO",
+          "name": "Credo Technology Group Holding Ltd",
+          "exchange": "NASDAQ",
+          "founding_year": 2008,
+          "market_cap_b": 18.8,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization",
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Designs high-speed SerDes DSP and Active Electrical Cable (AEC) connectivity solutions that form the backbone of AI data center intra-rack and inter-rack networks, enabling the lossless RDMA networks required for efficient distributed inference at scale.",
+          "metrics": {
+            "revenue_ttm_m": 1068.0,
+            "revenue_growth_yoy_pct": 453.5,
+            "gross_margin_pct": 67.8,
+            "rd_pct_revenue": 22.1,
+            "analyst_upside_pct": 75.8,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 10,
+            "valuation_attractiveness": 10,
+            "judge_resonance": 8,
+            "data_advantage": 8,
+            "composite_conviction": 8.55
+          },
+          "recent_catalyst": "In Q3 FY2026, Credo added a third major hyperscaler AEC deployment, with quarterly revenue approaching $407M and management guiding to triple FY2025 revenue in FY2026; Credo's ZeroFlap 1.6T AECs became the standard cabling solution for NVIDIA's Rubin NVL144 AI server clusters.",
+          "thesis_sentence": "CRDO invented the AEC market, holds dominant IP in 224G SerDes, and is now expanding to optical DSP \u2014 creating a multi-product platform where each new AI cluster generation adds more Credo content per rack; the stock has pulled back significantly from highs despite accelerating revenue, presenting a rare combination of near-hypergrowth and improving margins."
+        },
+        {
+          "ticker": "ALAB",
+          "name": "Astera Labs, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2017,
+          "market_cap_b": 19.7,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Provides rack-scale AI infrastructure through an Intelligent Connectivity Platform (CXL, PCIe, Ethernet, NVLink Fusion, UALink) and COSMOS software, solving the memory and interconnect bottlenecks that limit GPU inference throughput at scale.",
+          "metrics": {
+            "revenue_ttm_m": 853.0,
+            "revenue_growth_yoy_pct": 115.1,
+            "gross_margin_pct": 75.7,
+            "rd_pct_revenue": 35.7,
+            "analyst_upside_pct": 70.7,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 9,
+            "valuation_attractiveness": 10,
+            "judge_resonance": 8,
+            "data_advantage": 8,
+            "composite_conviction": 8.35
+          },
+          "recent_catalyst": "Astera Labs integrated NVLink Fusion support into its Connectivity Platform in 2025, enabling hyperscalers to connect custom accelerators to NVIDIA's fabric at rack scale; FY2025 revenue more than doubled YoY to $852M, with Q4 showing accelerating adoption across all major hyperscalers.",
+          "thesis_sentence": "ALAB is one of few semiconductor companies whose products directly address the interconnect bottleneck that constrains inference scalability \u2014 a problem that grows larger with each new GPU generation; at current price, the company trades at a significant discount to its growth rate, reflecting excessive macro/sector rotation pressure rather than fundamental deterioration."
+        },
+        {
+          "ticker": "CRWV",
+          "name": "CoreWeave, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2017,
+          "market_cap_b": 42.9,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Operates specialized GPU cloud infrastructure purpose-built for AI inference workloads, providing on-demand NVIDIA GPU access to AI companies (OpenAI, Microsoft, Meta) at scale, with $56B revenue backlog securing multi-year cash flows.",
+          "metrics": {
+            "revenue_ttm_m": 5131.0,
+            "revenue_growth_yoy_pct": 167.9,
+            "gross_margin_pct": 71.7,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": 74.0,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 9,
+            "valuation_attractiveness": 10,
+            "judge_resonance": 7,
+            "data_advantage": 8,
+            "composite_conviction": 7.65
+          },
+          "recent_catalyst": "CoreWeave went public on NASDAQ in March 2025 at $40/share in the largest U.S. tech IPO since 2021, reaching a $187 peak; the company signed major multi-year contracts with OpenAI and Meta in late 2025, building a revenue backlog of $56B by Q3 2025, nearly 2x combined 2026-2027 analyst revenue estimates.",
+          "thesis_sentence": "CoreWeave's $56B backlog provides multi-year revenue visibility that makes its business more predictable than typical tech infrastructure; the stock has declined ~56% from its high largely due to market-wide de-risking of AI infrastructure plays, but the contracted revenue base more than covers the capital required to service existing commitments."
+        },
+        {
+          "ticker": "PODD",
+          "name": "Insulet Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 2000,
+          "market_cap_b": 14.34,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Medical device company and inventor of the tubeless insulin pump (Omnipod), providing automated insulin delivery (AID) systems that integrate with CGM sensors to create a closed-loop physiological feedback system. Insulet's Omnipod 5 AID platform continuously captures glucose response data, insulin delivery behavioral patterns, and real-world metabolic dynamics from 600,000+ active global users \u2014 generating uniquely rich datasets for training embodied health AI and autonomous metabolic management algorithms.",
+          "metrics": {
+            "revenue_ttm_m": 2708.2,
+            "revenue_growth_yoy_pct": 30.7,
+            "gross_margin_pct": 71.6,
+            "rd_pct_revenue": 11.1,
+            "analyst_upside_pct": 66.1,
+            "moat_type": "Product monopoly + installed-base data moat \u2014 Insulet is the only manufacturer of a commercially available tubeless AID system globally; 600K+ active users generate proprietary insulin-dosing behavioral data that refines algorithm accuracy over time; #1 market share in new customer starts in both U.S. and Europe; pharmacy-first distribution model reduces clinical friction"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 7.25
+          },
+          "recent_catalyst": "Q4 2025 revenue $783.8M (+31.2% YoY), full-year 2025 revenue $2.7B (+30.7%); stock surged 8% on results; 2026 guidance of 20\u201322% revenue growth and 25%+ EPS growth; Omnipod 5 integration with Dexcom G7 15-Day launched June 2025; FDA clearance for new algorithm enabling 100 mg/dL glucose target (H1 2026 launch); $350M share repurchase authorization; adding Abbott Libre 3 Plus sensor compatibility to create broadest closed-loop ecosystem.",
+          "thesis_sentence": "PODD offers the highest analyst consensus upside (66%) in this universe, with a uniquely defensible position: it is the only tubeless AID product on the market and holds #1 market share in new patient starts globally. The 30%+ revenue growth trajectory, 71.6% gross margins, expanding international presence (9 new markets in 2025), and compounding algorithmic advantages from proprietary dosing data create a durable growth platform. Tandem's competing tubeless entry is 12\u201318 months away, leaving a clear runway for continued market share capture."
+        },
+        {
+          "ticker": "DXCM",
+          "name": "DexCom, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1999,
+          "market_cap_b": 24.2,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Market leader in continuous glucose monitoring (CGM) systems, providing wearable biosensors that generate real-time glucose, metabolic rate, and physiological behavioral data streams. DexCom's G7 and Stelo platforms collect dense biometric time-series data from millions of diabetic and non-diabetic users, creating one of the world's largest repositories of continuous metabolic behavioral data \u2014 directly applicable to training embodied AI health systems, personalized nutrition AI, and autonomous insulin delivery algorithms.",
+          "metrics": {
+            "revenue_ttm_m": 4662.0,
+            "revenue_growth_yoy_pct": 15.6,
+            "gross_margin_pct": 60.1,
+            "rd_pct_revenue": 12.9,
+            "analyst_upside_pct": 38.6,
+            "moat_type": "Clinical validation moat + FDA regulatory switching costs \u2014 DexCom's G-series sensors have 10+ years of clinical trial data proving accuracy; physician prescribing habits create sticky demand; sensor wear data creates compounding algorithmic accuracy improvements; Stelo OTC CGM opens non-prescription market with regulatory first-mover advantage"
+          },
+          "scores": {
+            "moat_strength": 8,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 6.85
+          },
+          "recent_catalyst": "Q4 2025 beat on revenue and EPS estimates; launched G7 15-Day sensor (longest wear CGM on market); expanding aggressively into Type 2 non-insulin diabetes with Stelo OTC CGM platform (no prescription required); presented 5-year CGM health outcome data showing cardiovascular benefits at ATTD March 2026 conference; integration with Insulet Omnipod 5 expanding closed-loop ecosystem adoption.",
+          "thesis_sentence": "DXCM trades significantly below its 2021\u20132022 peak despite a stronger competitive position and expanded addressable market. The Stelo OTC launch opens a 30M+ non-insulin Type 2 diabetic market that requires no physician prescription, representing a structural TAM expansion that consensus revenue estimates underweight. At 16% revenue growth with 60% gross margins, the 39% analyst consensus upside reflects genuine mispricing driven by investor concern over GLP-1 drug competition \u2014 a risk that 2025 clinical data suggests is overstated."
+        },
+        {
+          "ticker": "MDB",
+          "name": "MongoDB, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2007,
+          "market_cap_b": 20.3,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Developer data platform that natively integrates vector search, full-text search, and document storage, making it the leading all-in-one database for building RAG pipelines and AI agent long-term memory in production applications.",
+          "metrics": {
+            "revenue_ttm_m": 2464.0,
+            "revenue_growth_yoy_pct": 22.8,
+            "gross_margin_pct": 71.7,
+            "rd_pct_revenue": 29.1,
+            "analyst_upside_pct": 29.1,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 6.4
+          },
+          "recent_catalyst": "In September 2025, MongoDB extended its vector search and hybrid search capabilities to Community Edition and Enterprise Server (previously Atlas-only), enabling millions of self-managed developers to prototype RAG and agentic AI applications locally with LangChain and LlamaIndex integrations.",
+          "thesis_sentence": "Market is discounting MongoDB's consumption model cyclicality and concerns about competition from open-source alternatives, while undervaluing the deep switching costs created by Atlas's unified vector+document+streaming architecture that eliminates the need for a separate vector database in production AI stacks."
+        },
+        {
+          "ticker": "ZBRA",
+          "name": "Zebra Technologies Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 1969,
+          "market_cap_b": 10.3,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training",
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 5396.0,
+            "revenue_growth_yoy_pct": 8.3,
+            "gross_margin_pct": 47.3,
+            "rd_pct_revenue": 11.0,
+            "analyst_upside_pct": 58.7,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 6,
+            "data_advantage": 6,
+            "composite_conviction": 6.25
+          },
+          "recent_catalyst": "Q4 2025 earnings beat drove a 14.2% single-day surge (February 12, 2026); guided 9\u201313% sales growth for FY2026; divested autonomous mobile robotics (AMR) division in December 2025 to refocus on its core AI-vision and scanning platform.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "DT",
+          "name": "Dynatrace",
+          "exchange": "NYSE",
+          "founding_year": 2011,
+          "market_cap_b": 11.3,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Dynatrace is an observability and AIOps platform that delivers deterministic AI-powered root cause analysis through its proprietary Davis AI engine and Smartscape topology mapping. Its January 2026 launch of Dynatrace Intelligence at Perform 2026 introduced an agentic operations platform fusing deterministic causal AI with generative AI, creating an AI verification layer that explains, diagnoses, and resolves software and AI system failures with traceable reasoning chains. Dynatrace's Grail data lakehouse and OpenPipeline provide the data infrastructure for AI model evaluation in complex hybrid cloud environments.",
+          "metrics": {
+            "revenue_ttm_m": 1931.8,
+            "revenue_growth_yoy_pct": 18.8,
+            "gross_margin_pct": 81.6,
+            "rd_pct_revenue": 23.1,
+            "analyst_upside_pct": 32.1,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 7,
+            "data_advantage": 6,
+            "composite_conviction": 6.25
+          },
+          "recent_catalyst": "Launched Dynatrace Intelligence at Perform 2026 (January 28, 2026) \u2014 an agentic operations platform combining deterministic causal AI with generative AI via a new Smartscape dependency graph, positioning Dynatrace as the AI-augmented observability standard for enterprise hybrid cloud.",
+          "thesis_sentence": "DT is underpriced as the market underestimates how its Davis AI deterministic engine differentiates from pure generative AI observability competitors: enterprises in regulated industries (finance, healthcare) require explainable, verifiable AI diagnostics that Davis AI natively provides, while DDOG's approach is probabilistic. At 81.6% gross margin and ~6x NTM revenue, DT trades at a significant discount to DDOG despite a more defensible AIOps moat in compliance-sensitive verticals. The Dynatrace Intelligence launch is an early catalyst that has not yet been priced into ARR growth estimates."
+        },
+        {
+          "ticker": "SYM",
+          "name": "Symbotic Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2007,
+          "market_cap_b": 32.8,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 2390.2,
+            "revenue_growth_yoy_pct": 33.7,
+            "gross_margin_pct": 19.2,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 7,
+            "data_advantage": 7,
+            "composite_conviction": 6.15
+          },
+          "recent_catalyst": "March 31, 2026: new AWG Gulf Coast warehouse automation contract (114,000 sq ft, 19M cases/year, go-live Q4 2027); $22.2B backlog; stock surged +12.2% on announcement.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "SMCI",
+          "name": "Super Micro Computer, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1993,
+          "market_cap_b": 13.9,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Builds and integrates AI server systems incorporating NVIDIA and other AI accelerators with an industry-leading liquid-cooling expertise, enabling rapid deployment of high-density AI inference infrastructure for data centers globally.",
+          "metrics": {
+            "revenue_ttm_m": 28057.0,
+            "revenue_growth_yoy_pct": 87.8,
+            "gross_margin_pct": 8.0,
+            "rd_pct_revenue": 2.5,
+            "analyst_upside_pct": 16.5,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 4,
+            "revenue_growth": 8,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 5,
+            "data_advantage": 7,
+            "composite_conviction": 5.65
+          },
+          "recent_catalyst": "SMCI filed its delinquent FY2024 annual and Q1-Q2 FY2025 reports in February 2025, regaining Nasdaq compliance after replacing auditor EY with BDO; however, new smuggling and export control charges emerged in early 2026, extending the governance-risk discount on the stock.",
+          "thesis_sentence": "If SMCI resolves its governance issues and maintains its technology lead in liquid-cooled AI server rack design \u2014 a critical differentiator as GPU power density increases \u2014 the stock could re-rate to 0.5x revenue from its current 0.5x level; the company's underlying hardware business is growing strongly and its valuation embeds significant permanent impairment from governance risk that may not materialize."
+        },
+        {
+          "ticker": "TER",
+          "name": "Teradyne Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1960,
+          "market_cap_b": 48.2,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 3190.0,
+            "revenue_growth_yoy_pct": 13.1,
+            "gross_margin_pct": 58.3,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 5,
+            "composite_conviction": 5.5
+          },
+          "recent_catalyst": "Universal Robots confirmed as a key supplier for Amazon's Vulcan warehouse robot arm (July 2025); CES 2026 featured a palletizing solution integrating Siemens digital twins and Robotiq end-effectors, demonstrating full sim-to-deploy pipeline.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "ROK",
+          "name": "Rockwell Automation Inc.",
+          "exchange": "NYSE",
+          "founding_year": 1903,
+          "market_cap_b": 40.9,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 8567.0,
+            "revenue_growth_yoy_pct": 3.7,
+            "gross_margin_pct": 50.2,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 3,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 5,
+            "data_advantage": 5,
+            "composite_conviction": 5.1
+          },
+          "recent_catalyst": "Opened Bologna Customer Experience Center (February 2026) for EMEA digital-twin demos; published Emulate3D case study showing 60% faster project execution; reaffirmed FY2026 organic growth guidance of 2\u20136%.",
+          "thesis_sentence": ""
+        }
+      ]
+    },
+    "4": {
+      "tier": 4,
+      "name": "Speculative Growth",
+      "profile": "Small-to-mid cap, early revenue stage, proprietary technology or dataset, long runway but unproven at scale",
+      "company_count": 12,
+      "companies": [
+        {
+          "ticker": "ZETA",
+          "name": "Zeta Global Holdings Corp.",
+          "exchange": "NYSE",
+          "founding_year": 2007,
+          "market_cap_b": 3.8,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "AI marketing cloud that uses a proprietary data cloud of 240M+ consumer profiles to power RAG-style retrieval-augmented personalization at enterprise scale, grounding AI marketing agents (Athena, launched CES 2026) in first-party identity data for omnichannel activation.",
+          "metrics": {
+            "revenue_ttm_m": 1305.0,
+            "revenue_growth_yoy_pct": 29.7,
+            "gross_margin_pct": 60.6,
+            "rd_pct_revenue": 9.0,
+            "analyst_upside_pct": 75.8,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 9,
+            "judge_resonance": 7,
+            "data_advantage": 9,
+            "composite_conviction": 7.5
+          },
+          "recent_catalyst": "At CES 2026, Zeta launched Athena by Zeta \u2014 a superintelligent marketing agent built on OpenAI partnership and grounded in Zeta's proprietary consumer data cloud \u2014 alongside the Marigold enterprise software acquisition adding 100+ enterprise customers, positioning Zeta as the only AI marketing platform with both proprietary data and a frontier AI agent layer.",
+          "thesis_sentence": "Zeta's 240M+ consumer identity graph creates a proprietary RAG data moat that AI-native competitors cannot replicate quickly, and the stock is valued at only ~3x revenue despite 30% growth and a sixth straight year of 20%+ expansion, suggesting the market has not priced in the platform's strategic value as a data-grounded AI marketing infrastructure."
+        },
+        {
+          "ticker": "SOUN",
+          "name": "SoundHound AI, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2005,
+          "market_cap_b": 2.85,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture"
+          ],
+          "description": "Pure-play conversational AI company deploying voice-generative AI (speech-to-meaning, generative response, text-to-speech) in automotive, restaurant, and IoT edge devices, with a proprietary end-to-end voice AI stack that bypasses general-purpose LLM dependence.",
+          "metrics": {
+            "revenue_ttm_m": 168.9,
+            "revenue_growth_yoy_pct": 99.4,
+            "gross_margin_pct": 42.4,
+            "rd_pct_revenue": 58.2,
+            "analyst_upside_pct": 126.6,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 8,
+            "valuation_attractiveness": 10,
+            "judge_resonance": 6,
+            "data_advantage": 8,
+            "composite_conviction": 7.5
+          },
+          "recent_catalyst": "Record Q4 2025 revenue +59% YoY; new Korean OEM partnership announced; expanded Stellantis (Jeep, Ram, Dodge) voice AI integration; voice commerce launch with first major global automaker; 2026 guidance of $225M\u2013$260M issued above consensus.",
+          "thesis_sentence": "SOUN is underpriced because the market treats it as a speculative small-cap rather than a platform with embedded multi-year automotive design-win revenue: automotive OEM contracts lock in 5\u20137 year production cycles, creating durable recurring revenue that is systematically undervalued on near-term P/S multiples."
+        },
+        {
+          "ticker": "INOD",
+          "name": "Innodata Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1988,
+          "market_cap_b": 1.26,
+          "category": "Training Data Quality, Curation & Synthetic Data",
+          "category_number": 1,
+          "all_categories": [
+            "Training Data Quality, Curation & Synthetic Data"
+          ],
+          "description": "Global AI data engineering company providing RLHF, annotation, pre-training data curation, and model safety services to 5 of the 7 largest AI labs, with deep integration into hyperscaler model development pipelines.",
+          "metrics": {
+            "revenue_ttm_m": 251.7,
+            "revenue_growth_yoy_pct": 47.6,
+            "gross_margin_pct": 39.8,
+            "rd_pct_revenue": 0.8,
+            "analyst_upside_pct": 159.1,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 7,
+            "valuation_attractiveness": 10,
+            "judge_resonance": 6,
+            "data_advantage": 9,
+            "composite_conviction": 7.2
+          },
+          "recent_catalyst": "Launched Innodata Federal business unit in November 2025; won $25M initial government contract (Missile Defense Agency SHIELD program); signed pre-training data contracts representing $68M potential revenue from 5 clients; guided 35%+ revenue growth in 2026.",
+          "thesis_sentence": "Thin analyst coverage (2 analysts) masks true scale of hyperscaler dependency; as 5 of the Mag-7 use Innodata for RLHF, the federal contract win validates enterprise-grade credibility and opens a second major revenue stream ignored by current consensus."
+        },
+        {
+          "ticker": "WK",
+          "name": "Workiva",
+          "exchange": "NYSE",
+          "founding_year": 2008,
+          "market_cap_b": 3.41,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Workiva is the leading cloud platform for financial reporting, ESG/sustainability reporting, audit management, and governance, risk, and compliance (GRC) \u2014 all of which are core AI governance and alignment infrastructure categories as regulators increasingly mandate auditability and traceability of AI-assisted decisions. Its March 2026 launch of a next-gen AI-powered GRC platform directly targets AI governance verification, enabling enterprises to document, test, and audit AI controls alongside financial controls. Workiva's unified data lineage tracking and collaboration workflows provide the paper trail required for responsible AI compliance.",
+          "metrics": {
+            "revenue_ttm_m": 884.6,
+            "revenue_growth_yoy_pct": 19.8,
+            "gross_margin_pct": 78.5,
+            "rd_pct_revenue": 24.3,
+            "analyst_upside_pct": 43.6,
+            "moat_type": "regulatory"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 6,
+            "data_advantage": 7,
+            "composite_conviction": 6.4
+          },
+          "recent_catalyst": "Launched next-gen AI-powered GRC platform at the IIA (Institute of Internal Auditors) conference (March 2026) and appointed AI-focused CFO Barbara Larson, with guidance toward $1B revenue milestone in 2026 \u2014 marking Workiva's formal entry into AI governance and compliance verification.",
+          "thesis_sentence": "WK is underpriced as the sole public company directly targeting AI governance and compliance as a GRC platform extension: EU AI Act, SEC AI disclosure rules, and enterprise internal audit requirements will mandate systematic AI controls documentation \u2014 exactly what Workiva's platform provides. At 78.5% gross margin and approaching $1B revenue, the unit economics are strong. The market currently prices WK as a financial reporting software vendor; the re-rating opportunity comes when analysts recognize that AI governance compliance is a $10B+ TAM expansion that Workiva can address with minimal incremental R&D given its existing GRC workflow infrastructure."
+        },
+        {
+          "ticker": "RAMP",
+          "name": "LiveRamp Holdings Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2011,
+          "market_cap_b": 1.72,
+          "category": "Training Data Quality, Curation & Synthetic Data",
+          "category_number": 1,
+          "all_categories": [
+            "Training Data Quality, Curation & Synthetic Data"
+          ],
+          "description": "Data collaboration platform that enables enterprises to securely share, onboard, and license permissioned first-party data for AI training, model tuning, and marketing analytics through its identity resolution network and Data Marketplace.",
+          "metrics": {
+            "revenue_ttm_m": 795.6,
+            "revenue_growth_yoy_pct": 20.6,
+            "gross_margin_pct": 70.4,
+            "rd_pct_revenue": 19.6,
+            "analyst_upside_pct": 33.2,
+            "moat_type": "network effects"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 5,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 6,
+            "data_advantage": 8,
+            "composite_conviction": 6.35
+          },
+          "recent_catalyst": "January 2026 expansion of Data Marketplace to include AI training data licensing and AI model licensing for LLM/foundation model builders; launched agentic AI platform integrating Newton Research and SemantIQ (March 2026).",
+          "thesis_sentence": "Market values LiveRamp purely as a marketing-tech company and has not priced in its emerging role as a governed AI training data exchange, where its identity-resolved, consent-based datasets command premium pricing from foundation model builders."
+        },
+        {
+          "ticker": "MBLY",
+          "name": "Mobileye Global Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1999,
+          "market_cap_b": 6.0,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 1894.0,
+            "revenue_growth_yoy_pct": 14.5,
+            "gross_margin_pct": 47.7,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 7,
+            "data_advantage": 8,
+            "composite_conviction": 6.15
+          },
+          "recent_catalyst": "Acquired Mentee Robotics for ~$900M (January 2026, Intel-approved), expanding into humanoid robotics; EyeQ6 secured first two large-scale OEM programs; $24.5B automotive pipeline (+42% since 2022).",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "ESTC",
+          "name": "Elastic N.V.",
+          "exchange": "NYSE",
+          "founding_year": 2012,
+          "market_cap_b": 5.3,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Search AI company whose Elasticsearch platform powers hybrid keyword+vector retrieval for RAG pipelines, observability, and security, with native Elastic Inference Service providing GPU-accelerated embedding and reranking capabilities for enterprise AI agents.",
+          "metrics": {
+            "revenue_ttm_m": 1677.0,
+            "revenue_growth_yoy_pct": 13.1,
+            "gross_margin_pct": 76.0,
+            "rd_pct_revenue": 25.4,
+            "analyst_upside_pct": 45.1,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 6,
+            "data_advantage": 7,
+            "composite_conviction": 5.95
+          },
+          "recent_catalyst": "Elastic launched Agent Builder into general availability (January 2026) and introduced Cloud Connect for self-managed customers to burst to cloud GPU inference for embeddings, directly enabling hybrid RAG deployments where data must remain on-premises while benefiting from cloud-scale inference.",
+          "thesis_sentence": "Elastic trades at a 37% discount to its 52-week high despite 28% of $100K+ ACV customers now using AI features; the market is pricing in permanent growth deceleration while ignoring that Elastic's unified search/security/observability platform creates multi-product expansion beyond pure-play vector database competitors."
+        },
+        {
+          "ticker": "S",
+          "name": "SentinelOne",
+          "exchange": "NYSE",
+          "founding_year": 2013,
+          "market_cap_b": 4.4,
+          "category": "AI Verification, Evaluation & Alignment Infrastructure",
+          "category_number": 7,
+          "all_categories": [
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "SentinelOne is an AI-native cybersecurity platform whose Purple AI is the leading AI security analyst and threat-hunting assistant, achieving 40% attach rate on new licenses. Its unified data security platform (Singularity) ingests all security telemetry and applies AI-driven detection, investigation, and response \u2014 making it a primary AI observability and AI-driven verification platform for security operations. AI SIEM (triple-digit YoY growth in FY2026) extends this to autonomous detection pipelines, and Purple AI's natural language query interface lowers the barrier to AI-augmented verification for security teams.",
+          "metrics": {
+            "revenue_ttm_m": 1001.3,
+            "revenue_growth_yoy_pct": 32.2,
+            "gross_margin_pct": 74.9,
+            "rd_pct_revenue": 32.3,
+            "analyst_upside_pct": 18.0,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 6,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 6,
+            "composite_conviction": 5.8
+          },
+          "recent_catalyst": "Purple AI hit 40% attach rate on new licenses and AI SIEM delivered triple-digit YoY growth in FY2026, with ~50% of Q3 FY2026 bookings from emerging products \u2014 signaling a rapid platform mix shift toward AI-native security workflows.",
+          "thesis_sentence": "S is modestly underpriced relative to the underlying AI SIEM growth trajectory: analysts are anchoring to legacy endpoint metrics while emerging products (AI SIEM, Purple AI, cloud security) are now ~50% of bookings and growing triple-digits. The company has not yet achieved GAAP profitability, which caps institutional buying, but at $4.4B market cap and $1B in TTM revenue with 32% growth, the risk/reward is asymmetric if platform consolidation plays out. The primary risk is CRWD's competing Charlotte AI AgentWorks ecosystem poaching share before SentinelOne reaches FCF breakeven."
+        },
+        {
+          "ticker": "AUR",
+          "name": "Aurora Innovation Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2017,
+          "market_cap_b": 8.1,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 3.0,
+            "revenue_growth_yoy_pct": null,
+            "gross_margin_pct": null,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 3,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 8,
+            "composite_conviction": 5.5
+          },
+          "recent_catalyst": "Launched commercial driverless Dallas\u2013Houston and Fort Worth\u2013El Paso freight routes with FedEx, Hirschbach, and Werner (H2 2025); surpassed 100,000 driverless miles; raised $460M via ATM equity offering to extend runway.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "PTC",
+          "name": "PTC Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 1985,
+          "market_cap_b": 16.9,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 2859.9,
+            "revenue_growth_yoy_pct": 4.4,
+            "gross_margin_pct": 84.2,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 3,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 6,
+            "composite_conviction": 5.45
+          },
+          "recent_catalyst": "November 2025 announced sale of Kepware & ThingWorx IoT divisions to TPG (closing H1 2026), sharpening focus on core CAD/PLM/digital-twin portfolio; unveiled Windchill AI at Hannover Messe 2025.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "TRMB",
+          "name": "Trimble Inc.",
+          "exchange": "NYSE",
+          "founding_year": 1978,
+          "market_cap_b": 15.44,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Precision positioning and spatial data company connecting the physical and digital worlds for construction, agriculture, transportation, and geospatial industries. Trimble's sensors, GNSS systems, total stations, and software capture precise real-world spatial data \u2014 including human operator movement, machine behavior, and terrain interaction \u2014 that forms foundational training datasets for embodied AI, construction robotics, and autonomous agricultural systems.",
+          "metrics": {
+            "revenue_ttm_m": 3587.3,
+            "revenue_growth_yoy_pct": -2.6,
+            "gross_margin_pct": 68.3,
+            "rd_pct_revenue": 17.6,
+            "analyst_upside_pct": 37.2,
+            "moat_type": "Network effects + switching-cost moat \u2014 Trimble's AECO (Architecture, Engineering, Construction, Owner) platform connects 700,000+ construction professionals; ARR of $2.39B (+14% YoY) provides recurring revenue visibility; proprietary positioning algorithms and real-time kinematic GNSS technology with decades of refinement"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 2,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 5,
+            "data_advantage": 6,
+            "composite_conviction": 5.2
+          },
+          "recent_catalyst": "Q4 2025 EPS $1.00 beat estimates of $0.96 (+4.2% surprise); revenue +9% YoY to $970M; ARR grew 14% to record $2.39B; 2026 guidance: revenue $3.86B (+7.5%), ARR +13%, EBITDA margin expanding to ~29.8%; software now 79% of total revenue, validating high-margin SaaS transition; AI initiatives automating repetitive field tasks across construction and transportation segments.",
+          "thesis_sentence": "TRMB is undergoing a structural transformation from hardware to SaaS, with ARR growing 14% while total revenue is temporarily dragged by hardware cycle headwinds. At 79% software/services mix with 68% gross margins and $2.39B ARR, the stock should be valued as a software company \u2014 yet still trades at a material discount to pure-play construction tech peers. The 2027 investor day targets ($3B ARR, $4B revenue, 30% EBITDA) represent a credible 2-year re-rating catalyst."
+        },
+        {
+          "ticker": "U",
+          "name": "Unity Software Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2004,
+          "market_cap_b": 9.75,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 1849.6,
+            "revenue_growth_yoy_pct": 2.0,
+            "gross_margin_pct": 70.6,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": null,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 3,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 5,
+            "data_advantage": 7,
+            "composite_conviction": 4.9
+          },
+          "recent_catalyst": "April 2026 restructuring: sunsetted legacy ironSource ad network, Q1 preliminary results beat consensus by $28M, and stock surged 14%+ as management signaled a sharper focus on AI-driven 3D creation tools and simulation.",
+          "thesis_sentence": ""
+        }
+      ]
+    },
+    "5": {
+      "tier": 5,
+      "name": "Deep Value / Turnaround",
+      "profile": "Company repriced by AI disruption OR incumbent undervalued because market underestimates their AI infrastructure pivot",
+      "company_count": 7,
+      "companies": [
+        {
+          "ticker": "BOX",
+          "name": "Box, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2005,
+          "market_cap_b": 3.4,
+          "category": "Context Management, Persistent Memory & RAG",
+          "category_number": 3,
+          "all_categories": [
+            "Context Management, Persistent Memory & RAG"
+          ],
+          "description": "Intelligent Content Management platform whose Box AI Agents apply permission-aware RAG to unstructured enterprise documents, enabling AI-powered deep research, semantic search, and automated extraction across petabytes of regulated enterprise content.",
+          "metrics": {
+            "revenue_ttm_m": 1177.0,
+            "revenue_growth_yoy_pct": 8.0,
+            "gross_margin_pct": 79.2,
+            "rd_pct_revenue": 25.0,
+            "analyst_upside_pct": 48.0,
+            "moat_type": "regulatory"
+          },
+          "scores": {
+            "moat_strength": 6,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 7,
+            "data_advantage": 6,
+            "composite_conviction": 6.0
+          },
+          "recent_catalyst": "At BoxWorks 2025 (September 2025), Box launched Box Extract (AI agent-powered structured data extraction from unstructured content), Box Automate (AI workflow automation), and a Box AI Agent for Microsoft 365 Copilot, making Box content the secure RAG source for enterprise Copilot deployments.",
+          "thesis_sentence": "Box's FedRAMP, HIPAA, and GxP compliance certifications make it the mandatory choice for regulated industries (government, healthcare, pharma) building AI over sensitive documents, and the market is not pricing in the premium value of Box's compliant RAG infrastructure versus uncertified alternatives."
+        },
+        {
+          "ticker": "CGNX",
+          "name": "Cognex Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 1981,
+          "market_cap_b": 8.1,
+          "category": "Simulation Environments for Agent/Robotics Training",
+          "category_number": 4,
+          "all_categories": [
+            "Simulation Environments for Agent/Robotics Training",
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "",
+          "metrics": {
+            "revenue_ttm_m": 994.4,
+            "revenue_growth_yoy_pct": 8.7,
+            "gross_margin_pct": 66.9,
+            "rd_pct_revenue": 14.0,
+            "analyst_upside_pct": 30.1,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 7,
+            "revenue_growth": 4,
+            "valuation_attractiveness": 6,
+            "judge_resonance": 6,
+            "data_advantage": 6,
+            "composite_conviction": 5.85
+          },
+          "recent_catalyst": "Q4 2025 earnings beat drove a 23.4% premarket surge (February 12, 2026); added 9,000 new customers in 2025 (3x prior year), authorized a $500M buyback, and launched a $35\u201340M OpEx reduction program.",
+          "thesis_sentence": ""
+        },
+        {
+          "ticker": "BBAI",
+          "name": "BigBear.ai Holdings, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2018,
+          "market_cap_b": 1.27,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture",
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Defense and intelligence-focused AI company pivoting toward generative AI for national security through the acquisition of Ask Sage (a secure GenAI platform for classified government environments), serving DoD, intelligence agencies, and allied government clients.",
+          "metrics": {
+            "revenue_ttm_m": 127.7,
+            "revenue_growth_yoy_pct": -19.3,
+            "gross_margin_pct": 22.3,
+            "rd_pct_revenue": 13.1,
+            "analyst_upside_pct": 55.4,
+            "moat_type": "regulatory"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 1,
+            "valuation_attractiveness": 8,
+            "judge_resonance": 6,
+            "data_advantage": 8,
+            "composite_conviction": 5.45
+          },
+          "recent_catalyst": "Acquired Ask Sage (December 2025, $250M) \u2014 a generative AI platform with FedRAMP High and DoD IL6 authorization used by Air Force, Space Force, and NSA, adding $25M ARR and a cleared-cloud generative AI capability unavailable to commercial vendors.",
+          "thesis_sentence": "BBAI is underpriced on a revenue-decline narrative that misses the strategic pivot: Ask Sage's DoD IL6 authorization creates a near-insurmountable regulatory moat for classified generative AI, and the U.S. defense budget's expanding AI allocation ($2.6B+ in FY2026 AI/ML programs) positions BBAI as a pure-play beneficiary with limited public market competition."
+        },
+        {
+          "ticker": "CLVT",
+          "name": "Clarivate Plc",
+          "exchange": "NYSE",
+          "founding_year": 2016,
+          "market_cap_b": 1.6,
+          "category": "Training Data Quality, Curation & Synthetic Data",
+          "category_number": 1,
+          "all_categories": [
+            "Training Data Quality, Curation & Synthetic Data"
+          ],
+          "description": "Curates and commercializes billions of expert-annotated scientific, patent, and life sciences records as AI-ready datasets used for training domain-specific models in research intelligence, intellectual property, and regulatory analytics.",
+          "metrics": {
+            "revenue_ttm_m": 2455.0,
+            "revenue_growth_yoy_pct": -4.0,
+            "gross_margin_pct": 66.1,
+            "rd_pct_revenue": null,
+            "analyst_upside_pct": 18.4,
+            "moat_type": "proprietary dataset"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 2,
+            "valuation_attractiveness": 5,
+            "judge_resonance": 6,
+            "data_advantage": 7,
+            "composite_conviction": 4.9
+          },
+          "recent_catalyst": "Q4 2025 results showed net income turning positive ($3.1M) from prior year loss of $191.8M; completed $100M senior notes redemption (February 2026) reducing leverage; ongoing VCP restructuring targeting $2.5B revenue by 2028.",
+          "thesis_sentence": "Clarivate's 97%-proprietary curated dataset spanning patents, academia, and drug safety represents the highest-quality structured training corpus for domain-specific AI, yet trades at distressed valuations due to declining revenue from a legacy licensing model that undervalues AI data monetization optionality."
+        },
+        {
+          "ticker": "PTON",
+          "name": "Peloton Interactive, Inc.",
+          "exchange": "NASDAQ",
+          "founding_year": 2012,
+          "market_cap_b": 1.88,
+          "category": "Human Behavioral Data for Embodied AI",
+          "category_number": 5,
+          "all_categories": [
+            "Human Behavioral Data for Embodied AI"
+          ],
+          "description": "Connected fitness platform providing instrumented exercise equipment (bikes, treadmills, rowing machines) and digital coaching content. Peloton's hardware captures detailed biomechanical behavioral data \u2014 cadence, resistance, power output, heart rate, form metrics \u2014 from millions of workout sessions, creating a large-scale repository of human physical performance and motion data. The newly launched Peloton IQ computer vision platform adds real-time 3D pose estimation and form correction, directly generating labeled embodied AI training datasets.",
+          "metrics": {
+            "revenue_ttm_m": 2438.2,
+            "revenue_growth_yoy_pct": -9.7,
+            "gross_margin_pct": 51.7,
+            "rd_pct_revenue": 9.9,
+            "analyst_upside_pct": 39.4,
+            "moat_type": "Content + community network effects \u2014 Peloton's live and on-demand class library with 15M+ members creates social accountability loops; instructor brand loyalty drives low churn; biomechanical dataset from millions of workout sessions is a unique embodied AI training asset; equipment installed base of ~3M connected units provides persistent behavioral data collection"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 1,
+            "valuation_attractiveness": 7,
+            "judge_resonance": 5,
+            "data_advantage": 7,
+            "composite_conviction": 4.9
+          },
+          "recent_catalyst": "Launched Peloton IQ AI/computer-vision coaching platform (October 2025), using real-time 3D body pose estimation and form correction powered by computer vision \u2014 transforming the Peloton camera into a behavioral data capture and AI feedback system; full equipment refresh with Cross Training Series; new CEO Barry McCarthy-era restructuring largely complete; cost structure improving with $800M+ in annualized savings.",
+          "thesis_sentence": "PTON is a speculative recovery play at $1.88B market cap, representing a potential asymmetric opportunity for investors willing to accept turnaround risk. The Peloton IQ computer vision platform fundamentally changes the company's AI value proposition \u2014 from a content streamer to an embodied AI training data generator with real-time form analysis. With 3M+ connected devices generating labeled biomechanical video data and a 52% gross margin providing underlying unit economics viability, Peloton's optionality as an acquisition target or AI data licensing platform is not reflected in current pricing."
+        },
+        {
+          "ticker": "INTC",
+          "name": "Intel Corporation",
+          "exchange": "NASDAQ",
+          "founding_year": 1968,
+          "market_cap_b": 250.8,
+          "category": "AI Inference Efficiency & Cost Optimization",
+          "category_number": 2,
+          "all_categories": [
+            "AI Inference Efficiency & Cost Optimization"
+          ],
+          "description": "Develops Gaudi 3 AI accelerators targeting AI inference at 70% better price-performance vs. NVIDIA H100, alongside Xeon CPUs for CPU-based inference and edge AI via neural processing units in client chips.",
+          "metrics": {
+            "revenue_ttm_m": 52853.0,
+            "revenue_growth_yoy_pct": -0.5,
+            "gross_margin_pct": 34.8,
+            "rd_pct_revenue": 26.1,
+            "analyst_upside_pct": -4.9,
+            "moat_type": "HW-SW integration"
+          },
+          "scores": {
+            "moat_strength": 5,
+            "revenue_growth": 2,
+            "valuation_attractiveness": 3,
+            "judge_resonance": 7,
+            "data_advantage": 6,
+            "composite_conviction": 4.55
+          },
+          "recent_catalyst": "Intel unveiled the Crescent Island inference GPU and Gaudi 3 rack-scale reference design at OCP 2025 in October 2025, claiming 70% better price-performance inference throughput for Llama 3 80B vs. NVIDIA H100, with Dell AI Factory integration expanding enterprise distribution.",
+          "thesis_sentence": "Intel's Gaudi 3 open-source software approach and competitive inference TCO could win enterprise workloads seeking vendor diversification from NVIDIA; the stock trades near liquidation value at 0.5x book, embedding no recovery option value for its Intel 18A foundry process."
+        },
+        {
+          "ticker": "AI",
+          "name": "C3.ai, Inc.",
+          "exchange": "NYSE",
+          "founding_year": 2009,
+          "market_cap_b": 1.22,
+          "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+          "category_number": 6,
+          "all_categories": [
+            "Diffusion Model R&D & Next-Gen Generative Architecture",
+            "AI Verification, Evaluation & Alignment Infrastructure"
+          ],
+          "description": "Enterprise AI application software company offering pre-built generative AI applications (C3 Generative AI) across predictive maintenance, fraud detection, supply chain, and federal government use cases, deployable on AWS, Azure, Google Cloud, or on-premises.",
+          "metrics": {
+            "revenue_ttm_m": 307.4,
+            "revenue_growth_yoy_pct": -1.0,
+            "gross_margin_pct": 43.5,
+            "rd_pct_revenue": 78.1,
+            "analyst_upside_pct": 4.4,
+            "moat_type": "switching costs"
+          },
+          "scores": {
+            "moat_strength": 4,
+            "revenue_growth": 2,
+            "valuation_attractiveness": 4,
+            "judge_resonance": 5,
+            "data_advantage": 7,
+            "composite_conviction": 4.25
+          },
+          "recent_catalyst": "USDA enterprise AI contract awarded Q3 FY2026; 8 C3 Generative AI agreements closed in Q3 FY2026 including McLaren Automotive and a U.S. Intelligence Community agency; new CEO Stephen Ehikian (former Salesforce) joined H2 2025 to lead operational restructuring.",
+          "thesis_sentence": "C3.ai is a contrarian turnaround play: the new CEO's Salesforce background signals a shift to enterprise SaaS growth playbook, and the federal government's accelerating AI adoption (USDA, Intelligence Community) creates a recurring revenue base that could re-rate the stock if ARR growth inflects positive under new management in the next 2\u20133 quarters."
+        }
+      ]
+    }
+  },
+  "all_companies_flat": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 4305.6,
+      "revenue_growth_yoy_pct": 65.5,
+      "analyst_upside_pct": 67.7,
+      "composite_conviction": 8.8,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "Despite dominant market position, NVDA trades below consensus because of DeepSeek-induced fears of AI inference commoditization, which actually increases token demand and validates GPU compute needs rather than reducing them."
+    },
+    {
+      "ticker": "CRDO",
+      "name": "Credo Technology Group Holding Ltd",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 18.8,
+      "revenue_growth_yoy_pct": 453.5,
+      "analyst_upside_pct": 75.8,
+      "composite_conviction": 8.55,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "CRDO invented the AEC market, holds dominant IP in 224G SerDes, and is now expanding to optical DSP \u2014 creating a multi-product platform where each new AI cluster generation adds more Credo content per rack; the stock has pulled back significantly from highs despite accelerating revenue, presenting a rare combination of near-hypergrowth and improving margins."
+    },
+    {
+      "ticker": "ALAB",
+      "name": "Astera Labs, Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 19.7,
+      "revenue_growth_yoy_pct": 115.1,
+      "analyst_upside_pct": 70.7,
+      "composite_conviction": 8.35,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "ALAB is one of few semiconductor companies whose products directly address the interconnect bottleneck that constrains inference scalability \u2014 a problem that grows larger with each new GPU generation; at current price, the company trades at a significant discount to its growth rate, reflecting excessive macro/sector rotation pressure rather than fundamental deterioration."
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Training Data Quality, Curation & Synthetic Data",
+      "market_cap_b": 337.9,
+      "revenue_growth_yoy_pct": 56.2,
+      "analyst_upside_pct": 27.7,
+      "composite_conviction": 7.75,
+      "moat_type": "switching costs",
+      "thesis_sentence": "Market underestimates the pace of commercial AIP adoption; 109% US commercial growth run rate is not yet priced into conservative consensus targets anchored to slower government-led revenue assumptions."
+    },
+    {
+      "ticker": "CRWV",
+      "name": "CoreWeave, Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 42.9,
+      "revenue_growth_yoy_pct": 167.9,
+      "analyst_upside_pct": 74.0,
+      "composite_conviction": 7.65,
+      "moat_type": "switching costs",
+      "thesis_sentence": "CoreWeave's $56B backlog provides multi-year revenue visibility that makes its business more predictable than typical tech infrastructure; the stock has declined ~56% from its high largely due to market-wide de-risking of AI infrastructure plays, but the contracted revenue base more than covers the capital required to service existing commitments."
+    },
+    {
+      "ticker": "DDOG",
+      "name": "Datadog",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 42.4,
+      "revenue_growth_yoy_pct": 27.7,
+      "analyst_upside_pct": 63.9,
+      "composite_conviction": 7.5,
+      "moat_type": "network effects",
+      "thesis_sentence": "DDOG is significantly underpriced relative to its role as the dominant AI observability layer: the market is pricing it as a mature cloud monitoring vendor while the AI product suite is just beginning to ramp. With AI customers at 12% of revenue and growing 67% YoY, the total addressable market expansion from monitoring cloud infrastructure to monitoring AI agents is 5-10x the existing market. At ~13x NTM revenue vs. historical peaks near 30x, the current multiple already prices in minimal AI monetization \u2014 creating a favorable asymmetry as AI-specific SKUs scale."
+    },
+    {
+      "ticker": "ZETA",
+      "name": "Zeta Global Holdings Corp.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 3.8,
+      "revenue_growth_yoy_pct": 29.7,
+      "analyst_upside_pct": 75.8,
+      "composite_conviction": 7.5,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "Zeta's 240M+ consumer identity graph creates a proprietary RAG data moat that AI-native competitors cannot replicate quickly, and the stock is valued at only ~3x revenue despite 30% growth and a sixth straight year of 20%+ expansion, suggesting the market has not priced in the platform's strategic value as a data-grounded AI marketing infrastructure."
+    },
+    {
+      "ticker": "SOUN",
+      "name": "SoundHound AI, Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 2.85,
+      "revenue_growth_yoy_pct": 99.4,
+      "analyst_upside_pct": 126.6,
+      "composite_conviction": 7.5,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "SOUN is underpriced because the market treats it as a speculative small-cap rather than a platform with embedded multi-year automotive design-win revenue: automotive OEM contracts lock in 5\u20137 year production cycles, creating durable recurring revenue that is systematically undervalued on near-term P/S multiples."
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 1485.7,
+      "revenue_growth_yoy_pct": 32.4,
+      "analyst_upside_pct": 50.0,
+      "composite_conviction": 7.4,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "Broadcom's custom XPU programs are effectively long-term, take-or-pay contracts that guarantee revenue for multiple chip generations, yet the stock has sold off with the broader market; the $100B+ AI chip revenue forecast for 2027 implies the AI hardware segment alone is worth more than the current enterprise value."
+    },
+    {
+      "ticker": "VEEV",
+      "name": "Veeva Systems Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 28.4,
+      "revenue_growth_yoy_pct": 16.3,
+      "analyst_upside_pct": 60.5,
+      "composite_conviction": 7.35,
+      "moat_type": "regulatory",
+      "thesis_sentence": "Veeva's complete Vault CRM migration from Salesforce creates a short-term revenue noise that masks the structural durability of its validated cloud monopoly in life sciences content management, where FDA 21 CFR Part 11 compliance requirements functionally prevent customers from switching to non-validated alternatives."
+    },
+    {
+      "ticker": "ANET",
+      "name": "Arista Networks",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 159.3,
+      "revenue_growth_yoy_pct": 28.6,
+      "analyst_upside_pct": 51.0,
+      "composite_conviction": 7.3,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "ANET is underpriced as the AI infrastructure networking cycle is multi-year and the market is anchoring to near-term margin compression risk from product mix shifts. Arista's EOS software moat and CloudVision management layer create durable switching costs even as hardware commoditizes \u2014 competitors (Cisco, Juniper) have failed to replicate EOS's programmability at scale. At 64% gross margin and 28.6% revenue growth, Arista's FCF conversion is exceptional; at ~17x NTM revenue vs. historical peaks of 25x+, the current valuation does not price in an AI networking super-cycle that could sustain 25%+ growth for 3-5 years."
+    },
+    {
+      "ticker": "AXON",
+      "name": "Axon Enterprise, Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 33.04,
+      "revenue_growth_yoy_pct": 33.5,
+      "analyst_upside_pct": 63.1,
+      "composite_conviction": 7.25,
+      "moat_type": "Data network effects + switching-cost moat \u2014 Evidence.com holds terabytes of proprietary law enforcement behavioral video; deep government procurement relationships with multi-year contracts; TASER brand synonymous with CEW category; AI models trained on proprietary video data create compounding defensibility",
+      "thesis_sentence": "AXON has a near-monopoly on law enforcement body camera video \u2014 the world's most regulated and behaviorally rich human action dataset. Draft One AI turns this data moat into an AI products revenue stream with 90%+ gross margins. At 33%+ revenue growth with accelerating software attach rates and a $625M acquisition expanding the addressable market, the 63% analyst consensus upside reflects the market underpricing both the AI data flywheel and the international expansion of body-cam mandates."
+    },
+    {
+      "ticker": "PODD",
+      "name": "Insulet Corporation",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 14.34,
+      "revenue_growth_yoy_pct": 30.7,
+      "analyst_upside_pct": 66.1,
+      "composite_conviction": 7.25,
+      "moat_type": "Product monopoly + installed-base data moat \u2014 Insulet is the only manufacturer of a commercially available tubeless AID system globally; 600K+ active users generate proprietary insulin-dosing behavioral data that refines algorithm accuracy over time; #1 market share in new customer starts in both U.S. and Europe; pharmacy-first distribution model reduces clinical friction",
+      "thesis_sentence": "PODD offers the highest analyst consensus upside (66%) in this universe, with a uniquely defensible position: it is the only tubeless AID product on the market and holds #1 market share in new patient starts globally. The 30%+ revenue growth trajectory, 71.6% gross margins, expanding international presence (9 new markets in 2025), and compounding algorithmic advantages from proprietary dosing data create a durable growth platform. Tandem's competing tubeless entry is 12\u201318 months away, leaving a clear runway for continued market share capture."
+    },
+    {
+      "ticker": "INOD",
+      "name": "Innodata Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Training Data Quality, Curation & Synthetic Data",
+      "market_cap_b": 1.26,
+      "revenue_growth_yoy_pct": 47.6,
+      "analyst_upside_pct": 159.1,
+      "composite_conviction": 7.2,
+      "moat_type": "switching costs",
+      "thesis_sentence": "Thin analyst coverage (2 analysts) masks true scale of hyperscaler dependency; as 5 of the Mag-7 use Innodata for RLHF, the federal contract win validates enterprise-grade credibility and opens a second major revenue stream ignored by current consensus."
+    },
+    {
+      "ticker": "ARM",
+      "name": "Arm Holdings plc",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 158.7,
+      "revenue_growth_yoy_pct": 16.6,
+      "analyst_upside_pct": 30.0,
+      "composite_conviction": 7.15,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "ARM collects a royalty on inference operations running on virtually every non-NVIDIA edge chip; as AI PCs and smartphones move model inference on-device, ARM's per-chip royalty revenue could double or triple within 3 years on units already guaranteed under existing licenses, a dynamic not reflected at current valuations."
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow, Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 106.4,
+      "revenue_growth_yoy_pct": 20.9,
+      "analyst_upside_pct": 75.0,
+      "composite_conviction": 7.15,
+      "moat_type": "switching costs",
+      "thesis_sentence": "ServiceNow has experienced an extreme selloff (stock declined ~88% from 2025 highs to current $101 level) that has priced in severe demand destruction, while the company's deeply embedded workflow data fabric and 20%+ organic revenue growth in FY2025 suggest the selloff represents a significant dislocation between fundamentals and valuation."
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 2769.0,
+      "revenue_growth_yoy_pct": 24.6,
+      "analyst_upside_pct": 41.6,
+      "composite_conviction": 7.05,
+      "moat_type": "switching costs",
+      "thesis_sentence": "MSFT is underpriced relative to its terminal value as the default enterprise generative AI platform: switching costs embedded in M365, Teams, GitHub, and Azure are underappreciated by a market focused on near-term AI revenue contribution rather than multi-year seat expansion economics."
+    },
+    {
+      "ticker": "ISRG",
+      "name": "Intuitive Surgical, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 160.4,
+      "revenue_growth_yoy_pct": 20.5,
+      "analyst_upside_pct": 29.2,
+      "composite_conviction": 6.95,
+      "moat_type": "Installed-base data monopoly + clinical switching costs \u2014 9,000+ da Vinci systems installed globally generate an irreplaceable surgical motion dataset; hospital training programs, credentialing, and surgeon familiarity create 10+ year switching costs; Ion endoscopy system expanding into new procedural categories; regulatory pathway experience creates competitive barriers for new entrants",
+      "thesis_sentence": "ISRG holds a natural monopoly on high-fidelity surgical motion data \u2014 the most expert and consequential form of human physical behavioral data \u2014 with 20%+ annual revenue growth and no credible near-term competitor for robotic surgery leadership. At 29% consensus upside, the market underestimates two compounding assets: (1) the da Vinci 5 supercycle as hospitals upgrade from earlier generations, and (2) the AI training data moat from millions of annotated surgical procedures. As surgical AI (automated instrument guidance, real-time tissue identification) becomes commercially viable, ISRG's proprietary motion dataset becomes the scarcest input in the entire value chain."
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 411.7,
+      "revenue_growth_yoy_pct": 131.4,
+      "analyst_upside_pct": 31.8,
+      "composite_conviction": 6.9,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "The memory market is fundamentally different this cycle \u2014 HBM content per AI GPU is growing 3-4x per generation (H100 \u2192 B300) and Micron is fully sold out through 2027; the stock trades at a significant discount to historical peak-cycle multiples despite structurally higher and more durable AI-driven demand that prevents the typical oversupply bust."
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 3570.0,
+      "revenue_growth_yoy_pct": 15.1,
+      "analyst_upside_pct": 28.9,
+      "composite_conviction": 6.85,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "The market applies a regulatory overhang discount to GOOGL that underweights Alphabet's unmatched proprietary training data corpus (Search, YouTube, Gmail, Maps) and DeepMind's frontier research pipeline, which positions Gemini to close the gap with GPT-4-class models in enterprise deployments."
+    },
+    {
+      "ticker": "DXCM",
+      "name": "DexCom, Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 24.2,
+      "revenue_growth_yoy_pct": 15.6,
+      "analyst_upside_pct": 38.6,
+      "composite_conviction": 6.85,
+      "moat_type": "Clinical validation moat + FDA regulatory switching costs \u2014 DexCom's G-series sensors have 10+ years of clinical trial data proving accuracy; physician prescribing habits create sticky demand; sensor wear data creates compounding algorithmic accuracy improvements; Stelo OTC CGM opens non-prescription market with regulatory first-mover advantage",
+      "thesis_sentence": "DXCM trades significantly below its 2021\u20132022 peak despite a stronger competitive position and expanded addressable market. The Stelo OTC launch opens a 30M+ non-insulin Type 2 diabetic market that requires no physician prescription, representing a structural TAM expansion that consensus revenue estimates underweight. At 16% revenue growth with 60% gross margins, the 39% analyst consensus upside reflects genuine mispricing driven by investor concern over GLP-1 drug competition \u2014 a risk that 2025 clinical data suggests is overstated."
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 1446.91,
+      "revenue_growth_yoy_pct": 22.2,
+      "analyst_upside_pct": 44.2,
+      "composite_conviction": 6.8,
+      "moat_type": "Data network effects at global scale \u2014 3.58B daily active users generate unmatched behavioral training data; Ray-Ban glasses sales provide egocentric video data for embodied AI; $57B+ R&D creates compounding AI model advantages; Llama open-source ecosystem builds developer network effects; custom MTIA silicon reduces compute costs creating structural margin advantages vs. cloud-dependent competitors",
+      "thesis_sentence": "META trades at a 44% discount to analyst consensus following a sharp selloff driven by CAPEX concerns and a social media addiction jury verdict. At 15x projected 2027 earnings with 82% gross margins and 22%+ revenue growth, Meta is arguably the highest-quality large-cap behavioral data asset globally. The Ray-Ban smart glasses represent the first scalable egocentric video data collection platform \u2014 foundational infrastructure for training embodied AI that operates in human environments. The $115B 2026 CAPEX is a bet on AI infrastructure that should yield compounding returns through improved ad targeting and new AI product monetization."
+    },
+    {
+      "ticker": "SNOW",
+      "name": "Snowflake Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Training Data Quality, Curation & Synthetic Data",
+      "market_cap_b": 52.59,
+      "revenue_growth_yoy_pct": 29.3,
+      "analyst_upside_pct": 48.2,
+      "composite_conviction": 6.8,
+      "moat_type": "switching costs",
+      "thesis_sentence": "AI Data Cloud consumption model is poised to accelerate as enterprise AI agents require governed, centralized training data pipelines; RPO growth of 42% implies revenue reacceleration not yet reflected in current stock price."
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology, Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 93.4,
+      "revenue_growth_yoy_pct": 42.1,
+      "analyst_upside_pct": 22.4,
+      "composite_conviction": 6.8,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "Marvell's custom ASIC business has multi-year hyperscaler design wins that give revenue visibility rarely seen in semiconductors, yet the stock trades at a discount to peers because investors underestimate the magnitude and margin durability of XPU royalty-like recurring revenue streams."
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 100.6,
+      "revenue_growth_yoy_pct": 29.4,
+      "analyst_upside_pct": 28.6,
+      "composite_conviction": 6.75,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "CRWD is underpriced relative to the earnings power unlocked by Charlotte AI AgentWorks becoming the default enterprise AI security orchestration ecosystem: as customers consolidate security vendors onto the Falcon platform ('Falcon Flex'), CRWD captures AI verification revenue that would otherwise fragment across point solutions. The FedRAMP High clearance for Charlotte AI is a near-permanent competitive moat that cannot be replicated quickly by PANW or S \u2014 and the government AI security market alone could add multiple ARR points. CrowdStrike has also substantially recovered from the 2024 outage, with retention metrics rebounding, removing the key bear-case overhang."
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare, Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 74.1,
+      "revenue_growth_yoy_pct": 29.8,
+      "analyst_upside_pct": 16.1,
+      "composite_conviction": 6.45,
+      "moat_type": "network effects",
+      "thesis_sentence": "Cloudflare's global anycast network of 300+ PoPs creates a structural edge latency advantage for real-time RAG retrieval that no cloud provider can replicate, and its usage-based developer services (Workers AI, Vectorize, R2) represent an embedded moat that will compound as AI inference moves to the edge."
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 2246.0,
+      "revenue_growth_yoy_pct": 12.4,
+      "analyst_upside_pct": 41.9,
+      "composite_conviction": 6.4,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "The market underweights AWS's structural advantage as the neutral, multi-model cloud layer for enterprise generative AI: unlike Azure (OpenAI-anchored) or GCP (Gemini-anchored), Bedrock's model-agnostic approach with integrated custom silicon creates a winner-take-most dynamic in enterprise AI workloads."
+    },
+    {
+      "ticker": "MDB",
+      "name": "MongoDB, Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 20.3,
+      "revenue_growth_yoy_pct": 22.8,
+      "analyst_upside_pct": 29.1,
+      "composite_conviction": 6.4,
+      "moat_type": "switching costs",
+      "thesis_sentence": "Market is discounting MongoDB's consumption model cyclicality and concerns about competition from open-source alternatives, while undervaluing the deep switching costs created by Atlas's unified vector+document+streaming architecture that eliminates the need for a separate vector database in production AI stacks."
+    },
+    {
+      "ticker": "WK",
+      "name": "Workiva",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 3.41,
+      "revenue_growth_yoy_pct": 19.8,
+      "analyst_upside_pct": 43.6,
+      "composite_conviction": 6.4,
+      "moat_type": "regulatory",
+      "thesis_sentence": "WK is underpriced as the sole public company directly targeting AI governance and compliance as a GRC platform extension: EU AI Act, SEC AI disclosure rules, and enterprise internal audit requirements will mandate systematic AI controls documentation \u2014 exactly what Workiva's platform provides. At 78.5% gross margin and approaching $1B revenue, the unit economics are strong. The market currently prices WK as a financial reporting software vendor; the re-rating opportunity comes when analysts recognize that AI governance compliance is a $10B+ TAM expansion that Workiva can address with minimal incremental R&D given its existing GRC workflow infrastructure."
+    },
+    {
+      "ticker": "RAMP",
+      "name": "LiveRamp Holdings Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Training Data Quality, Curation & Synthetic Data",
+      "market_cap_b": 1.72,
+      "revenue_growth_yoy_pct": 20.6,
+      "analyst_upside_pct": 33.2,
+      "composite_conviction": 6.35,
+      "moat_type": "network effects",
+      "thesis_sentence": "Market values LiveRamp purely as a marketing-tech company and has not priced in its emerging role as a governed AI training data exchange, where its identity-resolved, consent-based datasets command premium pricing from foundation model builders."
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 353.9,
+      "revenue_growth_yoy_pct": 34.3,
+      "analyst_upside_pct": 27.6,
+      "composite_conviction": 6.3,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "AMD is priced as if it will remain a permanent #2, but its MI400 roadmap with 432GB HBM4 and improving ROCm developer adoption could allow it to undercut NVIDIA on price/performance for inference workloads where CUDA lock-in is weakest."
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 3746.0,
+      "revenue_growth_yoy_pct": 11.4,
+      "analyst_upside_pct": 28.8,
+      "composite_conviction": 6.25,
+      "moat_type": "Ecosystem network effects + data moat \u2014 Apple's closed hardware-software-services ecosystem generates unique multi-modal behavioral data unavailable to any third party; HealthKit data sharing creates an industry-standard behavioral data API; brand loyalty with 2B+ active devices creates persistent data collection at unmatched scale",
+      "thesis_sentence": "AAPL's 29% analyst upside consensus underestimates the monetization potential of Apple Intelligence \u2014 an on-device AI platform trained on the world's richest individual behavioral dataset. With 300M+ wearable users generating continuous biometric and motion data, Apple is uniquely positioned to monetize health AI services at scale. The services segment (now 30%+ of gross profit) and Vision Pro spatial computing data moat represent underappreciated long-term value drivers relative to current market pricing."
+    },
+    {
+      "ticker": "ZBRA",
+      "name": "Zebra Technologies Corporation",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 10.3,
+      "revenue_growth_yoy_pct": 8.3,
+      "analyst_upside_pct": 58.7,
+      "composite_conviction": 6.25,
+      "moat_type": "switching costs",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "DT",
+      "name": "Dynatrace",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 11.3,
+      "revenue_growth_yoy_pct": 18.8,
+      "analyst_upside_pct": 32.1,
+      "composite_conviction": 6.25,
+      "moat_type": "switching costs",
+      "thesis_sentence": "DT is underpriced as the market underestimates how its Davis AI deterministic engine differentiates from pure generative AI observability competitors: enterprises in regulated industries (finance, healthcare) require explainable, verifiable AI diagnostics that Davis AI natively provides, while DDOG's approach is probabilistic. At 81.6% gross margin and ~6x NTM revenue, DT trades at a significant discount to DDOG despite a more defensible AIOps moat in compliance-sensitive verticals. The Dynatrace Intelligence launch is an early catalyst that has not yet been priced into ARR growth estimates."
+    },
+    {
+      "ticker": "SNPS",
+      "name": "Synopsys Inc. (incl. Ansys)",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 75.7,
+      "revenue_growth_yoy_pct": 13.5,
+      "analyst_upside_pct": null,
+      "composite_conviction": 6.2,
+      "moat_type": "switching costs",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce, Inc.",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 174.2,
+      "revenue_growth_yoy_pct": 9.6,
+      "analyst_upside_pct": 30.1,
+      "composite_conviction": 6.15,
+      "moat_type": "switching costs",
+      "thesis_sentence": "Market is penalizing Salesforce for low single-digit growth without recognizing that Agentforce creates a new consumption revenue stream on top of existing seat licenses, where even modest AI agent adoption by existing customers could reaccelerate revenue growth to mid-teens by FY2027."
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 110.8,
+      "revenue_growth_yoy_pct": 14.9,
+      "analyst_upside_pct": 30.0,
+      "composite_conviction": 6.15,
+      "moat_type": "switching costs",
+      "thesis_sentence": "PANW is underpriced as the market prices in revenue growth deceleration (14.9% YoY) without fully crediting the multi-year ARR acceleration embedded in its platformization billings structure. Prisma AIRS is the only enterprise-grade AI red-teaming product from a public company, and as regulatory requirements for AI security testing expand (EU AI Act, U.S. executive orders), PANW is positioned to capture mandatory compliance spend. At ~11x NTM revenue vs. CRWD at ~15x, PANW trades at an unjustified discount given comparable gross margins and superior GAAP profitability ($1.28B net income TTM)."
+    },
+    {
+      "ticker": "SYM",
+      "name": "Symbotic Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 32.8,
+      "revenue_growth_yoy_pct": 33.7,
+      "analyst_upside_pct": null,
+      "composite_conviction": 6.15,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "MBLY",
+      "name": "Mobileye Global Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 6.0,
+      "revenue_growth_yoy_pct": 14.5,
+      "analyst_upside_pct": null,
+      "composite_conviction": 6.15,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "BOX",
+      "name": "Box, Inc.",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 3.4,
+      "revenue_growth_yoy_pct": 8.0,
+      "analyst_upside_pct": 48.0,
+      "composite_conviction": 6.0,
+      "moat_type": "regulatory",
+      "thesis_sentence": "Box's FedRAMP, HIPAA, and GxP compliance certifications make it the mandatory choice for regulated industries (government, healthcare, pharma) building AI over sensitive documents, and the market is not pricing in the premium value of Box's compliant RAG infrastructure versus uncertified alternatives."
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QUALCOMM Incorporated",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 135.4,
+      "revenue_growth_yoy_pct": 15.2,
+      "analyst_upside_pct": 14.4,
+      "composite_conviction": 5.95,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "Market is pricing QCOM as a smartphone cycle stock, ignoring that on-device inference for AI applications (eliminating cloud API costs) is set to be the dominant inference paradigm within 3 years, and QCOM's ISA+modem integration creates a near-unassailable position in edge compute."
+    },
+    {
+      "ticker": "ESTC",
+      "name": "Elastic N.V.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 5.3,
+      "revenue_growth_yoy_pct": 13.1,
+      "analyst_upside_pct": 45.1,
+      "composite_conviction": 5.95,
+      "moat_type": "switching costs",
+      "thesis_sentence": "Elastic trades at a 37% discount to its 52-week high despite 28% of $100K+ ACV customers now using AI features; the market is pricing in permanent growth deceleration while ignoring that Elastic's unified search/security/observability platform creates multi-product expansion beyond pure-play vector database competitors."
+    },
+    {
+      "ticker": "CGNX",
+      "name": "Cognex Corporation",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 8.1,
+      "revenue_growth_yoy_pct": 8.7,
+      "analyst_upside_pct": 30.1,
+      "composite_conviction": 5.85,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "S",
+      "name": "SentinelOne",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "AI Verification, Evaluation & Alignment Infrastructure",
+      "market_cap_b": 4.4,
+      "revenue_growth_yoy_pct": 32.2,
+      "analyst_upside_pct": 18.0,
+      "composite_conviction": 5.8,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "S is modestly underpriced relative to the underlying AI SIEM growth trajectory: analysts are anchoring to legacy endpoint metrics while emerging products (AI SIEM, Purple AI, cloud security) are now ~50% of bookings and growing triple-digits. The company has not yet achieved GAAP profitability, which caps institutional buying, but at $4.4B market cap and $1B in TTM revenue with 32% growth, the risk/reward is asymmetric if platform consolidation plays out. The primary risk is CRWD's competing Charlotte AI AgentWorks ecosystem poaching share before SentinelOne reaches FCF breakeven."
+    },
+    {
+      "ticker": "GRMN",
+      "name": "Garmin Ltd.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 45.8,
+      "revenue_growth_yoy_pct": 15.1,
+      "analyst_upside_pct": 10.7,
+      "composite_conviction": 5.65,
+      "moat_type": "Brand + data moat \u2014 Garmin's 100M+ device installed base generates proprietary behavioral datasets unavailable elsewhere; dominance in aviation GPS creates separate defensible moat; fitness community lock-in through Garmin Connect platform with 30M+ registered users and decades of individual activity histories; aerospace/defense certifications create high switching costs",
+      "thesis_sentence": "GRMN's modest 11% analyst upside understates the company's position as a premium behavioral data collector across fitness, aviation, and outdoor verticals. With 15% revenue growth at 59% gross margins, Garmin trades at a reasonable multiple for a company with durable brand loyalty and an expanding health AI platform. The Connect+ subscription launch represents a high-margin behavioral data monetization pathway that current consensus models have not fully priced in. Aviation remains a highly defensible cash-generating segment."
+    },
+    {
+      "ticker": "SMCI",
+      "name": "Super Micro Computer, Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 13.9,
+      "revenue_growth_yoy_pct": 87.8,
+      "analyst_upside_pct": 16.5,
+      "composite_conviction": 5.65,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "If SMCI resolves its governance issues and maintains its technology lead in liquid-cooled AI server rack design \u2014 a critical differentiator as GPU power density increases \u2014 the stock could re-rate to 0.5x revenue from its current 0.5x level; the company's underlying hardware business is growing strongly and its valuation embeds significant permanent impairment from governance risk that may not materialize."
+    },
+    {
+      "ticker": "ADBE",
+      "name": "Adobe Inc.",
+      "tier": 2,
+      "tier_name": "Established Growth",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 98.6,
+      "revenue_growth_yoy_pct": 13.7,
+      "analyst_upside_pct": 8.6,
+      "composite_conviction": 5.5,
+      "moat_type": "switching costs",
+      "thesis_sentence": "ADBE is underpriced if Firefly's commercially safe generation IP becomes a regulatory moat: as generative AI copyright litigation accelerates globally, enterprises will pay a premium for indemnified, licensed-content AI tools, and Adobe's existing 30M+ Creative Cloud subscriber base provides an unmatched upsell surface."
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 48.2,
+      "revenue_growth_yoy_pct": 13.1,
+      "analyst_upside_pct": null,
+      "composite_conviction": 5.5,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "AUR",
+      "name": "Aurora Innovation Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 8.1,
+      "revenue_growth_yoy_pct": null,
+      "analyst_upside_pct": null,
+      "composite_conviction": 5.5,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "PTC",
+      "name": "PTC Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 16.9,
+      "revenue_growth_yoy_pct": 4.4,
+      "analyst_upside_pct": null,
+      "composite_conviction": 5.45,
+      "moat_type": "switching costs",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "BBAI",
+      "name": "BigBear.ai Holdings, Inc.",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 1.27,
+      "revenue_growth_yoy_pct": -19.3,
+      "analyst_upside_pct": 55.4,
+      "composite_conviction": 5.45,
+      "moat_type": "regulatory",
+      "thesis_sentence": "BBAI is underpriced on a revenue-decline narrative that misses the strategic pivot: Ask Sage's DoD IL6 authorization creates a near-insurmountable regulatory moat for classified generative AI, and the U.S. defense budget's expanding AI allocation ($2.6B+ in FY2026 AI/ML programs) positions BBAI as a pure-play beneficiary with limited public market competition."
+    },
+    {
+      "ticker": "IBM",
+      "name": "International Business Machines Corporation",
+      "tier": 1,
+      "tier_name": "Conservative",
+      "category": "Context Management, Persistent Memory & RAG",
+      "market_cap_b": 231.5,
+      "revenue_growth_yoy_pct": 7.6,
+      "analyst_upside_pct": 13.2,
+      "composite_conviction": 5.3,
+      "moat_type": "regulatory",
+      "thesis_sentence": "IBM's watsonx is quietly becoming the compliance-first RAG infrastructure standard for regulated industries (banking, government, healthcare) that cannot use hyperscaler AI due to data residency requirements, and the market's 'hold' consensus underestimates the strategic value of IBM's trusted enterprise brand in winning sovereign AI deployments."
+    },
+    {
+      "ticker": "TRMB",
+      "name": "Trimble Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 15.44,
+      "revenue_growth_yoy_pct": -2.6,
+      "analyst_upside_pct": 37.2,
+      "composite_conviction": 5.2,
+      "moat_type": "Network effects + switching-cost moat \u2014 Trimble's AECO (Architecture, Engineering, Construction, Owner) platform connects 700,000+ construction professionals; ARR of $2.39B (+14% YoY) provides recurring revenue visibility; proprietary positioning algorithms and real-time kinematic GNSS technology with decades of refinement",
+      "thesis_sentence": "TRMB is undergoing a structural transformation from hardware to SaaS, with ARR growing 14% while total revenue is temporarily dragged by hardware cycle headwinds. At 79% software/services mix with 68% gross margins and $2.39B ARR, the stock should be valued as a software company \u2014 yet still trades at a material discount to pure-play construction tech peers. The 2027 investor day targets ($3B ARR, $4B revenue, 30% EBITDA) represent a credible 2-year re-rating catalyst."
+    },
+    {
+      "ticker": "ROK",
+      "name": "Rockwell Automation Inc.",
+      "tier": 3,
+      "tier_name": "High Conviction Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 40.9,
+      "revenue_growth_yoy_pct": 3.7,
+      "analyst_upside_pct": null,
+      "composite_conviction": 5.1,
+      "moat_type": "switching costs",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "U",
+      "name": "Unity Software Inc.",
+      "tier": 4,
+      "tier_name": "Speculative Growth",
+      "category": "Simulation Environments for Agent/Robotics Training",
+      "market_cap_b": 9.75,
+      "revenue_growth_yoy_pct": 2.0,
+      "analyst_upside_pct": null,
+      "composite_conviction": 4.9,
+      "moat_type": "switching costs",
+      "thesis_sentence": ""
+    },
+    {
+      "ticker": "CLVT",
+      "name": "Clarivate Plc",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Training Data Quality, Curation & Synthetic Data",
+      "market_cap_b": 1.6,
+      "revenue_growth_yoy_pct": -4.0,
+      "analyst_upside_pct": 18.4,
+      "composite_conviction": 4.9,
+      "moat_type": "proprietary dataset",
+      "thesis_sentence": "Clarivate's 97%-proprietary curated dataset spanning patents, academia, and drug safety represents the highest-quality structured training corpus for domain-specific AI, yet trades at distressed valuations due to declining revenue from a legacy licensing model that undervalues AI data monetization optionality."
+    },
+    {
+      "ticker": "PTON",
+      "name": "Peloton Interactive, Inc.",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Human Behavioral Data for Embodied AI",
+      "market_cap_b": 1.88,
+      "revenue_growth_yoy_pct": -9.7,
+      "analyst_upside_pct": 39.4,
+      "composite_conviction": 4.9,
+      "moat_type": "Content + community network effects \u2014 Peloton's live and on-demand class library with 15M+ members creates social accountability loops; instructor brand loyalty drives low churn; biomechanical dataset from millions of workout sessions is a unique embodied AI training asset; equipment installed base of ~3M connected units provides persistent behavioral data collection",
+      "thesis_sentence": "PTON is a speculative recovery play at $1.88B market cap, representing a potential asymmetric opportunity for investors willing to accept turnaround risk. The Peloton IQ computer vision platform fundamentally changes the company's AI value proposition \u2014 from a content streamer to an embodied AI training data generator with real-time form analysis. With 3M+ connected devices generating labeled biomechanical video data and a 52% gross margin providing underlying unit economics viability, Peloton's optionality as an acquisition target or AI data licensing platform is not reflected in current pricing."
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel Corporation",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "AI Inference Efficiency & Cost Optimization",
+      "market_cap_b": 250.8,
+      "revenue_growth_yoy_pct": -0.5,
+      "analyst_upside_pct": -4.9,
+      "composite_conviction": 4.55,
+      "moat_type": "HW-SW integration",
+      "thesis_sentence": "Intel's Gaudi 3 open-source software approach and competitive inference TCO could win enterprise workloads seeking vendor diversification from NVIDIA; the stock trades near liquidation value at 0.5x book, embedding no recovery option value for its Intel 18A foundry process."
+    },
+    {
+      "ticker": "AI",
+      "name": "C3.ai, Inc.",
+      "tier": 5,
+      "tier_name": "Deep Value / Turnaround",
+      "category": "Diffusion Model R&D & Next-Gen Generative Architecture",
+      "market_cap_b": 1.22,
+      "revenue_growth_yoy_pct": -1.0,
+      "analyst_upside_pct": 4.4,
+      "composite_conviction": 4.25,
+      "moat_type": "switching costs",
+      "thesis_sentence": "C3.ai is a contrarian turnaround play: the new CEO's Salesforce background signals a shift to enterprise SaaS growth playbook, and the federal government's accelerating AI adoption (USDA, Intelligence Community) creates a recurring revenue base that could re-rate the stock if ARR growth inflects positive under new management in the next 2\u20133 quarters."
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "methodology": {
+    "companies_considered": 59,
+    "selection_method": "Highest composite conviction score within each tier from AI_Universe.xlsx (Task 2). Tier 4 winner adjudicated between ZETA (7.50) and SOUN (7.50 tied): ZETA selected over SOUN because SOUN's management reset forward guidance from 121% to 29% growth in March 2026, materially weakening the speculative asymmetry thesis; ZETA's proprietary 240M-identity dataset moat is harder to replicate than SOUN's enterprise voice contracts.",
+    "finalist_selection": {
+      "T1": "NVDA — Composite 8.80 (highest in universe)",
+      "T2": "PLTR — Composite 7.75 (highest in Tier 2)",
+      "T3": "CRDO — Composite 8.55 (highest in Tier 3)",
+      "T4": "ZETA — Composite 7.50 (tied T4 leader, adjudicated over SOUN)",
+      "T5": "BOX — Composite 6.00 (highest in Tier 5)"
+    },
+    "scoring_notes": "All 7 comparison dimensions scored 1-10 independently. No single dimension dominates; each reflects a distinct analytical lens relevant to institutional pitch committees."
+  },
+  "finalists": [
+    {
+      "tier": 1,
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "tier_label": "Conservative Anchor",
+      "profile_150w": "The non-consensus insight is not that NVIDIA dominates AI training — everyone knows that — it is that Blackwell's 35x cost-per-token improvement over Hopper makes NVIDIA the economically dominant inference platform just as inference becomes the majority of AI compute spend. The moat is architectural: CUDA's 4,000+ library integrations, NIM microservices, and Triton inference server create a switching cost ecosystem that cannot be replicated in silicon cycles — it requires rebuilding a decade of software. Primary catalyst: Vera Rubin samples are with hyperscalers now; first revenue in H2 2026 extends the upgrade cycle and eliminates the 'peak Blackwell' bear case. Key risk: China export restrictions on B20/H20 chips could remove a material revenue stream if reclassified under BIS. Laffont: definitive platform with network effects compounding in software. Loeb: mispriced relative to $1T visible order book. Hao: highest data-defensible conviction in the universe.",
+      "financial_snapshot": {
+        "market_cap_b": 4305.6,
+        "revenue_ttm_m": 215938,
+        "revenue_growth_yoy_pct": 65.5,
+        "gross_margin_pct": 71.1,
+        "ev_revenue_vs_peers": "NVDA at ~20x EV/Revenue vs AMD at 10x and INTC at 5x — premium is warranted given 4x AMD's gross margin dollar generation per dollar of revenue",
+        "analyst_upside_pct": 67.7,
+        "rd_pct_revenue": 8.6
+      },
+      "scores": {
+        "moat_durability": 10,
+        "growth_visibility": 9,
+        "valuation_vs_opportunity": 8,
+        "catalyst_specificity": 8,
+        "judge_resonance": 10,
+        "non_consensus_advantage": 6,
+        "data_advantage": 7
+      },
+      "judge_fit": {
+        "laffont": "Definitive platform network effect in the AI compute layer — CUDA lock-in compounds exactly like Laffont's documented framework for platform infrastructure compounders.",
+        "loeb": "Mispriced relative to $1T+ visible purchase order book; insider selling narrative is overplayed given CEO Jensen's long-horizon ownership structure.",
+        "hao": "Most data-defensible conviction in the universe — every hyperscaler capex filing, every AI model benchmark, and every inference economics paper converges on NVIDIA dominance."
+      },
+      "recent_catalyst": "GTC 2026 (March 2026): Jensen Huang disclosed $1T+ cumulative purchase order visibility for Blackwell and Vera Rubin through end of CY2027, up from $500B prior disclosure; Vera Rubin samples shipped to hyperscaler customers; Blackwell Ultra GB300 NVL72 benchmarked at 35x lower cost-per-token vs Hopper.",
+      "key_risk": "BIS export controls on B20/H20 derivative chips for China could remove $10-15B of annualized revenue if reclassified; geopolitical escalation is the only tail risk that meaningfully dents the thesis."
+    },
+    {
+      "tier": 2,
+      "ticker": "PLTR",
+      "name": "Palantir Technologies Inc.",
+      "tier_label": "Established Grower",
+      "profile_150w": "The non-consensus insight: the market is still pricing Palantir as a government contractor with a commercial option — but US commercial revenue grew 137% year-over-year in Q4 2025 and management guided above 115% growth for full-year 2026, meaning the commercial flywheel has already crossed the threshold where it drives valuation, not supplements it. The moat is the ontological data model: Palantir's Foundry/AIP doesn't store data or query it — it builds a living logical map of enterprise operations, creating a switching cost that is cognitive, not contractual. Ripping it out requires re-teaching the organization how to think about its own data. Primary catalyst: Q1 2026 earnings (expected May 2026) vs $1.532-1.536B guidance — a beat would confirm 61% full-year trajectory isn't decelerating. Key risk: 114x forward P/E leaves zero room for a single disappointing quarter. Laffont: Rule of 40 = 127, compounding moat. Loeb: underpriced vs DCF at 3-5 year horizon. Hao: AI operating system thesis validated by AIP bootcamp model.",
+      "financial_snapshot": {
+        "market_cap_b": 337.9,
+        "revenue_ttm_m": 4475,
+        "revenue_growth_yoy_pct": 56.2,
+        "gross_margin_pct": 82.4,
+        "ev_revenue_vs_peers": "PLTR at ~74x EV/Revenue vs Datadog 12x, ServiceNow 15x — premium reflects 61% forward growth; justified only if AIP bootcamp model proves durable; at 40x revenue in 2027, still ~12% premium to NOW",
+        "analyst_upside_pct": 27.7,
+        "rd_pct_revenue": 12.5
+      },
+      "scores": {
+        "moat_durability": 9,
+        "growth_visibility": 8,
+        "valuation_vs_opportunity": 5,
+        "catalyst_specificity": 9,
+        "judge_resonance": 9,
+        "non_consensus_advantage": 7,
+        "data_advantage": 9
+      },
+      "judge_fit": {
+        "laffont": "Rule of 40 = 127% is the highest in enterprise software — Laffont's documented preference for compounding, cash-generative software platforms at inflection points is precisely met.",
+        "loeb": "The government-contractor perception discount creates a valuation gap that activism or narrative reframing can close; AIP commercial acceleration is the catalyst Loeb-style thesis requires.",
+        "hao": "AI Platform (AIP) is the first enterprise software product with a documented bootcamp-to-production pipeline — the data shows conversion rates, deal velocity, and NRR that are unique to this model."
+      },
+      "recent_catalyst": "Q1 2026 earnings print (expected May 2026) vs $1.532-$1.536B management guidance — Q4 2025 beat by $85M; a sequential beat would confirm 61% FY2026 trajectory is holding and compress the bear case that the acceleration is one-quarter anomaly.",
+      "key_risk": "114x forward P/E and 233x trailing P/E means a single quarter of deceleration — even to 90% US commercial growth from 137% — triggers a multiple de-rating that is mathematically severe; any macro pullback in enterprise IT spend hits PLTR first."
+    },
+    {
+      "tier": 3,
+      "ticker": "CRDO",
+      "name": "Credo Technology Group Holding Ltd.",
+      "tier_label": "High Conviction Growth",
+      "profile_150w": "The non-consensus insight: CRDO is not a semiconductor company — it is the owner of the only commercially validated Active Electrical Cable (AEC) IP stack for 224G SerDes at scale, making it the mandatory toll gate for any AI cluster scaling beyond 400G interconnect. Every NVL72 rack, every Google TPU pod, every custom AWS Trainium cluster that runs at 800G or higher requires Credo's retimer and AEC technology because no alternative achieves signal integrity at that speed without CRDO's proprietary DSP. The moat is IP-plus-yield: CRDO's AEC design wins at Microsoft, Amazon, and Google took 4+ years of qualification cycles; a competitor starting today cannot displace them before 2029. Primary catalyst: Q3 FY2027 earnings (expected November 2026) will be the first full quarter at >$280M run-rate, which de-risks the $1.3B FY2026 analyst consensus. Key risk: a competitor (Marvell or Broadcom) successfully qualifies an alternative AEC solution in an existing hyperscaler. Laffont: IP moat in a capacity-constrained market. Loeb: 96% consensus upside. Hao: dominant in a category the market undervalues.",
+      "financial_snapshot": {
+        "market_cap_b": 18.8,
+        "revenue_ttm_m": 1068,
+        "revenue_growth_yoy_pct": 453.5,
+        "gross_margin_pct": 67.8,
+        "ev_revenue_vs_peers": "CRDO at ~18x EV/Revenue vs Marvell at 12x and Broadcom at 22x — CRDO deserves AVGO-like multiple given comparable hyperscaler dependency; 96% analyst upside to $200 consensus target",
+        "analyst_upside_pct": 75.8,
+        "rd_pct_revenue": 22.1
+      },
+      "scores": {
+        "moat_durability": 8,
+        "growth_visibility": 8,
+        "valuation_vs_opportunity": 9,
+        "catalyst_specificity": 8,
+        "judge_resonance": 8,
+        "non_consensus_advantage": 9,
+        "data_advantage": 9
+      },
+      "judge_fit": {
+        "laffont": "IP moat in a capacity-constrained, qualification-cycle-gated market — exactly the type of durable-advantage, niche-dominance play that Laffont's documented growth framework rewards.",
+        "loeb": "16 analysts with Strong Buy, median $200 target vs $101 current price — a misunderstood category leader with a 96% consensus upside that Loeb-style catalyst investing can surface.",
+        "hao": "AEC and SerDes IP is technically complex enough that standard research cannot quantify the moat; Perplexity's access to IEEE filings, patent databases, and hyperscaler procurement data enables unique insight."
+      },
+      "recent_catalyst": "Q2 FY2027 (August 2026) earnings print confirming $223M quarterly revenue run-rate — analysts project $234M for that quarter; a beat would put FY2027 revenue on track to exceed $1.3B consensus and establish CRDO as a $2B+ revenue business by FY2028, warranting multiple expansion toward AVGO-level premiums.",
+      "key_risk": "Single-customer concentration: Microsoft and Amazon together represent an outsized share of CRDO revenue; either company successfully qualifying an internal AEC solution or switching to a Marvell PAM4 alternative would materially impair the thesis."
+    },
+    {
+      "tier": 4,
+      "ticker": "ZETA",
+      "name": "Zeta Global Holdings Corp.",
+      "tier_label": "Speculative Asymmetric Bet",
+      "profile_150w": "The non-consensus insight: Zeta is not a marketing data company — it is a 240-million-identity AI graph that makes it the only independent third-party dataset capable of replacing cookie-based targeting at scale, and the market has not priced the post-cookie advertising TAM into a $3.8B cap stock. The moat is the identity graph itself: assembled over 14 years from 200+ first-party data partnerships, transactional signals, and direct consumer relationships — it cannot be replicated by a startup without equivalent data history. AI-native competitors (Google, Meta) are blocked from sharing their graphs with third parties; agencies need an independent identity graph, and ZETA is the only one at scale. Primary catalyst: Google's final deprecation of third-party cookies in Chrome (targeted mid-2026) forces agencies and brands to activate first-party data strategies — every enterprise that doesn't have one becomes a ZETA customer. Key risk: cookie deprecation delays (Google has postponed twice) would extend the transition timeline and defer the revenue catalyst. Laffont: data network effect compounds. Loeb: depressed valuation vs TAM. Hao: unique dataset impossible to replicate.",
+      "financial_snapshot": {
+        "market_cap_b": 3.8,
+        "revenue_ttm_m": 1305,
+        "revenue_growth_yoy_pct": 29.7,
+        "gross_margin_pct": 60.6,
+        "ev_revenue_vs_peers": "ZETA at ~3x EV/Revenue vs Trade Desk (TTD) at 18x — both companies operate AI-driven digital advertising platforms; if ZETA grows into a 10x EV/Revenue over 3 years (below TTD's current), that implies 5-8x upside from current levels",
+        "analyst_upside_pct": 75.8,
+        "rd_pct_revenue": 18.2
+      },
+      "scores": {
+        "moat_durability": 7,
+        "growth_visibility": 6,
+        "valuation_vs_opportunity": 9,
+        "catalyst_specificity": 7,
+        "judge_resonance": 7,
+        "non_consensus_advantage": 8,
+        "data_advantage": 9
+      },
+      "judge_fit": {
+        "laffont": "Data network effect in a structural market transition — cookie deprecation is a one-way door that concentrates value in whoever holds the identity graph, exactly the type of durable platform shift Laffont's framework captures.",
+        "loeb": "3x EV/Revenue vs 18x for Trade Desk on comparable TAM — the valuation gap reflects misclassification as a legacy ad-tech name rather than an AI data infrastructure company.",
+        "hao": "240M-identity graph is a unique, proprietary dataset that only Perplexity's premium data access can audit at depth — standard research cannot quantify the coverage or freshness of the identity graph."
+      },
+      "recent_catalyst": "Google Chrome third-party cookie deprecation (targeted mid-2026) forces enterprises to migrate from cookie-based to identity-graph-based targeting; each enterprise that activates a first-party data strategy requires a graph provider, and ZETA's is the only independent scale alternative to walled gardens.",
+      "key_risk": "Google has delayed cookie deprecation twice; a third delay pushes the primary catalyst into 2027 and leaves ZETA in a 'show-me' growth story without the structural trigger that justifies the TAM expansion thesis."
+    },
+    {
+      "tier": 5,
+      "ticker": "BOX",
+      "name": "Box, Inc.",
+      "tier_label": "Deep Value / Turnaround",
+      "profile_150w": "The non-consensus insight: the market is pricing Box as a shrinking file-storage company competing with SharePoint — but Box's FedRAMP High, HIPAA, CJIS, GxP, and GovRAMP certifications make it the only enterprise content platform that regulated industries (defense, pharma, government, healthcare) can legally deploy AI agents on, creating a compliance-gated RAG moat that Microsoft and Google cannot replicate without equivalent authorization timelines. The moat is regulatory: achieving FedRAMP High authorization alone requires 18-24 months and $5-10M in audit costs per application — Microsoft 365 and Google Workspace are not FedRAMP High authorized for the same AI workloads Box supports. Primary catalyst: Enterprise Advanced product (launched May 2023) is now 10% of revenue with RPO growing 17% YoY — the AI upsell cycle is proving durable. FY2027 guidance of $1.275B at 8% growth with 30%+ operating margins means BOX is printing FCF while the market assigns a distressed multiple. Key risk: Microsoft deepens SharePoint/Copilot integration in regulated industries faster than expected. Laffont: overlooked platform. Loeb: activist-ripe. Hao: compliance dataset advantage.",
+      "financial_snapshot": {
+        "market_cap_b": 3.4,
+        "revenue_ttm_m": 1177,
+        "revenue_growth_yoy_pct": 8.0,
+        "gross_margin_pct": 79.2,
+        "ev_revenue_vs_peers": "BOX at ~3x EV/Revenue vs Dropbox at 3x and Microsoft 365 (comparable workloads) at 12x — BOX deserves 5-6x on AI upsell trajectory alone; Q4 2026 operating margin at 30.6% makes this a FCF story, not just growth",
+        "analyst_upside_pct": 48.0,
+        "rd_pct_revenue": 14.2
+      },
+      "scores": {
+        "moat_durability": 6,
+        "growth_visibility": 7,
+        "valuation_vs_opportunity": 8,
+        "catalyst_specificity": 7,
+        "judge_resonance": 7,
+        "non_consensus_advantage": 8,
+        "data_advantage": 7
+      },
+      "judge_fit": {
+        "laffont": "Overlooked platform with a structural compliance moat in regulated industries — exactly the type of misunderstood quality company Laffont's growth-at-reasonable-price framework identifies.",
+        "loeb": "Activist-ripe: 30%+ operating margins, $3.4B market cap, $1.7B RPO — a KKR-style buyout at 5x revenue would pay $6B+ and unlock the AI upsell cycle in private; Third Point has historically targeted exactly this profile.",
+        "hao": "FedRAMP authorization database and government procurement records contain unique insight into Box's competitive position in regulated AI workloads — data advantage is real and underutilized by sell-side."
+      },
+      "recent_catalyst": "Q4 FY2026 earnings (March 2026): Enterprise Advanced now 10% of revenue with 17% RPO growth to $1.7B — management guided FY2027 at $1.275B (8% growth) with operating margins expanding beyond 30%, proving the AI upsell cycle is durable, not a one-time pop.",
+      "key_risk": "Microsoft SharePoint + Copilot + Azure Government could pursue FedRAMP High authorization for AI workloads at scale; if Microsoft closes the compliance gap within 18 months, Box's primary moat erodes faster than the bull case assumes."
+    }
+  ],
+  "comparison_matrix": [
+    {
+      "dimension": "Moat Durability (5 years out)",
+      "description": "Who is hardest to displace by 2031?",
+      "scores": {
+        "NVDA": 10,
+        "PLTR": 9,
+        "CRDO": 8,
+        "ZETA": 7,
+        "BOX": 6
+      },
+      "leader": "NVDA",
+      "explanation": "NVIDIA's CUDA software ecosystem — 4,000+ optimized libraries, every AI researcher trained on it, every MLOps stack built around it — is not a chip moat but a software moat sitting on top of a chip moat. Displacing it requires re-writing a decade of scientific computing infrastructure that nobody has the incentive to rebuild when NVIDIA keeps making the hardware better every 18 months."
+    },
+    {
+      "dimension": "Growth Visibility",
+      "description": "Whose revenue growth is most predictable over next 4 quarters?",
+      "scores": {
+        "NVDA": 9,
+        "PLTR": 8,
+        "CRDO": 8,
+        "ZETA": 6,
+        "BOX": 7
+      },
+      "leader": "NVDA",
+      "explanation": "NVIDIA disclosed $1T+ in purchase order visibility through end of CY2027 at GTC 2026 — this is not a forecast, it is a backlog disclosure covering Blackwell and Vera Rubin. Q1 FY2027 guidance of $78B (implied +77% YoY) was already above consensus by $5B before the quarter began, making NVDA's near-term revenue the single most visible line in technology."
+    },
+    {
+      "dimension": "Valuation vs. Opportunity",
+      "description": "Who has the widest gap between current price and fair value?",
+      "scores": {
+        "NVDA": 8,
+        "PLTR": 5,
+        "CRDO": 9,
+        "ZETA": 9,
+        "BOX": 8
+      },
+      "leader": "CRDO / ZETA (tied at 9)",
+      "explanation": "CRDO at $101 vs median analyst target of $200 represents a 96% consensus upside at a company growing revenue >400% YoY — the valuation gap is extraordinary for a profitable semiconductor business. ZETA at 3x EV/Revenue vs Trade Desk at 18x on comparable TAM represents a category misclassification that a single institutional rerating could close by 5-6x."
+    },
+    {
+      "dimension": "Catalyst Specificity",
+      "description": "Whose near-term re-rating catalyst is most concrete and time-bound?",
+      "scores": {
+        "NVDA": 8,
+        "PLTR": 9,
+        "CRDO": 8,
+        "ZETA": 7,
+        "BOX": 7
+      },
+      "leader": "PLTR",
+      "explanation": "Palantir's Q1 2026 earnings print (expected May 2026) has a specific guidance range ($1.532-$1.536B), a specific metric to watch (US commercial growth rate vs 137% in Q4), and a specific test (does the Rule of 40 score hold above 100). This is the most time-bound, binary catalyst of any finalist — beat = multiple expansion, miss = material de-rating."
+    },
+    {
+      "dimension": "Judge Resonance",
+      "description": "Which company speaks most directly to all 3 judges (Laffont / Loeb / Hao)?",
+      "scores": {
+        "NVDA": 10,
+        "PLTR": 9,
+        "CRDO": 8,
+        "ZETA": 7,
+        "BOX": 7
+      },
+      "leader": "NVDA",
+      "explanation": "NVIDIA uniquely satisfies all three judge frameworks simultaneously: the platform network-effect compounding that Laffont documents (CUDA ecosystem), the mispriced-vs-visible-revenue that Loeb's catalyst approach targets ($1T backlog vs 30% discount to all-time-high), and the data-defensible conviction that Hao's quantitative framework demands (every benchmark, every hyperscaler capex disclosure, every model architecture points to NVDA)."
+    },
+    {
+      "dimension": "Non-Consensus Advantage",
+      "description": "Which thesis is most differentiated from what Coatue / Third Point / Silver Lake already know and own?",
+      "scores": {
+        "NVDA": 6,
+        "PLTR": 7,
+        "CRDO": 9,
+        "ZETA": 8,
+        "BOX": 8
+      },
+      "leader": "CRDO",
+      "explanation": "Coatue, Citadel, and Tiger all own NVDA. The institutional AI infrastructure consensus has converged on the obvious picks. CRDO as an AEC/SerDes IP tollgate is not a consensus position — it requires understanding the physics of 224G signal integrity at rack scale, a technical detail that most generalist funds cannot evaluate, creating exactly the information advantage a Perplexity-powered pitch can exploit."
+    },
+    {
+      "dimension": "Data Advantage",
+      "description": "Which company benefits most from Perplexity's premium data access for unique insight generation?",
+      "scores": {
+        "NVDA": 7,
+        "PLTR": 9,
+        "CRDO": 9,
+        "ZETA": 9,
+        "BOX": 7
+      },
+      "leader": "PLTR / CRDO / ZETA (tied at 9)",
+      "explanation": "PLTR: government contract databases, defense procurement filings, and AIP bootcamp customer disclosures are not synthesized in standard research — Perplexity's SEC EDGAR + PitchBook access unlocks unique insight into AIP commercial pipeline. CRDO: IEEE patent filings, hyperscaler procurement benchmarks, and SerDes qualification timelines require technical database access standard research misses. ZETA: the 240M-identity graph's freshness, coverage, and competitive positioning against LiveRamp/Acxiom requires access to DMP market reports and first-party data partnership disclosures."
+    }
+  ],
+  "stage3_totals": {
+    "NVDA": {"total": 58, "avg": 8.29},
+    "PLTR": {"total": 56, "avg": 8.0},
+    "CRDO": {"total": 59, "avg": 8.43},
+    "ZETA": {"total": 53, "avg": 7.57},
+    "BOX": {"total": 50, "avg": 7.14}
+  },
+  "winner": {
+    "ticker": "CRDO",
+    "name": "Credo Technology Group",
+    "thesis_sentence": "Credo Technology is the only company that owns the mandatory IP toll gate for high-speed AI cluster interconnect at 224G SerDes and above — every hyperscaler building an NVL72-class AI factory must qualify Credo's AEC technology, and no competitor can replicate a 4-year hyperscaler qualification timeline before the AI infrastructure buildout peaks.",
+    "justification": "CRDO wins the pitch for three specific reasons that align with these judges.\n\nFirst, it is the most differentiated thesis in the finalist set. Laffont, Loeb, and Silver Lake all have NVDA exposure. Pitching NVIDIA to this panel is pitching what they already own and know better than we do. CRDO's AEC/SerDes IP moat requires understanding 224G signal integrity physics — a technical depth that standard institutional research cannot reach but Perplexity's premium technical database access can surface. This is the non-consensus advantage that makes a pitch memorable.\n\nSecond, the valuation gap is the widest of any finalist with a clear fundamental anchor. $101 per share vs $200 median analyst target (96% upside) at a company growing revenue >400% YoY and operating profitable ($36.8% operating margin) is a category anomaly. CRDO is priced like a small speculative semiconductor company when it operates like a hyperscaler-contracted IP licensor. The re-rating from semiconductor-comp to platform-IP-comp alone justifies the upside.\n\nThird, the catalyst is datapoint-specific and time-bound. The Q2 FY2027 earnings print (August 2026) will be the first full quarter at >$223M quarterly revenue — the beat-or-miss on that print against the $234M analyst estimate is a binary event that either confirms or denies the $1.3B FY2026 consensus, making the investment thesis testable within the competition's own timeline.",
+    "primary_competing_candidate": "NVDA",
+    "why_competitor_lost": "NVIDIA is the highest-conviction company in the universe (Composite 8.80) and the right answer for a risk-adjusted portfolio. It loses the pitch competition because it is not a pitch — it is a fact. Every institutional investor in this room already owns NVDA, knows its thesis better than any research team can explain it in a presentation, and has already made their position decision. Pitching NVDA to Laffont/Loeb/Hao is not differentiated analysis; it is confirming consensus. The pitch competition rewards the non-obvious insight, not the correct one.",
+    "primary_risk": "Single-customer concentration at Microsoft and Amazon: if either hyperscaler successfully qualifies an internal AEC solution or switches to a Marvell PAM4 alternative, CRDO loses a disproportionate share of its revenue. This risk is acceptable because: (1) AEC qualification cycles take 4+ years, giving CRDO a minimum 3-year runway before any replacement reaches production scale; (2) both Microsoft and Amazon have extended their CRDO design wins rather than pulled them; and (3) the risk is disclosed in CRDO's 10-K and therefore already partially priced into the 30% discount to consensus target.",
+    "specific_catalyst": "Q2 FY2027 earnings (August 2026): CRDO will report its first full quarter at the $223M revenue run-rate that analysts have penciled for Q2. Consensus is $234M. If CRDO delivers at or above that number, it puts FY2027 revenue firmly on track for $1.3B+ — which at a reasonable 15x forward EV/Revenue implies a $19.5B+ EV vs the current $18.8B market cap. That math closes the consensus gap within the next 5 months, making this the most time-bound pitch in the finalist set.",
+    "matrix_scores": {
+      "moat_durability": 8,
+      "growth_visibility": 8,
+      "valuation_vs_opportunity": 9,
+      "catalyst_specificity": 8,
+      "judge_resonance": 8,
+      "non_consensus_advantage": 9,
+      "data_advantage": 9
+    },
+    "total_score": 59,
+    "avg_score": 8.43
+  }
+}
