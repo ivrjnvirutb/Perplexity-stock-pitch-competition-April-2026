@@ -64,21 +64,22 @@ This project was designed in Claude Code and executed inside **Perplexity Comput
 | 4 | [stage_04_deepdive/](stage_04_deepdive/) | CRDO deep dive: business, financials, alt data | 4 parallel sub-agents · SEC EDGAR, FactSet, IEEE Patents, LinkedIn |
 | 5 | [stage_05_financials/](stage_05_financials/) | DCF, trading comps, sensitivity, catalyst calendar | FactSet, S&P Global, PitchBook |
 | 6 | [stage_06_model_council/](stage_06_model_council/) | Model Council stress test: 3 models × 5 questions | GPT-5.4 + Claude Opus 4.6 + Gemini 3.1 Pro |
-| 7 | [stage_07_submission/](stage_07_submission/) | First-pass submission web apps (audited, superseded) | Full Perplexity Computer orchestration |
+| 7 | [stage_07_pre_submission/](stage_07_pre_submission/) | First-pass submission web apps (audited, superseded) | Full Perplexity Computer orchestration |
 | — | [FINAL_SUBMISSION/](FINAL_SUBMISSION/) | **Rebuilt, rubric-verified final deliverables** | Rebuilt from scratch with all 8 chapters + Panel 6 process showcase |
 
 ---
 
 ## Final Submission
 
-Two files in [FINAL_SUBMISSION/](FINAL_SUBMISSION/):
+Three deliverables in [FINAL_SUBMISSION/](FINAL_SUBMISSION/) plus a video:
 
 | File | Purpose | Rubric Score (est.) |
 |---|---|---|
 | `CRDO_Investment_Thesis.html` | Full 8-chapter interactive thesis | ~94/100 |
 | `CRDO_Concise_2min.html` | 6-panel 2-minute video companion | ~83/100 |
+| `Perplexity Computer Competition video submission.mp4` | Video walkthrough of the submission | — |
 
-Both submitted in a single Perplexity Computer thread — the thread itself is the submission, demonstrating multi-turn iterative research.
+Both HTML files submitted in a single Perplexity Computer thread — the thread itself is the submission, demonstrating multi-turn iterative research.
 
 ### Eight Chapters (Full Thesis)
 
@@ -103,3 +104,5 @@ Both submitted in a single Perplexity Computer thread — the thread itself is t
 | [PERPLEXITY_TASKS.md](PERPLEXITY_TASKS.md) | Original Perplexity Computer task sequence |
 | [SUBMISSION_PROMPTS.md](SUBMISSION_PROMPTS.md) | Final ready-to-paste prompts used for the rebuilt submission |
 | [all_project_threads.md](all_project_threads.md) | Perplexity Computer thread links |
+| [github_repo_link.md](github_repo_link.md) | Link to this GitHub repository |
+| [workflow_viz.html](workflow_viz.html) | Screenshare-ready Claude Code pipeline visualization |
