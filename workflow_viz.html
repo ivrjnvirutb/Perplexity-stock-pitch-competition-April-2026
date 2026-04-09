@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perplexity Stock Pitch — Claude Code Workflow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A0E1A;
+    --navy2: #0F1525;
+    --navy3: #151C32;
+    --blue: #2D6FFF;
+    --blue-light: #5B8FFF;
+    --gold: #C9A84C;
+    --gold-light: #E4C46A;
+    --text: #F0F0F0;
+    --text-muted: #8A94A8;
+    --green: #22C55E;
+    --purple: #A855F7;
+    --teal: #14B8A6;
+    --border: rgba(45, 111, 255, 0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 48px 24px 32px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #0D1220 0%, var(--navy) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 200px;
+    background: radial-gradient(ellipse, rgba(45,111,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--blue-light); }
+  .header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .prize-strip {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .prize-item {
+    text-align: center;
+  }
+  .prize-item .val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .prize-item .label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ARCHITECTURE OVERVIEW */
+  .arch-row {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr 40px 1fr;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+  .arch-box {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+  .arch-box.claude { border-color: rgba(168,85,247,0.5); }
+  .arch-box.perp { border-color: rgba(45,111,255,0.5); }
+  .arch-box.sub { border-color: rgba(201,168,76,0.5); }
+  .arch-box-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .arch-box-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .arch-box.claude .arch-box-title { color: #C084FC; }
+  .arch-box.perp .arch-box-title { color: var(--blue-light); }
+  .arch-box.sub .arch-box-title { color: var(--gold); }
+  .arch-box-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .arch-arrow {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 20px;
+  }
+
+  /* PIPELINE */
+  .pipeline {
+    margin-bottom: 48px;
+  }
+  .pipeline-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .pipeline-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+  }
+  .pipeline-row + .pipeline-row {
+    margin-top: 12px;
+  }
+
+  /* Parallel bracket */
+  .parallel-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    position: relative;
+    padding-left: 20px;
+  }
+  .parallel-group::before {
+    content: '‖';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--blue);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .parallel-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    padding-left: 20px;
+  }
+
+  .task-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+    flex: 1;
+  }
+  .task-card:hover {
+    border-color: var(--blue);
+    transform: translateX(2px);
+  }
+  .task-card.checkpoint {
+    border-color: rgba(201,168,76,0.4);
+  }
+  .task-card.checkpoint:hover {
+    border-color: var(--gold);
+  }
+  .task-card.submission {
+    border-color: rgba(201,168,76,0.6);
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, var(--navy3) 100%);
+  }
+  .task-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--blue-light);
+    background: rgba(45,111,255,0.12);
+    border: 1px solid rgba(45,111,255,0.3);
+    border-radius: 4px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .task-card.checkpoint .task-num {
+    color: var(--gold);
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .task-card.submission .task-num {
+    color: var(--gold);
+    background: rgba(201,168,76,0.18);
+    border-color: rgba(201,168,76,0.5);
+    font-weight: 700;
+  }
+  .task-content { flex: 1; }
+  .task-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .task-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .task-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(45,111,255,0.12);
+    color: var(--blue-light);
+    border: 1px solid rgba(45,111,255,0.2);
+  }
+  .tag.gold {
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-light);
+    border-color: rgba(201,168,76,0.2);
+  }
+  .tag.green {
+    background: rgba(34,197,94,0.12);
+    color: #4ADE80;
+    border-color: rgba(34,197,94,0.2);
+  }
+  .tag.purple {
+    background: rgba(168,85,247,0.12);
+    color: #C084FC;
+    border-color: rgba(168,85,247,0.2);
+  }
+  .tag.teal {
+    background: rgba(20,184,166,0.12);
+    color: #2DD4BF;
+    border-color: rgba(20,184,166,0.2);
+  }
+
+  .task-meta {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-left: auto;
+    flex-shrink: 0;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    padding-top: 1px;
+  }
+
+  /* Arrow between pipeline sections */
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 0;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+
+  /* CHAPTERS */
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .chapter-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .chapter-card:hover { border-color: rgba(45,111,255,0.5); }
+  .chapter-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--chapter-color, var(--blue));
+  }
+  .chapter-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .chapter-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .chapter-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .chapter-source {
+    font-size: 10px;
+    color: var(--blue-light);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* DATA SOURCES */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 48px;
+  }
+  .source-chip {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s;
+  }
+  .source-chip:hover { border-color: rgba(45,111,255,0.5); }
+  .source-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* JUDGES */
+  .judges-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .judge-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .judge-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .judge-firm {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .judge-lens {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .judge-lens strong { color: var(--text); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 48px;
+  }
+  .stat-item { text-align: center; }
+  .stat-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blue-light);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-val.gold { color: var(--gold); }
+  .stat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  /* CRITICAL PATH */
+  .critical-path {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+  .cp-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cp-path {
+    color: var(--text-muted);
+  }
+  .cp-task { color: var(--blue-light); font-weight: 500; }
+  .cp-parallel { color: var(--blue); }
+  .cp-arrow { color: var(--text-muted); margin: 0 4px; }
+  .cp-checkpoint { color: var(--gold); font-weight: 700; }
+  .cp-submission { color: var(--gold); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+  @media (max-width: 700px) {
+    .arch-row { grid-template-columns: 1fr; gap: 8px; }
+    .arch-arrow { display: none; }
+    .judges-row { grid-template-columns: 1fr; }
+    .prize-strip { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Claude Code Workflow Architecture</div>
+  <h1>Perplexity Stock Pitch <span>Competition</span></h1>
+  <p>An AI-orchestrated investment thesis pipeline — Claude Code architects the workflow, Perplexity Computer executes it, and the final submission is a Perplexity-native interactive web app.</p>
+  <div class="prize-strip">
+    <div class="prize-item">
+      <div class="val">$17,500</div>
+      <div class="label">Prize Pool</div>
+    </div>
+    <div class="prize-item">
+      <div class="val">3</div>
+      <div class="label">Judges</div>
+    </div>
+    <div class="prize-item">
+      <div class="val">~20 hrs</div>
+      <div class="label">Async Compute</div>
+    </div>
+    <div class="prize-item">
+      <div class="val">8</div>
+      <div class="label">Tasks</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- ARCHITECTURE -->
+  <div class="section-label">System Architecture</div>
+  <div class="section-title">How the Three Layers Interact</div>
+
+  <div class="arch-row">
+    <div class="arch-box claude">
+      <div class="arch-box-icon">🤖</div>
+      <div class="arch-box-title">Claude Code</div>
+      <div class="arch-box-desc">Designs the full task sequence, writes every prompt, specifies JSON schemas, architects the final submission asset. Does <em>not</em> execute research.</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box perp">
+      <div class="arch-box-icon">⚡</div>
+      <div class="arch-box-title">Perplexity Computer</div>
+      <div class="arch-box-desc">Executes all 8 tasks asynchronously. Runs parallel sub-agents, accesses premium data, invokes Model Council, builds the final web app.</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box sub">
+      <div class="arch-box-icon">🌐</div>
+      <div class="arch-box-title">Submission: Live Web App</div>
+      <div class="arch-box-desc">An 8-chapter narrative-driven investment pitch — built entirely inside Perplexity Computer. The artifact IS the submission.</div>
+    </div>
+  </div>
+
+  <!-- CRITICAL PATH -->
+  <div class="section-label">Execution Order</div>
+  <div class="section-title">Critical Path</div>
+
+  <div class="critical-path">
+    <div class="cp-label">Sequential → Parallel → Checkpoint → Sequential</div>
+    <div class="cp-path">
+      <span class="cp-task">TASK 0</span><span class="cp-arrow">→</span>
+      <span class="cp-parallel">[ </span><span class="cp-task">TASK 1</span> <span class="cp-parallel">‖</span> <span class="cp-task">TASK 2</span><span class="cp-parallel"> ]</span><span class="cp-arrow">→</span>
+      <span class="cp-checkpoint">TASK 3 ⚠ CHECKPOINT</span><span class="cp-arrow">→</span>
+      <span class="cp-task">TASK 4</span><span class="cp-arrow">→</span>
+      <span class="cp-parallel">[ </span><span class="cp-task">TASK 5</span> <span class="cp-parallel">‖</span> <span class="cp-task">TASK 6</span><span class="cp-parallel"> ]</span><span class="cp-arrow">→</span>
+      <span class="cp-submission">TASK 7 = SUBMISSION</span><span class="cp-arrow">→</span>
+      <span class="cp-task">TASK 8</span> <span style="color:var(--text-muted);font-size:10px">(bonus)</span>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="section-label">Task Pipeline</div>
+  <div class="section-title">Full Task Sequence</div>
+
+  <div class="pipeline">
+
+    <!-- Task 0 -->
+    <div class="task-card" style="margin-bottom:12px">
+      <div class="task-num">TASK 0</div>
+      <div class="task-content">
+        <div class="task-title">Set Persistent Memory Context</div>
+        <div class="task-desc">Load the full project mission, sector thesis, judge profiles, and narrative rules into Perplexity Computer's persistent memory before any task runs.</div>
+        <div class="task-tags">
+          <span class="tag">5 min</span>
+          <span class="tag">prerequisite</span>
+        </div>
+      </div>
+      <div class="task-meta">free</div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Tasks 1 + 2 parallel -->
+    <div class="parallel-label">Parallel execution</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="task-card">
+        <div class="task-num">TASK 1</div>
+        <div class="task-content">
+          <div class="task-title">Historical Foundation</div>
+          <div class="task-desc">Technology paradigm shifts 1750→2026, Kondratiev waves, AI's civilizational weight. 4 parallel sub-agents.</div>
+          <div class="task-tags">
+            <span class="tag">4 sub-agents</span>
+            <span class="tag">2–3 hrs</span>
+            <span class="tag gold">Statista</span>
+            <span class="tag gold">PitchBook</span>
+          </div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">TASK 2</div>
+        <div class="task-content">
+          <div class="task-title">Candidate Universe</div>
+          <div class="task-desc">Map all NYSE/NASDAQ AI infrastructure stocks across 7 structural flaw categories and 5 risk/reward tiers. 7 parallel sub-agents.</div>
+          <div class="task-tags">
+            <span class="tag">7 sub-agents</span>
+            <span class="tag">2–3 hrs</span>
+            <span class="tag gold">CB Insights</span>
+            <span class="tag gold">SEC EDGAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Task 3 checkpoint -->
+    <div class="task-card checkpoint" style="margin-bottom:12px">
+      <div class="task-num">TASK 3</div>
+      <div class="task-content">
+        <div class="task-title">Comparative Analysis ⚠ CHECKPOINT</div>
+        <div class="task-desc">5 tier finalists evaluated on 7 dimensions → winner selected. Review output before proceeding — wrong stock = wrong everything.</div>
+        <div class="task-tags">
+          <span class="tag gold">7-dim matrix</span>
+          <span class="tag gold">1.5–2 hrs</span>
+          <span class="tag gold">review required</span>
+          <span class="tag gold">CB Insights</span>
+        </div>
+      </div>
+      <div class="task-meta" style="color:var(--gold)">CHECKPOINT</div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Task 4 -->
+    <div class="task-card" style="margin-bottom:12px">
+      <div class="task-num">TASK 4</div>
+      <div class="task-content">
+        <div class="task-title">Deep Dive on Selected Company</div>
+        <div class="task-desc">4 simultaneous sub-agents: Business Intelligence, Financial Analysis, Market Sizing, Alternative Data. Full dossier on the winner.</div>
+        <div class="task-tags">
+          <span class="tag">4 sub-agents</span>
+          <span class="task-tags"></span>
+          <span class="tag">3–5 hrs</span>
+          <span class="tag gold">SEC EDGAR</span>
+          <span class="tag gold">FactSet</span>
+          <span class="tag teal">hiring data</span>
+          <span class="tag teal">patents</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Tasks 5 + 6 parallel -->
+    <div class="parallel-label">Parallel execution</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div class="task-card">
+        <div class="task-num">TASK 5</div>
+        <div class="task-content">
+          <div class="task-title">Financial Model</div>
+          <div class="task-desc">Trading comps (6–8 peers), 3-scenario DCF with genuinely different structural assumptions, sensitivity table.</div>
+          <div class="task-tags">
+            <span class="tag">2–3 hrs</span>
+            <span class="tag gold">FactSet</span>
+            <span class="tag gold">S&P Global</span>
+            <span class="tag gold">PitchBook</span>
+          </div>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">TASK 6</div>
+        <div class="task-content">
+          <div class="task-title">Model Council Stress Test</div>
+          <div class="task-desc">GPT-5.4 + Claude Opus 4.6 + Gemini 3.1 Pro run in parallel, each answering 5 adversarial questions. Synthesis identifies agreement and divergence.</div>
+          <div class="task-tags">
+            <span class="tag purple">3 frontier models</span>
+            <span class="tag">1–1.5 hrs</span>
+            <span class="tag purple">Model Council</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Task 7 submission -->
+    <div class="task-card submission" style="margin-bottom:12px">
+      <div class="task-num">TASK 7 — SUBMISSION</div>
+      <div class="task-content">
+        <div class="task-title">Build the Story Web App</div>
+        <div class="task-desc">8-chapter narrative-driven investment pitch web app, deployed as a live URL. All data baked in from JSON outputs of Tasks 1–6. This IS the submission artifact.</div>
+        <div class="task-tags">
+          <span class="tag gold">live URL</span>
+          <span class="tag gold">8 chapters</span>
+          <span class="tag gold">3–5 hrs</span>
+          <span class="tag">all JSON inputs</span>
+          <span class="tag">PDF export</span>
+        </div>
+      </div>
+      <div class="task-meta" style="color:var(--gold)">SUBMIT</div>
+    </div>
+
+    <div class="pipeline-arrow">↓</div>
+
+    <!-- Task 8 -->
+    <div class="task-card">
+      <div class="task-num">TASK 8</div>
+      <div class="task-content">
+        <div class="task-title">Monitoring Setup (Bonus)</div>
+        <div class="task-desc">Daily async monitoring for SEC filings, price moves >5%, competitor announcements, hiring signals. Triggers a report only when something material changes.</div>
+        <div class="task-tags">
+          <span class="tag">30 min</span>
+          <span class="tag teal">if credits allow</span>
+          <span class="tag gold">SEC EDGAR</span>
+        </div>
+      </div>
+      <div class="task-meta">bonus</div>
+    </div>
+
+  </div>
+
+  <!-- STATS -->
+  <div class="section-label">Scale</div>
+  <div class="section-title">What Perplexity Computer Runs</div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-val">22+</div>
+      <div class="stat-label">Parallel Sub-agents</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">7</div>
+      <div class="stat-label">AI Flaw Categories</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">3</div>
+      <div class="stat-label">Model Council Models</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val gold">6</div>
+      <div class="stat-label">Premium Data Sources</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">~20h</div>
+      <div class="stat-label">Async Compute</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val gold">8</div>
+      <div class="stat-label">App Chapters</div>
+    </div>
+  </div>
+
+  <!-- CHAPTERS -->
+  <div class="section-label">Final Submission</div>
+  <div class="section-title">8-Chapter Story Web App</div>
+
+  <div class="chapters-grid">
+    <div class="chapter-card" style="--chapter-color: #2D6FFF">
+      <div class="chapter-num">Chapter 1</div>
+      <div class="chapter-title">The World Before the Answer</div>
+      <div class="chapter-desc">Tech paradigm shifts 1750→2026, Kondratiev waves, AI's civilizational weight vs. electricity and the steam engine.</div>
+      <div class="chapter-source">← Task 1 · paradigm_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #3B82F6">
+      <div class="chapter-num">Chapter 2</div>
+      <div class="chapter-title">Locating the Opportunity</div>
+      <div class="chapter-desc">Interactive universe of AI infrastructure stocks across 7 categories and 5 risk/reward tiers. Bubble chart, filter toggles.</div>
+      <div class="chapter-source">← Task 2 · universe_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #60A5FA">
+      <div class="chapter-num">Chapter 3</div>
+      <div class="chapter-title">The Comparative Analysis</div>
+      <div class="chapter-desc">5 finalists in a 7-dimension heatmap. Scores fill in sequentially. Winner pulses gold. 300-word justification.</div>
+      <div class="chapter-source">← Task 3 · comparative_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #A855F7">
+      <div class="chapter-num">Chapter 4</div>
+      <div class="chapter-title">The Company</div>
+      <div class="chapter-desc">Deep dive: revenue segments, moat radar chart, competitive map, talent signals, patent velocity, alt data.</div>
+      <div class="chapter-source">← Task 4 · research_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #14B8A6">
+      <div class="chapter-num">Chapter 5</div>
+      <div class="chapter-title">The Financial Case</div>
+      <div class="chapter-desc">Trading comps, interactive DCF with sliders (Bear/Base/Bull), sensitivity heatmap, 24-month catalyst calendar.</div>
+      <div class="chapter-source">← Task 5 · model_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #8B5CF6">
+      <div class="chapter-num">Chapter 6</div>
+      <div class="chapter-title">The Stress Test</div>
+      <div class="chapter-desc">3 frontier AI models × 5 adversarial questions. Agreement/divergence grid. "The Loeb Question" callout in gold.</div>
+      <div class="chapter-source">← Task 6 · council_data.json</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #C9A84C">
+      <div class="chapter-num">Chapter 7</div>
+      <div class="chapter-title">The Recommendation</div>
+      <div class="chapter-desc">LONG thesis. Non-consensus insight, bold. Three conviction pillars — one per judge's lens. Risks & exit criteria.</div>
+      <div class="chapter-source">← Synthesis</div>
+    </div>
+    <div class="chapter-card" style="--chapter-color: #E4C46A">
+      <div class="chapter-num">Chapter 8</div>
+      <div class="chapter-title">How This Was Built</div>
+      <div class="chapter-desc">Workflow diagram, task log cards, big-number stats panel, "Without Perplexity" comparison. The creative use showcase.</div>
+      <div class="chapter-source">← All tasks · process logs</div>
+    </div>
+  </div>
+
+  <!-- DATA SOURCES -->
+  <div class="section-label">Premium Data</div>
+  <div class="section-title">Data Sources Accessed</div>
+
+  <div class="sources-grid">
+    <div class="source-chip"><div class="source-dot" style="background:#C9A84C"></div>PitchBook</div>
+    <div class="source-chip"><div class="source-dot" style="background:#2D6FFF"></div>CB Insights</div>
+    <div class="source-chip"><div class="source-dot" style="background:#22C55E"></div>FactSet</div>
+    <div class="source-chip"><div class="source-dot" style="background:#A855F7"></div>S&P Global</div>
+    <div class="source-chip"><div class="source-dot" style="background:#14B8A6"></div>Statista</div>
+    <div class="source-chip"><div class="source-dot" style="background:#F59E0B"></div>SEC EDGAR</div>
+    <div class="source-chip"><div class="source-dot" style="background:#EF4444"></div>Patent Databases</div>
+    <div class="source-chip"><div class="source-dot" style="background:#6366F1"></div>Hiring / LinkedIn</div>
+    <div class="source-chip"><div class="source-dot" style="background:#EC4899"></div>Polymarket</div>
+    <div class="source-chip"><div class="source-dot" style="background:#06B6D4"></div>Academic Citations</div>
+  </div>
+
+  <!-- JUDGES -->
+  <div class="section-label">Judges</div>
+  <div class="section-title">Who Is Evaluating This</div>
+
+  <div class="judges-row">
+    <div class="judge-card">
+      <div class="judge-name">Philippe Laffont</div>
+      <div class="judge-firm">Coatue Management</div>
+      <div class="judge-lens">
+        <strong>Lens:</strong> Historical tech cycles, "token economy" thesis, infrastructure-before-apps. MIT CS degree — engineer mindset. Invested in Anthropic.<br><br>
+        <strong>Pitch to:</strong> Non-consensus behavioral data, Kondratiev framing, infrastructure moat analysis.
+      </div>
+    </div>
+    <div class="judge-card">
+      <div class="judge-name">Dan Loeb</div>
+      <div class="judge-firm">Third Point</div>
+      <div class="judge-lens">
+        <strong>Lens:</strong> Activist-event-driven, surgical valuation, specific catalyst required. Destroys hand-waving. Warned AI is already eroding software moats.<br><br>
+        <strong>Pitch to:</strong> Concrete near-term catalyst, exact valuation gap, one-question CEO stress test.
+      </div>
+    </div>
+    <div class="judge-card">
+      <div class="judge-name">Ken Hao</div>
+      <div class="judge-firm">Silver Lake</div>
+      <div class="judge-lens">
+        <strong>Lens:</strong> Semiconductor/large-cap tech, led $8.75B Altera FPGA acquisition, edge AI and robotics. Harvard Economics. Appreciates elegance.<br><br>
+        <strong>Pitch to:</strong> Operational transformation, long-term compounding, hardware/software integration moats.
+      </div>
+    </div>
+  </div>
+
+  <!-- FILES -->
+  <div class="section-label">Project Files</div>
+  <div class="section-title">What Claude Code Built</div>
+
+  <div class="sources-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+    <div class="source-chip"><div class="source-dot" style="background:#A855F7"></div>CLAUDE.md — Master briefing</div>
+    <div class="source-chip"><div class="source-dot" style="background:#2D6FFF"></div>PERPLEXITY_TASKS.md — All prompts</div>
+    <div class="source-chip"><div class="source-dot" style="background:#C9A84C"></div>JUDGES.md — Judge profiles</div>
+    <div class="source-chip"><div class="source-dot" style="background:#14B8A6"></div>THESIS_FRAMEWORK.md — Thesis architecture</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Claude Code · Perplexity Stock Pitch Competition · April 2026 · Prize: $17,500
+</div>
+
+</body>
+</html>

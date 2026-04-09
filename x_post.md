@@ -1,20 +1,17 @@
-# X Post (Single — attached to submission)
+# X Post (under 280 chars)
 
-built a full investment research thesis in 1 day for @perplexity_ai's stock pitch competition — judged by Philippe Laffont, Dan Loeb, and Ken Hao.
+built a @perplexity_ai stock pitch in 1 day.
 
-the workflow:
-→ mapped @askperplexity Computer's capabilities before touching a prompt
-→ profiled each judge's investment framework and what earns their respect
-→ scanned 59 companies across 7 AI infrastructure categories
-→ ran a 7-dimension scoring matrix to surface one winner: $CRDO
+→ mapped the tool's capabilities first
+→ grounded thesis in civilizational history
+→ 59 companies, 7 AI categories
+→ 7-dimension matrix → $CRDO
 
-3 frontier AI models stress-tested the thesis in parallel. the output: a fully interactive web app.
+AI amplifies conviction. it can't manufacture it.
 
-i didn't write a single line of code.
+@askperplexity @PPLXFinance [link]
 
-the insight: AI amplifies conviction. it can't manufacture it. the bottleneck is always the human.
-
-@PPLXFinance [link]
+@askperplexity @PPLXFinance [link]
 
 ---
 
